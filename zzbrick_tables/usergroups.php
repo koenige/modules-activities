@@ -22,8 +22,6 @@ $zz['fields'][1]['type'] = 'id';
 $zz['fields'][2]['field_name'] = 'usergroup';
 $zz['fields'][2]['type'] = 'text';
 
-$zz['fields'][3]['field_name'] = 'usergroup';
-
 $zz['fields'][4]['field_name'] = 'identifier';
 $zz['fields'][4]['type'] = 'identifier';
 $zz['fields'][4]['fields'] = ['usergroup'];
@@ -47,9 +45,11 @@ $zz['fields'][5]['display_field'] = 'category';
 
 $zz['fields'][6]['field_name'] = 'description';
 $zz['fields'][6]['hide_in_list'] = true;
+$zz['fields'][6]['type'] = 'memo';
 
 $zz['fields'][7]['field_name'] = 'sequence';
 $zz['fields'][7]['type'] = 'sequence';
+$zz['fields'][7]['hide_in_list'] = true;
 
 $zz['fields'][8]['field_name'] = 'active';
 $zz['fields'][8]['type'] = 'select';
@@ -57,7 +57,7 @@ $zz['fields'][8]['enum'] = ['yes', 'no'];
 $zz['fields'][8]['default'] = 'yes';
 
 $zz['fields'][9]['field_name'] = 'parameters';
-$zz['fields'][9]['type'] = 'parameters';
+$zz['fields'][9]['type'] = 'parameter';
 $zz['fields'][9]['hide_in_list'] = true;
 
 $zz['fields'][99]['field_name'] = 'last_update';
