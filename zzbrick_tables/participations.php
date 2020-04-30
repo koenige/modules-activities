@@ -69,6 +69,6 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/participations.*, contact, usergroup, category
 	LEFT JOIN /*_PREFIX_*/contacts USING (contact_id)
 	LEFT JOIN /*_PREFIX_*/usergroups USING (usergroup_id)
 	LEFT JOIN /*_PREFIX_*/categories
-		ON /*_PREFIX_*/usergroups.usergroup_category_id = /*_PREFIX_*/categories.category_id
+		ON /*_PREFIX_*/participations.status_category_id = /*_PREFIX_*/categories.category_id
 ';
 $zz['sqlorder'] = ' ORDER BY /*_PREFIX_*/usergroups.identifier, /*_PREFIX_*/contacts.identifier, date_begin';
