@@ -33,6 +33,8 @@ CREATE TABLE `usergroups` (
   KEY `usergroup_category_id` (`usergroup_category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("Usergroups", NULL, NULL, "usergroups", NULL, NULL, NOW());
+
 DROP TABLE IF EXISTS `participations`;
 CREATE TABLE `participations` (
   `participation_id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -42,8 +44,10 @@ CREATE TABLE `participations` (
   `date_end` date DEFAULT NULL,
   `status_category_id` int unsigned NOT NULL,
   `remarks` text COLLATE utf8mb4_unicode_ci,
+  `verification_hash` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_update` timestamp NOT NULL,
   PRIMARY KEY (`participation_id`),
+  UNIQUE KEY `verification_hash` (`verification_hash`),
   KEY `contact_id` (`contact_id`,`usergroup_id`,`date_begin`),
   KEY `usergroup_id` (`usergroup_id`),
   KEY `status_category_id` (`status_category_id`)

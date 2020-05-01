@@ -60,6 +60,15 @@ $zz['fields'][7]['type'] = 'memo';
 $zz['fields'][7]['rows'] = 3;
 $zz['fields'][7]['explanation'] = '(internal remarks only)';
 
+$zz['fields'][8]['title'] = 'Hash';
+$zz['fields'][8]['field_name'] = 'verification_hash';
+$zz['fields'][8]['type'] = 'write_once';
+$zz['fields'][8]['class'] = 'hidden';
+$zz['fields'][8]['hide_in_list'] = true;
+$zz['fields'][8]['function'] = 'mod_registrations_random_hash';
+$zz['fields'][8]['fields'] = ['verification_hash'];
+$zz['fields'][8]['export'] = false;
+
 $zz['fields'][99]['field_name'] = 'last_update';
 $zz['fields'][99]['type'] = 'timestamp';
 $zz['fields'][99]['hide_in_list'] = true;
