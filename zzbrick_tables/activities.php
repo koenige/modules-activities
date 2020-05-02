@@ -47,6 +47,7 @@ $zz['fields'][4]['type_detail'] = 'datetime';
 $zz['fields'][4]['unless']['export_mode']['list_prefix'] = '<small style="color: #999;">';
 $zz['fields'][4]['unless']['export_mode']['list_suffix'] = '<br>';
 $zz['fields'][4]['unless']['export_mode']['list_append_next'] = true;
+$zz['fields'][4]['default'] = date('Y-m-d H:i:s');
 
 $zz['fields'][5]['title'] = 'Activity IP';
 $zz['fields'][5]['field_name'] = 'activity_ip';
@@ -60,6 +61,7 @@ $zz['fields'][6]['title'] = 'URI';
 $zz['fields'][6]['field_name'] = 'activity_uri';
 $zz['fields'][6]['type'] = 'write_once';
 $zz['fields'][6]['type_detail'] = 'url';
+$zz['fields'][6]['default'] = $zz_setting['request_uri'];
 
 $zz['sql'] = 'SELECT /*_PREFIX_*/activities.*, contact, category
 	FROM /*_PREFIX_*/activities
