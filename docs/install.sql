@@ -33,7 +33,10 @@ CREATE TABLE `usergroups` (
   KEY `usergroup_category_id` (`usergroup_category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("Usergroups", NULL, NULL, "usergroups", NULL, NULL, NOW());
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'usergroups', 'usergroup_id', 'usergroup_category_id', 'no-delete');
+
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Usergroups', NULL, NULL, 'usergroups', NULL, NULL, NOW());
+
 
 DROP TABLE IF EXISTS `participations`;
 CREATE TABLE `participations` (
@@ -53,6 +56,10 @@ CREATE TABLE `participations` (
   KEY `status_category_id` (`status_category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'contacts', 'contact_id', (SELECT DATABASE()), 'participations', 'participation_id', 'contact_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'participations', 'participation_id', 'status_category_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'usergroups', 'usergroup_id', (SELECT DATABASE()), 'participations', 'participation_id', 'usergroup_id', 'no-delete');
+
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Participation Status', NULL, NULL, 'participation-status', NULL, NULL, NOW());
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('subscribed', NULL, (SELECT category_id FROM categories c WHERE path = 'participation-status'), 'participation-status/subscribed', NULL, 1, NOW());
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('verified', NULL, (SELECT category_id FROM categories c WHERE path = 'participation-status'), 'participation-status/verified', NULL, 2, NOW());
@@ -60,6 +67,7 @@ INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('missing', NULL, (SELECT category_id FROM categories c WHERE path = 'participation-status'), 'participation-status/missing', NULL, 4, NOW());
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('deleted', NULL, (SELECT category_id FROM categories c WHERE path = 'participation-status'), 'participation-status/deleted', NULL, 5, NOW());
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('blocked', NULL, (SELECT category_id FROM categories c WHERE path = 'participation-status'), 'participation-status/blocked', NULL, 6, NOW());
+
 
 DROP TABLE IF EXISTS `activities`;
 CREATE TABLE `activities` (
@@ -74,10 +82,13 @@ CREATE TABLE `activities` (
   KEY `activity_category_id` (`activity_category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("Activities", NULL, NULL, "activities", NULL, NULL, NOW());
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("subscribe", NULL, (SELECT category_id FROM categories c WHERE path = 'activities'), "activities/subscribe", NULL, NULL, NOW());
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("verify", NULL, (SELECT category_id FROM categories c WHERE path = 'activities'), "activities/verify", NULL, NULL, NOW());
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("unsubscribe", NULL, (SELECT category_id FROM categories c WHERE path = 'activities'), "activities/unsubscribe", NULL, NULL, NOW());
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("plan", NULL, (SELECT category_id FROM categories c WHERE path = 'activities'), "activities/plan", NULL, NULL, NOW());
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("send", NULL, (SELECT category_id FROM categories c WHERE path = 'activities'), "activities/send", NULL, NULL, NOW());
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ("click", NULL, (SELECT category_id FROM categories c WHERE path = 'activities'), "activities/click", NULL, NULL, NOW());
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'participations', 'participation_id', (SELECT DATABASE()), 'activities', 'activity_id', 'participation_id', 'delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'activities', 'activity_id', 'activity_category_id', 'no-delete');
+
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Activities', NULL, NULL, 'activities', NULL, NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('subscribe', NULL, (SELECT category_id FROM categories c WHERE path = 'activities'), 'activities/subscribe', NULL, NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('verify', NULL, (SELECT category_id FROM categories c WHERE path = 'activities'), 'activities/verify', NULL, NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('unsubscribe', NULL, (SELECT category_id FROM categories c WHERE path = 'activities'), 'activities/unsubscribe', NULL, NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('plan', NULL, (SELECT category_id FROM categories c WHERE path = 'activities'), 'activities/plan', NULL, NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('send', NULL, (SELECT category_id FROM categories c WHERE path = 'activities'), 'activities/send', NULL, NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('click', NULL, (SELECT category_id FROM categories c WHERE path = 'activities'), 'activities/click', NULL, NULL, NOW());
