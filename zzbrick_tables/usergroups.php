@@ -19,6 +19,7 @@ $zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'usergroup_id';
 $zz['fields'][1]['type'] = 'id';
 
+$zz['fields'][2]['title'] = 'Group';
 $zz['fields'][2]['field_name'] = 'usergroup';
 $zz['fields'][2]['type'] = 'text';
 
