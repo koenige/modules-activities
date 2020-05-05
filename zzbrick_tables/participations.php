@@ -81,3 +81,14 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/participations.*, contact, usergroup, category
 		ON /*_PREFIX_*/participations.status_category_id = /*_PREFIX_*/categories.category_id
 ';
 $zz['sqlorder'] = ' ORDER BY /*_PREFIX_*/usergroups.identifier, /*_PREFIX_*/contacts.identifier, date_begin';
+
+$zz['filter'][1]['sql'] = 'SELECT category_id, category
+	FROM /*_PREFIX_*/participations
+	LEFT JOIN /*_PREFIX_*/categories
+		ON /*_PREFIX_*/participations.status_category_id = /*_PREFIX_*/categories.category_id
+	ORDER BY category';
+$zz['filter'][1]['title'] = wrap_text('Status');
+$zz['filter'][1]['identifier'] = 'status';
+$zz['filter'][1]['type'] = 'list';
+$zz['filter'][1]['where'] = 'status_category_id';
+$zz['filter'][1]['field_name'] = 'status_category_id';
