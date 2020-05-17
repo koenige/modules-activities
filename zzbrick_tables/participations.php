@@ -24,6 +24,15 @@ $zz['fields'][2]['type'] = 'select';
 $zz['fields'][2]['sql'] = 'SELECT contact_id, contact, identifier
 	FROM contacts ORDER BY contact';
 $zz['fields'][2]['display_field'] = 'contact';
+$zz['fields'][2]['list_append_next'] = true;
+
+$zz['fields'][10]['field_name'] = 'e_mail';
+$zz['fields'][10]['type'] = 'display';
+$zz['fields'][10]['type_detail'] = 'mail';
+$zz['fields'][10]['list_prefix'] = '<br>';
+$zz['fields'][10]['search'] = sprintf('(SELECT identification FROM /*_PREFIX_*/contactdetails
+			WHERE /*_PREFIX_*/contactdetails.contact_id = /*_PREFIX_*/participations.contact_id
+			AND provider_category_id = %d LIMIT 1)', wrap_category_id('provider/e-mail'));
 
 $zz['fields'][3]['field_name'] = 'usergroup_id';
 $zz['fields'][3]['type'] = 'select';
@@ -40,6 +49,7 @@ $zz['fields'][4]['type'] = 'date';
 
 $zz['fields'][5]['field_name'] = 'date_end';
 $zz['fields'][5]['type'] = 'date';
+$zz['fields'][5]['hide_in_list_if_empty'] = true;
 
 $zz['fields'][6]['title'] = 'Category';
 $zz['fields'][6]['field_name'] = 'status_category_id';
@@ -73,13 +83,18 @@ $zz['fields'][99]['field_name'] = 'last_update';
 $zz['fields'][99]['type'] = 'timestamp';
 $zz['fields'][99]['hide_in_list'] = true;
 
-$zz['sql'] = 'SELECT /*_PREFIX_*/participations.*, contact, usergroup, category
+$zz['sql'] = sprintf('SELECT /*_PREFIX_*/participations.*, contact, usergroup, category
+		, (SELECT identification FROM /*_PREFIX_*/contactdetails
+			WHERE /*_PREFIX_*/contactdetails.contact_id = /*_PREFIX_*/participations.contact_id
+			AND provider_category_id = %d LIMIT 1) AS e_mail
 	FROM /*_PREFIX_*/participations
 	LEFT JOIN /*_PREFIX_*/contacts USING (contact_id)
 	LEFT JOIN /*_PREFIX_*/usergroups USING (usergroup_id)
 	LEFT JOIN /*_PREFIX_*/categories
 		ON /*_PREFIX_*/participations.status_category_id = /*_PREFIX_*/categories.category_id
-';
+'
+	, wrap_category_id('provider/e-mail')
+);
 $zz['sqlorder'] = ' ORDER BY /*_PREFIX_*/usergroups.identifier, /*_PREFIX_*/contacts.identifier, date_begin';
 
 $zz['filter'][1]['sql'] = 'SELECT category_id, category
