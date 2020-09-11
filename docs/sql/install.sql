@@ -20,7 +20,7 @@ SET NAMES utf8mb4;
 DROP TABLE IF EXISTS `usergroups`;
 CREATE TABLE `usergroups` (
   `usergroup_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `usergroup` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usergroup` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
   `identifier` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
   `usergroup_category_id` int unsigned NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci,
