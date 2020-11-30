@@ -4,7 +4,7 @@
  * Zugzwang Project
  * Table with usergroups
  *
- * http://www.zugzwang.org/modules/registrations
+ * http://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2020 Gustaf Mossakowski

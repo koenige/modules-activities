@@ -4,7 +4,7 @@
  * Zugzwang Project
  * Table with participations
  *
- * http://www.zugzwang.org/modules/registrations
+ * http://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2020 Gustaf Mossakowski
@@ -75,7 +75,7 @@ $zz['fields'][8]['field_name'] = 'verification_hash';
 $zz['fields'][8]['type'] = 'write_once';
 $zz['fields'][8]['class'] = 'hidden';
 $zz['fields'][8]['hide_in_list'] = true;
-$zz['fields'][8]['function'] = 'mod_registrations_random_hash';
+$zz['fields'][8]['function'] = 'mod_activities_random_hash';
 $zz['fields'][8]['fields'] = ['verification_hash'];
 $zz['fields'][8]['export'] = false;
 

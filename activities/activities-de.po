@@ -1,8 +1,8 @@
-# registrations module
+# activities module
 # Translations to German
 #
 # Part of »Zugzwang Project«
-# http://www.zugzwang.org/modules/registrations
+# http://www.zugzwang.org/modules/activities
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
 # @copyright Copyright © 2020 Gustaf Mossakowski
@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
-"Project-Id-Version: Zugzwang Project – Registrations Module\n"
+"Project-Id-Version: Zugzwang Project – Activities Module\n"
 "POT-Creation-Date: \n"
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
