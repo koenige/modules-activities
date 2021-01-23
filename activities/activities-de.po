@@ -5,7 +5,7 @@
 # http://www.zugzwang.org/modules/activities
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020 Gustaf Mossakowski
+# @copyright Copyright © 2020-2021 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -22,6 +22,26 @@ msgstr ""
 "PO-Revision-Date: \n"
 "X-Generator: Poedit 1.6.4\n"
 "Language: de\n"
+
+#: zzbrick_tables/participations.php
+msgid "Participations"
+msgstr "Teilnahmen"
+
+#: zzbrick_tables/participations.php
+msgid "Usergroup"
+msgstr "Gruppe"
+
+#: zzbrick_tables/participations.php
+msgid "Date begin"
+msgstr "Datum Beginn"
+
+#: zzbrick_tables/participations.php
+msgid "Date end"
+msgstr "Datum Ende"
+
+#: zzbrick_tables/participations.php
+msgid "(internal remarks only)"
+msgstr "(nur interne Anmerkungen)"
 
 #: zzbrick_tables/usergroups.php
 msgid "Groups"

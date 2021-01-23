@@ -26,6 +26,7 @@ $zz['fields'][2]['sql'] = 'SELECT contact_id, contact, identifier
 $zz['fields'][2]['display_field'] = 'contact';
 $zz['fields'][2]['list_append_next'] = true;
 
+$zz['fields'][10]['title'] = 'E-Mail';
 $zz['fields'][10]['field_name'] = 'e_mail';
 $zz['fields'][10]['type'] = 'display';
 $zz['fields'][10]['type_detail'] = 'mail';
@@ -46,6 +47,7 @@ $zz['fields'][3]['group'] = 'category';
 
 $zz['fields'][4]['field_name'] = 'date_begin';
 $zz['fields'][4]['type'] = 'date';
+$zz['fields'][4]['hide_in_list_if_empty'] = true;
 
 $zz['fields'][5]['field_name'] = 'date_end';
 $zz['fields'][5]['type'] = 'date';
