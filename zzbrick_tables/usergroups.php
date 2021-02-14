@@ -7,7 +7,7 @@
  * http://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2021 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -22,6 +22,10 @@ $zz['fields'][1]['type'] = 'id';
 $zz['fields'][2]['title'] = 'Group';
 $zz['fields'][2]['field_name'] = 'usergroup';
 $zz['fields'][2]['type'] = 'text';
+$zz['fields'][2]['link'] = [
+	'mode' => 'mf_activities_group_path',
+	'field' => 'identifier'
+];
 
 $zz['fields'][4]['field_name'] = 'identifier';
 $zz['fields'][4]['type'] = 'identifier';

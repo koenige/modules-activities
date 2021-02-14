@@ -25,3 +25,22 @@ function mf_activities_random_hash($fields) {
 	}
 	return $hash;
 }
+
+/**
+ * get path to profile for a group
+ *
+ * @param string $identifier
+ * @return string
+ */
+function mf_activities_group_path($identifier) {
+	global $zz_setting;
+	if (empty($zz_setting['activities_profile_path']['usergroup'])) {
+		$sql = 'SELECT CONCAT(identifier, IF(ending = "none", "", ending)) AS path
+			FROM webpages
+			WHERE content LIKE "%%%% forms participations-usergroups * %%%%"';
+		$path = wrap_db_fetch($sql, '', 'single value');
+		$path = str_replace('*', '/%s', $path);
+		wrap_setting_write('activities_profile_path[usergroup]', $path);
+	}
+	return sprintf($zz_setting['activities_profile_path']['usergroup'], $identifier);
+}
