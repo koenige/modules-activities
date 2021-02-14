@@ -40,6 +40,7 @@ function mf_activities_group_path($identifier) {
 			WHERE content LIKE "%%%% forms participations-usergroups * %%%%"';
 		$path = wrap_db_fetch($sql, '', 'single value');
 		$path = str_replace('*', '/%s', $path);
+		if (!$path) return false;
 		wrap_setting_write('activities_profile_path[usergroup]', $path);
 	}
 	return sprintf($zz_setting['activities_profile_path']['usergroup'], $identifier);
