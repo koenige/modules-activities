@@ -32,6 +32,10 @@ msgid "Usergroup"
 msgstr "Gruppe"
 
 #: zzbrick_tables/participations.php
+msgid "Usergroups"
+msgstr "Gruppen"
+
+#: zzbrick_tables/participations.php
 msgid "Date begin"
 msgstr "Datum Beginn"
 
