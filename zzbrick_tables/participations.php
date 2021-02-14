@@ -21,10 +21,15 @@ $zz['fields'][1]['type'] = 'id';
 
 $zz['fields'][2]['field_name'] = 'contact_id';
 $zz['fields'][2]['type'] = 'select';
+$zz['fields'][2]['type_detail'] = 'select';
 $zz['fields'][2]['sql'] = 'SELECT contact_id, contact, identifier
 	FROM contacts ORDER BY contact';
 $zz['fields'][2]['display_field'] = 'contact';
 $zz['fields'][2]['list_append_next'] = true;
+$zz['fields'][2]['link'] = [
+	'function' => 'mf_contacts_person_path',
+	'fields' => ['identifier', 'contact_parameters']
+];
 
 $zz['fields'][10]['title'] = 'E-Mail';
 $zz['fields'][10]['field_name'] = 'e_mail';
@@ -44,6 +49,8 @@ $zz['fields'][3]['sql'] = 'SELECT usergroup_id, usergroup, category
 	ORDER BY identifier';
 $zz['fields'][3]['display_field'] = 'usergroup';
 $zz['fields'][3]['group'] = 'category';
+$zz['fields'][3]['if']['where']['hide_in_form'] = true;
+$zz['fields'][3]['if']['where']['hide_in_list'] = true;
 
 $zz['fields'][4]['field_name'] = 'date_begin';
 $zz['fields'][4]['type'] = 'date';
@@ -85,15 +92,20 @@ $zz['fields'][99]['field_name'] = 'last_update';
 $zz['fields'][99]['type'] = 'timestamp';
 $zz['fields'][99]['hide_in_list'] = true;
 
-$zz['sql'] = sprintf('SELECT /*_PREFIX_*/participations.*, contact, usergroup, category
+$zz['sql'] = sprintf('SELECT /*_PREFIX_*/participations.*, contact, usergroup
+		, /*_PREFIX_*/categories.category
 		, (SELECT identification FROM /*_PREFIX_*/contactdetails
 			WHERE /*_PREFIX_*/contactdetails.contact_id = /*_PREFIX_*/participations.contact_id
 			AND provider_category_id = %d LIMIT 1) AS e_mail
+		,  /*_PREFIX_*/contacts.identifier
+		, contact_categories.parameters AS contact_parameters
 	FROM /*_PREFIX_*/participations
 	LEFT JOIN /*_PREFIX_*/contacts USING (contact_id)
 	LEFT JOIN /*_PREFIX_*/usergroups USING (usergroup_id)
 	LEFT JOIN /*_PREFIX_*/categories
 		ON /*_PREFIX_*/participations.status_category_id = /*_PREFIX_*/categories.category_id
+	LEFT JOIN /*_PREFIX_*/categories contact_categories
+		ON contact_categories.category_id = /*_PREFIX_*/contacts.contact_category_id
 '
 	, wrap_category_id('provider/e-mail')
 );
