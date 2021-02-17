@@ -60,3 +60,7 @@ if (!empty($parameters['value'])) {
 		}
 	}
 }
+
+$zz['filter'][1]['sql'] = wrap_edit_sql(
+	$zz['filter'][1]['sql'], 'WHERE', sprintf('usergroup_id = %d', $data['usergroup_id'])
+);
