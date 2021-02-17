@@ -69,6 +69,7 @@ $zz['fields'][6]['sql'] = sprintf('SELECT category_id, category
 	wrap_category_id('participation-status')
 );
 $zz['fields'][6]['key_field_name'] = 'category_id';
+$zz['fields'][6]['search'] = '/*_PREFIX_*/categories.category';
 $zz['fields'][6]['if']['where']['hide_in_form'] = true;
 $zz['fields'][6]['if']['where']['hide_in_list'] = true;
 $zz['fields'][6]['display_field'] = 'category';
