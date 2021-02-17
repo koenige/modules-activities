@@ -53,10 +53,12 @@ $zz['fields'][3]['if']['where']['hide_in_form'] = true;
 $zz['fields'][3]['if']['where']['hide_in_list'] = true;
 
 $zz['fields'][4]['field_name'] = 'date_begin';
+$zz['fields'][4]['title_tab'] = 'Begin';
 $zz['fields'][4]['type'] = 'date';
 $zz['fields'][4]['hide_in_list_if_empty'] = true;
 
 $zz['fields'][5]['field_name'] = 'date_end';
+$zz['fields'][5]['title_tab'] = 'End';
 $zz['fields'][5]['type'] = 'date';
 $zz['fields'][5]['hide_in_list_if_empty'] = true;
 
@@ -82,7 +84,7 @@ $zz['fields'][7]['explanation'] = '(internal remarks only)';
 
 $zz['fields'][8]['title'] = 'Hash';
 $zz['fields'][8]['field_name'] = 'verification_hash';
-$zz['fields'][8]['type'] = 'write_once';
+$zz['fields'][8]['type'] = 'hidden';
 $zz['fields'][8]['class'] = 'hidden';
 $zz['fields'][8]['hide_in_list'] = true;
 $zz['fields'][8]['function'] = 'mf_activities_random_hash';
