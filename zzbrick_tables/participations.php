@@ -104,6 +104,7 @@ $zz['sql'] = sprintf('SELECT /*_PREFIX_*/participations.*, contact, usergroup
 		, contact_categories.parameters AS contact_parameters
 	FROM /*_PREFIX_*/participations
 	LEFT JOIN /*_PREFIX_*/contacts USING (contact_id)
+	LEFT JOIN /*_PREFIX_*/persons USING (contact_id)
 	LEFT JOIN /*_PREFIX_*/usergroups USING (usergroup_id)
 	LEFT JOIN /*_PREFIX_*/categories
 		ON /*_PREFIX_*/participations.status_category_id = /*_PREFIX_*/categories.category_id
@@ -112,7 +113,11 @@ $zz['sql'] = sprintf('SELECT /*_PREFIX_*/participations.*, contact, usergroup
 '
 	, wrap_category_id('provider/e-mail')
 );
-$zz['sqlorder'] = ' ORDER BY /*_PREFIX_*/usergroups.identifier, /*_PREFIX_*/contacts.identifier, date_begin';
+$zz['sqlorder'] = ' ORDER BY /*_PREFIX_*/usergroups.identifier
+	, IFNULL(/*_PREFIX_*/persons.last_name, /*_PREFIX_*/contacts.identifier)
+	, IFNULL(/*_PREFIX_*/persons.first_name, /*_PREFIX_*/contacts.identifier)
+	, /*_PREFIX_*/contacts.identifier
+	, date_begin';
 
 $zz['filter'][1]['sql'] = 'SELECT category_id, category
 	FROM /*_PREFIX_*/participations
@@ -124,3 +129,14 @@ $zz['filter'][1]['identifier'] = 'status';
 $zz['filter'][1]['type'] = 'list';
 $zz['filter'][1]['where'] = 'status_category_id';
 $zz['filter'][1]['field_name'] = 'status_category_id';
+
+$zz['filter'][2]['title'] = wrap_text('Active?');
+$zz['filter'][2]['identifier'] = 'active';
+$zz['filter'][2]['type'] = 'list';
+$zz['filter'][2]['where'] = 'status_category_id';
+$zz['filter'][2]['where'] = 'IF(ISNULL(participations.date_end) 
+	OR participations.date_end > CURRENT_DATE(), "1", "2")';
+$zz['filter'][2]['selection'][1] = wrap_text('active');
+$zz['filter'][2]['selection'][2] = wrap_text('inactive');
+$zz['filter'][2]['default_selection'] = 1;
+

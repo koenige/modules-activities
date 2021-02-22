@@ -47,6 +47,18 @@ msgstr "Datum Ende"
 msgid "(internal remarks only)"
 msgstr "(nur interne Anmerkungen)"
 
+#: zzbrick_tables/participations.php
+msgid "Active?"
+msgstr "Aktiv?"
+
+#: zzbrick_tables/participations.php
+msgid "active"
+msgstr "aktiv"
+
+#: zzbrick_tables/participations.php
+msgid "inactive"
+msgstr "inaktiv"
+
 #: zzbrick_tables/usergroups.php
 msgid "Groups"
 msgstr "Gruppen"
