@@ -10,6 +10,26 @@
  */
 
 
+CREATE TABLE `contacts_access` (
+  `contact_access_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `contact_id` int unsigned DEFAULT NULL,
+  `usergroup_id` int unsigned NOT NULL,
+  `access_category_id` int unsigned NOT NULL,
+  `property_category_id` int unsigned NOT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`contact_access_id`),
+  UNIQUE KEY `contact_id_usergroup_id_property_category_id` (`contact_id`,`usergroup_id`,`property_category_id`),
+  KEY `usergroup_id` (`usergroup_id`),
+  KEY `access_category_id` (`access_category_id`),
+  KEY `property_category_id` (`property_category_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'contacts', 'contact_id', (SELECT DATABASE()), 'contacts_access', 'contact_access_id', 'contact_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'usergroups', 'usergroup_id', (SELECT DATABASE()), 'contacts_access', 'contact_access_id', 'usergroup_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'contacts_access', 'contact_access_id', 'access_category_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'contacts_access', 'contact_access_id', 'property_category_id', 'no-delete');
+
+
 CREATE TABLE `usergroups` (
   `usergroup_id` int unsigned NOT NULL AUTO_INCREMENT,
   `usergroup` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
