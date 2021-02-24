@@ -23,8 +23,8 @@ $zz['fields'][2]['title'] = 'Group';
 $zz['fields'][2]['field_name'] = 'usergroup';
 $zz['fields'][2]['type'] = 'text';
 $zz['fields'][2]['link'] = [
-	'mode' => 'mf_activities_group_path',
-	'field' => 'identifier'
+	'function' => 'mf_activities_group_path',
+	'fields' => ['identifier', 'category_parameters']
 ];
 
 $zz['fields'][4]['field_name'] = 'identifier';
@@ -70,6 +70,7 @@ $zz['fields'][99]['type'] = 'timestamp';
 $zz['fields'][99]['hide_in_list'] = true;
 
 $zz['sql'] = 'SELECT /*_PREFIX_*/usergroups.*, category
+		, /*_PREFIX_*/categories.parameters AS category_parameters
 	FROM /*_PREFIX_*/usergroups
 	LEFT JOIN /*_PREFIX_*/categories
 		ON /*_PREFIX_*/usergroups.usergroup_category_id = /*_PREFIX_*/categories.category_id

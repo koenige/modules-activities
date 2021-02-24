@@ -29,11 +29,18 @@ function mf_activities_random_hash($fields) {
 /**
  * get path to profile for a group
  *
- * @param string $identifier
+ * @param array $values
+ *		string 'identifier'
+ *		string 'category_parameters'
  * @return string
  */
-function mf_activities_group_path($identifier) {
+function mf_activities_group_path($values) {
 	global $zz_setting;
+	static $parameters;
+	
+	parse_str($values['category_parameters'], $parameters);
+	if (!empty($parameters['no_participations'])) return false;
+	
 	if (empty($zz_setting['activities_profile_path']['usergroup'])) {
 		$sql = 'SELECT CONCAT(identifier, IF(ending = "none", "", ending)) AS path
 			FROM webpages
@@ -43,5 +50,5 @@ function mf_activities_group_path($identifier) {
 		if (!$path) return false;
 		wrap_setting_write('activities_profile_path[usergroup]', $path);
 	}
-	return sprintf($zz_setting['activities_profile_path']['usergroup'], $identifier);
+	return sprintf($zz_setting['activities_profile_path']['usergroup'], $values['identifier']);
 }
