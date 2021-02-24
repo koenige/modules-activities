@@ -23,10 +23,12 @@ $zz['fields'][2]['field_name'] = 'contact_id';
 $zz['fields'][2]['type'] = 'select';
 $zz['fields'][2]['sql'] = 'SELECT /*_PREFIX_*/contacts.contact_id
 		, /*_PREFIX_*/contacts.contact
+		, identifier
 	FROM /*_PREFIX_*/contacts 
 	ORDER BY /*_PREFIX_*/contacts.identifier';
 $zz['fields'][2]['display_field'] = 'contact';
 $zz['fields'][2]['exclude_from_search'] = true;
+$zz['fields'][2]['unique_ignore'] = ['identifier'];
 
 $zz['fields'][3]['field_name'] = 'usergroup_id';
 $zz['fields'][3]['type'] = 'select';
