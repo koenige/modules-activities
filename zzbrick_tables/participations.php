@@ -27,7 +27,7 @@ $zz['fields'][2]['sql'] = 'SELECT contact_id, contact, identifier
 $zz['fields'][2]['display_field'] = 'contact';
 $zz['fields'][2]['list_append_next'] = true;
 $zz['fields'][2]['link'] = [
-	'function' => 'mf_contacts_person_path',
+	'function' => 'mf_contacts_profile_path',
 	'fields' => ['identifier', 'contact_parameters']
 ];
 
