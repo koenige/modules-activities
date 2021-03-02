@@ -36,19 +36,13 @@ function mf_activities_random_hash($fields) {
  */
 function mf_activities_group_path($values) {
 	global $zz_setting;
-	static $parameters;
 	
 	parse_str($values['category_parameters'], $parameters);
 	if (!empty($parameters['no_participations'])) return false;
 	
 	if (empty($zz_setting['activities_profile_path']['usergroup'])) {
-		$sql = 'SELECT CONCAT(identifier, IF(ending = "none", "", ending)) AS path
-			FROM webpages
-			WHERE content LIKE "%%%% forms participations-usergroups * %%%%"';
-		$path = wrap_db_fetch($sql, '', 'single value');
-		$path = str_replace('*', '/%s', $path);
-		if (!$path) return false;
-		wrap_setting_write('activities_profile_path[usergroup]', $path);
+		$success = wrap_setting_path('activities_profile_path[usergroup]', 'forms participations-usergroups');
+		if (!$success) return false;
 	}
 	return sprintf($zz_setting['activities_profile_path']['usergroup'], $values['identifier']);
 }
