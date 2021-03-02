@@ -30,6 +30,8 @@ $zz['fields'][2]['link'] = [
 	'function' => 'mf_contacts_profile_path',
 	'fields' => ['identifier', 'contact_parameters']
 ];
+$zz['fields'][2]['if']['where']['hide_in_list'] = true;
+$zz['fields'][2]['if']['where']['list_append_next'] = false;
 
 $zz['fields'][10]['title'] = 'E-Mail';
 $zz['fields'][10]['field_name'] = 'e_mail';
@@ -140,3 +142,5 @@ $zz['filter'][2]['selection'][1] = wrap_text('active');
 $zz['filter'][2]['selection'][2] = wrap_text('inactive');
 $zz['filter'][2]['default_selection'] = 1;
 
+$zz['subtitle']['contact_id']['sql'] = $zz['fields'][2]['sql'];
+$zz['subtitle']['contact_id']['var'] = ['contact'];
