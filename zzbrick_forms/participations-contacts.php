@@ -16,7 +16,7 @@ require __DIR__.'/../zzbrick_tables/participations.php';
 
 if (empty($brick['vars'])) wrap_quit(404);
 
-$sql = 'SELECT contact_id, contact
+$sql = 'SELECT contact_id, contact, identifier
 	FROM contacts
 	WHERE identifier = "%s"';
 $sql = sprintf($sql, wrap_db_escape($brick['vars'][0]));
@@ -32,4 +32,9 @@ $zz['filter'][1]['sql'] = wrap_edit_sql(
 	$zz['filter'][1]['sql'], 'WHERE', sprintf('contact_id = %d', $data['contact_id'])
 );
 
-$zz_conf['referer'] = '../';
+$zz_conf['referer'] = mf_contacts_profile_path(['identifier' => $data['identifier'], 'contact_parameters' => 'type=person']);
+$zz['page']['breadcrumbs'][] = sprintf('<a href="%s">%s</a>'
+	, $zz_conf['referer'], $data['contact']
+);
+$zz['page']['breadcrumbs'][] = wrap_text('Participations');
+$zz_conf['dont_show_title_as_breadcrumb'] = true;
