@@ -58,12 +58,17 @@ function mf_activities_group_path($values) {
  */
 function mf_activities_contact_path($values) {
 	global $zz_setting;
+
+	if (!empty($values['category_parameters'])) {
+		parse_str($values['category_parameters'], $parameters);
+	}
+	$type = !empty($parameters['type']) ? $parameters['type'] : 'contact';
 	
-	if (empty($zz_setting['activities_profile_path']['contact'])) {
-		$success = wrap_setting_path('activities_profile_path[contact]', 'forms participations-contacts');
+	if (empty($zz_setting['activities_profile_path'][$type])) {
+		$success = wrap_setting_path('activities_profile_path['.$type.']', 'forms participations-contacts', ['scope' => $type]);
 		if (!$success) return false;
 	}
-	return sprintf($zz_setting['activities_profile_path']['contact'], $values['identifier']);
+	return sprintf($zz_setting['activities_profile_path'][$type], $values['identifier']);
 }
 
 /**
