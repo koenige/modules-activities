@@ -37,14 +37,33 @@ function mf_activities_random_hash($fields) {
 function mf_activities_group_path($values) {
 	global $zz_setting;
 	
-	parse_str($values['category_parameters'], $parameters);
-	if (!empty($parameters['no_participations'])) return false;
+	if (!empty($values['category_parameters'])) {
+		parse_str($values['category_parameters'], $parameters);
+		if (!empty($parameters['no_participations'])) return false;
+	}
 	
 	if (empty($zz_setting['activities_profile_path']['usergroup'])) {
 		$success = wrap_setting_path('activities_profile_path[usergroup]', 'forms participations-usergroups');
 		if (!$success) return false;
 	}
 	return sprintf($zz_setting['activities_profile_path']['usergroup'], $values['identifier']);
+}
+
+/**
+ * get path to group for a contact profile
+ *
+ * @param array $values
+ *		string 'identifier'
+ * @return string
+ */
+function mf_activities_contact_path($values) {
+	global $zz_setting;
+	
+	if (empty($zz_setting['activities_profile_path']['contact'])) {
+		$success = wrap_setting_path('activities_profile_path[contact]', 'forms participations-contacts');
+		if (!$success) return false;
+	}
+	return sprintf($zz_setting['activities_profile_path']['contact'], $values['identifier']);
 }
 
 /**
