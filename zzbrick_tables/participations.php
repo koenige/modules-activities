@@ -48,7 +48,8 @@ $zz['fields'][3]['sql'] = 'SELECT usergroup_id, usergroup, category
 	FROM usergroups
 	LEFT JOIN categories
 		ON usergroups.usergroup_category_id = categories.category_id
-	ORDER BY identifier';
+	WHERE (ISNULL(categories.parameters) OR categories.parameters NOT LIKE "%no_participations=1%")
+	ORDER BY category, identifier';
 $zz['fields'][3]['display_field'] = 'usergroup';
 $zz['fields'][3]['group'] = 'category';
 $zz['fields'][3]['if']['where']['hide_in_form'] = true;
