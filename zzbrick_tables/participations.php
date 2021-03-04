@@ -30,6 +30,7 @@ $zz['fields'][2]['link'] = [
 	'function' => 'mf_contacts_profile_path',
 	'fields' => ['identifier', 'contact_parameters']
 ];
+$zz['fields'][2]['if']['where']['hide_in_form'] = true;
 $zz['fields'][2]['if']['where']['hide_in_list'] = true;
 $zz['fields'][2]['if']['where']['list_append_next'] = false;
 
@@ -45,15 +46,20 @@ $zz['fields'][10]['search'] = sprintf('(SELECT identification FROM /*_PREFIX_*/c
 $zz['fields'][3]['field_name'] = 'usergroup_id';
 $zz['fields'][3]['type'] = 'select';
 $zz['fields'][3]['sql'] = 'SELECT usergroup_id, usergroup, category
+		, IF(categories.parameters LIKE "%%&hide[date_begin]=1%%", NULL, 1) AS show_date_begin
+		, IF(categories.parameters LIKE "%%&hide[date_end]=1%%", NULL, 1) AS show_date_end
 	FROM usergroups
 	LEFT JOIN categories
 		ON usergroups.usergroup_category_id = categories.category_id
 	WHERE (ISNULL(categories.parameters) OR categories.parameters NOT LIKE "%no_participations=1%")
 	ORDER BY category, identifier';
+$zz['fields'][3]['sql_ignore'] = ['show_date_begin', 'show_date_end'];
 $zz['fields'][3]['display_field'] = 'usergroup';
 $zz['fields'][3]['group'] = 'category';
 $zz['fields'][3]['if']['where']['hide_in_form'] = true;
 $zz['fields'][3]['if']['where']['hide_in_list'] = true;
+$zz['fields'][3]['dependent_fields'][4]['if_selected'] = 'show_date_begin';
+$zz['fields'][3]['dependent_fields'][5]['if_selected'] = 'show_date_end';
 
 $zz['fields'][4]['field_name'] = 'date_begin';
 $zz['fields'][4]['title_tab'] = 'Begin';
