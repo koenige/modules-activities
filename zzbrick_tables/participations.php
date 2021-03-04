@@ -90,6 +90,7 @@ $zz['fields'][6]['search'] = '/*_PREFIX_*/categories.category';
 $zz['fields'][6]['if']['where']['hide_in_form'] = true;
 $zz['fields'][6]['if']['where']['hide_in_list'] = true;
 $zz['fields'][6]['display_field'] = 'category';
+$zz['fields'][6]['hide_in_list_if_empty'] = true;
 
 $zz['fields'][7]['field_name'] = 'remarks';
 $zz['fields'][7]['hide_in_list'] = true;
@@ -111,7 +112,7 @@ $zz['fields'][99]['type'] = 'timestamp';
 $zz['fields'][99]['hide_in_list'] = true;
 
 $zz['sql'] = sprintf('SELECT /*_PREFIX_*/participations.*, contact, usergroup
-		, /*_PREFIX_*/categories.category
+		, IF(/*_PREFIX_*/categories.parameters LIKE "%%&hide_in_list=1%%", "", /*_PREFIX_*/categories.category) AS category
 		, (SELECT identification FROM /*_PREFIX_*/contactdetails
 			WHERE /*_PREFIX_*/contactdetails.contact_id = /*_PREFIX_*/participations.contact_id
 			AND provider_category_id = %d LIMIT 1) AS e_mail
