@@ -135,12 +135,13 @@ $zz['filter'][1]['field_name'] = 'status_category_id';
 $zz['filter'][2]['title'] = wrap_text('Active?');
 $zz['filter'][2]['identifier'] = 'active';
 $zz['filter'][2]['type'] = 'list';
-$zz['filter'][2]['where'] = 'status_category_id';
 $zz['filter'][2]['where'] = 'IF(ISNULL(participations.date_end) 
 	OR participations.date_end > CURRENT_DATE(), "1", "2")';
 $zz['filter'][2]['selection'][1] = wrap_text('active');
 $zz['filter'][2]['selection'][2] = wrap_text('inactive');
 $zz['filter'][2]['default_selection'] = 1;
+
+// filter 3: mail address?
 
 $zz['subtitle']['contact_id']['sql'] = $zz['fields'][2]['sql'];
 $zz['subtitle']['contact_id']['var'] = ['contact'];

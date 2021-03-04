@@ -23,10 +23,17 @@ msgstr ""
 "X-Generator: Poedit 1.6.4\n"
 "Language: de\n"
 
+#: zzbrick_forms/participations-usergroups.php
+msgid "with E-Mail"
+msgstr "mit E-Mail"
+
+#: zzbrick_forms/participations-usergroups.php
+msgid "without E-Mail"
+msgstr "ohne E-Mail"
+
 #: zzbrick_tables/contacts-access.php
 msgid "Access Rights to Contacts"
 msgstr "Zugriffsrechte der Kontakte"
-
 
 #: zzbrick_tables/contacts-access.php
 msgid "Property"
