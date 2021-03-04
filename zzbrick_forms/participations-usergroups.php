@@ -37,7 +37,8 @@ $zz['title'] = $data['usergroup'];
 $zz['fields'][2]['type'] = 'write_once';
 
 if (!empty($parameters['hide'])) {
-	foreach ($parameters['hide'] as $field_name) {
+	foreach ($parameters['hide'] as $field_name => $bool) {
+		if (!$bool) continue;
 		foreach ($zz['fields'] as $no => $field) {
 			if ($field['field_name'] !== $field_name) continue;
 			$zz['fields'][$no]['hide_in_form'] = true;
