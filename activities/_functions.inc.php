@@ -112,6 +112,7 @@ function mf_activities_contact_access($contact, $access) {
 	foreach ($contact as $key => $value) {
 		if (!is_array($value)) continue;
 		foreach ($value as $detail_key => $detail_value) {
+			if (!is_array($detail_value)) continue;
 			if (!array_key_exists('category_id', $detail_value)) continue;
 			if (!array_key_exists($detail_value['category_id'], $access_properties)) continue;
 			if (!array_key_exists($detail_value['category_id'], $access_data)) {
