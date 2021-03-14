@@ -46,9 +46,18 @@ $zz['fields'][10]['search'] = sprintf('(SELECT identification FROM /*_PREFIX_*/c
 $zz['fields'][3]['field_name'] = 'usergroup_id';
 $zz['fields'][3]['type'] = 'select';
 $zz['fields'][3]['sql'] = 'SELECT usergroup_id, usergroup, category
-		, IF(categories.parameters LIKE "%%&hide[date_begin]=1%%", NULL, 1) AS show_date_begin
-		, IF(categories.parameters LIKE "%%&hide[date_end]=1%%", NULL, 1) AS show_date_end
-		, IF(categories.parameters LIKE "%%&hide[status_category_id]=1%%", NULL, 1) AS show_status_category_id
+		, IF(categories.parameters LIKE "%&hide[date_begin]=1%"
+			, IF(usergroups.parameters LIKE "%&show[date_begin]%", 1, NULL), 1
+		) AS show_date_begin
+		, IF(categories.parameters LIKE "%&hide[date_end]=1%"
+			, IF(usergroups.parameters LIKE "%&show[date_end]%", 1, NULL), 1
+		) AS show_date_end
+		, IF(categories.parameters LIKE "%&hide[status_category_id]=1%"
+			, IF(usergroups.parameters LIKE "%&show[status_category_id]%", 1, NULL), 1
+		) AS show_status_category_id
+		, IF(categories.parameters LIKE "%&hide[sequence]=1%"
+			, IF(usergroups.parameters LIKE "%&show[sequence]%", 1, NULL), 1
+		) AS show_sequence
 		, categories.parameters
 	FROM usergroups
 	LEFT JOIN categories
@@ -56,7 +65,8 @@ $zz['fields'][3]['sql'] = 'SELECT usergroup_id, usergroup, category
 	WHERE (ISNULL(categories.parameters) OR categories.parameters NOT LIKE "%no_participations=1%")
 	ORDER BY category, identifier';
 $zz['fields'][3]['sql_ignore'] = [
-	'show_date_begin', 'show_date_end', 'show_status_category_id', 'parameters'
+	'show_date_begin', 'show_date_end', 'show_status_category_id', 'parameters',
+	'show_sequence'
 ];
 $zz['fields'][3]['display_field'] = 'usergroup';
 $zz['fields'][3]['group'] = 'category';
@@ -66,6 +76,7 @@ $zz['fields'][3]['dependent_fields'][4]['if_selected'] = 'show_date_begin';
 $zz['fields'][3]['dependent_fields'][5]['if_selected'] = 'show_date_end';
 $zz['fields'][3]['dependent_fields'][6]['if_selected'] = 'show_status_category_id';
 $zz['fields'][3]['dependent_fields'][6]['value'] = 'parameters';
+$zz['fields'][3]['dependent_fields'][9]['if_selected'] = 'show_sequence';
 
 $zz['fields'][4]['field_name'] = 'date_begin';
 $zz['fields'][4]['title_tab'] = 'Begin';
@@ -91,6 +102,11 @@ $zz['fields'][6]['if']['where']['hide_in_form'] = true;
 $zz['fields'][6]['if']['where']['hide_in_list'] = true;
 $zz['fields'][6]['display_field'] = 'category';
 $zz['fields'][6]['hide_in_list_if_empty'] = true;
+
+$zz['fields'][9]['title_tab'] = 'Seq.';
+$zz['fields'][9]['field_name'] = 'sequence';
+$zz['fields'][9]['type'] = 'number';
+$zz['fields'][9]['hide_in_list_if_empty'] = true;
 
 $zz['fields'][7]['field_name'] = 'remarks';
 $zz['fields'][7]['hide_in_list'] = true;
@@ -130,6 +146,7 @@ $zz['sql'] = sprintf('SELECT /*_PREFIX_*/participations.*, contact, usergroup
 	, wrap_category_id('provider/e-mail')
 );
 $zz['sqlorder'] = ' ORDER BY /*_PREFIX_*/usergroups.identifier
+	, IF(ISNULL(/*_PREFIX_*/participations.sequence), 1, NULL), /*_PREFIX_*/participations.sequence
 	, IFNULL(/*_PREFIX_*/persons.last_name, /*_PREFIX_*/contacts.identifier)
 	, IFNULL(/*_PREFIX_*/persons.first_name, /*_PREFIX_*/contacts.identifier)
 	, /*_PREFIX_*/contacts.identifier

@@ -39,6 +39,7 @@ $zz['fields'][2]['type'] = 'write_once';
 if (!empty($parameters['hide'])) {
 	foreach ($parameters['hide'] as $field_name => $bool) {
 		if (!$bool) continue;
+		if (!empty($parameters['show'][$field_name])) continue;
 		foreach ($zz['fields'] as $no => $field) {
 			if ($field['field_name'] !== $field_name) continue;
 			$zz['fields'][$no]['hide_in_form'] = true;
@@ -61,6 +62,8 @@ if (!empty($parameters['value'])) {
 		}
 	}
 }
+
+$zz['fields'][9]['type'] = 'sequence';
 
 $zz['filter'][1]['sql'] = wrap_edit_sql(
 	$zz['filter'][1]['sql'], 'WHERE', sprintf('usergroup_id = %d', $data['usergroup_id'])
