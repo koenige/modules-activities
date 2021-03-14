@@ -57,6 +57,7 @@ CREATE TABLE `participations` (
   `date_begin` date DEFAULT NULL,
   `date_end` date DEFAULT NULL,
   `status_category_id` int unsigned NOT NULL,
+  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sequence` smallint unsigned DEFAULT NULL,
   `remarks` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `verification_hash` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,

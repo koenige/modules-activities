@@ -75,6 +75,10 @@ msgstr "aktiv"
 msgid "inactive"
 msgstr "inaktiv"
 
+#: zzbrick_tables/participations.php
+msgid "Role"
+msgstr "Rolle"
+
 #: zzbrick_tables/usergroups.php
 msgid "Groups"
 msgstr "Gruppen"
