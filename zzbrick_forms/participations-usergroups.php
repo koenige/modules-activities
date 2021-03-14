@@ -33,6 +33,7 @@ $parameters += $u_parameters;
 
 $zz['where']['usergroup_id'] = $data['usergroup_id'];
 $zz['title'] = $data['usergroup'];
+$zz['explanation'] = markdown($data['description']);
 
 $zz['fields'][2]['type'] = 'write_once';
 
