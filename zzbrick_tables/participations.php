@@ -109,6 +109,7 @@ $zz['fields'][6]['hide_in_list_if_empty'] = true;
 
 $zz['fields'][11]['field_name'] = 'role';
 $zz['fields'][11]['hide_in_list_if_empty'] = true;
+$zz['fields'][11]['sql'] = 'SELECT DISTINCT role, role FROM participations';
 
 $zz['fields'][9]['title_tab'] = 'Seq.';
 $zz['fields'][9]['field_name'] = 'sequence';
