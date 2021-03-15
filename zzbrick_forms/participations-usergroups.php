@@ -37,33 +37,6 @@ $zz['explanation'] = markdown($data['description']);
 
 $zz['fields'][2]['type'] = 'write_once';
 
-if (!empty($parameters['hide'])) {
-	foreach ($parameters['hide'] as $field_name => $bool) {
-		if (!$bool) continue;
-		if (!empty($parameters['show'][$field_name])) continue;
-		foreach ($zz['fields'] as $no => $field) {
-			if ($field['field_name'] !== $field_name) continue;
-			$zz['fields'][$no]['hide_in_form'] = true;
-			$zz['fields'][$no]['hide_in_list'] = true;
-		}	
-	}
-}
-
-if (!empty($parameters['value'])) {
-	foreach ($parameters['value'] as $field_name => $value) {
-		foreach ($zz['fields'] as $no => $field) {
-			if ($field['field_name'] !== $field_name) continue;
-			$zz['fields'][$no]['type'] = 'hidden';
-			if (wrap_substr($field_name, 'category_id', 'end'))
-				$zz['fields'][$no]['value'] = wrap_category_id($value);
-			else
-				$zz['fields'][$no]['value'] = $value;
-			$zz['fields'][$no]['hide_in_form'] = true;
-			$zz['fields'][$no]['hide_in_list'] = true;
-		}
-	}
-}
-
 $zz['fields'][9]['type'] = 'sequence';
 
 $zz['filter'][1]['sql'] = wrap_edit_sql(
