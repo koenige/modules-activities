@@ -43,7 +43,7 @@ function mf_activities_group_path($values) {
 	}
 	
 	if (empty($zz_setting['activities_profile_path']['usergroup'])) {
-		$success = wrap_setting_path('activities_profile_path[usergroup]', 'forms participations-usergroups');
+		$success = wrap_setting_path('activities_profile_path[usergroup]');
 		if (!$success) return false;
 	}
 	return sprintf($zz_setting['base'].$zz_setting['activities_profile_path']['usergroup'], $values['identifier']);
