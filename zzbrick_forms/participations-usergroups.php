@@ -49,7 +49,7 @@ if (!empty($parameters['filter_mail'])) {
 	$zz['filter'][3]['type'] = 'list';
 	$zz['filter'][3]['where'] = 'identification';
 	$zz['filter'][3]['sql_join'] = sprintf('LEFT JOIN /*_PREFIX_*/contactdetails
-		ON /*_PREFIX_*/contactdetails.contact_id =  /*_PREFIX_*/participations.contact_id
+		ON /*_PREFIX_*/contactdetails.contact_id = /*_PREFIX_*/participations.contact_id
 		AND provider_category_id = %d'
 		, wrap_category_id('provider/e-mail')
 	);
