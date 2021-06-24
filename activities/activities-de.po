@@ -86,3 +86,19 @@ msgstr "Gruppen"
 #: zzbrick_tables/usergroups.php
 msgid "Group"
 msgstr "Gruppe"
+
+#: zzbrick_tables/usergroups.php
+msgid "Members"
+msgstr "Mitglieder"
+
+#: zzbrick_tables/usergroups.php
+msgid "Ex-members"
+msgstr "Ex-Mitglieder"
+
+#: zzbrick_tables/usergroups.php
+msgid "M."
+msgstr "M."
+
+#: zzbrick_tables/usergroups.php
+msgid "E. M."
+msgstr "E. M."
