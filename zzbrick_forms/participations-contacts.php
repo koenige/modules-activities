@@ -17,7 +17,10 @@ require __DIR__.'/../zzbrick_tables/participations.php';
 if (empty($brick['vars'])) wrap_quit(404);
 
 $sql = 'SELECT contact_id, contact, identifier
+			, SUBSTRING_INDEX(path, "/", -1) AS scope
 	FROM contacts
+	LEFT JOIN categories
+		ON contacts.contact_category_id = categories.category_id
 	WHERE identifier = "%s"';
 $sql = sprintf($sql, wrap_db_escape($brick['vars'][0]));
 $data = wrap_db_fetch($sql);
@@ -32,7 +35,7 @@ $zz['filter'][1]['sql'] = wrap_edit_sql(
 	$zz['filter'][1]['sql'], 'WHERE', sprintf('contact_id = %d', $data['contact_id'])
 );
 
-$zz_conf['referer'] = mf_contacts_profile_path(['identifier' => $data['identifier'], 'contact_parameters' => 'type=person']);
+$zz_conf['referer'] = mf_contacts_profile_path(['identifier' => $data['identifier'], 'contact_parameters' => 'type='.$data['scope']]);
 $zz['page']['breadcrumbs'][] = sprintf('<a href="%s">%s</a>'
 	, $zz_conf['referer'], $data['contact']
 );
