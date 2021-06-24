@@ -42,6 +42,7 @@ $zz['fields'][10]['list_prefix'] = '<br>';
 $zz['fields'][10]['search'] = sprintf('(SELECT identification FROM /*_PREFIX_*/contactdetails
 			WHERE /*_PREFIX_*/contactdetails.contact_id = /*_PREFIX_*/participations.contact_id
 			AND provider_category_id = %d LIMIT 1)', wrap_category_id('provider/e-mail'));
+$zz['fields'][10]['if']['add']['hide_in_form'] = true;
 
 $zz['fields'][3]['field_name'] = 'usergroup_id';
 $zz['fields'][3]['type'] = 'select';
