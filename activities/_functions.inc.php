@@ -46,7 +46,7 @@ function mf_activities_group_path($values) {
 		$success = wrap_setting_path('activities_profile_path[usergroup]', 'forms participations-usergroups');
 		if (!$success) return false;
 	}
-	return sprintf($zz_setting['activities_profile_path']['usergroup'], $values['identifier']);
+	return sprintf($zz_setting['base'].$zz_setting['activities_profile_path']['usergroup'], $values['identifier']);
 }
 
 /**
@@ -68,7 +68,7 @@ function mf_activities_contact_path($values) {
 		$success = wrap_setting_path('activities_profile_path['.$type.']', 'forms participations-contacts', ['scope' => $type]);
 		if (!$success) return false;
 	}
-	return sprintf($zz_setting['activities_profile_path'][$type], $values['identifier']);
+	return sprintf($zz_setting['base'].$zz_setting['activities_profile_path'][$type], $values['identifier']);
 }
 
 /**
