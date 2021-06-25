@@ -1,10 +1,11 @@
 <?php 
 
 /**
- * Zugzwang Project
- * Table with participations of a contact
+ * activities module
+ * table script: participations of a contact
  *
- * http://www.zugzwang.org/modules/activities
+ * Part of »Zugzwang Project«
+ * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2021 Gustaf Mossakowski
