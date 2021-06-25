@@ -1,10 +1,11 @@
 <?php 
 
 /**
- * Zugzwang Project
- * Common functions for activities module
+ * activities module
+ * common functions for activities module
  *
- * http://www.zugzwang.org/modules/activities
+ * Part of »Zugzwang Project«
+ * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2020-2021 Gustaf Mossakowski
@@ -128,4 +129,17 @@ function mf_activities_contact_access($contact, $access) {
 		}
 	}
 	return $contact;
+}
+
+/**
+ * XHR function that returns keys for access table
+ *
+ * @param array $cfg
+ * @return array
+ */
+function mf_activities_access_cfg($cfg) {
+	if (!array_key_exists('description', $cfg)) $cfg['description'] = '';
+	return [
+		$cfg['description']
+	];
 }

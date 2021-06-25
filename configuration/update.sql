@@ -1,8 +1,9 @@
 /**
- * Zugzwang Project
- * SQL updates for activities module
+ * activities module
+ * SQL updates
  *
- * http://www.zugzwang.org/modules/activities
+ * Part of »Zugzwang Project«
+ * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2020-2021 Gustaf Mossakowski
@@ -19,3 +20,7 @@
 /* 2021-02-23-5 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'contacts_access', 'contact_access_id', 'property_category_id', 'no-delete');
 /* 2021-03-14-1 */	ALTER TABLE `participations` ADD `sequence` smallint unsigned NULL AFTER `status_category_id`;
 /* 2021-03-14-2 */	ALTER TABLE `participations` ADD `role` varchar(255) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `status_category_id`;
+/* 2021-06-25-1 */	CREATE TABLE `access` (`access_id` int unsigned NOT NULL AUTO_INCREMENT, `access_key` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL, `explanation` text COLLATE utf8mb4_unicode_ci, PRIMARY KEY (`access_id`), UNIQUE KEY `access_key` (`access_key`)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/* 2021-06-25-2 */	CREATE TABLE `access_usergroups` (`access_usergroup_id` int unsigned NOT NULL AUTO_INCREMENT, `access_id` int unsigned NOT NULL, `usergroup_id` int unsigned NOT NULL, `restricted_to_field` varchar(32) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL, PRIMARY KEY (`access_usergroup_id`), UNIQUE KEY `access_id_usergroup_id` (`access_id`,`usergroup_id`), KEY `usergroup_id` (`usergroup_id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/* 2021-06-25-3 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'access', 'access_id', (SELECT DATABASE()), 'access_usergroups', 'access_usergroup_id', 'access_id', 'delete');
+/* 2021-06-25-4 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'usergroups', 'usergroup_id', (SELECT DATABASE()), 'access_usergroups', 'access_usergroup_id', 'usergroup_id', 'no-delete');

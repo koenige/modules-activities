@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "PO-Revision-Date: \n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.8.12\n"
 "Language: de\n"
 
 #: zzbrick_forms/participations-usergroups.php
@@ -30,6 +30,22 @@ msgstr "mit E-Mail"
 #: zzbrick_forms/participations-usergroups.php
 msgid "without E-Mail"
 msgstr "ohne E-Mail"
+
+#: zzbrick_tables/access.php
+msgid "Access Rights"
+msgstr "Zugriffsrechte"
+
+#: zzbrick_tables/access-usergroups.php
+msgid "Usergroups per Access Right"
+msgstr "Benutzergruppen pro Zugriffsrecht"
+
+#: zzbrick_tables/access-usergroups.php
+msgid "Restrictions?"
+msgstr "Einschränkungen"
+
+#: zzbrick_tables/access-usergroups.php
+msgid "Field name if access for an item is restricted to a participation with this ID"
+msgstr "Feldname, wenn der Zugriff für ein Element auf eine Teilnahme mit dieser ID beschränkt ist"
 
 #: zzbrick_tables/contacts-access.php
 msgid "Access Rights to Contacts"
