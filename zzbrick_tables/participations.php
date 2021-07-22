@@ -91,6 +91,8 @@ $zz['fields'][12]['sql'] = 'SELECT event_id
 	FROM events
 	ORDER BY identifier';
 $zz['fields'][12]['display_field'] = 'event';
+$zz['fields'][12]['hide_in_form'] = true;
+$zz['fields'][12]['hide_in_list'] = true;
 
 $zz['fields'][4]['field_name'] = 'date_begin';
 $zz['fields'][4]['title_tab'] = 'Begin';
