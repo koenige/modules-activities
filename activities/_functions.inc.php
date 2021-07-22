@@ -27,6 +27,20 @@ function mf_activities_random_hash($fields) {
 	return $hash;
 }
 
+function mf_activities_random_hash_usergroups($fields) {
+	if (!empty($fields['registration_hash'])) return $fields['registration_hash'];
+	$duplicate = true;
+	while ($duplicate) {
+		$hash = wrap_random_hash(6);
+		$sql = 'SELECT registration_id
+			FROM /*_PREFIX_*/registrations
+			WHERE registration_hash = "%s"';
+		$sql = sprintf($sql, $hash);
+		$duplicate = wrap_db_fetch($sql, '', 'single value');
+	}
+	return $hash;
+}
+
 /**
  * get path to profile for a group
  *
