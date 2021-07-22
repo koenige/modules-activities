@@ -108,6 +108,48 @@ foreach ($registration['formfields'] as $formfield) {
 	}
 }
 
+$zz['fields'][198] = zzform_include_table('participations');
+$zz['fields'][198]['type'] = 'subtable';
+$zz['fields'][198]['min_records'] = 1;
+$zz['fields'][198]['max_records'] = 1;
+$zz['fields'][198]['fields'][2]['type'] = 'foreign_key';
+// usergroup_id
+$zz['fields'][198]['fields'][3]['type'] = 'hidden';
+$zz['fields'][198]['fields'][3]['type_detail'] = 'select';
+$zz['fields'][198]['fields'][3]['hide_in_form'] = true;
+$zz['fields'][198]['fields'][3]['value'] = $registration['usergroup_id'];
+// date_begin
+$zz['fields'][198]['fields'][4]['type'] = 'hidden';
+$zz['fields'][198]['fields'][4]['value'] = date('Y-m-d');
+// date_end
+$zz['fields'][198]['fields'][5]['hide_in_form'] = true;
+// status_category_id
+$zz['fields'][198]['fields'][6]['type'] = 'hidden';
+$zz['fields'][198]['fields'][6]['type_detail'] = 'select';
+$zz['fields'][198]['fields'][6]['value'] = wrap_category_id('participation-status/subscribed');
+$zz['fields'][198]['fields'][6]['dont_show_missing'] = true; // category
+// role
+$zz['fields'][198]['fields'][11]['hide_in_form'] = true;
+// sequence
+$zz['fields'][198]['fields'][9]['hide_in_form'] = true;
+// remarks
+$zz['fields'][198]['fields'][7]['hide_in_form'] = true;
+// hash
+$zz['fields'][198]['fields'][8]['hide_in_form'] = true;
+$zz['fields'][198]['fields'][8]['dont_show_missing'] = true; 
+// event_id
+$zz['fields'][198]['fields'][12]['type'] = 'hidden';
+$zz['fields'][198]['fields'][12]['value'] = $registration['event_id'];
+
+$zz['fields'][198]['fields'][99]['hide_in_form'] = true;
+$zz['fields'][198]['class'] = 'hidden';
+
+
 $zz_conf['text'][$zz_setting['lang']]['Add a record'] = wrap_text('Register');
 $zz_conf['text'][$zz_setting['lang']]['Add record'] = wrap_text('Submit Registration');
 
+if (!empty($_POST['contact'])) {
+	$zz_conf['user'] = wrap_filename($_POST['contact'], ' ').' ';
+}
+
+$zz['hooks']['after_insert'][] = '';
