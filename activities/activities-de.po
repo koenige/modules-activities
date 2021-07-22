@@ -31,6 +31,15 @@ msgstr "mit E-Mail"
 msgid "without E-Mail"
 msgstr "ohne E-Mail"
 
+#: zzbrick_forms/registration.php
+msgid "Register"
+msgstr "Registrieren"
+
+#: zzbrick_forms/registration.php
+msgid "Submit Registration"
+msgstr "Registrierung absenden"
+
+
 #: zzbrick_tables/access.php
 msgid "Access Rights"
 msgstr "Zugriffsrechte"
