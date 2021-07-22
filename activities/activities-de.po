@@ -2,7 +2,7 @@
 # Translations to German
 #
 # Part of »Zugzwang Project«
-# http://www.zugzwang.org/modules/activities
+# https://www.zugzwang.org/modules/activities
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
 # @copyright Copyright © 2020-2021 Gustaf Mossakowski
@@ -39,6 +39,13 @@ msgstr "Registrieren"
 msgid "Submit Registration"
 msgstr "Registrierung absenden"
 
+#: zzbrick_forms/registration.php
+msgid "The registration has been sent successfully!"
+msgstr "Die Anmeldung wurde erfolgreich versendet!"
+
+#: zzbrick_forms/registration.php
+msgid "We just sent you an e-mail. Please click on the link inside it to confirm your registration."
+msgstr "Wir haben Ihnen gerade eine E-Mail geschickt. Bitte klicken Sie auf den darin enthaltenen Link, um Ihre Anmeldung zu bestätigen. "
 
 #: zzbrick_tables/access.php
 msgid "Access Rights"

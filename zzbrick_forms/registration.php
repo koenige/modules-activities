@@ -50,13 +50,19 @@ $zz['title'] = $registration['event'].'<br>'.wrap_date($registration['duration']
 $zz['record']['form_lead'] = $registration['lead'];
 $zz['explanation'] = $registration['header'];
 $zz_conf['footer_text'] = $registration['footer'];
+$zz_conf['footer_text_insert'] = markdown(wrap_text('We just sent you an e-mail. Please click on the link inside it to confirm your registration.'));
 
 $zz['access'] = 'add_only';
 
 $fields = [];
 foreach ($zz['fields'] as $no => $field) {
-	if (!$zz['fields'][$no]) continue;
+	if (!$field) continue;
 	$zz['fields'][$no]['hide_in_form'] = true;
+	if (empty($field['field_name'])) continue;
+	if ($field['field_name'] === 'contact_category_id') {
+		$zz['fields'][$no]['type'] = 'hidden';
+		$zz['fields'][$no]['value'] = wrap_category_id('contact/person');
+	}
 }
 
 foreach ($registration['formfields'] as $formfield) {
@@ -72,6 +78,8 @@ foreach ($registration['formfields'] as $formfield) {
 		break;
 	case 'Address':
 		$my_field = &$zz['fields'][5];
+		$my_field['fields'][7]['hide_in_form'] = true; // latitude
+		$my_field['fields'][8]['hide_in_form'] = true; // longitude
 		$type = 'subtable';
 		break;
 	}
@@ -147,9 +155,10 @@ $zz['fields'][198]['class'] = 'hidden';
 
 $zz_conf['text'][$zz_setting['lang']]['Add a record'] = wrap_text('Register');
 $zz_conf['text'][$zz_setting['lang']]['Add record'] = wrap_text('Submit Registration');
+$zz_conf['text'][$zz_setting['lang']]['record_was_inserted'] = wrap_text('The registration has been sent successfully!');
 
 if (!empty($_POST['contact'])) {
 	$zz_conf['user'] = wrap_filename($_POST['contact'], ' ').' ';
 }
 
-$zz['hooks']['after_insert'][] = '';
+$zz['hooks']['after_insert'][] = 'mf_activities_confirm_registration';
