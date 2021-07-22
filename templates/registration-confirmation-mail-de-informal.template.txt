@@ -1,0 +1,34 @@
+# activities module
+# Template for registration confirmation, German language, informal
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/activities
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2021 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+Subject: Bitte bestätige Deine Registrierung
+
+Liebe/r %%% item contact %%%
+
+wir haben gerade von Dir eine Anfrage für eine Registrierung für die folgenden
+Ereignisse erhalten:
+
+%%% loop events %%%
+- %%% item event %%% %%% item duration wrap_date "(%s)" %%% 
+%%% loop end %%%
+
+Bitte bestätige Deine Anfrage hier:
+
+%%% setting host_base %%%%%% setting base %%%%%% setting activities_registration_confirmation_path %%%?confirm=%%% item verification_hash %%%
+
+Falls Du Dich nicht registrieren möchtest oder die Anfrage gar nicht von Dir
+kam, kannst Du die Anfrage hier ausdrücklich verneinen:
+
+%%% setting host_base %%%%%% setting base %%%%%% setting activities_registration_confirmation_path %%%?delete=%%% item verification_hash %%%
+
+Falls Du nichts tust, werden wir Deine Anfrage ebenfalls löschen.
+
+Viele Grüße  
+%%% item sender %%%

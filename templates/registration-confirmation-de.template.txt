@@ -1,0 +1,56 @@
+# activities module
+# HTML for confirmation of registration
+# German language
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/activities
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2021 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<div class="activities">
+<div class="msg">
+%%% condition if delete %%%
+<p>Ihre Daten wurden wieder erfolgreich aus unserer Datenbank entfernt!</p>
+
+%%% condition elseif confirmed_delete %%%
+<p>Ihre Daten konnten nicht wieder aus unserer Datenbank entfernt werden, da Sie 
+Ihre Registrierung offensichtlich schon bestätigt hatten. Auf diesem Wege ist eine 
+Abmeldung nicht mehr möglich.</p>
+<p>Bitte setzen Sie sich direkt mit uns in Verbindung (E-Mail: 
+<a href="mailto:%%% setting own_e_mail %%%">%%% setting own_e_mail %%%</a>).</p>
+
+%%% condition elseif no_data %%%
+<p><strong>Ihre Daten wurden in der Datenbank nicht gefunden.</strong></p>
+
+%%% condition elseif confirm %%%
+<p>Vielen Dank für Ihr Interesse. Ihre Registrierung wurde bestätigt.</p>
+
+%%% condition elseif already_confirmed %%%
+<p><strong>Sie haben Ihre Registrierung bereits bestätigt.</strong> Eine 
+erneute Bestätigung ist nicht notwendig.</p>
+
+%%% condition endif %%%
+</div>
+
+%%% condition if form %%%
+<fieldset>
+<legend>Bestätigung/Löschung der Registrierung</legend>
+<p>Bitte geben Sie den Bestätigungscode aus der E-Mail per Hand in das Formular ein:</p>
+<form method="GET" action="%%% item action wrap_html_escape %%%" id="confirmation">
+<table>
+<tr><th><label for="code">Code:</label></th> <td><input type="text" name="code" id="code" size="32" value="%%% item code %%%"></td></tr>
+<tr><th><td>
+%%% condition if reminder %%%<div class="reminder">%%% condition endif %%%
+<label for="confirm"><input type="radio" name="action" value="confirm" id="confirm" required="required"> Abonnement bestätigen</label>
+<label for="delete"><input type="radio" name="action" value="delete" id="delete" required="required"> Abonnement löschen</label>
+%%% condition if reminder %%%</div>%%% condition endif %%%
+<br><input type="submit" class="submit"></td></tr>
+</table>
+</form>
+</fieldset>
+%%% condition endif %%%
+
+<p><a href="%%% setting homepage_url %%%">Weiter zur Hauptseite</a></p>
+</div>

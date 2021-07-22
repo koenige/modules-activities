@@ -1,0 +1,33 @@
+# activities module
+# Template for registration confirmation
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/activities
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2021 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+Subject: Please Confirm Your Registration
+
+Dear %%% item contact %%%
+
+we just received a request to register for the following event(s) from you:
+
+%%% loop events %%%
+- %%% item event %%% %%% item duration wrap_date "(%s)" %%% 
+%%% loop end %%%
+
+Please confirm your request here:
+
+%%% setting host_base %%%%%% setting base %%%%%% setting activities_registration_confirmation_path %%%?confirm=%%% item verification_hash %%%
+
+If you do not want to register to an event, you can explicitly deny the
+registration by following this link:
+
+%%% setting host_base %%%%%% setting base %%%%%% setting activities_registration_confirmation_path %%%?delete=%%% item verification_hash %%%
+
+If you do nothing, we’ll delete the request, too. 
+
+Best regards,
+%%% item sender %%%
