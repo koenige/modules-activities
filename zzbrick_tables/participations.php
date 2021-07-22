@@ -84,6 +84,14 @@ $zz['fields'][3]['dependent_fields'][6]['value'] = 'parameters';
 $zz['fields'][3]['dependent_fields'][9]['if_selected'] = 'show_sequence';
 $zz['fields'][3]['dependent_fields'][11]['if_selected'] = 'show_role';
 
+$zz['fields'][12]['field_name'] = 'event_id';
+$zz['fields'][12]['type'] = 'select';
+$zz['fields'][12]['sql'] = 'SELECT event_id
+		, CONCAT(event, " ", IFNULL(date_begin, ""), "/", IFNULL(date_end, ""))
+	FROM events
+	ORDER BY identifier';
+$zz['fields'][12]['display_field'] = 'event';
+
 $zz['fields'][4]['field_name'] = 'date_begin';
 $zz['fields'][4]['title_tab'] = 'Begin';
 $zz['fields'][4]['type'] = 'date';
@@ -152,6 +160,7 @@ $zz['sql'] = sprintf('SELECT /*_PREFIX_*/participations.*, contact, usergroup
 		ON /*_PREFIX_*/participations.status_category_id = /*_PREFIX_*/categories.category_id
 	LEFT JOIN /*_PREFIX_*/categories contact_categories
 		ON contact_categories.category_id = /*_PREFIX_*/contacts.contact_category_id
+	LEFT JOIN /*_PREFIX_*/events USING (event_id)
 '
 	, wrap_category_id('provider/e-mail')
 );

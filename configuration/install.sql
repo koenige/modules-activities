@@ -178,6 +178,7 @@ CREATE TABLE `participations` (
   `participation_id` int unsigned NOT NULL AUTO_INCREMENT,
   `contact_id` int unsigned NOT NULL,
   `usergroup_id` int unsigned NOT NULL,
+  `event_id` int unsigned DEFAULT NULL,
   `date_begin` date DEFAULT NULL,
   `date_end` date DEFAULT NULL,
   `status_category_id` int unsigned NOT NULL,
@@ -188,14 +189,16 @@ CREATE TABLE `participations` (
   `last_update` timestamp NOT NULL,
   PRIMARY KEY (`participation_id`),
   UNIQUE KEY `verification_hash` (`verification_hash`),
-  KEY `contact_id` (`contact_id`,`usergroup_id`,`date_begin`),
   KEY `usergroup_id` (`usergroup_id`),
-  KEY `status_category_id` (`status_category_id`)
+  KEY `status_category_id` (`status_category_id`),
+  KEY `contact_id_usergroup_id_date_begin_event_id` (`contact_id`,`usergroup_id`,`date_begin`,`event_id`),
+  KEY `event_id` (`event_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'contacts', 'contact_id', (SELECT DATABASE()), 'participations', 'participation_id', 'contact_id', 'no-delete');
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'participations', 'participation_id', 'status_category_id', 'no-delete');
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'usergroups', 'usergroup_id', (SELECT DATABASE()), 'participations', 'participation_id', 'usergroup_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events', 'event_id', (SELECT DATABASE()), 'participations', 'participation_id', 'event_id', 'no-delete');
 
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Participation Status', NULL, NULL, 'participation-status', NULL, NULL, NOW());
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('subscribed', NULL, (SELECT category_id FROM categories c WHERE path = 'participation-status'), 'participation-status/subscribed', NULL, 1, NOW());
