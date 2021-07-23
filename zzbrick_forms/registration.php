@@ -80,6 +80,7 @@ foreach ($registration['formfields'] as $formfield) {
 		$my_field = &$zz['fields'][5];
 		$my_field['fields'][7]['hide_in_form'] = true; // latitude
 		$my_field['fields'][8]['hide_in_form'] = true; // longitude
+		$my_field['fields'][6]['for_action_ignore'] = true; // country_id
 		$type = 'subtable';
 		break;
 	}
