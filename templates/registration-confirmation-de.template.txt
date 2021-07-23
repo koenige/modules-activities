@@ -52,5 +52,9 @@ erneute Bestätigung ist nicht notwendig.</p>
 </fieldset>
 %%% condition endif %%%
 
+%%% condition if addlogin %%%
+<p><a href="%%% setting login_entryurl %%%">Weiter zur Hauptseite</a></p>
+%%% condition else %%%
 <p><a href="%%% setting homepage_url %%%">Weiter zur Hauptseite</a></p>
+%%% condition endif %%%
 </div>

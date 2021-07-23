@@ -50,5 +50,9 @@ confirmation is not necessary.</p>
 </fieldset>
 %%% condition endif %%%
 
+%%% condition if addlogin %%%
+<p><a href="%%% setting login_entryurl %%%">Back to homepage</a></p>
+%%% condition else %%%
 <p><a href="%%% setting homepage_url %%%">Back to homepage</a></p>
+%%% condition endif %%%
 </div>

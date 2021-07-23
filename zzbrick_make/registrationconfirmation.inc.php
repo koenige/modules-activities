@@ -57,8 +57,12 @@ function mod_activities_make_registrationconfirmation() {
 	$has_data = false;
 	foreach ($form['codes'] as $code) {
 		$sql = 'SELECT participation_id, status_category_id, identifier, contact_id
+				, registrations.parameters
 			FROM participations
 			LEFT JOIN contacts USING (contact_id)
+			LEFT JOIN registrations
+				ON registrations.event_id = participations.event_id
+				AND registrations.usergroup_id = participations.usergroup_id
 			WHERE verification_hash = "%s"
 			AND ISNULL(date_end)';
 		$sql = sprintf($sql, wrap_db_escape($code));
@@ -129,6 +133,20 @@ function mod_activities_make_registrationconfirmation() {
 	if (!$has_data) {
 		$form['no_data'] = true;
 		$form['form'] = true;
+	}
+
+	// addlogin?
+	$data['parameters'] = $data['parameters'] ?? '';
+	parse_str($data['parameters'], $data['parameters']);
+	if (!empty($data['parameters']['addlogin'])) {
+		$form['addlogin'] = true;
+		$sql = 'SELECT COUNT(*) FROM logins
+			WHERE contact_id = %d';
+		$sql = sprintf($sql, $data['contact_id']);
+		$has_logins = wrap_db_fetch($sql, '', 'single value');
+		if (!$has_logins) {
+			return brick_format('%%% forms addlogin '.$data['contact_id'].' url_self='.$zz_setting['request_uri'].' query_strings[]=confirm %%%');
+		}
 	}
 	
 	$page['text'] = wrap_template('registration-confirmation', $form);
