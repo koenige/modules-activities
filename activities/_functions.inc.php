@@ -157,3 +157,72 @@ function mf_activities_access_cfg($cfg) {
 		$cfg['description']
 	];
 }
+
+/**
+ * merge contact with contact with identical name + mail
+ *
+ * @param int $contact_id
+ * @return int old contact_id
+ */
+function mf_activities_merge_contact($contact_id) {
+	$sql = 'SELECT contacts.contact_id, contact, identification
+	    FROM contacts
+	    LEFT JOIN contactdetails
+	    	ON contactdetails.contact_id = contacts.contact_id
+	    	AND provider_category_id = %d
+	    WHERE contacts.contact_id = %d';
+	$sql = sprintf($sql
+		, wrap_category_id('provider/e-mail')
+		, $contact_id
+	);
+	$new_contact = wrap_db_fetch($sql);
+	
+	$sql = 'SELECT contacts.contact_id
+		FROM contacts
+	    LEFT JOIN contactdetails
+	    	ON contactdetails.contact_id = contacts.contact_id
+	    	AND provider_category_id = %d
+		WHERE contact = "%s" AND contacts.contact_id != %d AND identification = "%s"';
+	$sql = sprintf($sql
+		, wrap_category_id('provider/e-mail')
+		, $new_contact['contact']
+		, $contact_id
+		, $new_contact['identification']
+	);
+	$old_contact_id = wrap_db_fetch($sql, '', 'single value');
+	if (!$old_contact_id) return false;
+	
+	$changes = [
+		'update' => [
+			'address_id' => 'addresses', 'participation_id' => 'participations'
+		],
+		'delete' => [
+			'contact_id' => 'contacts', 'contactdetail_id' => 'contactdetails'
+		]
+	];
+	$sql = 'SELECT %s FROM %s WHERE contact_id = %d';
+	foreach ($changes as $action => $update) {
+		foreach ($update as $field_name => $table) {
+			$this_sql = sprintf($sql, $field_name, $table, $contact_id);
+			$ids = wrap_db_fetch($this_sql, $field_name, 'single value');
+			foreach ($ids as $id) {
+				$values = [];
+				$values['action'] = $action;
+				$values['ids'][] = $field_name;
+				$values['POST'][$field_name] = $id;
+				if ($action === 'update') {
+					$values['ids'][] = 'contact_id';
+					$values['POST']['contact_id'] = $old_contact_id;
+				}
+				$ops = zzform_multi($table, $values);
+				if (!$ops['id']) {
+					wrap_error(sprintf('Merging contacts was not successful. Failed to %s ID %d (table %s)'
+						, $action, $id, $table
+					));
+					return false;
+				}
+			}
+		}
+	}
+	return $old_contact_id;
+}

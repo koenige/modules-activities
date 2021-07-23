@@ -97,7 +97,8 @@ function mod_activities_make_registrationconfirmation() {
 				if (!$participation['id'])
 					wrap_error(sprintf('The registration for code %s was not completed.', $code), E_USER_ERROR);
 				
-				// @todo merge contact with contact with identical name + mail?
+				$old_contact_id = mf_activities_merge_contact($data['contact_id']);
+				if ($old_contact_id) $data['contact_id'] = $old_contact_id;
 				break;
 			case 'delete':
 				// delete participation + activities (via CASCADE)
