@@ -46,7 +46,7 @@ $values['relations'] = [];
 
 $zz = zzform_include_table('contacts', $values);
 
-$zz['title'] = $registration['event'].'<br>'.wrap_date($registration['duration']);
+$zz['title'] = $registration['event'].' <br>'.wrap_date($registration['duration']);
 $zz['record']['form_lead'] = $registration['lead'];
 $zz['explanation'] = $registration['header'];
 $zz_conf['footer_text'] = $registration['footer'];
