@@ -10,7 +10,7 @@
 #
 Subject: Bitte bestätigen Sie Ihre Registrierung
 
-Sehr geehrte/r %%% item contact %%%
+Sehr geehrte/r %%% item contact %%%,
 
 wir haben gerade von Ihnen eine Anfrage für eine Registrierung für die folgenden
 Ereignisse erhalten:
