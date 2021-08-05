@@ -37,9 +37,16 @@ $zz['where']['contact_id'] = $brick['vars'][0];
 $zz['fields'][11]['hide_in_form'] = true;
 
 // 2 = username
-$sql = sprintf('SELECT identifier
-	FROM contacts
-	WHERE contact_id = %d', $brick['vars'][0]);
+if (wrap_get_setting('login_with_email')) {
+	$sql = sprintf('SELECT identification
+		FROM contactdetails
+		WHERE contact_id = %d
+		AND provider_category_id = %d LIMIT 1', $brick['vars'][0], wrap_category_id('provider/e-mail'));
+} else {
+	$sql = sprintf('SELECT identifier
+		FROM contacts
+		WHERE contact_id = %d', $brick['vars'][0]);
+}
 $zz['fields'][2]['type'] = 'display';
 $zz['fields'][2]['display_value'] = wrap_db_fetch($sql, '', 'single value');
 
@@ -93,7 +100,7 @@ function mf_activities_addlogin_password($ops) {
 	if (!$login_id) return [];
 
 	// get user data
-	$sql = wrap_get_setting('login_with_contact_id') ? wrap_sql('login_contact') : wrap_sql('login');
+	$sql = wrap_sql_login();
 	$sql = sprintf($sql, $username);
 	$data = wrap_db_fetch($sql);
 
