@@ -42,6 +42,7 @@ if (wrap_get_setting('login_with_email')) {
 		FROM contactdetails
 		WHERE contact_id = %d
 		AND provider_category_id = %d LIMIT 1', $brick['vars'][0], wrap_category_id('provider/e-mail'));
+	$zz['sql'] = wrap_edit_sql($zz['sql'], 'SELECT', sprintf('(%s) AS username', $sql));
 } else {
 	$sql = sprintf('SELECT identifier
 		FROM contacts
@@ -100,9 +101,9 @@ function mf_activities_addlogin_password($ops) {
 	if (!$login_id) return [];
 
 	// get user data
-	$sql = wrap_sql_login();
-	$sql = sprintf($sql, $username);
+	$sql = sprintf(wrap_sql_login(), $username);
 	$data = wrap_db_fetch($sql);
+	if (!$data) return false;
 
 	// register user data
 	$success = wrap_session_start();
