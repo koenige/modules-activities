@@ -36,6 +36,9 @@ $zz['where']['contact_id'] = $brick['vars'][0];
 // 11 = contact
 $zz['fields'][11]['hide_in_form'] = true;
 
+// 12 = password reminder
+unset($zz['fields'][12]);
+
 // 2 = username
 if (wrap_get_setting('login_with_email')) {
 	$sql = sprintf('SELECT identification
