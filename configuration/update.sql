@@ -48,3 +48,4 @@
 /* 2021-07-22-22 */	ALTER TABLE `participations` ADD `event_id` int unsigned NULL AFTER `usergroup_id`;
 /* 2021-07-22-23 */	ALTER TABLE `participations` ADD INDEX `contact_id_usergroup_id_date_begin_event_id` (`contact_id`, `usergroup_id`, `date_begin`, `event_id`), ADD INDEX `event_id` (`event_id`), DROP INDEX `contact_id`;
 /* 2021-07-22-24 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events', 'event_id', (SELECT DATABASE()), 'participations', 'participation_id', 'event_id', 'no-delete');
+/* 2021-10-05-01 */	ALTER TABLE `activities` ADD `comment` varchar(255) COLLATE 'latin1_general_ci' NULL;
