@@ -216,7 +216,7 @@ CREATE TABLE `activities` (
   `activity_date` datetime NOT NULL,
   `activity_ip` varbinary(16) DEFAULT NULL,
   `activity_uri` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `comment` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `comment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`activity_id`),
   UNIQUE KEY `participation_id_activity_category_id_activity_date_activity_uri` (`participation_id`,`activity_category_id`,`activity_date`,`activity_uri`),
   KEY `activity_category_id` (`activity_category_id`)
