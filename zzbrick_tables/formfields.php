@@ -30,7 +30,7 @@ $zz['fields'][2]['sql'] = 'SELECT form_id
 $zz['fields'][2]['sql_ignore'] = ['event'];
 $zz['fields'][2]['if']['where']['hide_in_list'] = true;
 $zz['fields'][2]['if']['where']['hide_in_form'] = true;
-$zz['fields'][2]['display_field'] = 'form';
+$zz['fields'][2]['display_field'] = 'event';
 
 $zz['fields'][7]['title_tab'] = 'Seq.';
 $zz['fields'][7]['field_name'] = 'sequence';
