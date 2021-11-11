@@ -95,7 +95,7 @@ $zz['sql'] = 'SELECT formfields.*
 	LEFT JOIN categories
 		ON formfields.formfield_category_id = categories.category_id
 ';
-$zz['sqlorder'] = ' ORDER BY event, sequence';
+$zz['sqlorder'] = ' ORDER BY events.identifier, sequence';
 $zz['sql_translate'] = ['category_id' => 'categories'];
 
 $zz['list']['group'] = 'area';
