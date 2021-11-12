@@ -37,7 +37,7 @@ function mf_activities_copy_formfields($ops) {
 		
 		$values = [];
 		$values['action'] = 'insert';
-		$values['ids'] = ['type_category_id', 'form_id'];
+		$values['ids'] = ['formfield_category_id', 'form_id'];
 		$values['POST']['form_id'] = $ops['id'];
 		foreach ($data as $line) {
 			foreach ($line as $field_name => $value) {
