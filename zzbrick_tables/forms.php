@@ -1,8 +1,16 @@
 <?php 
 
-// Zugzwang Project
-// Copyright (c) 2018-2019, 2021 Gustaf Mossakowski <gustaf@koenige.org>
-// Database table 'Forms'
+/**
+ * activities module
+ * table script: forms
+ *
+ * Part of »Zugzwang Project«
+ * https://www.zugzwang.org/modules/activities
+ *
+ * @author Gustaf Mossakowski <gustaf@koenige.org>
+ * @copyright Copyright © 2018-2019, 2021 Gustaf Mossakowski
+ * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+ */
 
 
 $zz['title'] = 'Forms';
@@ -13,14 +21,14 @@ $zz['fields'][1]['type'] = 'id';
 
 $zz['fields'][2]['field_name'] = 'event_id';
 $zz['fields'][2]['type'] = 'select';
-$zz['fields'][2]['sql'] = 'SELECT event_id
-	, CONCAT(events.event, " (", DATE_FORMAT(events.date_begin, "%d.%m.%Y"), ")") AS event 
+$zz['fields'][2]['sql'] = sprintf('SELECT event_id
+	, CONCAT(events.event, " (", DATE_FORMAT(events.date_begin, "%s"), ")") AS event 
 	FROM events
 	WHERE ISNULL(main_event_id)
-	ORDER BY date_begin DESC';
+	ORDER BY date_begin DESC', wrap_placeholder('mysql_date_format'));
 $zz['fields'][2]['display_field'] = 'event';
-$zz['fields'][2]['search'] = 'CONCAT(events.event, " (", 
-	DATE_FORMAT(events.date_begin, "%d.%m.%Y"), ")")';
+$zz['fields'][2]['search'] = sprintf('CONCAT(events.event, " (", 
+	DATE_FORMAT(events.date_begin, "%s"), ")")', wrap_placeholder('mysql_date_format'));
 $zz['fields'][2]['unique'] = true;
 $zz['fields'][2]['if']['where']['hide_in_form'] = true;
 $zz['fields'][2]['if']['where']['hide_in_list'] = true;
