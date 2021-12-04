@@ -54,7 +54,7 @@ $zz['fields'][6]['hide_in_list'] = true;
 $zz['fields'][6]['type'] = 'memo';
 
 $zz['fields'][7]['field_name'] = 'sequence';
-$zz['fields'][7]['type'] = 'sequence';
+$zz['fields'][7]['type'] = 'text';
 $zz['fields'][7]['hide_in_list'] = true;
 
 $zz['fields'][8]['title'] = wrap_text('Active?');
