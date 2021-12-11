@@ -27,6 +27,8 @@ $zz['fields'][2]['link'] = [
 	'function' => 'mf_activities_group_path',
 	'fields' => ['identifier', 'category_parameters']
 ];
+$zz['fields'][2]['typo_cleanup'] = true;
+$zz['fields'][2]['typo_remove_double_spaces'] = true;
 
 $zz['fields'][4]['field_name'] = 'identifier';
 $zz['fields'][4]['type'] = 'identifier';
