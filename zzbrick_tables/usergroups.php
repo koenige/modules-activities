@@ -98,7 +98,7 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/usergroups.*, category
 		, /*_PREFIX_*/categories.parameters AS category_parameters
 		, (SELECT COUNT(*) FROM /*_PREFIX_*/participations
 			WHERE /*_PREFIX_*/participations.usergroup_id = /*_PREFIX_*/usergroups.usergroup_id
-			AND ISNULL(participations.date_end) OR participations.date_end > CURRENT_DATE()
+			AND (ISNULL(participations.date_end) OR participations.date_end > CURRENT_DATE())
 		) AS active_users
 		, (SELECT COUNT(*) FROM /*_PREFIX_*/participations
 			WHERE /*_PREFIX_*/participations.usergroup_id = /*_PREFIX_*/usergroups.usergroup_id
