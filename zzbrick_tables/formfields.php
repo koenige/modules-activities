@@ -37,6 +37,7 @@ $zz['fields'][7]['field_name'] = 'sequence';
 $zz['fields'][7]['type'] = 'number';
 $zz['fields'][7]['auto_value'] = 'increment';
 
+$zz['fields'][3]['title'] = 'Title';
 $zz['fields'][3]['field_name'] = 'formfield';
 $zz['fields'][3]['explanation'] = 'The title of the form field that appears on the left side (= what to enter here).';
 $zz['fields'][3]['typo_remove_double_spaces'] = true;
