@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -187,6 +187,7 @@ $zz['filter'][1]['field_name'] = 'status_category_id';
 $zz['filter'][2]['title'] = wrap_text('Active?');
 $zz['filter'][2]['identifier'] = 'active';
 $zz['filter'][2]['type'] = 'list';
+$zz['filter'][2]['remove_if_empty'] = true;
 $zz['filter'][2]['where'] = 'IF(ISNULL(participations.date_end) 
 	OR participations.date_end > CURRENT_DATE(), "1", "2")';
 $zz['filter'][2]['selection'][1] = wrap_text('active');
