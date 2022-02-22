@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -35,9 +35,11 @@ $zz['fields'][3]['sql'] = 'SELECT usergroup_id, usergroup
 	ORDER BY identifier';
 $zz['fields'][3]['display_field'] = 'usergroup';
 
+/*
 $zz['fields'][4]['title'] = 'Restrictions?';
 $zz['fields'][4]['field_name'] = 'restricted_to_field';
 $zz['fields'][4]['explanation'] = 'Field name if access for an item is restricted to a participation with this ID';
+*/
 
 $zz['subselect']['sql'] = 'SELECT access_id, usergroup, restricted_to_field, usergroup_id
 	FROM /*_PREFIX_*/usergroups
