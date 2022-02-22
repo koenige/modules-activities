@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -50,3 +50,4 @@
 /* 2021-07-22-24 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events', 'event_id', (SELECT DATABASE()), 'participations', 'participation_id', 'event_id', 'no-delete');
 /* 2021-10-05-01 */	ALTER TABLE `activities` ADD `comment` varchar(255) COLLATE 'latin1_general_ci' NULL;
 /* 2021-10-05-02 */	ALTER TABLE `activities` CHANGE `comment` `comment` varchar(255) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `activity_uri`;
+/* 2022-02-22-01 */	ALTER TABLE `access` CHANGE `access_key` `access_key` varchar(32) COLLATE 'utf8mb4_unicode_ci' NOT NULL AFTER `access_id`, ADD `module` text(16) COLLATE 'utf8mb4_unicode_ci' NULL;

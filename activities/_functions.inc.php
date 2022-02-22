@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -149,8 +149,9 @@ function mf_activities_contact_access($contact, $access) {
  */
 function mf_activities_access_cfg($cfg) {
 	if (!array_key_exists('description', $cfg)) $cfg['description'] = '';
+	if (!array_key_exists('module', $cfg)) $cfg['module'] = '';
 	return [
-		$cfg['description']
+		$cfg['description'], $cfg['module']
 	];
 }
 
