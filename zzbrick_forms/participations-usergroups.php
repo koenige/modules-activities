@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -28,8 +28,14 @@ $sql = sprintf($sql, wrap_db_escape($brick['vars'][0]));
 $data = wrap_db_fetch($sql);
 if (!$data) wrap_quit(404);
 
-parse_str($data['category_parameters'], $parameters);
-parse_str($data['usergroup_parameters'], $u_parameters);
+if ($data['category_parameters'])
+	parse_str($data['category_parameters'], $parameters);
+else
+	$parameters = [];
+if ($data['usergroup_parameters'])
+	parse_str($data['usergroup_parameters'], $u_parameters);
+else
+	$u_parameters = [];
 $parameters += $u_parameters;
 
 $zz['where']['usergroup_id'] = $data['usergroup_id'];
