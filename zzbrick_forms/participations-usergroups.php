@@ -50,6 +50,14 @@ $zz['filter'][1]['sql'] = wrap_edit_sql(
 	$zz['filter'][1]['sql'], 'WHERE', sprintf('usergroup_id = %d', $data['usergroup_id'])
 );
 
+// search: postcode
+$zz['fields'][13]['field_name'] = 'postcode';
+$zz['fields'][13]['type'] = 'display';
+$zz['fields'][13]['hide_in_list'] = true;
+$zz['fields'][13]['hide_in_form'] = true;
+$zz['fields'][13]['search'] = '(SELECT postcode FROM addresses WHERE addresses.contact_id = participations.contact_id LIMIT 1)';
+
+
 if (!empty($parameters['filter_mail'])) {
 	$zz['filter'][3]['title'] = wrap_text('E-Mail');
 	$zz['filter'][3]['identifier'] = 'mail';
