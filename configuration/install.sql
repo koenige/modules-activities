@@ -57,7 +57,7 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 
 CREATE TABLE `forms` (
   `form_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `event_id` int unsigned DEFAULT NULL,
+  `event_id` int unsigned NOT NULL,
   `access` enum('public','login') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'public',
   `created` datetime NOT NULL,
   `header` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
@@ -157,13 +157,13 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 
 CREATE TABLE `usergroups` (
   `usergroup_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `usergroup` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `identifier` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usergroup` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `identifier` varchar(32) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `usergroup_category_id` int unsigned NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `sequence` tinyint unsigned DEFAULT NULL,
-  `active` enum('yes','no') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'yes',
-  `parameters` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `active` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'yes',
+  `parameters` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_update` timestamp NOT NULL,
   PRIMARY KEY (`usergroup_id`),
   UNIQUE KEY `identifier` (`identifier`),

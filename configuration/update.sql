@@ -51,3 +51,6 @@
 /* 2021-10-05-01 */	ALTER TABLE `activities` ADD `comment` varchar(255) COLLATE 'latin1_general_ci' NULL;
 /* 2021-10-05-02 */	ALTER TABLE `activities` CHANGE `comment` `comment` varchar(255) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `activity_uri`;
 /* 2022-02-22-01 */	ALTER TABLE `access` CHANGE `access_key` `access_key` varchar(32) COLLATE 'utf8mb4_unicode_ci' NOT NULL AFTER `access_id`, ADD `module` text(16) COLLATE 'utf8mb4_unicode_ci' NULL;
+/* 2022-04-17-01 */	ALTER TABLE `forms` CHANGE `event_id` `event_id` int unsigned NOT NULL AFTER `form_id`;
+/* 2022-04-17-02 */	ALTER TABLE `usergroups` CHANGE `identifier` `identifier` varchar(32) COLLATE 'latin1_general_ci' NOT NULL AFTER `usergroup`, CHANGE `active` `active` enum('yes','no') COLLATE 'latin1_general_ci' NOT NULL DEFAULT 'yes' AFTER `sequence`;
+/* 2022-04-17-03 */	ALTER TABLE `usergroups` CHANGE `last_update` `last_update` timestamp NOT NULL AFTER `parameters`;
