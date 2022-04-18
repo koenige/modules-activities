@@ -55,3 +55,4 @@
 /* 2022-04-17-2 */	ALTER TABLE `usergroups` CHANGE `identifier` `identifier` varchar(32) COLLATE 'latin1_general_ci' NOT NULL AFTER `usergroup`, CHANGE `active` `active` enum('yes','no') COLLATE 'latin1_general_ci' NOT NULL DEFAULT 'yes' AFTER `sequence`;
 /* 2022-04-17-3 */	ALTER TABLE `usergroups` CHANGE `last_update` `last_update` timestamp NOT NULL AFTER `parameters`;
 /* 2022-04-18-1 */	ALTER TABLE `forms` CHANGE `access` `access` enum('public','login') COLLATE 'latin1_general_ci' NOT NULL DEFAULT 'public' AFTER `event_id`, CHANGE `address` `address` enum('formal','informal') COLLATE 'latin1_general_ci' NOT NULL DEFAULT 'formal' AFTER `form_category_id`;
+/* 2022-04-18-2 */	ALTER TABLE `forms` CHANGE `created` `created` datetime NOT NULL AFTER `address`;

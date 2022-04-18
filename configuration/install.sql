@@ -59,7 +59,6 @@ CREATE TABLE `forms` (
   `form_id` int unsigned NOT NULL AUTO_INCREMENT,
   `event_id` int unsigned NOT NULL,
   `access` enum('public','login') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'public',
-  `created` datetime NOT NULL,
   `header` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `lead` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `footer` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
@@ -67,6 +66,7 @@ CREATE TABLE `forms` (
   `confirmation_mail` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `form_category_id` int unsigned DEFAULT NULL,
   `address` enum('formal','informal') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'formal',
+  `created` datetime NOT NULL,
   PRIMARY KEY (`form_id`),
   UNIQUE KEY `event_id` (`event_id`),
   KEY `form_category_id` (`form_category_id`)
