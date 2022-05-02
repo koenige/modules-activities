@@ -223,3 +223,92 @@ function mf_activities_merge_contact($contact_id) {
 	}
 	return $old_contact_id;
 }
+
+/**
+ * get data from all form fields
+ *
+ * @param int $contact_id
+ * @param int $form_id
+ * @return array
+ */
+function mf_activities_formfielddata($contact_id, $form_id) {
+	$sql = 'SELECT formfield_id, formfield, area, categories.parameters
+		FROM formfields
+		LEFT JOIN categories
+			ON formfields.formfield_category_id = categories.category_id
+		WHERE form_id = %d
+		ORDER BY formfields.sequence';
+	$sql = sprintf($sql, $form_id);
+	$fields = wrap_db_fetch($sql, 'formfield_id');
+	$fields = wrap_translate($fields, 'formfields');
+	
+	$db_fields = [];
+	foreach ($fields as &$field) {
+		if (empty($field['parameters'])) continue;
+		parse_str($field['parameters'], $field['parameters']);
+		if (empty($field['parameters']['db_field'])) continue;
+		list($table_name, $field_name) = explode('.', $field['parameters']['db_field']);
+		$db_fields[$table_name][$field['formfield_id']] = $field_name;
+		if (empty($field['parameters']['db_fields'])) continue;
+		$extra_fields[$table_name][$field['formfield_id']] = $field['parameters']['db_fields'];
+	}
+	foreach ($db_fields as $table_name => $table_fields) {
+		if (in_array($table_name, ['persons', 'contacts'])) {
+			// SELECT first_name, last_name, sex FROM persons WHERE contact_id = 23
+			$sql = 'SELECT %s FROM %s WHERE contact_id = %d';
+			$sql = sprintf($sql, implode(', ', array_unique($table_fields)), $table_name, $contact_id);
+			$record = wrap_db_fetch($sql);
+			foreach ($table_fields as $formfield_id => $field_name) {
+				$fields[$formfield_id]['value'][] = mf_activities_formfielddata_format($fields[$formfield_id], $record[$field_name]);
+			}
+		} else {
+			// SELECT formfield_id, identification FROM contactdetails WHERE contact_id = 23 AND formfield_id IN (%s)
+			switch ($table_name) {
+			case 'addresses':
+				$join = 'LEFT JOIN countries USING (country_id)'; break;
+			case 'media':
+				$join = 'LEFT JOIN filetypes USING (filetype_id)'; break;
+			default:
+				$join = '';
+			}
+			$sql = 'SELECT formfield_id, %s FROM %s %s WHERE contact_id = %d AND formfield_id IN (%s)';
+			$field_names = array_unique($table_fields);
+			if (!empty($extra_fields[$table_name])) {
+				foreach ($extra_fields[$table_name] as $extra_field_names) {
+					$field_names += $extra_field_names;
+				}
+				$field_names = array_unique($field_names);
+			}
+			$sql = sprintf($sql
+				, implode(', ', $field_names)
+				, $table_name
+				, $join
+				, $contact_id
+				, implode(', ', array_keys($table_fields))
+			);
+			$record = wrap_db_fetch($sql, 'formfield_id');
+			foreach ($table_fields as $formfield_id => $field_name) {
+				$fields[$formfield_id]['value'][] = mf_activities_formfielddata_format($fields[$formfield_id], $record[$formfield_id][$field_name]);
+			}
+			if (!empty($extra_fields[$table_name])) {
+				foreach ($extra_fields[$table_name] as $formfield_id => $field_names) {
+					foreach ($field_names as $field_name) {
+						$field_name = explode('.', $field_name);
+						$field_name = $field_name[1];
+						$fields[$formfield_id]['value'][] = $record[$formfield_id][$field_name];
+					}
+				}
+			}
+		}
+	}
+	foreach (array_keys($fields) AS $formfield_id) {
+		$fields[$formfield_id]['value'] = implode('; ', $fields[$formfield_id]['value']);
+	}
+	return $fields;
+}
+
+function mf_activities_formfielddata_format($form_field, $value) {
+	if (!empty($form_field['parameters']['format']))
+		$value = $form_field['parameters']['format']($value);
+	return $value;
+}
