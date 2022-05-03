@@ -288,10 +288,12 @@ function mf_activities_formfielddata($contact_id, $form_id) {
 			);
 			$record = wrap_db_fetch($sql, 'formfield_id');
 			foreach ($table_fields as $formfield_id => $field_name) {
+				if (empty($record[$formfield_id])) continue; // no value
 				$fields[$formfield_id]['value'][] = mf_activities_formfielddata_format($fields[$formfield_id], $record[$formfield_id][$field_name]);
 			}
 			if (!empty($extra_fields[$table_name])) {
 				foreach ($extra_fields[$table_name] as $formfield_id => $field_names) {
+					if (empty($record[$formfield_id])) continue; // no value
 					foreach ($field_names as $field_name) {
 						$field_name = explode('.', $field_name);
 						$field_name = $field_name[1];
@@ -302,7 +304,10 @@ function mf_activities_formfielddata($contact_id, $form_id) {
 		}
 	}
 	foreach (array_keys($fields) AS $formfield_id) {
-		$fields[$formfield_id]['value'] = implode('; ', $fields[$formfield_id]['value']);
+		if (empty($fields[$formfield_id]['value']))
+			$fields[$formfield_id]['value'] = '';
+		else
+			$fields[$formfield_id]['value'] = implode('; ', $fields[$formfield_id]['value']);
 	}
 	return $fields;
 }
