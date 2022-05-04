@@ -237,6 +237,8 @@ function mf_activities_formfielddata($contact_id, $form_id) {
 		LEFT JOIN categories
 			ON formfields.formfield_category_id = categories.category_id
 		WHERE form_id = %d
+		AND (ISNULL(formfields.parameters)
+			OR formfields.parameters NOT LIKE "%%&hide_in_formfielddata=1%%")
 		ORDER BY formfields.sequence';
 	$sql = sprintf($sql, $form_id);
 	$fields = wrap_db_fetch($sql, 'formfield_id');
