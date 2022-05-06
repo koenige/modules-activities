@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -156,7 +156,7 @@ $zz['fields'][198]['class'] = 'hidden';
 
 $zz_conf['text'][$zz_setting['lang']]['Add a record'] = wrap_text('Register');
 $zz_conf['text'][$zz_setting['lang']]['Add record'] = wrap_text('Submit Registration');
-$zz_conf['text'][$zz_setting['lang']]['record_was_inserted'] = wrap_text('The registration has been sent successfully!');
+$zz_conf['text'][$zz_setting['lang']]['Record was inserted'] = wrap_text('The registration has been sent successfully!');
 
 if (!empty($_POST['contact'])) {
 	$zz_conf['user'] = wrap_filename($_POST['contact'], ' ').' ';
