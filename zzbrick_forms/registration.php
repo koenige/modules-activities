@@ -67,7 +67,8 @@ foreach ($zz['fields'] as $no => $field) {
 
 foreach ($registration['formfields'] as $formfield) {
 	$type = 'field';
-	parse_str($formfield['parameters'], $parameters);
+	if ($formfield['parameters'])
+		parse_str($formfield['parameters'], $formfield['parameters']);
 	switch ($formfield['category']) {
 	case 'Contact':
 		$my_field = &$zz['fields'][2];
@@ -92,10 +93,10 @@ foreach ($registration['formfields'] as $formfield) {
 	if ($type === 'subtable') {
 		$my_field['min_records'] = 1;
 		$my_field['max_records'] = 1;
-		if (empty($parameters['optional']))
+		if (empty($formfield['parameters']['optional']))
 			$my_field['min_records_required'] = 1;
-		if (!empty($parameters['value'])) {
-			foreach ($parameters['value'] as $field_name => $value) {
+		if (!empty($formfield['parameters']['value'])) {
+			foreach ($formfield['parameters']['value'] as $field_name => $value) {
 				foreach ($my_field['fields'] as $sub_no => $subfield) {
 					if (empty($subfield['field_name'])) continue;
 					if ($subfield['field_name'] !== $field_name) continue;
@@ -112,7 +113,7 @@ foreach ($registration['formfields'] as $formfield) {
 			}
 		}
 	} else {
-		if (empty($parameters['optional']))
+		if (empty($formfield['parameters']['optional']))
 			$my_field['required'] = 1;
 	}
 }
