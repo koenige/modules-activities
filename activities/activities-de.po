@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/activities
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020-2021 Gustaf Mossakowski
+# @copyright Copyright © 2020-2022 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -46,6 +46,10 @@ msgstr "Die Anmeldung wurde erfolgreich versendet!"
 #: zzbrick_forms/registration.php
 msgid "We just sent you an e-mail. Please click on the link inside it to confirm your registration."
 msgstr "Wir haben Ihnen gerade eine E-Mail geschickt. Bitte klicken Sie auf den darin enthaltenen Link, um Ihre Anmeldung zu bestätigen. "
+
+#: zzbrick_forms/registration.php
+msgid "There is no registration for this code."
+msgstr "Es gibt keine Registrierung unter diesem Code."
 
 #: zzbrick_tables/access.php
 msgid "Access Rights"
