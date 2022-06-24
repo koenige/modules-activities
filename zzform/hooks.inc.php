@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -114,7 +114,6 @@ function mf_activities_copy_translations($table, $ids, $map) {
  */
 function mf_activities_confirm_registration($ops) {
 	global $zz_conf;
-	global $zz_setting;
 
 	// get registrant’s data
 	$data = [];
@@ -170,8 +169,7 @@ function mf_activities_confirm_registration($ops) {
 	$data['sender'] = wrap_get_setting('own_name');
 	if (!$data['sender']) $data['sender'] = wrap_get_setting('project');
 	$mail['headers']['From']['name'] = $data['sender'];
-	$mail['headers']['From']['e_mail'] = ($own_e_mail = wrap_get_setting('own_e_mail'))
-		? $own_e_mail : $zz_conf['error_mail_from'];
+	$mail['headers']['From']['e_mail'] = wrap_get_setting('own_e_mail');
 
 	// @todo use custom confirmation mails from forms-table
 	$mail['message'] = wrap_template('registration-confirmation-mail', $data);
