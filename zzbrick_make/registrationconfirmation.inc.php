@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2022 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -72,8 +72,6 @@ function mod_activities_make_registrationconfirmation() {
 
 		$has_data = true;
 		if ($data['status_category_id'] === wrap_category_id('participation-status/subscribed')) {
-			require_once $zz_conf['dir'].'/zzform.php';
-
 			switch ($action) {
 			case 'confirm':
 				// add activities
