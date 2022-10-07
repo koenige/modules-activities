@@ -210,6 +210,32 @@ INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('blocked', NULL, (SELECT category_id FROM categories c WHERE path = 'participation-status'), 'participation-status/blocked', NULL, 6, NOW());
 
 
+CREATE TABLE `participations_contacts` (
+  `participation_contact_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `participation_id` int unsigned NOT NULL,
+  `contact_id` int unsigned NOT NULL,
+  PRIMARY KEY (`participation_contact_id`),
+  UNIQUE KEY `participation_id_contact_id` (`participation_id`,`contact_id`),
+  KEY `contact_id` (`contact_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'participations', 'participation_id', (SELECT DATABASE()), 'participations_contacts', 'participation_contact_id', 'participation_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'contacts', 'contact_id', (SELECT DATABASE()), 'participations_contacts', 'participation_contact_id', 'contact_id', 'no-delete');
+
+
+CREATE TABLE `participations_websites` (
+  `participation_website_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `participation_id` int unsigned NOT NULL,
+  `website_id` int unsigned NOT NULL,
+  PRIMARY KEY (`participation_website_id`),
+  UNIQUE KEY `participation_id_website_id` (`participation_id`,`website_id`),
+  KEY `website_id` (`website_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'participations', 'participation_id', (SELECT DATABASE()), 'participations_websites', 'participation_website_id', 'participation_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'websites', 'website_id', (SELECT DATABASE()), 'participations_websites', 'participation_website_id', 'website_id', 'no-delete');
+
+
 CREATE TABLE `activities` (
   `activity_id` int unsigned NOT NULL AUTO_INCREMENT,
   `participation_id` int unsigned NOT NULL,

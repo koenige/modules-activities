@@ -94,6 +94,36 @@ $zz['fields'][12]['display_field'] = 'event';
 $zz['fields'][12]['hide_in_form'] = true;
 $zz['fields'][12]['hide_in_list'] = true;
 
+$zz['fields'][13] = zzform_include_table('participations-contacts');
+$zz['fields'][13]['type'] = 'subtable';
+$zz['fields'][13]['title'] = 'Organisation';
+$zz['fields'][13]['fields'][2]['type'] = 'foreign_key';
+$zz['fields'][13]['fields'][3]['show_title'] = false;
+$zz['fields'][13]['min_records'] = 1;
+$zz['fields'][13]['max_records'] = 1;
+$zz['fields'][13]['display'] = 'inline';
+$zz['fields'][13]['hide_in_form'] = true;
+$zz['fields'][13]['hide_in_list_if_empty'] = true;
+
+$zz['fields'][14] = zzform_include_table('participations-websites');
+$zz['fields'][14]['type'] = 'subtable';
+$zz['fields'][14]['title'] = 'Website';
+$zz['fields'][14]['fields'][2]['type'] = 'foreign_key';
+$zz['fields'][14]['fields'][3]['show_title'] = false;
+$zz['fields'][14]['min_records'] = 1;
+$zz['fields'][14]['max_records'] = 1;
+$zz['fields'][14]['display'] = 'inline';
+$zz['fields'][14]['hide_in_form'] = true;
+$zz['fields'][14]['hide_in_list_if_empty'] = true;
+
+// reserved for further participations subtables
+$zz['fields'][15] = [];
+$zz['fields'][16] = [];
+$zz['fields'][17] = [];
+$zz['fields'][18] = [];
+$zz['fields'][19] = [];
+$zz['fields'][20] = [];
+
 $zz['fields'][4]['field_name'] = 'date_begin';
 $zz['fields'][4]['title_tab'] = 'Begin';
 $zz['fields'][4]['type'] = 'date';
