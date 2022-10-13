@@ -88,7 +88,7 @@ CREATE TABLE `formfields` (
   `formfield_category_id` int unsigned NOT NULL,
   `area` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sequence` tinyint unsigned NOT NULL,
-  `parameters` varchar(750) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parameters` varchar(1250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `edit_from` datetime DEFAULT NULL,
   `edit_by` datetime DEFAULT NULL,
   `main_formfield_id` int unsigned DEFAULT NULL,
