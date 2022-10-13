@@ -36,6 +36,7 @@ $zz['fields'][3]['sql'] = 'SELECT contact_id, contact, identifier
 	FROM contacts
 	ORDER BY identifier';
 $zz['fields'][3]['display_field'] = 'contact';
+$zz['fields'][3]['search'] = 'contacts.contact';
 
 $zz['subselect']['sql'] = 'SELECT participation_id, contact
 	FROM /*_PREFIX_*/contacts
