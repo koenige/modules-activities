@@ -71,7 +71,7 @@ function mf_activities_copy_translations($table, $ids, $map) {
 		FROM %s
 		WHERE db_name = "%s" AND table_name = "%s"';
 	$sql = sprintf($sql
-		, $zz_conf['translations_table']
+		, wrap_sql_table('default_translationfields')
 		, $zz_conf['db_name']
 		, $table
 	);
