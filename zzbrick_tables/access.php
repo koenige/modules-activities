@@ -48,3 +48,5 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/access.*
 	FROM /*_PREFIX_*/access
 ';
 $zz['sqlorder'] = ' ORDER BY access_key';
+
+$zz_conf['copy'] = true;
