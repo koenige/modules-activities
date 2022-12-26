@@ -44,10 +44,11 @@ $zz['fields'][4]['explanation'] = 'Field name if access for an item is restricte
 $zz['subselect']['sql'] = 'SELECT access_id, usergroup, restricted_to_field, usergroup_id
 	FROM /*_PREFIX_*/usergroups
 	LEFT JOIN /*_PREFIX_*/access_usergroups USING (usergroup_id)
+	ORDER BY identifier
 ';
 $zz['subselect']['sql_translate'] = ['usergroup_id' => 'usergroup'];
 $zz['subselect']['sql_ignore'] = ['usergroup_id'];
-$zz['subselect']['concat_fields'] = ', ';
+$zz['subselect']['concat_rows'] = ', ';
 
 $zz['sql'] = 'SELECT /*_PREFIX_*/access_usergroups.*, access_key, usergroup
 	FROM /*_PREFIX_*/access_usergroups

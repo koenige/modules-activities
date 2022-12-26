@@ -33,8 +33,7 @@ $zz['fields'][3]['type'] = 'memo';
 $zz['fields'][3]['rows'] = 3;
 $zz['fields'][3]['list_prefix'] = '<p class="explanation" style="margin: .75em 2.5em; max-width: 40em; "><em>';
 $zz['fields'][3]['list_suffix'] = '</em></p>';
-
-$zz['fields'][4]['field_name'] = 'module';
+$zz['fields'][3]['list_append_next'] = true;
 
 $zz['fields'][5] = zzform_include_table('access-usergroups');
 $zz['fields'][5]['title'] = 'Usergroups';
@@ -43,10 +42,21 @@ $zz['fields'][5]['fields'][2]['type'] = 'foreign_key';
 $zz['fields'][5]['min_records'] = 1;
 $zz['fields'][5]['min_records_required'] = 1;
 $zz['fields'][5]['form_display'] = 'lines';
+$zz['fields'][5]['list_prefix'] = '<div class="explanation" style="margin: .75em 2.5em; max-width: 40em; ">'.wrap_text('Groups:').'<em> ';
+$zz['fields'][5]['list_suffix'] = '</em></div>';
+
+$zz['fields'][4]['field_name'] = 'module';
 
 $zz['sql'] = 'SELECT /*_PREFIX_*/access.*
 	FROM /*_PREFIX_*/access
 ';
 $zz['sqlorder'] = ' ORDER BY access_key';
+
+$zz['filter'][1]['title'] = 'Module';
+$zz['filter'][1]['type'] = 'list';
+$zz['filter'][1]['where'] = 'module';
+$zz['filter'][1]['field_name'] = 'module';
+$zz['filter'][1]['sql'] = 'SELECT DISTINCT module, module
+	FROM /*_PREFIX_*/access';
 
 $zz_conf['copy'] = true;
