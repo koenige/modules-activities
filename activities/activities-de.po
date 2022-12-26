@@ -55,6 +55,10 @@ msgstr "Es gibt keine Registrierung unter diesem Code."
 msgid "Access Rights"
 msgstr "Zugriffsrechte"
 
+#: zzbrick_tables/access.php
+msgid "Module"
+msgstr "Modul"
+
 #: zzbrick_tables/access-usergroups.php
 msgid "Usergroups per Access Right"
 msgstr "Benutzergruppen pro Zugriffsrecht"

@@ -52,7 +52,7 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/access.*
 ';
 $zz['sqlorder'] = ' ORDER BY access_key';
 
-$zz['filter'][1]['title'] = 'Module';
+$zz['filter'][1]['title'] = wrap_text('Module');
 $zz['filter'][1]['type'] = 'list';
 $zz['filter'][1]['where'] = 'module';
 $zz['filter'][1]['field_name'] = 'module';
