@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -63,3 +63,4 @@
 /* 2022-10-07-5 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'participations', 'participation_id', (SELECT DATABASE()), 'participations_websites', 'participation_website_id', 'participation_id', 'no-delete');
 /* 2022-10-07-6 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'websites', 'website_id', (SELECT DATABASE()), 'participations_websites', 'participation_website_id', 'website_id', 'no-delete');
 /* 2022-10-13-1 */	ALTER TABLE `formfields` CHANGE `parameters` `parameters` varchar(1250) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `sequence`;
+/* 2023-01-09-1 */	ALTER TABLE `access` CHANGE `access_key` `access_key` varchar(48) COLLATE 'utf8mb4_unicode_ci' NOT NULL AFTER `access_id`;

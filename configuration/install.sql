@@ -6,14 +6,14 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
 CREATE TABLE `access` (
   `access_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `access_key` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `access_key` varchar(48) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `explanation` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `module` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`access_id`),
