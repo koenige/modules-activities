@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2021, 2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -29,6 +29,8 @@ $zz['fields'][2]['link'] = [
 ];
 $zz['fields'][2]['typo_cleanup'] = true;
 $zz['fields'][2]['typo_remove_double_spaces'] = true;
+$zz['fields'][2]['if'][1]['list_prefix'] = '<del>';
+$zz['fields'][2]['if'][1]['list_suffix'] = '</del>';
 
 $zz['fields'][4]['field_name'] = 'identifier';
 $zz['fields'][4]['type'] = 'identifier';
@@ -50,6 +52,8 @@ $zz['fields'][5]['key_field_name'] = 'category_id';
 $zz['fields'][5]['if']['where']['hide_in_form'] = true;
 $zz['fields'][5]['if']['where']['hide_in_list'] = true;
 $zz['fields'][5]['display_field'] = 'category';
+$zz['fields'][5]['if'][1]['list_prefix'] = '<del>';
+$zz['fields'][5]['if'][1]['list_suffix'] = '</del>';
 
 $zz['fields'][6]['field_name'] = 'description';
 $zz['fields'][6]['hide_in_list'] = true;
@@ -64,6 +68,7 @@ $zz['fields'][8]['field_name'] = 'active';
 $zz['fields'][8]['type'] = 'select';
 $zz['fields'][8]['enum'] = ['yes', 'no'];
 $zz['fields'][8]['default'] = 'yes';
+$zz['fields'][8]['hide_in_list'] = true;
 
 $zz['fields'][9]['field_name'] = 'parameters';
 $zz['fields'][9]['type'] = 'parameter';
@@ -120,3 +125,6 @@ $zz['filter'][1]['identifier'] = 'category';
 $zz['filter'][1]['type'] = 'list';
 $zz['filter'][1]['where'] = 'usergroup_category_id';
 $zz['filter'][1]['field_name'] = 'usergroup_category_id';
+
+$zz['conditions'][1]['scope'] = 'record';
+$zz['conditions'][1]['where'] = '/*_PREFIX_*/usergroups.active = "no"';
