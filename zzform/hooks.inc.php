@@ -187,6 +187,59 @@ function mf_activities_confirm_registration($ops) {
 // ---- Mailings ----
 //
 
+/**
+ * read e-mail addresses from database for mailing
+ *
+ * @param array $ops
+ * @return array
+ */
+function mf_activities_hook_mailing_add_addresses($ops) {
+	$participation_ids = [];
+	foreach ($ops['not_validated'] as $index => $table) {
+		if ($table['table'] !== 'mailings_contacts') continue;
+		if (!empty($ops['record_new'][$index]['recipient_mail'])) continue;
+		$participation_ids[$index] = $ops['record_new'][$index]['recipient_contact_id'];
+	}
+	if (!$participation_ids) return [];
+	
+	$sql = 'SELECT participation_id, contact_id, identification
+		FROM participations
+		LEFT JOIN contactdetails USING (contact_id)
+		WHERE participation_id IN (%s)
+		AND contactdetails.provider_category_id = %d';
+	$sql = sprintf($sql
+		, implode(',', $participation_ids)
+		, wrap_category_id('provider/e-mail')
+	);
+	$mails = wrap_db_fetch($sql, 'participation_id');
+	if (!$mails) return [];
+	
+	$change = [];
+	$contact_ids = [];
+	foreach ($participation_ids as $index => $participation_id) {
+		if (empty($mails[$participation_id])) {
+			$change['no_validation'] = true;
+			continue;
+		}
+		if (in_array($mails[$participation_id]['contact_id'], $contact_ids)) {
+			// remove duplicate selections (contact might be in more than one group)
+			$change['record_replace'][$index]['recipient_contact_id'] = false;
+			$change['record_replace'][$index]['recipient_mail'] = false;
+		} else {
+			$change['record_replace'][$index]['recipient_contact_id'] = $mails[$participation_id]['contact_id'];
+			$change['record_replace'][$index]['recipient_mail'] = $mails[$participation_id]['identification'];
+		}
+		$contact_ids[] = $mails[$participation_id]['contact_id'];
+	}
+	return $change;
+}
+
+/**
+ * send mailings
+ *
+ * @param array $ops
+ * @return array
+ */
 function mf_activities_hook_mailing_send($ops) {
 	global $zz_setting;
 	
