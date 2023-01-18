@@ -86,6 +86,7 @@ $zz['fields'][5]['min_records'] = 1;
 $zz['fields'][5]['fields'][2]['type'] = 'foreign_key';
 $zz['fields'][5]['fields'][3]['show_title'] = false;
 $zz['fields'][5]['fields'][4]['class'] = 'hidden';
+$zz['fields'][5]['fields'][4]['for_action_ignore'] = true;
 $zz['fields'][5]['subselect']['sql'] = 'SELECT mailing_id, contact
 	FROM mailings_contacts
 	LEFT JOIN mailings USING (mailing_id)
