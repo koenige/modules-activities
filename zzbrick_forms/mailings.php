@@ -25,6 +25,7 @@ $sql = 'SELECT participation_id
 			LIMIT 1
 		) AS e_mail
 		, usergroup
+		, participations.contact_id
 	FROM participations
 	LEFT JOIN persons USING (contact_id)
 	LEFT JOIN contacts USING (contact_id)
@@ -51,6 +52,7 @@ if ($path = wrap_path('contacts_profile[person]', '%s')) {
 }
 $zz['fields'][5]['fields'][3]['concat_2'] = ' &middot; %s';
 $zz['fields'][5]['fields'][3]['group'] = 'usergroup';
+$zz['fields'][5]['fields'][3]['sql_replace']['participation_id'] = 'contact_id';
 
 $zz['hooks']['before_upload'] = 'mf_activities_hook_mailing_add_addresses';
 
