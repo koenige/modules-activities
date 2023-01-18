@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -181,4 +181,90 @@ function mf_activities_confirm_registration($ops) {
 	}
 
 	return [];
+}
+
+//
+// ---- Mailings ----
+//
+
+function mf_activities_hook_mailing_send($ops) {
+	global $zz_setting;
+	
+	if (empty($ops['record_new'][0])) return false;
+	$maildata = array_shift($ops['record_new']);
+	if (empty($maildata['send_mailings'][1])) return false;
+
+	$mail = [];
+	$mail['message'] = $maildata['message']; 
+	$mail['subject'] = $maildata['subject'];
+	
+	// get sender
+	$sql = 'SELECT identification AS e_mail
+			, contact AS name
+		FROM contacts
+		LEFT JOIN contactdetails USING (contact_id)
+		WHERE contact_id = %d
+		AND provider_category_id = %d';
+	$sql = sprintf($sql
+		, $maildata['sender_contact_id']
+		, wrap_category_id('provider/e-mail')
+	);
+	$mail['headers']['From'] = wrap_db_fetch($sql, '', 'key/value');
+	if (empty($mail['headers']['From'])) return false;
+	if ($maildata['sender_mail']) {
+		if ($suffix = wrap_get_setting('activities_mailings_suffix_alternative_from'))
+			$mail['headers']['From']['name'] .= sprintf(', %s', $suffix);
+		$mail['headers']['From']['e_mail'] = $maildata['sender_mail'];
+	}
+	
+	// get event
+	$sql = sprintf(wrap_sql_query('activities_mailings_event'), $maildata['event_id']);
+	$event = wrap_db_fetch($sql);
+	if (!empty($event['duration']))
+		$event['duration'] = html_entity_decode(wrap_date($event['duration']), ENT_QUOTES, 'UTF-8');
+
+	// get all recipients
+	$recipient_contact_ids = [];
+	foreach ($ops['record_new'] as $rec)
+		$recipient_contact_ids[] = $rec['recipient_contact_id'];
+
+	// @todo add usergroup_id, currently it might happen that some records
+	// are combined, so some data in JOINed tables might be missing
+	$sql = sprintf(wrap_sql_query('activities_mailings_recipients')
+		, implode(',', $recipient_contact_ids)
+		, $event['event_id']
+	);
+	$recipients = wrap_db_fetch($sql, 'contact_id');
+
+	// apply new text formatting
+	$old_brick_fulltextformat = wrap_get_setting('brick_fulltextformat');
+	$zz_setting['brick_fulltextformat'] = 'brick_textformat_html';
+
+	// @todo sende eine Kopie der ersten Mail an den Absender!
+	foreach ($ops['record_new'] as $rec) {
+		$my_mail = $mail;
+		$recipient = $recipients[$rec['recipient_contact_id']];
+		$my_mail['to']['name'] = $recipient['name'];
+		$my_mail['to']['e_mail'] = $recipient['e_mail'];
+
+		$my_data = $event + $recipient;
+		$my_data['addlogin_hash'] = wrap_set_hash($my_data['contact_id'].'-'.$my_data['identifier'], 'addlogin_key');
+		
+		// call custom function if exists
+		if (function_exists('my_hook_mailing_send'))
+			$my_data = my_hook_mailing_send($my_data);
+
+		$msg = brick_format($my_mail['message'], $my_data);
+		$my_mail['message'] = $msg['text'];
+		$success = wrap_mail($my_mail);
+		if (!$success) {
+			wrap_error(sprintf(
+				'Unable to send mail with ID %d to recipient with ID %d (%s).',
+				$maildata['mailing_id'], $recipient['contact_id'], $recipient['name'])
+			);
+		}
+	}
+	$zz_setting['brick_fulltextformat'] = $old_brick_fulltextformat;
+	$record['record_replace'][0]['sent'] = date('Y-m-d H:i:s');
+	return $record;
 }

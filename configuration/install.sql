@@ -11,6 +11,7 @@
  */
 
 
+-- access --
 CREATE TABLE `access` (
   `access_id` int unsigned NOT NULL AUTO_INCREMENT,
   `access_key` varchar(48) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -21,6 +22,7 @@ CREATE TABLE `access` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
+-- access_usergroups --
 CREATE TABLE `access_usergroups` (
   `access_usergroup_id` int unsigned NOT NULL AUTO_INCREMENT,
   `access_id` int unsigned NOT NULL,
@@ -35,6 +37,7 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'usergroups', 'usergroup_id', (SELECT DATABASE()), 'access_usergroups', 'access_usergroup_id', 'usergroup_id', 'no-delete');
 
 
+-- contacts_access --
 CREATE TABLE `contacts_access` (
   `contact_access_id` int unsigned NOT NULL AUTO_INCREMENT,
   `contact_id` int unsigned DEFAULT NULL,
@@ -55,6 +58,7 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'contacts_access', 'contact_access_id', 'property_category_id', 'no-delete');
 
 
+-- forms --
 CREATE TABLE `forms` (
   `form_id` int unsigned NOT NULL AUTO_INCREMENT,
   `event_id` int unsigned NOT NULL,
@@ -80,6 +84,7 @@ INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Application', NULL, (SELECT category_id FROM categories c WHERE path = 'forms'), 'forms/application', NULL, 1, NOW());
 
 
+-- formfields --
 CREATE TABLE `formfields` (
   `formfield_id` int unsigned NOT NULL AUTO_INCREMENT,
   `form_id` int unsigned NOT NULL,
@@ -105,6 +110,41 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Field Types', NULL, NULL, 'field-types', NULL, NULL, NOW());
 
 
+-- mailings --
+CREATE TABLE `mailings` (
+  `mailing_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `event_id` int unsigned NOT NULL,
+  `subject` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sender_contact_id` int unsigned NOT NULL,
+  `sender_mail` varchar(127) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sent` datetime DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`mailing_id`),
+  KEY `event_id` (`event_id`),
+  KEY `sender_contact_id` (`sender_contact_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events', 'event_id', (SELECT DATABASE()), 'mailings', 'mailing_id', 'event_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'contacts', 'contact_id', (SELECT DATABASE()), 'mailings', 'mailing_id', 'sender_contact_id', 'no-delete');
+
+
+-- mailings_contacts --
+CREATE TABLE `mailings_contacts` (
+  `mailing_contact_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `mailing_id` int unsigned NOT NULL,
+  `recipient_contact_id` int unsigned NOT NULL,
+  `recipient_mail` varchar(127) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`mailing_contact_id`),
+  UNIQUE KEY `mailing_id_recipient_contact_id` (`mailing_id`,`recipient_contact_id`),
+  KEY `recipient_contact_id` (`recipient_contact_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'mailings', 'mailing_id', (SELECT DATABASE()), 'mailings_contacts', 'mailing_contact_id', 'mailing_id', 'delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'contacts', 'contact_id', (SELECT DATABASE()), 'mailings_contacts', 'mailing_contact_id', 'recipient_contact_id', 'delete');
+
+
+-- registrations --
 CREATE TABLE `registrations` (
   `registration_id` int unsigned NOT NULL AUTO_INCREMENT,
   `usergroup_id` int unsigned NOT NULL,
@@ -127,6 +167,7 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'contacts', 'contact_id', (SELECT DATABASE()), 'registrations', 'registration_id', 'organisation_contact_id', 'no-delete');
 
 
+-- registrationtexts --
 CREATE TABLE `registrationtexts` (
   `registrationtext_id` int unsigned NOT NULL AUTO_INCREMENT,
   `contact_id` int unsigned NOT NULL,
@@ -141,6 +182,7 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'formfields', 'formfield_id', (SELECT DATABASE()), 'registrationtexts', 'registrationtext_id', 'formfield_id', 'no-delete');
 
 
+-- registrationvarchars --
 CREATE TABLE `registrationvarchars` (
   `registrationvarchar_id` int unsigned NOT NULL AUTO_INCREMENT,
   `contact_id` int unsigned NOT NULL,
@@ -155,6 +197,7 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'formfields', 'formfield_id', (SELECT DATABASE()), 'registrationvarchars', 'registrationvarchar_id', 'formfield_id', 'no-delete');
 
 
+-- usergroups --
 CREATE TABLE `usergroups` (
   `usergroup_id` int unsigned NOT NULL AUTO_INCREMENT,
   `usergroup` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -175,6 +218,7 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Usergroups', NULL, NULL, 'usergroups', NULL, NULL, NOW());
 
 
+-- participations --
 CREATE TABLE `participations` (
   `participation_id` int unsigned NOT NULL AUTO_INCREMENT,
   `contact_id` int unsigned NOT NULL,
@@ -210,6 +254,7 @@ INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('blocked', NULL, (SELECT category_id FROM categories c WHERE path = 'participation-status'), 'participation-status/blocked', NULL, 6, NOW());
 
 
+-- participations_contacts --
 CREATE TABLE `participations_contacts` (
   `participation_contact_id` int unsigned NOT NULL AUTO_INCREMENT,
   `participation_id` int unsigned NOT NULL,
@@ -223,6 +268,7 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'contacts', 'contact_id', (SELECT DATABASE()), 'participations_contacts', 'participation_contact_id', 'contact_id', 'no-delete');
 
 
+-- participations_websites --
 CREATE TABLE `participations_websites` (
   `participation_website_id` int unsigned NOT NULL AUTO_INCREMENT,
   `participation_id` int unsigned NOT NULL,
@@ -236,6 +282,7 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'websites', 'website_id', (SELECT DATABASE()), 'participations_websites', 'participation_website_id', 'website_id', 'no-delete');
 
 
+-- activities --
 CREATE TABLE `activities` (
   `activity_id` int unsigned NOT NULL AUTO_INCREMENT,
   `participation_id` int unsigned NOT NULL,
