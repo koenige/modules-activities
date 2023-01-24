@@ -46,6 +46,7 @@ $zz['fields'][5]['list_prefix'] = '<div class="explanation" style="margin: .75em
 $zz['fields'][5]['list_suffix'] = '</em></div>';
 
 $zz['fields'][4]['field_name'] = 'module';
+$zz['fields'][4]['default'] = 'custom';
 
 $zz['sql'] = 'SELECT /*_PREFIX_*/access.*
 	FROM /*_PREFIX_*/access
