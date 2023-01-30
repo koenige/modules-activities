@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2018-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2014, 2018-2021, 2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -23,11 +23,10 @@ $zz['fields'][2]['field_name'] = 'form_id';
 $zz['fields'][2]['type'] = 'select';
 $zz['fields'][2]['type_detail'] = 'select';
 $zz['fields'][2]['sql'] = 'SELECT form_id
-		, CONCAT(event, " ", IFNULL(date_begin, ""), "/", IFNULL(date_end, "")) AS duration
+		, event, CONCAT(IFNULL(date_begin, ""), "/", IFNULL(date_end, "")) AS duration
 	FROM forms
 	LEFT JOIN events USING (event_id)
 	ORDER BY events.identifier';
-$zz['fields'][2]['sql_ignore'] = ['event'];
 $zz['fields'][2]['if']['where']['hide_in_list'] = true;
 $zz['fields'][2]['if']['where']['hide_in_form'] = true;
 $zz['fields'][2]['display_field'] = 'event';
@@ -89,8 +88,8 @@ $zz['fields'][13]['hide_in_form'] = true;
 $zz['fields'][13]['hide_in_list'] = true;
 
 $zz['sql'] = 'SELECT formfields.*
+		, CONCAT(event, " ", IFNULL(date_begin, ""), "/", IFNULL(date_end, "")) AS event
 		, categories.category_id, categories.category
-		, events.event
 	FROM formfields
 	LEFT JOIN forms USING (form_id)
 	LEFT JOIN events USING (event_id)
