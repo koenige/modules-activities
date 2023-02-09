@@ -66,8 +66,6 @@ CREATE TABLE `forms` (
   `header` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `lead` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `footer` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `authentication_mail` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `confirmation_mail` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `form_category_id` int unsigned DEFAULT NULL,
   `address` enum('formal','informal') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'formal',
   `created` datetime NOT NULL,
@@ -81,7 +79,7 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Forms', NULL, NULL, 'forms', NULL, NULL, NOW());
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Registration', NULL, (SELECT category_id FROM categories c WHERE path = 'forms'), 'forms/registration', NULL, 1, NOW());
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Application', NULL, (SELECT category_id FROM categories c WHERE path = 'forms'), 'forms/application', NULL, 1, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Application', NULL, (SELECT category_id FROM categories c WHERE path = 'forms'), 'forms/application', NULL, 2, NOW());
 
 
 -- formfields --
@@ -104,10 +102,34 @@ CREATE TABLE `formfields` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'forms', 'form_id', (SELECT DATABASE()), 'formfields', 'formfield_id', 'form_id', 'delete');
-INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'formfields', 'formfield_id', 'formfield_category_id', 'delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'formfields', 'formfield_id', 'formfield_category_id', 'no-delete');
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'formfields', 'formfield_id', (SELECT DATABASE()), 'formfields', 'formfield_id', 'main_formfield_id', 'delete');
 
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Field Types', NULL, NULL, 'field-types', NULL, NULL, NOW());
+
+
+-- formtemplates --
+CREATE TABLE `formtemplates` (
+  `formtemplate_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `form_id` int unsigned NOT NULL,
+  `template` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `template_category_id` int unsigned NOT NULL,
+  `formfield_id` int unsigned DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`formtemplate_id`),
+  UNIQUE KEY `form_id_template_category_id_formfield_id` (`form_id`,`template_category_id`,`formfield_id`),
+  KEY `template_category_id` (`template_category_id`),
+  KEY `formfield_id` (`formfield_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'forms', 'form_id', (SELECT DATABASE()), 'formtemplates', 'formtemplate_id', 'form_id', 'delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'formtemplates', 'formtemplate_id', 'template_category_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'formfields', 'formfield_id', (SELECT DATABASE()), 'formtemplates', 'formtemplate_id', 'formfield_id', 'delete');
+
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Template Types', NULL, NULL, 'template-types', NULL, NULL, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Authentication Mail', 'First mail sent out to check the applicant’s mail address.', (SELECT category_id FROM categories c WHERE path = 'template-types'), 'template-types/authentication', 'alias=template-types/authentication', 1, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Confirmation Mail', 'Second mail sent out to confirm the application.', (SELECT category_id FROM categories c WHERE path = 'template-types'), 'template-types/confirmation', 'alias=template-types/confirmation', 2, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Field changed Mail', 'Mail to send if a field value was added or changed.', (SELECT category_id FROM categories c WHERE path = 'template-types'), 'template-types/field', 'alias=template-types/field', 3, NOW());
 
 
 -- mailings --

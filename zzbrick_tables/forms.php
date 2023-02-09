@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2018-2019, 2021 Gustaf Mossakowski
+ * @copyright Copyright © 2018-2019, 2021, 2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -92,18 +92,6 @@ $zz['fields'][7]['explanation'] = 'Text to appear behind form';
 $zz['fields'][7]['type'] = 'memo';
 $zz['fields'][7]['format'] = 'markdown';
 $zz['fields'][7]['hide_in_list'] = true;
-
-$zz['fields'][8]['title'] = 'Authentication Mail';
-$zz['fields'][8]['field_name'] = 'authentication_mail';
-$zz['fields'][8]['type'] = 'memo';
-$zz['fields'][8]['explanation'] = wrap_text('First mail sent out to check the applicant’s mail.');
-$zz['fields'][8]['hide_in_list'] = true;
-
-$zz['fields'][9]['title'] = 'Confirmation Mail';
-$zz['fields'][9]['field_name'] = 'confirmation_mail';
-$zz['fields'][9]['type'] = 'memo';
-$zz['fields'][9]['explanation'] = wrap_text('Second mail sent out to confirm the application.');
-$zz['fields'][9]['hide_in_list'] = true;
 
 $zz['fields'][5]['field_name'] = 'copy_formfields';
 $zz['fields'][5]['type'] = 'option';
