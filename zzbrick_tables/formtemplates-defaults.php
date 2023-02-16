@@ -13,8 +13,8 @@
  */
 
 
-$zz['title'] = 'Form Templates: Default Texts';
-$zz['table'] = 'formtemplates_default';
+$zz['title'] = 'Default Templates for Forms';
+$zz['table'] = 'formtemplates_defaults';
 
 $zz['fields'][1]['field_name'] = 'formtemplate_default_id';
 $zz['fields'][1]['type'] = 'id';
@@ -48,14 +48,15 @@ $zz['fields'][4]['display_field'] = 'templatecategory';
 $zz['fields'][4]['search'] = 'templatecategories.category';
 $zz['fields'][4]['sql_translate'] = ['category_id' => 'categories'];
 
+$iso_lang = in_array(wrap_get_setting('lang'), ['en', 'de', 'fr']) ? wrap_get_setting('lang') : 'en';
 $zz['fields'][3]['field_name'] = 'language_id';
 $zz['fields'][3]['type'] = 'select';
-$zz['fields'][3]['sql'] = 'SELECT language_id, language_de, variation
+$zz['fields'][3]['sql'] = sprintf('SELECT language_id, language_%s, variation
 	FROM /*_PREFIX_*/languages
 	WHERE website = "yes"
-	ORDER BY language_de';
-$zz['fields'][3]['display_field'] = 'language_de';
-$zz['fields'][3]['search'] = '/*_PREFIX_*/languages.language_de';
+	ORDER BY language_%s', $iso_lang, $iso_lang);
+$zz['fields'][3]['display_field'] = 'language_name';
+$zz['fields'][3]['search'] = sprintf('/*_PREFIX_*/languages.language_%s', $iso_lang);
 $zz['fields'][3]['show_values_as_list'] = true;
 
 $zz['fields'][6]['title'] = 'Organisation';
@@ -79,21 +80,26 @@ $zz['fields'][99]['type'] = 'timestamp';
 $zz['fields'][99]['hide_in_list'] = true;
 
 
-$zz['sql'] = 'SELECT formtemplates_default.*
+$zz['sql'] = sprintf('SELECT formtemplates_defaults.*
+		, categories.category_id AS formcategory_id
 		, categories.category AS formcategory
+		, templatecategories.category_id AS templatecategory_id
 		, templatecategories.category AS templatecategory
-		, CONCAT(languages.language_de, IFNULL(CONCAT(" | ", languages.variation), "")) AS language_de
+		, CONCAT(languages.language_%s, IFNULL(CONCAT(" | ", languages.variation), "")) AS language_name
 		, contacts.contact
-	FROM formtemplates_default
+	FROM formtemplates_defaults
 	LEFT JOIN categories
-		ON formtemplates_default.form_category_id = categories.category_id
+		ON formtemplates_defaults.form_category_id = categories.category_id
 	LEFT JOIN categories templatecategories
-		ON formtemplates_default.template_category_id = templatecategories.category_id
+		ON formtemplates_defaults.template_category_id = templatecategories.category_id
 	LEFT JOIN languages USING (language_id)
 	LEFT JOIN contacts
-		ON formtemplates_default.org_contact_id = contacts.contact_id
-';
-$zz['sqlorder'] = ' ORDER BY contact, formcategory, templatecategory, language_de, languages.variation';
+		ON formtemplates_defaults.org_contact_id = contacts.contact_id
+', $iso_lang);
+$zz['sqlorder'] = sprintf(' ORDER BY contact, formcategory, templatecategory, language_%s, languages.variation', $iso_lang);
+
+$zz['sql_translate']['formcategory_id'] = ['formcategory' => 'categories.category'];
+$zz['sql_translate']['templatecategory_id'] = ['templatecategory' => 'categories.category'];
 
 if (empty($_GET['order']) OR $_GET['order'] === 'contact')
 	$zz['list']['group'] = 'org_contact_id';

@@ -79,6 +79,22 @@ msgstr "Zugriffsrechte der Kontakte"
 msgid "Property"
 msgstr "Eigenschaft"
 
+#: zzbrick_tables/formtemplates.php
+msgid "Template"
+msgstr "Vorlage"
+
+#: zzbrick_tables/formtemplates.php
+msgid "Content of the template."
+msgstr "Inhalt der Vorlage."
+
+#: zzbrick_tables/formtemplates-defaults.php
+msgid "Default Templates for Forms"
+msgstr "Standardvorlagen für Formulare"
+
+#: zzbrick_tables/formtemplates-defaults.php
+msgid "Default Template"
+msgstr "Standardvorlage"
+
 #: zzbrick_tables/mailings.php
 msgid "Mailings"
 msgstr "Mails"
@@ -108,8 +124,8 @@ msgid "%d characters per line."
 msgstr "%d Zeichen pro Zeile."
 
 #: zzbrick_tables/mailings.php
-msgid "(<a href="%s">Possible placeholders</a>)."
-msgstr "(<a href="%s">Mögliche Platzhalter</a>)"
+msgid "(<a href=\"%s\">Possible placeholders</a>)."
+msgstr "(<a href=\"%s\">Mögliche Platzhalter</a>)"
 
 #: zzbrick_tables/mailings.php
 msgid "Recipients"
