@@ -127,9 +127,31 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'formfields', 'formfield_id', (SELECT DATABASE()), 'formtemplates', 'formtemplate_id', 'formfield_id', 'delete');
 
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Template Types', NULL, NULL, 'template-types', NULL, NULL, NOW());
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Authentication Mail', 'First mail sent out to check the applicant’s mail address.', (SELECT category_id FROM categories c WHERE path = 'template-types'), 'template-types/authentication', 'alias=template-types/authentication', 1, NOW());
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Confirmation Mail', 'Second mail sent out to confirm the application.', (SELECT category_id FROM categories c WHERE path = 'template-types'), 'template-types/confirmation', 'alias=template-types/confirmation', 2, NOW());
-INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Field changed Mail', 'Mail to send if a field value was added or changed.', (SELECT category_id FROM categories c WHERE path = 'template-types'), 'template-types/field', 'alias=template-types/field', 3, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Authentication Mail', 'First mail sent out to check the applicant’s mail address.', (SELECT category_id FROM categories c WHERE path = 'template-types'), 'template-types/authentication', '&alias=template-types/authentication', 1, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Confirmation Mail', 'Second mail sent out to confirm the application.', (SELECT category_id FROM categories c WHERE path = 'template-types'), 'template-types/confirmation', '&alias=template-types/confirmation', 2, NOW());
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Field changed Mail', 'Mail to send if a field value was added or changed.', (SELECT category_id FROM categories c WHERE path = 'template-types'), 'template-types/field-changed', '&alias=template-types/field-changed&formfield=1', 3, NOW());
+
+
+-- formtemplates_defaults --
+CREATE TABLE `formtemplates_defaults` (
+  `formtemplate_default_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `template_default` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `template_category_id` int unsigned NOT NULL,
+  `language_id` int unsigned NOT NULL,
+  `form_category_id` int unsigned NOT NULL,
+  `org_contact_id` int unsigned DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`formtemplate_default_id`),
+  UNIQUE KEY `language_id` (`language_id`,`template_category_id`,`form_category_id`,`org_contact_id`),
+  KEY `template_category_id` (`template_category_id`),
+  KEY `form_category_id` (`form_category_id`),
+  KEY `org_contact_id` (`org_contact_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'formtemplates_defaults', 'formtemplate_default_id', 'template_category_id', 'delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'languages', 'language_id', (SELECT DATABASE()), 'formtemplates_defaults', 'formtemplate_default_id', 'language_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'formtemplates_defaults', 'formtemplate_default_id', 'form_category_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'contacts', 'contact_id', (SELECT DATABASE()), 'formtemplates_defaults', 'formtemplate_default_id', 'org_contact_id', 'no-delete');
 
 
 -- mailings --
