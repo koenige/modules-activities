@@ -105,3 +105,6 @@ if (empty($_GET['order']) OR $_GET['order'] === 'contact')
 	$zz['list']['group'] = 'org_contact_id';
 
 $zz_conf['copy'] = true;
+
+if (!wrap_access('activities_formtemplates_default_edit'))
+	$zz['access'] = 'none';
