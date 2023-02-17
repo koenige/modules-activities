@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -318,4 +318,40 @@ function mf_activities_formfielddata_format($form_field, $value) {
 	if (!empty($form_field['parameters']['format']))
 		$value = $form_field['parameters']['format']($value);
 	return $value;
+}
+
+/**
+ * get templates for a form
+ *
+ * @param int $form_id
+ * @return array
+ *		authentication = tpl
+ *		confirmation = tpl
+ *		field-changed[field_id] = tpl
+ */
+function mf_activities_form_templates($form_id) {
+	$sql = 'SELECT formtemplate_id, template, formfield_id, template_category_id
+			, categories.parameters
+			, SUBSTRING_INDEX(categories.path, "/", -1) AS path_fragment
+		FROM formtemplates
+		LEFT JOIN categories
+			ON formtemplates.template_category_id = categories.category_id
+		WHERE form_id = %d';
+	$sql = sprintf($sql, $form_id);
+	$templates = wrap_db_fetch($sql, 'formtemplate_id');
+	$templates = wrap_translate($templates, 'formtemplates');
+	
+	$data = [];
+	foreach ($templates as $template) {
+		if ($template['parameters']) parse_str($template['parameters'], $template['parameters']);
+		else $template['parameters'] = [];
+		$key = !empty($template['parameters']['alias'])
+			? substr($template['parameters']['alias'], strrpos($template['parameters']['alias'], '/') + 1)
+			: $template['path_fragment'];
+		if (!empty($template['parameters']['formfield']))
+			$data[$key][$template['formfield_id']] = $template['template'];
+		else
+			$data[$key] = $template['template'];
+	}
+	return $data;
 }
