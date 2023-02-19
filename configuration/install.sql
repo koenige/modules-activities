@@ -81,6 +81,8 @@ INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Registration', NULL, (SELECT category_id FROM categories c WHERE path = 'forms'), 'forms/registration', NULL, 1, NOW());
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Application', NULL, (SELECT category_id FROM categories c WHERE path = 'forms'), 'forms/application', NULL, 2, NOW());
 
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Registration', NULL, (SELECT category_id FROM categories c WHERE path = 'event'), 'event/registration', "&alias=event/registration", 5, NOW());
+
 
 -- formfields --
 CREATE TABLE `formfields` (

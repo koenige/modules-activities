@@ -23,6 +23,14 @@ msgstr ""
 "X-Generator: Poedit 1.8.12\n"
 "Language: de\n"
 
+#: zzbrick_forms/eventregistrations.php
+msgid "Registrations"
+msgstr "Registrierungen"
+
+#: zzbrick_forms/eventregistrations.php
+msgid "Registration"
+msgstr "Registrierung"
+
 #: zzbrick_forms/participations-usergroups.php
 msgid "with E-Mail"
 msgstr "mit E-Mail"
