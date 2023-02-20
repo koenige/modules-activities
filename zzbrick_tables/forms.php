@@ -75,20 +75,20 @@ $zz['fields'][3]['default'] = date('Y-m-d H:i:s');
 $zz['fields'][3]['dont_copy'] = true;
 
 $zz['fields'][6]['field_name'] = 'header';
-$zz['fields'][6]['explanation'] = 'Text to appear before form';
+$zz['fields'][6]['explanation'] = 'Text to appear before the form';
 $zz['fields'][6]['type'] = 'memo';
 $zz['fields'][6]['format'] = 'markdown';
 $zz['fields'][6]['hide_in_list'] = true;
 
 $zz['fields'][10]['field_name'] = 'lead';
-$zz['fields'][10]['explanation'] = 'Text to appear before form, after header';
+$zz['fields'][10]['explanation'] = 'Text to appear before the form, after header';
 $zz['fields'][10]['type'] = 'memo';
 $zz['fields'][10]['format'] = 'markdown';
 $zz['fields'][10]['rows'] = 3;
 $zz['fields'][10]['hide_in_list'] = true;
 
 $zz['fields'][7]['field_name'] = 'footer';
-$zz['fields'][7]['explanation'] = 'Text to appear behind form';
+$zz['fields'][7]['explanation'] = 'Text to appear behind the form';
 $zz['fields'][7]['type'] = 'memo';
 $zz['fields'][7]['format'] = 'markdown';
 $zz['fields'][7]['hide_in_list'] = true;

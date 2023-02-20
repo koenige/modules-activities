@@ -39,6 +39,10 @@ msgstr "Registrierungen"
 msgid "Registration"
 msgstr "Registrierung"
 
+#: zzbrick_forms/form.php
+msgid "Form"
+msgstr "Formular"
+
 #: zzbrick_forms/participations-usergroups.php
 msgid "with E-Mail"
 msgstr "mit E-Mail"
@@ -94,6 +98,54 @@ msgstr "Zugriffsrechte der Kontakte"
 #: zzbrick_tables/contacts-access.php
 msgid "Property"
 msgstr "Eigenschaft"
+
+#: zzbrick_tables/forms.php
+msgid "For the labeling of forms as well as the content of default mails"
+msgstr "Für den Text von Formularen sowie den Inhalt von Standard-Mails"
+
+#: zzbrick_tables/forms.php
+msgid "Public"
+msgstr "Öffentlich"
+
+#: zzbrick_tables/forms.php
+msgid "Salutation"
+msgstr "Anrede"
+
+#: zzbrick_tables/forms.php
+msgid "Behind login mask"
+msgstr "Hinter Login-Maske"
+
+#: zzbrick_tables/forms.php
+msgid "formal"
+msgstr "formell"
+
+#: zzbrick_tables/forms.php
+msgid "informal"
+msgstr "informell"
+
+#: zzbrick_tables/forms.php
+msgid "Whether to address formally or informally in mails and on website"
+msgstr "Ob formell oder informell in Mails und auf der Website angesprochen werden soll"
+
+#: zzbrick_tables/forms.php
+msgid "Header"
+msgstr "Kopfbereich"
+
+#: zzbrick_tables/forms.php
+msgid "Text to appear before the form"
+msgstr "Text, der vor dem Formular angezeigt werden soll"
+
+#: zzbrick_tables/forms.php
+msgid "Text to appear before the form, after header"
+msgstr "Text, der vor dem Formular, aber nach dem Kopfbereich angezeigt werden soll"
+
+#: zzbrick_tables/forms.php
+msgid "Footer"
+msgstr "Fuß"
+
+#: zzbrick_tables/forms.php
+msgid "Text to appear behind the form"
+msgstr "Text, der hinter dem Formular angezeigt wird"
 
 #: zzbrick_tables/formtemplates.php
 msgid "Template"
