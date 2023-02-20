@@ -13,7 +13,7 @@
  */
 
 
-$zz['title'] = 'Form Templates';
+$zz['title'] = 'Templates for Mails';
 $zz['table'] = 'formtemplates';
 
 $zz['fields'][1]['field_name'] = 'formtemplate_id';

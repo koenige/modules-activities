@@ -148,6 +148,10 @@ msgid "Text to appear behind the form"
 msgstr "Text, der hinter dem Formular angezeigt wird"
 
 #: zzbrick_tables/formtemplates.php
+msgid "Templates for Mails"
+msgstr "Vorlagen für Mails"
+
+#: zzbrick_tables/formtemplates.php
 msgid "Template"
 msgstr "Vorlage"
 
