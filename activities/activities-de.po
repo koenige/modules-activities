@@ -23,6 +23,14 @@ msgstr ""
 "X-Generator: Poedit 1.8.12\n"
 "Language: de\n"
 
+#: templates/registrationinternal.template.txt
+msgid "Form on public website"
+msgstr "Formular auf öffentlicher Website"
+
+#: templates/registrationinternal.template.txt
+msgid "The form has not yet been published."
+msgstr "Das Formular wurde noch nicht veröffentlicht."
+
 #: zzbrick_forms/eventregistrations.php
 msgid "Registrations"
 msgstr "Registrierungen"
