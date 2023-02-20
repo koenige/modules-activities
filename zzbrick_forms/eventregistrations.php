@@ -14,7 +14,7 @@
 
 
 $zz = zzform_include_table('events/events');
-$zz['title'] = 'Registrations';
+$zz['title'] = 'Forms';
 $zz['where']['event_category_id'] = wrap_category_id('event/registration');
 
 if (!empty($brick['data']['website_id']))
@@ -56,5 +56,6 @@ unset($zz['fields'][17]); // registration
 
 unset($zz['fields'][9]); // main_event_id
 
-unset($zz['filter'][2]);
-unset($zz['filter'][3]);
+unset($zz['filter'][1]); // website_id
+unset($zz['filter'][2]); // category @todo restrict to actual categories
+unset($zz['filter'][3]); // organiser @todo restrict to actual organisers
