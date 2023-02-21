@@ -99,6 +99,22 @@ msgstr "Zugriffsrechte der Kontakte"
 msgid "Property"
 msgstr "Eigenschaft"
 
+#: zzbrick_tables/formfields.php
+msgid "Form Fields"
+msgstr "Formularfelder"
+
+#: zzbrick_tables/formfields.php
+msgid "The title of the form field that appears on the left (= what to type in the field)."
+msgstr "Der Titel des Formularfelds, das links erscheint (= was in das Feld einzugeben ist)."
+
+#: zzbrick_tables/formfields.php
+msgid "A heading that can be used to divide a long form into parts. Fields with the same heading are grouped."
+msgstr "Eine Überschrift, die verwendet werden kann, um ein langes Formular zu unterteilen. Felder mit der gleichen Überschrift werden gruppiert."
+
+#: zzbrick_tables/formfields.php
+msgid "An explanation below the form field like this one."
+msgstr "Eine Erläuterung unter dem Formularfeld wie diese hier."
+
 #: zzbrick_tables/forms.php
 msgid "For the labeling of forms as well as the content of default mails"
 msgstr "Für den Text von Formularen sowie den Inhalt von Standard-Mails"
@@ -141,7 +157,7 @@ msgstr "Text, der vor dem Formular, aber nach dem Kopfbereich angezeigt werden s
 
 #: zzbrick_tables/forms.php
 msgid "Footer"
-msgstr "Fuß"
+msgstr "Fußbereich"
 
 #: zzbrick_tables/forms.php
 msgid "Text to appear behind the form"

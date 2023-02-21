@@ -38,7 +38,7 @@ $zz['fields'][7]['auto_value'] = 'increment';
 
 $zz['fields'][3]['title'] = 'Title';
 $zz['fields'][3]['field_name'] = 'formfield';
-$zz['fields'][3]['explanation'] = 'The title of the form field that appears on the left side (= what to enter here).';
+$zz['fields'][3]['explanation'] = 'The title of the form field that appears on the left (= what to type in the field).';
 $zz['fields'][3]['typo_remove_double_spaces'] = true;
 
 $zz['fields'][5]['title'] = 'Type';
@@ -57,10 +57,10 @@ $zz['fields'][14] = []; // formfields
 $zz['fields'][15] = []; // formfields
 
 $zz['fields'][6]['field_name'] = 'area';
-$zz['fields'][6]['explanation'] = 'A heading that can be used to divide a long form into parts. Fields with the identical area text will be grouped.';
+$zz['fields'][6]['explanation'] = 'A heading that can be used to divide a long form into parts. Fields with the same heading are grouped.';
 
 $zz['fields'][4]['field_name'] = 'explanation';
-$zz['fields'][4]['explanation'] = 'An explanation below the field like this one.';
+$zz['fields'][4]['explanation'] = 'An explanation below the form field like this one.';
 $zz['fields'][4]['list_append_next'] = true;
 $zz['fields'][4]['list_suffix'] = '<br>';
 $zz['fields'][4]['type'] = 'memo';
