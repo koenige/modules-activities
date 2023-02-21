@@ -11,6 +11,17 @@
  */
 
 
+-- activities_event_id --
+SELECT event_id, form_id
+	, (SELECT COUNT(*) FROM participations
+		WHERE participations.event_id = events.event_id
+		AND usergroup_id IN (0, 0)
+	) AS applicants
+	, IF(published = "yes", 1, NULL) AS published
+FROM events
+LEFT JOIN forms USING (event_id)
+WHERE event_id = %d
+
 -- activities_mailings_event --
 SELECT event_id, event
 , CONCAT(date_begin, IFNULL(CONCAT("/", date_end), "")) AS duration
@@ -45,3 +56,6 @@ LEFT JOIN persons USING (contact_id)
 LEFT JOIN participations USING (contact_id)
 WHERE contacts.contact_id IN (%s)
 AND participations.event_id = %d
+
+-- activities_website_id --
+/* ignore */

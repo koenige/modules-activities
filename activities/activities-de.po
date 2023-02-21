@@ -31,6 +31,18 @@ msgstr "Formular auf öffentlicher Website"
 msgid "The form has not yet been published."
 msgstr "Das Formular wurde noch nicht veröffentlicht."
 
+#: templates/registrationinternal.template.txt
+msgid "Please create a form first."
+msgstr "Bitte erstellen Sie zuerst ein Formular."
+
+#: templates/registrationinternal.template.txt
+msgid "Please add email templates for the form."
+msgstr "Bitte fügen Sie E-Mailvorlagen für das Formular hinzu."
+
+#: templates/registrationinternal.template.txt
+msgid "Please add all the required fields for the form."
+msgstr "Bitte ergänzen Sie alle erforderlichen Felder für das Formular."
+
 #: zzbrick_forms/eventregistrations.php
 msgid "Registrations"
 msgstr "Registrierungen"
