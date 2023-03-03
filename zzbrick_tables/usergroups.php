@@ -168,12 +168,12 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/usergroups.*, category
 	LEFT JOIN /*_PREFIX_*/categories
 		ON /*_PREFIX_*/usergroups.usergroup_category_id = /*_PREFIX_*/categories.category_id
 ';
-$zz['sqlorder'] = ' ORDER BY /*_PREFIX_*/categories.sequence, usergroup';
+$zz['sqlorder'] = ' ORDER BY /*_PREFIX_*/categories.sequence, IFNULL(/*_PREFIX_*/usergroups.sequence, 255), usergroup';
 
 if (empty($_GET['filter']['category']) AND (empty($_GET['order']) OR $_GET['order'] === 'category'))
 	$zz['list']['group'] = 'category';
 
-$zz['filter'][1]['sql'] = 'SELECT category_id, category
+$zz['filter'][1]['sql'] = 'SELECT /*_PREFIX_*/categories.category_id, category
 	FROM /*_PREFIX_*/usergroups
 	LEFT JOIN /*_PREFIX_*/categories
 		ON /*_PREFIX_*/usergroups.usergroup_category_id = /*_PREFIX_*/categories.category_id
