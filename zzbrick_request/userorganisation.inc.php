@@ -14,6 +14,8 @@
 
 
 function mod_activities_userorganisation($params) {
+	if (count($params) !== 1) return false;
+
 	$sql = 'SELECT DISTINCT contact_id
 		FROM participations_contacts
 		UNION SELECT DISTINCT organisation_contact_id AS contact_id
