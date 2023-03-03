@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021, 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2006-2013, 2016-2017, 2019-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -70,12 +70,25 @@ $zz['fields'][8]['enum'] = ['yes', 'no'];
 $zz['fields'][8]['default'] = 'yes';
 $zz['fields'][8]['hide_in_list'] = true;
 
+if (wrap_get_setting('activities_usergroups_organisation')) {
+	$zz['fields'][12]['title'] = 'Organisation';
+	$zz['fields'][12]['field_name'] = 'organisation_contact_id';
+	$zz['fields'][12]['type'] = 'select';
+	$zz['fields'][12]['key_field_name'] = 'contact_id';
+	$zz['fields'][12]['sql'] = 'SELECT contact_id, contact
+		FROM /*_PREFIX_*/contacts
+		LEFT JOIN /*_PREFIX_*/categories
+			ON /*_PREFIX_*/contacts.contact_category_id = /*_PREFIX_*/categories.category_id
+		WHERE /*_PREFIX_*/categories.parameters LIKE "%&organisation=1%"
+		ORDER BY contact';
+	$zz['fields'][12]['display_field'] = 'contact';
+}
+
 $zz['fields'][9]['field_name'] = 'parameters';
 $zz['fields'][9]['type'] = 'parameter';
 $zz['fields'][9]['hide_in_list'] = true;
-if (!wrap_access('activities_usergroups_parameters')) {
+if (!wrap_access('activities_usergroups_parameters'))
 	$zz['fields'][9]['hide_in_form'] = true;
-}
 
 $zz['fields'][10]['title_tab'] = 'M.';
 $zz['fields'][10]['title'] = 'Members';
@@ -109,11 +122,14 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/usergroups.*, category
 			WHERE /*_PREFIX_*/participations.usergroup_id = /*_PREFIX_*/usergroups.usergroup_id
 			AND participations.date_end <= CURRENT_DATE()
 		) AS inactive_users
+		, /*_PREFIX_*/contacts.contact
 	FROM /*_PREFIX_*/usergroups
+	LEFT JOIN /*_PREFIX_*/contacts
+		ON /*_PREFIX_*/usergroups.organisation_contact_id = /*_PREFIX_*/contacts.contact_id
 	LEFT JOIN /*_PREFIX_*/categories
 		ON /*_PREFIX_*/usergroups.usergroup_category_id = /*_PREFIX_*/categories.category_id
 ';
-$zz['sqlorder'] = ' ORDER BY sequence, identifier';
+$zz['sqlorder'] = ' ORDER BY /*_PREFIX_*/categories.sequence, usergroup';
 
 $zz['filter'][1]['sql'] = 'SELECT category_id, category
 	FROM /*_PREFIX_*/usergroups
