@@ -8,14 +8,18 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
-require __DIR__.'/../zzbrick_tables/participations.php';
-
 if (empty($brick['vars'])) wrap_quit(404);
+if (strstr($brick['vars'][0], '/')) {
+	$brick['vars'][0] = explode('/', $brick['vars'][0]);
+	$brick['vars'][0] = end($brick['vars'][0]);
+}
+
+require __DIR__.'/../zzbrick_tables/participations.php';
 
 $sql = 'SELECT usergroup_id, usergroup, identifier, usergroups.description
 		, categories.parameters AS category_parameters
