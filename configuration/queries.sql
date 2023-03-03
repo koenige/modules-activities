@@ -57,5 +57,10 @@ LEFT JOIN participations USING (contact_id)
 WHERE contacts.contact_id IN (%s)
 AND participations.event_id = %d
 
+-- activities_organisation_contact_id --
+SELECT contact_id, contact, parameters
+FROM contacts
+WHERE contact_id = %d
+
 -- activities_website_id --
 /* ignore */
