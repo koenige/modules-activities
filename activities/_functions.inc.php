@@ -50,8 +50,6 @@ function mf_activities_random_hash_usergroups($fields) {
  * @return string
  */
 function mf_activities_group_path($values) {
-	global $zz_setting;
-	
 	if (!empty($values['category_parameters'])) {
 		parse_str($values['category_parameters'], $parameters);
 		if (!empty($parameters['no_participations'])) return false;
