@@ -64,7 +64,6 @@ $zz['fields'][6]['type'] = 'memo';
 if (wrap_get_setting('activities_usergroups_show_description')) {
 	$zz['fields'][6]['format'] = 'markdown';
 	$zz['fields'][6]['list_format'] = 'markdown';
-	$zz['fields'][6]['list_append_next'] = true;
 } else {
 	$zz['fields'][6]['hide_in_list'] = true;
 }
@@ -86,6 +85,9 @@ if (wrap_access('activities_usergroups_edit')) {
 	$categories = wrap_db_fetch($sql, 'category_id');
 	$categories = wrap_translate($categories, 'categories');
 	$no = 30;
+	if ($categories)
+		$zz['fields'][6]['list_append_next'] = true;
+	
 	foreach ($categories as $category) {
 		$zz['fields'][$no] = zzform_include_table('usergroups-categories');
 		$zz['fields'][$no]['title'] = $category['category'];
