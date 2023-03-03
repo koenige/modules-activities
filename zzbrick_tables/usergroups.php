@@ -80,6 +80,31 @@ $zz['fields'][8]['enum'] = ['yes', 'no'];
 $zz['fields'][8]['default'] = 'yes';
 $zz['fields'][8]['hide_in_list'] = true;
 
+if (wrap_access('activities_usergroups_edit')) {
+	$sql = 'SELECT category_id, category FROM /*_PREFIX_*/categories
+		WHERE parameters LIKE "%&usergroup_category=1%"';
+	$categories = wrap_db_fetch($sql, 'category_id');
+	$categories = wrap_translate($categories, 'categories');
+	$no = 30;
+	foreach ($categories as $category) {
+		$zz['fields'][$no] = zzform_include_table('usergroups-categories');
+		$zz['fields'][$no]['title'] = $category['category'];
+		$zz['fields'][$no]['table_name'] = $zz['fields'][$no]['table'].'_'.$no;
+		$zz['fields'][$no]['type'] = 'subtable';
+		$zz['fields'][$no]['min_records'] = 1;
+		$zz['fields'][$no]['form_display'] = 'set';
+		$zz['fields'][$no]['fields'][2]['type'] = 'foreign_key';
+		$zz['fields'][$no]['fields'][3]['show_hierarchy_subtree'] = $category['category_id'];
+		$zz['fields'][$no]['sql'] .= sprintf(' WHERE main_category_id = %d', $category['category_id']);
+		$zz['fields'][$no]['subselect']['prefix'] = sprintf('<p><em>%s: ', $category['category']);
+		$zz['fields'][$no]['subselect']['suffix'] = '</em></p>';
+		$zz['fields'][$no]['subselect']['sql'] .= sprintf(' WHERE main_category_id = %d', $category['category_id']);
+		if ($no < count($categories) + 30 - 1)
+			$zz['fields'][$no]['list_append_next'] = true;
+		$no++;
+	}
+}
+
 if (wrap_get_setting('activities_usergroups_organisation')) {
 	$zz['fields'][12]['title'] = 'Organisation';
 	$zz['fields'][12]['field_name'] = 'organisation_contact_id';
