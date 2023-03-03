@@ -29,6 +29,8 @@ $zz['fields'][2]['link'] = [
 ];
 $zz['fields'][2]['typo_cleanup'] = true;
 $zz['fields'][2]['typo_remove_double_spaces'] = true;
+$zz['fields'][2]['list_prefix'] = '<strong>';
+$zz['fields'][2]['list_suffix'] = '</strong>';
 $zz['fields'][2]['if'][1]['list_prefix'] = '<del>';
 $zz['fields'][2]['if'][1]['list_suffix'] = '</del>';
 
@@ -54,10 +56,18 @@ $zz['fields'][5]['if']['where']['hide_in_list'] = true;
 $zz['fields'][5]['display_field'] = 'category';
 $zz['fields'][5]['if'][1]['list_prefix'] = '<del>';
 $zz['fields'][5]['if'][1]['list_suffix'] = '</del>';
+if (!empty($_GET['filter']['category']))
+	$zz['fields'][5]['hide_in_list'] = true;
 
 $zz['fields'][6]['field_name'] = 'description';
-$zz['fields'][6]['hide_in_list'] = true;
 $zz['fields'][6]['type'] = 'memo';
+if (wrap_get_setting('activities_usergroups_show_description')) {
+	$zz['fields'][6]['format'] = 'markdown';
+	$zz['fields'][6]['list_format'] = 'markdown';
+	$zz['fields'][6]['list_append_next'] = true;
+} else {
+	$zz['fields'][6]['hide_in_list'] = true;
+}
 
 $zz['fields'][7]['field_name'] = 'sequence';
 $zz['fields'][7]['type'] = 'text';
@@ -90,23 +100,25 @@ $zz['fields'][9]['hide_in_list'] = true;
 if (!wrap_access('activities_usergroups_parameters'))
 	$zz['fields'][9]['hide_in_form'] = true;
 
-$zz['fields'][10]['title_tab'] = 'M.';
-$zz['fields'][10]['title'] = 'Members';
-$zz['fields'][10]['field_name'] = 'active_users';
-$zz['fields'][10]['type'] = 'display';
-$zz['fields'][10]['hide_in_form'] = true;
-$zz['fields'][10]['hide_in_list_if_empty'] = true;
-$zz['fields'][10]['exclude_from_search'] = true;
-$zz['fields'][10]['class'] = 'number';
+if (wrap_access('activities_usergroups_edit')) {
+	$zz['fields'][10]['title_tab'] = 'M.';
+	$zz['fields'][10]['title'] = 'Members';
+	$zz['fields'][10]['field_name'] = 'active_users';
+	$zz['fields'][10]['type'] = 'display';
+	$zz['fields'][10]['hide_in_form'] = true;
+	$zz['fields'][10]['hide_in_list_if_empty'] = true;
+	$zz['fields'][10]['exclude_from_search'] = true;
+	$zz['fields'][10]['class'] = 'number';
 
-$zz['fields'][11]['title_tab'] = 'E. M.';
-$zz['fields'][11]['title'] = 'Ex-members';
-$zz['fields'][11]['field_name'] = 'inactive_users';
-$zz['fields'][11]['type'] = 'display';
-$zz['fields'][11]['hide_in_form'] = true;
-$zz['fields'][11]['hide_in_list_if_empty'] = true;
-$zz['fields'][11]['exclude_from_search'] = true;
-$zz['fields'][11]['class'] = 'number';
+	$zz['fields'][11]['title_tab'] = 'E. M.';
+	$zz['fields'][11]['title'] = 'Ex-members';
+	$zz['fields'][11]['field_name'] = 'inactive_users';
+	$zz['fields'][11]['type'] = 'display';
+	$zz['fields'][11]['hide_in_form'] = true;
+	$zz['fields'][11]['hide_in_list_if_empty'] = true;
+	$zz['fields'][11]['exclude_from_search'] = true;
+	$zz['fields'][11]['class'] = 'number';
+}
 
 $zz['fields'][99]['field_name'] = 'last_update';
 $zz['fields'][99]['type'] = 'timestamp';
@@ -131,6 +143,9 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/usergroups.*, category
 ';
 $zz['sqlorder'] = ' ORDER BY /*_PREFIX_*/categories.sequence, usergroup';
 
+if (empty($_GET['filter']['category']) AND (empty($_GET['order']) OR $_GET['order'] === 'category'))
+	$zz['list']['group'] = 'category';
+
 $zz['filter'][1]['sql'] = 'SELECT category_id, category
 	FROM /*_PREFIX_*/usergroups
 	LEFT JOIN /*_PREFIX_*/categories
@@ -144,3 +159,6 @@ $zz['filter'][1]['field_name'] = 'usergroup_category_id';
 
 $zz['conditions'][1]['scope'] = 'record';
 $zz['conditions'][1]['where'] = '/*_PREFIX_*/usergroups.active = "no"';
+
+if (!wrap_access('activities_usergroups_edit'))
+	$zz['access'] = 'none';
