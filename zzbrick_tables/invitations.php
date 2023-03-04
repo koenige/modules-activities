@@ -77,7 +77,7 @@ $zz['fields'][9]['hide_in_list'] = true;
 $zz['fields'][9]['type'] = 'hidden';
 $zz['fields'][9]['class'] = 'hidden';
 $zz['fields'][9]['hide_in_list'] = true;
-$zz['fields'][9]['function'] = 'mf_activities_random_hash_usergroups';
+$zz['fields'][9]['function'] = 'mf_activities_random_hash_invitations';
 $zz['fields'][9]['fields'] = ['invitation_hash'];
 $zz['fields'][9]['export'] = false;
 
