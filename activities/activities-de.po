@@ -63,25 +63,25 @@ msgstr "mit E-Mail"
 msgid "without E-Mail"
 msgstr "ohne E-Mail"
 
-#: zzbrick_forms/registration.php
+#: zzbrick_forms/invitation.php
 msgid "Register"
 msgstr "Registrieren"
 
-#: zzbrick_forms/registration.php
+#: zzbrick_forms/invitation.php
 msgid "Submit Registration"
 msgstr "Registrierung absenden"
 
-#: zzbrick_forms/registration.php
+#: zzbrick_forms/invitation.php
 msgid "The registration has been sent successfully!"
-msgstr "Die Anmeldung wurde erfolgreich versendet!"
+msgstr "Die Registrierung wurde erfolgreich versendet!"
 
-#: zzbrick_forms/registration.php
+#: zzbrick_forms/invitation.php
 msgid "We just sent you an e-mail. Please click on the link inside it to confirm your registration."
-msgstr "Wir haben Ihnen gerade eine E-Mail geschickt. Bitte klicken Sie auf den darin enthaltenen Link, um Ihre Anmeldung zu bestätigen. "
+msgstr "Wir haben Ihnen gerade eine E-Mail geschickt. Bitte klicken Sie auf den darin enthaltenen Link, um Ihre Registrierung zu bestätigen. "
 
-#: zzbrick_forms/registration.php
-msgid "There is no registration for this code."
-msgstr "Es gibt keine Registrierung unter diesem Code."
+#: zzbrick_forms/invitation.php
+msgid "There is no invitation for this code."
+msgstr "Es gibt keine Einladung unter diesem Code."
 
 #: zzbrick_tables/access.php
 msgid "Access Rights"
@@ -194,6 +194,10 @@ msgstr "Standardvorlagen für Formulare"
 #: zzbrick_tables/formtemplates-defaults.php
 msgid "Default Template"
 msgstr "Standardvorlage"
+
+#: zzbrick_tables/invitations.php
+msgid "Invitations"
+msgstr "Einladungen"
 
 #: zzbrick_tables/mailings.php
 msgid "Mailings"

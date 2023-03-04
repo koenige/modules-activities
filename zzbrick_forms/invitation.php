@@ -2,34 +2,34 @@
 
 /**
  * activities module
- * form script: registration
+ * form script: invitation
  *
  * Part of »Zugzwang Project«
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
 if (count($brick['vars']) !== 1) wrap_quit(404);
 
-$sql = 'SELECT registration_id, usergroup_id
+$sql = 'SELECT invitation_id, usergroup_id
 		, event_id, event
 		, CONCAT(IFNULL(date_begin, ""), "/", IFNULL(date_end, "")) AS duration
 		, form_id, forms.header, forms.footer, forms.lead, access, address
-    FROM registrations
+    FROM invitations
     LEFT JOIN events USING (event_id)
     LEFT JOIN forms USING (event_id)
-    WHERE registration_hash = "%s"
+    WHERE invitation_hash = "%s"
     AND forms.form_category_id = %d';
 $sql = sprintf($sql
 	, wrap_db_escape($brick['vars'][0])
 	, wrap_category_id('forms/registration')
 );
-$registration = wrap_db_fetch($sql);
-if (!$registration) wrap_quit(404, wrap_text('There is no registration for this code.'));
+$invitation = wrap_db_fetch($sql);
+if (!$invitation) wrap_quit(404, wrap_text('There is no invitation for this code.'));
 
 $sql = 'SELECT formfield_id, formfield, explanation
 		, category, area, formfields.sequence, formfields.parameters, edit_from, edit_by

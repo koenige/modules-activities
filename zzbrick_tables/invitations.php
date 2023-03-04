@@ -2,7 +2,7 @@
 
 /**
  * activities module
- * table script: registrations
+ * table script: invitations
  *
  * Part of »Zugzwang Project«
  * https://www.zugzwang.org/modules/activities
@@ -13,11 +13,11 @@
  */
 
 
-$zz['title'] = 'Registrations';
-$zz['table'] = 'registrations';
+$zz['title'] = 'Invitations';
+$zz['table'] = 'invitations';
 
 $zz['fields'][1]['title'] = 'ID';
-$zz['fields'][1]['field_name'] = 'registration_id';
+$zz['fields'][1]['field_name'] = 'invitation_id';
 $zz['fields'][1]['type'] = 'id';
 
 $zz['fields'][2]['field_name'] = 'usergroup_id';
@@ -72,13 +72,13 @@ $zz['fields'][8]['type'] = 'number';
 $zz['fields'][8]['hide_in_list'] = true;
 
 $zz['fields'][9]['title'] = 'Hash';
-$zz['fields'][9]['field_name'] = 'registration_hash';
+$zz['fields'][9]['field_name'] = 'invitation_hash';
 $zz['fields'][9]['hide_in_list'] = true;
 $zz['fields'][9]['type'] = 'hidden';
 $zz['fields'][9]['class'] = 'hidden';
 $zz['fields'][9]['hide_in_list'] = true;
 $zz['fields'][9]['function'] = 'mf_activities_random_hash_usergroups';
-$zz['fields'][9]['fields'] = ['registration_hash'];
+$zz['fields'][9]['fields'] = ['invitation_hash'];
 $zz['fields'][9]['export'] = false;
 
 $zz['fields'][10]['field_name'] = 'parameters';
@@ -86,15 +86,15 @@ $zz['fields'][10]['type'] = 'parameter';
 $zz['fields'][10]['hide_in_list'] = true;
 
 
-$zz['sql'] = 'SELECT registrations.*
+$zz['sql'] = 'SELECT invitations.*
 		, usergroups.usergroup
 		, events.event
 		, contacts.contact
-	FROM registrations
+	FROM invitations
 	LEFT JOIN usergroups USING (usergroup_id)
 	LEFT JOIN events USING (event_id)
 	LEFT JOIN contacts
-		ON contacts.contact_id = registrations.organisation_contact_id
+		ON contacts.contact_id = invitations.organisation_contact_id
 ';
 $zz['sqlorder'] = ' ORDER BY events.date_begin DESC, events.time_begin DESC,
 	events.identifier, usergroups.identifier';

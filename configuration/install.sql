@@ -190,9 +190,9 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'contacts', 'contact_id', (SELECT DATABASE()), 'mailings_contacts', 'mailing_contact_id', 'recipient_contact_id', 'delete');
 
 
--- registrations --
-CREATE TABLE `registrations` (
-  `registration_id` int unsigned NOT NULL AUTO_INCREMENT,
+-- invitations --
+CREATE TABLE `invitations` (
+  `invitation_id` int unsigned NOT NULL AUTO_INCREMENT,
   `usergroup_id` int unsigned NOT NULL,
   `event_id` int unsigned DEFAULT NULL,
   `organisation_contact_id` int unsigned DEFAULT NULL,
@@ -200,17 +200,17 @@ CREATE TABLE `registrations` (
   `max_participants` smallint unsigned DEFAULT NULL,
   `waiting_participants` smallint unsigned DEFAULT NULL,
   `show_remaining_from` smallint unsigned DEFAULT NULL,
-  `registration_hash` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `invitation_hash` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `parameters` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`registration_id`),
+  PRIMARY KEY (`invitation_id`),
   UNIQUE KEY `usergroup_id` (`usergroup_id`,`event_id`),
   KEY `event_id` (`event_id`),
   KEY `contact_id` (`organisation_contact_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'usergroups', 'usergroup_id', (SELECT DATABASE()), 'registrations', 'registration_id', 'usergroup_id', 'no-delete');
-INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events', 'event_id', (SELECT DATABASE()), 'registrations', 'registration_id', 'event_id', 'delete');
-INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'contacts', 'contact_id', (SELECT DATABASE()), 'registrations', 'registration_id', 'organisation_contact_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'usergroups', 'usergroup_id', (SELECT DATABASE()), 'invitations', 'invitation_id', 'usergroup_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events', 'event_id', (SELECT DATABASE()), 'invitations', 'invitation_id', 'event_id', 'delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'contacts', 'contact_id', (SELECT DATABASE()), 'invitations', 'invitation_id', 'organisation_contact_id', 'no-delete');
 
 
 -- registrationtexts --
