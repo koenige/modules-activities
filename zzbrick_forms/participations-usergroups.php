@@ -50,6 +50,9 @@ $zz['fields'][2]['type'] = 'write_once';
 
 $zz['fields'][9]['type'] = 'sequence';
 
+if (!empty($parameters['hide']['status_category_id']))
+	$zz['fields'][6]['hide_in_list'] = true;
+
 $zz['filter'][1]['sql'] = wrap_edit_sql(
 	$zz['filter'][1]['sql'], 'WHERE', sprintf('usergroup_id = %d', $data['usergroup_id'])
 );
