@@ -303,6 +303,10 @@ msgstr "inaktiv"
 msgid "Role"
 msgstr "Rolle"
 
+#: zzbrick_tables/participations.php
+msgid "Status"
+msgstr "Status"
+
 #: zzbrick_tables/usergroups.php
 msgid "Groups"
 msgstr "Gruppen"

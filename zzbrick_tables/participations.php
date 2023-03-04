@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -134,7 +134,7 @@ $zz['fields'][5]['title_tab'] = 'End';
 $zz['fields'][5]['type'] = 'date';
 $zz['fields'][5]['hide_in_list_if_empty'] = true;
 
-$zz['fields'][6]['title'] = 'Category';
+$zz['fields'][6]['title'] = 'Status';
 $zz['fields'][6]['field_name'] = 'status_category_id';
 $zz['fields'][6]['type'] = 'select';
 $zz['fields'][6]['sql'] = sprintf('SELECT category_id, category
