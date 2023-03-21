@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2021, 2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -54,7 +54,7 @@ $zz['fields'][5]['title'] = 'Activity IP';
 $zz['fields'][5]['field_name'] = 'activity_ip';
 $zz['fields'][5]['type'] = 'write_once';
 $zz['fields'][5]['type_detail'] = 'ip';
-$zz['fields'][5]['default'] = $zz_setting['remote_ip'];
+$zz['fields'][5]['default'] = wrap_setting('remote_ip');
 $zz['fields'][5]['export'] = false;
 $zz['fields'][5]['unless']['export_mode']['list_suffix'] = '</small>';
 
@@ -62,7 +62,7 @@ $zz['fields'][6]['title'] = 'URI';
 $zz['fields'][6]['field_name'] = 'activity_uri';
 $zz['fields'][6]['type'] = 'write_once';
 $zz['fields'][6]['type_detail'] = 'url';
-$zz['fields'][6]['default'] = $zz_setting['request_uri'];
+$zz['fields'][6]['default'] = wrap_setting('request_uri');
 $zz['fields'][6]['list_append_next'] = true;
 
 $zz['fields'][7]['field_name'] = 'comment';

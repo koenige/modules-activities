@@ -95,10 +95,10 @@ function mf_activities_confirm_registration($ops) {
 	$mail['to']['name'] = $data['contact'];
 	$mail['to']['e_mail'] = $data['e_mail'];
 	
-	$data['sender'] = wrap_get_setting('own_name');
-	if (!$data['sender']) $data['sender'] = wrap_get_setting('project');
+	$data['sender'] = wrap_setting('own_name');
+	if (!$data['sender']) $data['sender'] = wrap_setting('project');
 	$mail['headers']['From']['name'] = $data['sender'];
-	$mail['headers']['From']['e_mail'] = wrap_get_setting('own_e_mail');
+	$mail['headers']['From']['e_mail'] = wrap_setting('own_e_mail');
 
 	// @todo use custom confirmation mails from forms-table
 	$mail['message'] = wrap_template('registration-confirmation-mail', $data);
@@ -169,8 +169,6 @@ function mf_activities_hook_mailing_add_addresses($ops) {
  * @return array
  */
 function mf_activities_hook_mailing_send($ops) {
-	global $zz_setting;
-	
 	if (empty($ops['record_new'][0])) return false;
 	$maildata = array_shift($ops['record_new']);
 	if (empty($maildata['send_mailings'][1])) return false;
@@ -193,7 +191,7 @@ function mf_activities_hook_mailing_send($ops) {
 	$mail['headers']['From'] = wrap_db_fetch($sql, '', 'key/value');
 	if (empty($mail['headers']['From'])) return false;
 	if ($maildata['sender_mail']) {
-		if ($suffix = wrap_get_setting('activities_mailings_suffix_alternative_from'))
+		if ($suffix = wrap_setting('activities_mailings_suffix_alternative_from'))
 			$mail['headers']['From']['name'] .= sprintf(', %s', $suffix);
 		$mail['headers']['From']['e_mail'] = $maildata['sender_mail'];
 	}
@@ -218,8 +216,8 @@ function mf_activities_hook_mailing_send($ops) {
 	$recipients = wrap_db_fetch($sql, 'contact_id');
 
 	// apply new text formatting
-	$old_brick_fulltextformat = wrap_get_setting('brick_fulltextformat');
-	$zz_setting['brick_fulltextformat'] = 'brick_textformat_html';
+	$old_brick_fulltextformat = wrap_setting('brick_fulltextformat');
+	wrap_setting('brick_fulltextformat', 'brick_textformat_html');
 
 	// @todo sende eine Kopie der ersten Mail an den Absender!
 	foreach ($ops['record_new'] as $rec) {
@@ -245,7 +243,7 @@ function mf_activities_hook_mailing_send($ops) {
 			);
 		}
 	}
-	$zz_setting['brick_fulltextformat'] = $old_brick_fulltextformat;
+	wrap_setting('brick_fulltextformat', $old_brick_fulltextformat);
 	$record['record_replace'][0]['sent'] = date('Y-m-d H:i:s');
 	return $record;
 }

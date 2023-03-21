@@ -48,7 +48,7 @@ $zz['fields'][4]['display_field'] = 'templatecategory';
 $zz['fields'][4]['search'] = 'templatecategories.category';
 $zz['fields'][4]['sql_translate'] = ['category_id' => 'categories'];
 
-$iso_lang = in_array(wrap_get_setting('lang'), ['en', 'de', 'fr']) ? wrap_get_setting('lang') : 'en';
+$iso_lang = in_array(wrap_setting('lang'), wrap_setting('language_translations')) ? wrap_setting('lang') : reset(wrap_setting('language_translations'));
 $zz['fields'][3]['field_name'] = 'language_id';
 $zz['fields'][3]['type'] = 'select';
 $zz['fields'][3]['sql'] = sprintf('SELECT language_id, language_%s, variation

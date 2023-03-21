@@ -8,19 +8,18 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021-2022 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
 function mod_activities_make_registrationconfirmation() {
 	global $zz_conf;
-	global $zz_setting;
 	global $zz_page;
 
-	$zz_setting['cache'] = false;
-	$zz_setting['extra_http_headers'][] = 'X-Frame-Options: Deny';
-	$zz_setting['extra_http_headers'][] = "Content-Security-Policy: frame-ancestors 'self'";
+	wrap_setting('cache', false);
+	wrap_setting_add('extra_http_headers', 'X-Frame-Options: Deny');
+	wrap_setting_add('extra_http_headers', "Content-Security-Policy: frame-ancestors 'self'");
 
 	$form = [];
 	$form['reminder'] = false;
@@ -144,7 +143,7 @@ function mod_activities_make_registrationconfirmation() {
 		$sql = sprintf($sql, $data['contact_id']);
 		$has_logins = wrap_db_fetch($sql, '', 'single value');
 		if (!$has_logins) {
-			return brick_format('%%% forms addlogin '.$data['contact_id'].' url_self='.$zz_setting['request_uri'].' query_strings[]=confirm %%%');
+			return brick_format('%%% forms addlogin '.$data['contact_id'].' url_self='.wrap_setting('request_uri').' query_strings[]=confirm %%%');
 		}
 	}
 	

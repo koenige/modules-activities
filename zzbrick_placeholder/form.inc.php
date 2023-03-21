@@ -35,7 +35,7 @@ function mod_activities_placeholder_form($brick) {
 	$sql = sprintf($sql
 		, wrap_db_escape($brick['placeholder'])
 		, wrap_category_id('event/registration')
-		, !empty($brick['data']['website_id']) ? $brick['data']['website_id'] : wrap_get_setting('website_id')
+		, !empty($brick['data']['website_id']) ? $brick['data']['website_id'] : wrap_setting('website_id')
 	);
 	$event = wrap_db_fetch($sql);
 	if (!$event) wrap_quit(404);

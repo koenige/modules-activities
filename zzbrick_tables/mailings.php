@@ -52,14 +52,14 @@ $zz['fields'][4]['list_append_next'] = true;
 $zz['fields'][14]['title'] = 'E-mail';
 $zz['fields'][14]['field_name'] = 'sender_mail';
 $zz['fields'][14]['explanation'] = wrap_text('Alternative e-mail address for sending the e-mails if you do not want to send from your own address.');
-if ($suffix = wrap_get_setting('activities_mailings_suffix_alternative_from'))
+if ($suffix = wrap_setting('activities_mailings_suffix_alternative_from'))
 	$zz['fields'][14]['explanation'] .= ' '.sprintf(wrap_text('In this case “, %s” is appended to the name.'), $suffix);
 $zz['fields'][14]['list_prefix'] = '<br>&lt;';
 $zz['fields'][14]['list_suffix'] = '&gt;';
 
 $zz['fields'][13]['field_name'] = 'subject';
 $zz['fields'][13]['size'] = 60;
-if ($prefix = wrap_get_setting('mail_subject_prefix'))
+if ($prefix = wrap_setting('mail_subject_prefix'))
 	$zz['fields'][13]['prefix'] = $prefix.' ';
 $zz['fields'][13]['list_prefix'] = '<p><strong>';
 $zz['fields'][13]['list_suffix'] = '</strong></p>';
@@ -74,7 +74,7 @@ $zz['fields'][3]['hide_format_in_title_desc'] = true;
 $zz['fields'][3]['rows'] = 30;
 $zz['fields'][3]['cols'] = 80;
 $zz['fields'][3]['explanation'] = sprintf(wrap_text('%d characters per line.'), $zz['fields'][3]['cols']);
-if ($path = wrap_get_setting('activities_mailings_help')) {
+if ($path = wrap_setting('activities_mailings_help')) {
 	$zz['fields'][3]['explanation'] .= ' '.sprintf('(<a href="%s">Possible placeholders</a>)', $path);
 }
 $zz['fields'][3]['list_append_next'] = true;
@@ -137,7 +137,7 @@ $zz['hooks']['before_update'] = 'mf_activities_hook_mailing_send';
 $zz_conf['copy'] = true;
 $zz_conf['if'][1]['edit'] = false;
 $zz_conf['if'][1]['delete'] = false;
-$zz_setting['zzform_max_detail_records'] = 200; // max recipients, adapt if needed
+wrap_setting('zzform_max_detail_records', 200); // max recipients, adapt if needed
 
 $zz['subtitle']['event_id']['sql'] = $zz['fields'][2]['sql'];
 $zz['subtitle']['event_id']['var'] = ['event', 'duration'];

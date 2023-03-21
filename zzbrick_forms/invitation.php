@@ -155,9 +155,9 @@ $zz['fields'][198]['fields'][99]['hide_in_form'] = true;
 $zz['fields'][198]['class'] = 'hidden';
 
 
-$zz_conf['text'][$zz_setting['lang']]['Add a record'] = wrap_text('Register');
-$zz_conf['text'][$zz_setting['lang']]['Add record'] = wrap_text('Submit Registration');
-$zz_conf['text'][$zz_setting['lang']]['Record was inserted'] = wrap_text('The registration has been sent successfully!');
+$zz_conf['text'][wrap_setting('lang')]['Add a record'] = wrap_text('Register');
+$zz_conf['text'][wrap_setting('lang')]['Add record'] = wrap_text('Submit Registration');
+$zz_conf['text'][wrap_setting('lang')]['Record was inserted'] = wrap_text('The registration has been sent successfully!');
 
 if (!empty($_POST['contact'])) {
 	$zz_conf['user'] = wrap_filename($_POST['contact'], ' ').' ';

@@ -61,7 +61,7 @@ if (!empty($_GET['filter']['category']))
 
 $zz['fields'][6]['field_name'] = 'description';
 $zz['fields'][6]['type'] = 'memo';
-if (wrap_get_setting('activities_usergroups_show_description')) {
+if (wrap_setting('activities_usergroups_show_description')) {
 	$zz['fields'][6]['format'] = 'markdown';
 	$zz['fields'][6]['list_format'] = 'markdown';
 } else {
@@ -107,7 +107,7 @@ if (wrap_access('activities_usergroups_edit')) {
 	}
 }
 
-if (wrap_get_setting('activities_usergroups_organisation')) {
+if (wrap_setting('activities_usergroups_organisation')) {
 	$zz['fields'][12]['title'] = 'Organisation';
 	$zz['fields'][12]['field_name'] = 'organisation_contact_id';
 	$zz['fields'][12]['type'] = 'select';

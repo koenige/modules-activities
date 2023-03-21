@@ -65,19 +65,17 @@ function mf_activities_group_path($values) {
  * @return string
  */
 function mf_activities_contact_path($values) {
-	global $zz_setting;
-
 	if (!empty($values['category_parameters'])) {
 		parse_str($values['category_parameters'], $parameters);
 	}
 	$type = !empty($parameters['type']) ? $parameters['type'] : 'contact';
 	
 	// @todo use wrap_path()
-	if (empty($zz_setting['activities_profile_path'][$type])) {
+	if (!wrap_setting('activities_profile_path['.$type.']')) {
 		$success = wrap_setting_path('activities_profile_path['.$type.']', 'forms participations-contacts', ['scope' => $type]);
 		if (!$success) return false;
 	}
-	return sprintf($zz_setting['base'].$zz_setting['activities_profile_path'][$type], $values['identifier']);
+	return sprintf(wrap_setting('base').wrap_setting('activities_profile_path['.$type.']'), $values['identifier']);
 }
 
 /**
