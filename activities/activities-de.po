@@ -55,6 +55,10 @@ msgstr "Registrierung"
 msgid "Form"
 msgstr "Formular"
 
+#: zzbrick_forms/form.php
+msgid "There does not seem to be a clear email address entered for the sender of the mailings. Therefore the mails cannot be sent."
+msgstr "Für den Absender der Mailings scheint keine eindeutige E-Mail-Adresse eingetragen zu sein. Daher können die Mails nicht versendet werden."
+
 #: zzbrick_forms/participations-usergroups.php
 msgid "with E-Mail"
 msgstr "mit E-Mail"
