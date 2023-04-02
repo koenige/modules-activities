@@ -14,7 +14,6 @@
 
 
 function mod_activities_make_registrationconfirmation() {
-	global $zz_conf;
 	global $zz_page;
 
 	wrap_setting('cache', false);
@@ -67,7 +66,7 @@ function mod_activities_make_registrationconfirmation() {
 		$sql = sprintf($sql, wrap_db_escape($code));
 		$data = wrap_db_fetch($sql);
 		if (!$data) continue;
-		$zz_conf['user'] = $data['identifier'];
+		wrap_setting('log_username', $data['identifier']);
 
 		$has_data = true;
 		if ($data['status_category_id'] === wrap_category_id('participation-status/subscribed')) {

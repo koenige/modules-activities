@@ -42,8 +42,6 @@ function mf_activities_copy_formfields($ops) {
  * @return array
  */
 function mf_activities_confirm_registration($ops) {
-	global $zz_conf;
-
 	// get registrant’s data
 	$data = [];
 	$events = [];
@@ -53,7 +51,7 @@ function mf_activities_confirm_registration($ops) {
 			case 'contacts':
 				$data['contact'] = $ops['record_new'][$index]['contact'];
 				$data['contact_id'] = $ops['record_new'][$index]['contact_id'];
-				$zz_conf['user'] = $ops['record_new'][$index]['identifier'];
+				wrap_setting('log_username', $ops['record_new'][$index]['identifier']);
 				break;
 			case 'contactdetails':
 				if ($ops['record_new'][$index]['provider_category_id'] !== wrap_category_id('provider/e-mail')) break;
