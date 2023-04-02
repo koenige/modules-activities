@@ -38,18 +38,18 @@ $sql = 'SELECT formfield_id, formfield, explanation
 		ON formfields.formfield_category_id = categories.category_id
 	WHERE form_id = %d
 	ORDER BY formfields.sequence';
-$sql = sprintf($sql, $registration['form_id']);
-$registration['formfields'] = wrap_db_fetch($sql, 'formfield_id');
-if (!$registration['formfields']) wrap_quit(404, wrap_text('There is no registration for this code.'));
+$sql = sprintf($sql, $invitation['form_id']);
+$invitation['formfields'] = wrap_db_fetch($sql, 'formfield_id');
+if (!$invitation['formfields']) wrap_quit(404, wrap_text('There is no invitation for this code.'));
 
 $values['relations'] = [];
 
 $zz = zzform_include_table('contacts', $values);
 
-$zz['title'] = $registration['event'].' <br>'.wrap_date($registration['duration']);
-$zz['record']['form_lead'] = $registration['lead'];
-$zz['explanation'] = $registration['header'];
-$zz_conf['footer_text'] = $registration['footer'];
+$zz['title'] = $invitation['event'].' <br>'.wrap_date($invitation['duration']);
+$zz['record']['form_lead'] = $invitation['lead'];
+$zz['explanation'] = $invitation['header'];
+$zz_conf['footer_text'] = $invitation['footer'];
 $zz_conf['footer_text_insert'] = markdown(wrap_text('We just sent you an e-mail. Please click on the link inside it to confirm your registration.'));
 
 $zz['access'] = 'add_only';
@@ -65,7 +65,7 @@ foreach ($zz['fields'] as $no => $field) {
 	}
 }
 
-foreach ($registration['formfields'] as $formfield) {
+foreach ($invitation['formfields'] as $formfield) {
 	$type = 'field';
 	if ($formfield['parameters'])
 		parse_str($formfield['parameters'], $formfield['parameters']);
@@ -127,7 +127,7 @@ $zz['fields'][198]['fields'][2]['type'] = 'foreign_key';
 $zz['fields'][198]['fields'][3]['type'] = 'hidden';
 $zz['fields'][198]['fields'][3]['type_detail'] = 'select';
 $zz['fields'][198]['fields'][3]['hide_in_form'] = true;
-$zz['fields'][198]['fields'][3]['value'] = $registration['usergroup_id'];
+$zz['fields'][198]['fields'][3]['value'] = $invitation['usergroup_id'];
 // date_begin
 $zz['fields'][198]['fields'][4]['type'] = 'hidden';
 $zz['fields'][198]['fields'][4]['value'] = date('Y-m-d');
@@ -149,7 +149,7 @@ $zz['fields'][198]['fields'][8]['hide_in_form'] = true;
 $zz['fields'][198]['fields'][8]['dont_show_missing'] = true; 
 // event_id
 $zz['fields'][198]['fields'][12]['type'] = 'hidden';
-$zz['fields'][198]['fields'][12]['value'] = $registration['event_id'];
+$zz['fields'][198]['fields'][12]['value'] = $invitation['event_id'];
 
 $zz['fields'][198]['fields'][99]['hide_in_form'] = true;
 $zz['fields'][198]['class'] = 'hidden';
