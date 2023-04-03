@@ -159,8 +159,7 @@ $zz_conf['text'][wrap_setting('lang')]['Add a record'] = wrap_text('Register');
 $zz_conf['text'][wrap_setting('lang')]['Add record'] = wrap_text('Submit Registration');
 $zz_conf['text'][wrap_setting('lang')]['Record was inserted'] = wrap_text('The registration has been sent successfully!');
 
-if (!empty($_POST['contact'])) {
-	$zz_conf['user'] = wrap_filename($_POST['contact'], ' ').' ';
-}
+if (!empty($_POST['contact']))
+	wrap_setting('log_username_default', strtolower(wrap_filename($_POST['contact'], '.')));
 
 $zz['hooks']['after_insert'][] = 'mf_activities_confirm_registration';
