@@ -103,4 +103,5 @@
 /* 2023-03-03-3 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'contacts', 'contact_id', (SELECT DATABASE()), 'usergroups', 'usergroup_id', 'organisation_contact_id', 'no-delete');
 /* 2023-03-04-1 */	ALTER TABLE `registrations` CHANGE `registration_id` `invitation_id` int unsigned NOT NULL AUTO_INCREMENT FIRST, CHANGE `registration_hash` `invitation_hash` varchar(6) COLLATE 'utf8mb4_unicode_ci' NOT NULL AFTER `show_remaining_from`, RENAME TO `invitations`;
 /* 2023-03-04-2 */	UPDATE _relations SET `detail_table` = 'invitations', `detail_id_field` = 'invitation_id' WHERE `detail_db` = (SELECT DATABASE()) AND `detail_table` = 'registrations';
-/* 2023-03-04-3 */	UPDATE webpages SET content = REPLACE(content, '%%% forms registration *', '%%% forms invitation *') WHERE content LIKE '%\%\%\% forms registration *%'
+/* 2023-03-04-3 */	UPDATE webpages SET content = REPLACE(content, '%%% forms registration *', '%%% forms invitation *') WHERE content LIKE '%\%\%\% forms registration *%';
+/* 2023-04-11-1 */	UPDATE _relations SET master_table = detail_table, master_field = detail_field, detail_table = 'usergroups_categories', detail_id_field = 'uc_id' WHERE master_table = 'usergroups_categories';
