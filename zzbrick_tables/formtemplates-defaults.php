@@ -61,11 +61,17 @@ $zz['fields'][3]['show_values_as_list'] = true;
 
 $zz['fields'][6]['title'] = 'Organisation';
 $zz['fields'][6]['field_name'] = 'org_contact_id';
+$zz['fields'][6]['key_field_name'] = 'contact_id';
 $zz['fields'][6]['type'] = 'select';
-$zz['fields'][6]['sql'] = sprintf('SELECT contact_id, contact
-	FROM contacts
-	WHERE contact_category_id = %d
-	ORDER BY contact', wrap_category_id('contact/organisation'));
+if (wrap_category_id('contact/organisation', 'check'))
+	$zz['fields'][6]['sql'] = sprintf('SELECT contact_id, contact
+		FROM contacts
+		WHERE contact_category_id = %d
+		ORDER BY contact', wrap_category_id('contact/organisation'));
+else
+	$zz['fields'][6]['sql'] = 'SELECT contact_id, contact
+		FROM contacts
+		ORDER BY contact';
 $zz['fields'][6]['search'] = 'contacts.contact';
 $zz['fields'][6]['display_field'] = 'contact';
 $zz['fields'][6]['show_values_as_list'] = true;
@@ -103,6 +109,9 @@ $zz['sql_translate']['templatecategory_id'] = ['templatecategory' => 'categories
 
 if (empty($_GET['order']) OR $_GET['order'] === 'contact')
 	$zz['list']['group'] = 'org_contact_id';
+
+$zz['subtitle']['org_contact_id']['sql'] = $zz['fields'][6]['sql'];
+$zz['subtitle']['org_contact_id']['var'] = ['contact'];
 
 $zz_conf['copy'] = true;
 
