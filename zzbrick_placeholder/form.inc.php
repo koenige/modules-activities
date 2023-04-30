@@ -26,6 +26,7 @@ function mod_activities_placeholder_form($brick) {
 			, IF((SELECT COUNT(*) FROM formfields
 				WHERE formfields.form_id = forms.form_id)
 			>= 2, 1, NULL) AS formfields
+			, forms.access
 		FROM events
 		LEFT JOIN forms USING (event_id)
 		LEFT JOIN websites USING (website_id)
