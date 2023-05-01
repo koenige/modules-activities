@@ -59,6 +59,14 @@ msgstr "Formular"
 msgid "There does not seem to be a clear email address entered for the sender of the mailings. Therefore the mails cannot be sent."
 msgstr "Für den Absender der Mailings scheint keine eindeutige E-Mail-Adresse eingetragen zu sein. Daher können die Mails nicht versendet werden."
 
+#: zzbrick_forms/formfields.php
+msgid "Here you can define a form field by field."
+msgstr "Hier können Sie ein Formularfeld Feld für Feld definieren."
+
+#: zzbrick_forms/formfields.php
+msgid "Note: Each form must have at least these fields:"
+msgstr "Hinweis: Jedes Formular muss mindestens folgende Felder enthalten:"
+
 #: zzbrick_forms/participations-usergroups.php
 msgid "with E-Mail"
 msgstr "mit E-Mail"

@@ -317,6 +317,66 @@ function mf_activities_formfielddata_format($form_field, $value) {
 }
 
 /**
+ * get list of required fields per form
+ *
+ * @param array $data
+ * @return array
+ */
+function mf_activities_formfields_required($data) {
+	$sql = 'SELECT categories.parameters
+		FROM forms
+		LEFT JOIN categories
+			ON forms.form_category_id = categories.category_id
+		WHERE form_id = %d';
+	$sql = sprintf($sql, $data['form_id']);
+	$parameters = wrap_db_fetch($sql, '', 'single value');
+	if ($parameters) parse_str($parameters, $parameters);
+
+	if (!empty($data['website_id'])) {
+		$sql = 'SELECT contacts.parameters
+			FROM websites
+			LEFT JOIN contacts
+				ON websites.contact_id = contacts.contact_id
+			WHERE website_id = %d';
+		$sql = sprintf($sql, $data['website_id']);
+		$parameters_org = wrap_db_fetch($sql, '', 'single value');
+		if ($parameters_org) {
+			parse_str($parameters_org, $parameters_org);
+			$parameters = array_merge($parameters, $parameters_org);
+		}
+	}
+	if (!$parameters) return [];
+	if (!array_key_exists('required_fields', $parameters)) return [];
+	
+	$category_ids = [];
+	foreach ($parameters['required_fields'] as $field)
+		if (!wrap_category_id('field-types/'.$field, 'check'))
+			wrap_error(sprintf('Configuration error. Field type %s does not exist.', $field), E_USER_ERROR);
+		else
+			$category_ids[] = wrap_category_id('field-types/'.$field);
+
+	$sql = 'SELECT category_id, category
+		FROM categories
+		WHERE category_id IN (%s)
+		ORDER BY FIELD(category_id, %s)';
+	$sql = sprintf($sql
+		, implode(',', $category_ids)
+		, implode(',', $category_ids)
+	);
+	$categories = wrap_db_fetch($sql, 'category_id');
+	$categories = wrap_translate($categories, 'categories');
+	$categories['text'] = [];
+	foreach ($categories as $key => $category)
+		if (!is_numeric($key)) continue;
+		else $categories['text'][] = $category['category'];
+
+	if (!empty($data['formfield_category_ids']))
+		$categories['missing'] = array_diff($category_ids, $data['formfield_category_ids']);
+
+	return $categories;
+}
+
+/**
  * get templates for a form
  *
  * @param int $form_id

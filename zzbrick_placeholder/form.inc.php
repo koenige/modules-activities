@@ -30,9 +30,8 @@ function mod_activities_placeholder_form($brick) {
 				AND template_category_id = %d)
 			>= 1, NULL, IF(form_categories.parameters LIKE "%%&no_confirmation_mail=1%%", NULL, 1
 			)) AS formtemplates_confirmation_missing
-			, IF((SELECT COUNT(*) FROM formfields
-				WHERE formfields.form_id = forms.form_id)
-			>= 2, 1, NULL) AS formfields
+			, (SELECT GROUP_CONCAT(formfield_category_id SEPARATOR ",") FROM formfields
+				WHERE formfields.form_id = forms.form_id) AS formfield_category_ids
 			, forms.access
 		FROM events
 		LEFT JOIN forms USING (event_id)
@@ -53,7 +52,13 @@ function mod_activities_placeholder_form($brick) {
 	if (!$event) wrap_quit(404);
 	if (!$event['formtemplates_confirmation_missing'] AND !$event['formtemplates_authentication_missing'])
 		$event['formtemplates'] = true;
+	if ($event['formfield_category_ids'])
+		$event['formfield_category_ids'] = explode(',', $event['formfield_category_ids']);
+		
 	$brick['data'] = array_merge($brick['data'], $event);
+	
+	$required = mf_activities_formfields_required($brick['data']);
+	if (empty($required['missing'])) $brick['data']['formfields'] = true;
 
 	// access
 	unset($zz_page['access']);
