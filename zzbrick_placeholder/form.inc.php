@@ -33,6 +33,9 @@ function mod_activities_placeholder_form($brick) {
 			, (SELECT GROUP_CONCAT(formfield_category_id SEPARATOR ",") FROM formfields
 				WHERE formfields.form_id = forms.form_id) AS formfield_category_ids
 			, forms.access
+			, form_categories.category_id
+			, form_categories.category
+			, form_categories.parameters AS form_parameters
 		FROM events
 		LEFT JOIN forms USING (event_id)
 		LEFT JOIN websites USING (website_id)
@@ -50,10 +53,14 @@ function mod_activities_placeholder_form($brick) {
 	);
 	$event = wrap_db_fetch($sql);
 	if (!$event) wrap_quit(404);
+	$event = wrap_translate($event, 'event');
+	$event = wrap_translate($event, 'categories', 'category_id');
 	if (!$event['formtemplates_confirmation_missing'] AND !$event['formtemplates_authentication_missing'])
 		$event['formtemplates'] = true;
 	if ($event['formfield_category_ids'])
 		$event['formfield_category_ids'] = explode(',', $event['formfield_category_ids']);
+	if ($event['form_parameters'])
+		parse_str($event['form_parameters'], $event['form_parameters']);
 		
 	$brick['data'] = array_merge($brick['data'], $event);
 	
