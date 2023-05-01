@@ -107,3 +107,5 @@
 /* 2023-04-11-1 */	UPDATE _relations SET master_table = detail_table, master_field = detail_field, detail_table = 'usergroups_categories', detail_id_field = 'uc_id' WHERE master_table = 'usergroups_categories';
 /* 2023-04-30-1 */	UPDATE categories SET `parameters` = '&alias=template-types' WHERE `path` = 'template-types' AND ISNULL(parameters);
 /* 2023-04-30-2 */	UPDATE categories SET `parameters` = CONCAT(parameters, '&access=login') WHERE `path` = 'template-types/field-changed' AND parameters NOT LIKE '%&access=login%';
+/* 2023-05-01-1 */	CREATE TABLE `registrations` (`registration_id` int unsigned NOT NULL AUTO_INCREMENT, `event_id` int unsigned NOT NULL, `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`registration_id`), KEY `event_id` (`event_id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/* 2023-05-01-2 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events', 'event_id', (SELECT DATABASE()), 'registrations', 'registration_id', 'event_id', 'no-delete');

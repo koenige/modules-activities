@@ -213,6 +213,18 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'contacts', 'contact_id', (SELECT DATABASE()), 'invitations', 'invitation_id', 'organisation_contact_id', 'no-delete');
 
 
+-- registrations --
+CREATE TABLE `registrations` (
+  `registration_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `event_id` int unsigned NOT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`registration_id`),
+  KEY `event_id` (`event_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'events', 'event_id', (SELECT DATABASE()), 'registrations', 'registration_id', 'event_id', 'no-delete');
+
+
 -- registrationtexts --
 CREATE TABLE `registrationtexts` (
   `registrationtext_id` int unsigned NOT NULL AUTO_INCREMENT,
