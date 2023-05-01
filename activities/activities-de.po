@@ -67,14 +67,6 @@ msgstr "Hier können Sie ein Formularfeld Feld für Feld definieren."
 msgid "Note: Each form must have at least these fields:"
 msgstr "Hinweis: Jedes Formular muss mindestens folgende Felder enthalten:"
 
-#: zzbrick_forms/participations-usergroups.php
-msgid "with E-Mail"
-msgstr "mit E-Mail"
-
-#: zzbrick_forms/participations-usergroups.php
-msgid "without E-Mail"
-msgstr "ohne E-Mail"
-
 #: zzbrick_forms/invitation.php
 msgid "Register"
 msgstr "Registrieren"
@@ -94,6 +86,26 @@ msgstr "Wir haben Ihnen gerade eine E-Mail geschickt. Bitte klicken Sie auf den 
 #: zzbrick_forms/invitation.php
 msgid "There is no invitation for this code."
 msgstr "Es gibt keine Einladung unter diesem Code."
+
+#: zzbrick_forms/participations-usergroups.php
+msgid "with E-Mail"
+msgstr "mit E-Mail"
+
+#: zzbrick_forms/participations-usergroups.php
+msgid "without E-Mail"
+msgstr "ohne E-Mail"
+
+#: zzbrick_forms/registration.php
+msgid "Authentication mail is missing."
+msgstr "Authentifizierungsmail fehlt."
+
+#: zzbrick_forms/registration.php
+msgid "Confirmation mail is missing."
+msgstr "Bestätigungsmail fehlt."
+
+#: zzbrick_forms/registration.php
+msgid "One or more of the required form fields are missing."
+msgstr "Eines oder mehrere der erforderlichen Formularfelder fehlen."
 
 #: zzbrick_tables/access.php
 msgid "Access Rights"
