@@ -13,7 +13,7 @@
  */
 
 
-$zz = zzform_include_table('forms');
+$zz = zzform_include('forms');
 
 $zz['title'] = 'Form';
 $zz['where']['event_id'] = $brick['data']['event_id'];

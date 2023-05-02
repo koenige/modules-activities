@@ -18,7 +18,7 @@ if ($brick['data']['formtemplates_authentication_missing']) wrap_quit(503, wrap_
 if ($brick['data']['formtemplates_confirmation_missing']) wrap_quit(503, wrap_text('Confirmation mail is missing.'));
 if (empty($brick['data']['formfields'])) wrap_quit(503, wrap_text('One or more of the required form fields are missing.'));
 
-$zz = zzform_include_table('registrations');
+$zz = zzform_include('registrations');
 $zz['where']['event_id'] = $brick['data']['event_id'];
 
 $zz['title'] = $brick['data']['event'];

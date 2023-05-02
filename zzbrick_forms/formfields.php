@@ -15,7 +15,7 @@
 
 if (!$brick['data']['form_id']) wrap_quit(404);
 
-$zz = zzform_include_table('formfields');
+$zz = zzform_include('formfields');
 $zz['where']['form_id'] = $brick['data']['form_id'];
 
 $zz['explanation'] = wrap_text('Here you can define a form field by field.');

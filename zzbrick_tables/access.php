@@ -35,7 +35,7 @@ $zz['fields'][3]['list_prefix'] = '<p class="explanation" style="margin: .75em 2
 $zz['fields'][3]['list_suffix'] = '</em></p>';
 $zz['fields'][3]['list_append_next'] = true;
 
-$zz['fields'][5] = zzform_include_table('access-usergroups');
+$zz['fields'][5] = zzform_include('access-usergroups');
 $zz['fields'][5]['title'] = 'Usergroups';
 $zz['fields'][5]['type'] = 'subtable';
 $zz['fields'][5]['fields'][2]['type'] = 'foreign_key';

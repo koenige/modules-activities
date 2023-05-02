@@ -13,7 +13,7 @@
  */
 
 
-$zz = zzform_include_table('events/events');
+$zz = zzform_include('events/events');
 $zz['title'] = 'Forms';
 $zz['where']['event_category_id'] = wrap_category_id('event/registration');
 

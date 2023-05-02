@@ -13,7 +13,7 @@
  */
 
 
-$zz = zzform_include_table('usergroups');
+$zz = zzform_include('usergroups');
 $zz['title'] = wrap_text($zz['title']).':<br>'.$brick['data']['contact'];
 
 if (wrap_category_id('relations/organisation')) {

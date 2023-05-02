@@ -79,7 +79,7 @@ if ($path = wrap_setting('activities_mailings_help')) {
 }
 $zz['fields'][3]['list_append_next'] = true;
 
-$zz['fields'][5] = zzform_include_table('mailings-contacts');
+$zz['fields'][5] = zzform_include('mailings-contacts');
 $zz['fields'][5]['title'] = 'Recipients';
 $zz['fields'][5]['type'] = 'subtable';
 $zz['fields'][5]['min_records'] = 1;

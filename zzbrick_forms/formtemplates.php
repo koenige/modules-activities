@@ -15,7 +15,7 @@
 
 if (!$brick['data']['form_id']) wrap_quit(404);
 
-$zz = zzform_include_table('formtemplates');
+$zz = zzform_include('formtemplates');
 $zz['where']['form_id'] = $brick['data']['form_id'];
 
 $zz['fields'][4]['sql'] = wrap_edit_sql($zz['fields'][4]['sql'],

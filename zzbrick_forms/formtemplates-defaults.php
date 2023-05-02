@@ -24,7 +24,7 @@ if (!empty($brick['data']['website_id'])) {
 	wrap_quit(404);
 }
 
-$zz = zzform_include_table('formtemplates-defaults');
+$zz = zzform_include('formtemplates-defaults');
 
 $zz['where']['org_contact_id'] = $org_contact_id;
 

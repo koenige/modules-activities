@@ -103,7 +103,7 @@ function mf_activities_formkit_subtable($formfield, $def_no) {
 	if (empty($area)) $area = '';
 	
 	list($table, $field_name) = explode('.', $formfield['definition']['db_field']);
-	$def = zzform_include_table($table);
+	$def = zzform_include($table);
 	$def['type'] = 'subtable';
 	$def['table_name'] = $def['table'].'_'.$def_no;
 	$def['form_display'] = 'lines';

@@ -44,7 +44,7 @@ if (!$invitation['formfields']) wrap_quit(404, wrap_text('There is no invitation
 
 $values['relations'] = [];
 
-$zz = zzform_include_table('contacts', $values);
+$zz = zzform_include('contacts', $values);
 
 $zz['title'] = $invitation['event'].' <br>'.wrap_date($invitation['duration']);
 $zz['record']['form_lead'] = $invitation['lead'];
@@ -118,7 +118,7 @@ foreach ($invitation['formfields'] as $formfield) {
 	}
 }
 
-$zz['fields'][198] = zzform_include_table('participations');
+$zz['fields'][198] = zzform_include('participations');
 $zz['fields'][198]['type'] = 'subtable';
 $zz['fields'][198]['min_records'] = 1;
 $zz['fields'][198]['max_records'] = 1;

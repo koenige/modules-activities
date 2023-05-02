@@ -94,7 +94,7 @@ $zz['fields'][12]['display_field'] = 'event';
 $zz['fields'][12]['hide_in_form'] = true;
 $zz['fields'][12]['hide_in_list'] = true;
 
-$zz['fields'][13] = zzform_include_table('participations-contacts');
+$zz['fields'][13] = zzform_include('participations-contacts');
 $zz['fields'][13]['type'] = 'subtable';
 $zz['fields'][13]['title'] = 'Organisation';
 $zz['fields'][13]['fields'][2]['type'] = 'foreign_key';
@@ -105,7 +105,7 @@ $zz['fields'][13]['display'] = 'inline';
 $zz['fields'][13]['hide_in_form'] = true;
 $zz['fields'][13]['hide_in_list_if_empty'] = true;
 
-$zz['fields'][14] = zzform_include_table('participations-websites');
+$zz['fields'][14] = zzform_include('participations-websites');
 $zz['fields'][14]['type'] = 'subtable';
 $zz['fields'][14]['title'] = 'Website';
 $zz['fields'][14]['fields'][2]['type'] = 'foreign_key';

@@ -89,7 +89,7 @@ if (wrap_access('activities_usergroups_edit')) {
 		$zz['fields'][6]['list_append_next'] = true;
 	
 	foreach ($categories as $category) {
-		$zz['fields'][$no] = zzform_include_table('usergroups-categories');
+		$zz['fields'][$no] = zzform_include('usergroups-categories');
 		$zz['fields'][$no]['title'] = $category['category'];
 		$zz['fields'][$no]['table_name'] = $zz['fields'][$no]['table'].'_'.$no;
 		$zz['fields'][$no]['type'] = 'subtable';

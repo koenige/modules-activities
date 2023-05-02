@@ -13,7 +13,7 @@
  */
 
 
-$zz = zzform_include_table('mailings');
+$zz = zzform_include('mailings');
 $zz['where']['event_id'] = $brick['data']['event_id'];
 
 $sql = 'SELECT participation_id
