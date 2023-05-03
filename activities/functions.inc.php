@@ -311,9 +311,8 @@ function mf_activities_formfielddata($contact_id, $form_id) {
 }
 
 function mf_activities_formfielddata_format($form_field, $value) {
-	if (!empty($form_field['parameters']['format']))
-		$value = $form_field['parameters']['format']($value);
-	return $value;
+	if (empty($form_field['parameters']['format'])) return $value;
+	return $form_field['parameters']['format']($value);
 }
 
 /**
