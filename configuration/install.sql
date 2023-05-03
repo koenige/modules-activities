@@ -382,3 +382,13 @@ INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('mail', NULL, (SELECT category_id FROM categories c WHERE path = 'activities'), 'activities/mail', NULL, NULL, NOW());
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('send', NULL, (SELECT category_id FROM categories c WHERE path = 'activities'), 'activities/send', NULL, NULL, NOW());
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('click', NULL, (SELECT category_id FROM categories c WHERE path = 'activities'), 'activities/click', NULL, NULL, NOW());
+
+-- contactdetails --
+ALTER TABLE `contactdetails` ADD `formfield_id` int unsigned NULL AFTER `provider_category_id`, ADD INDEX `formfield_id` (`formfield_id`);
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'formfields', 'formfield_id', (SELECT DATABASE()), 'contactdetails', 'contactdetail_id', 'formfield_id', 'no-delete');
+
+-- addresses --
+ALTER TABLE `addresses` ADD `formfield_id` int unsigned NULL AFTER `receive_mail`, ADD INDEX `formfield_id` (`formfield_id`);
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'formfields', 'formfield_id', (SELECT DATABASE()), 'addresses', 'address_id', 'formfield_id', 'no-delete');
