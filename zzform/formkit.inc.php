@@ -61,10 +61,6 @@ function mf_activities_formkit($zz, $event_id, $parameters) {
 	unset($zz['fields'][99]);
 	$no = mf_activities_formkit_no($zz['fields']);
 	
-	// add participations or events_contacts
-	
-	$formfields[] = mf_activities_formkit_event($event_id, $parameters);
-	
 	foreach ($formfields as $formfield) {
 		$my_no = $no;
 		if (empty($formfield['definition']['db_field'])) continue; // @todo, captcha
@@ -86,28 +82,6 @@ function mf_activities_formkit($zz, $event_id, $parameters) {
 	$last_update['hide_in_form'] = true;
 	$zz['fields'][] = $last_update;
 	return $zz;
-}
-
-/**
- * get link to event_id
- *
- * @param int $event_id
- * @param array $parameters
- * @return array
- */
-function mf_activities_formkit_event($event_id, $parameters) {
-	$formfield = [];
-	$formfield['formfield'] = wrap_text('Event');
-	$formfield['explanation'] = '';
-	$formfield['area'] = '';
-	$formfield['custom'] = '';
-	$formfield['hide_in_form'] = true;
-	$formfield['definition']['type'] = 'hidden';
-	$formfield['definition']['db_values']['usergroup_id'] = $parameters['db_values']['participants.usergroup_id'] ?? 'ID usergroups participants';
-	$formfield['definition']['db_values']['event_id'] = $event_id;
-	$formfield['definition']['db_values']['status_category_id'] = 'ID categories participation-status/subscribed';
-	$formfield['definition']['db_field'] = 'participations.contact_id';
-	return $formfield;
 }
 
 /**
@@ -260,4 +234,85 @@ function mf_activities_formkit_value($value) {
 		break;
 	}
 	return $value;
+}
+
+/**
+ * hook after inserting a registration
+ *
+ * @param array $ops
+ * @return bool
+ */
+function mf_activities_formkit_hook($ops) {
+	$event_id = $ops['page']['data']['event_id'];
+	$contact_id = 0;
+	foreach ($ops['return'] as $table) {
+		if ($table['table'] !== 'contacts') continue;
+		$contact_id = $table['id_value'];
+	}
+	if (!$contact_id)
+		wrap_error('Unable to find registration.', E_USER_ERROR);
+
+	$participation_id = mf_activities_formkit_hook_participation($contact_id, $event_id, $ops['page']['data']['form_parameters']);
+	$activity_id = mf_activities_formkit_hook_activity($participation_id);
+	if (empty($ops['page']['data']['form_parameters']['no_authentication_mail']))
+		mf_activities_formkit_mail_send($event_id, $contact_id, 'authentication');
+	return true;
+}
+
+/**
+ * link registration to event via participations
+ *
+ * @param int $contact_id
+ * @param int $event_id
+ * @param array $parameters
+ * @return int
+ */
+function mf_activities_formkit_hook_participation($contact_id, $event_id, $parameters) {
+	$values = [];
+	$values['action'] = 'insert';
+	$values['ids'] = [
+		'contact_id', 'usergroup_id', 'event_id', 'status_category_id'
+	];
+	$values['POST']['contact_id'] = $contact_id;
+	$values['POST']['usergroup_id'] = mf_activities_formkit_value($parameters['db_values']['participants.usergroup_id'] ?? 'ID usergroups participants');
+	$values['POST']['event_id'] = $event_id;
+	$values['POST']['status_category_id'] = mf_activities_formkit_value('ID categories participation-status/subscribed');
+	$values['POST']['entry_contact_id'] = $_SESSION['contact_id'] ?? $contact_id;
+	$ops = zzform_multi('participations', $values);
+	if (empty($ops['id']))
+		wrap_error(sprintf('Unable to add participation for registration with contact ID %d.', $contact_id), E_USER_ERROR);
+	return $ops['id'];
+}
+
+/**
+ * link registration to event via participations
+ *
+ * @param int $participation_id
+ * @return int
+ */
+function mf_activities_formkit_hook_activity($participation_id) {
+	$values = [];
+	$values['action'] = 'insert';
+	$values['ids'] = ['participation_id', 'activity_category_id'];
+	$values['POST']['participation_id'] = $participation_id;
+	$values['POST']['activity_category_id'] = wrap_category_id('activities/subscribe'); // register?
+	$ops = zzform_multi('activities', $values);
+	if (empty($ops['id']))
+		wrap_error(sprintf('Unable to add activity for participation with ID %d.', $participation_id), E_USER_ERROR);
+	return $ops['id'];
+}
+
+/**
+ * send form mail
+ *
+ * @param int $event_id
+ * @param int $contact_id
+ * @param string $type
+ */
+function mf_activities_formkit_mail_send($event_id, $contact_id, $type) {
+	$value = sprintf('%d/%d/%s', $event_id, $contact_id, $type);
+	$url = wrap_path('activities_formmail_send', $value, false);
+	$success = wrap_job($url);
+	if ($success) return true;
+	return false;
 }

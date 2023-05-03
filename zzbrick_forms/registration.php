@@ -22,6 +22,8 @@ $zz = zzform_include('contacts');
 
 $zz['title'] = $brick['data']['event'];
 $zz['access'] = 'add_only';
+$zz['hooks']['after_insert'] = 'mf_activities_formkit_hook';
+$zz['page']['data'] = $brick['data'];
 
 // abstract
 // description
