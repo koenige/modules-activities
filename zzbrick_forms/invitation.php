@@ -44,7 +44,7 @@ if (!$invitation['formfields']) wrap_quit(404, wrap_text('There is no invitation
 
 $values['relations'] = [];
 
-$zz = zzform_include('contacts', $values);
+$zz = zzform_include('contacts', $values, 'forms');
 
 $zz['title'] = $invitation['event'].' <br>'.wrap_date($invitation['duration']);
 $zz['record']['form_lead'] = $invitation['lead'];
