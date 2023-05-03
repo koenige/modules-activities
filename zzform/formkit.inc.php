@@ -18,9 +18,10 @@
  *
  * @param array $zz
  * @param int $event_id
+ * @param array $parameters
  * @return array
  */
-function mf_activities_formkit($zz, $event_id) {
+function mf_activities_formkit($zz, $event_id, $parameters) {
 	$sql = 'SELECT formfield_id, formfield, explanation, area
 			, category_id, categories.path
 			, edit_from, edit_by
@@ -44,25 +45,69 @@ function mf_activities_formkit($zz, $event_id) {
 		if ($formfield['definition'])
 			parse_str($formfield['definition'], $formfields[$formfield_id]['definition']);
 	}
-	
+
+	// prepare main table
+	$zz['table'] = wrap_db_prefix($zz['table']);
+	foreach ($zz['fields'] as $no => $field) {
+		if (empty($zz['fields'][$no])) continue;
+		$zz['fields'][$no]['hide_in_form'] = true;
+		if (empty($field['field_name'])) continue;
+		if (!empty($parameters['db_values'][$zz['table'].'.'.$field['field_name']])) {
+			$zz['fields'][$no]['type'] = 'hidden';
+			$zz['fields'][$no]['value'] = mf_activities_formkit_value($parameters['db_values'][$zz['table'].'.'.$field['field_name']]);
+		}
+	}
 	$last_update = $zz['fields'][99];
 	unset($zz['fields'][99]);
 	$no = mf_activities_formkit_no($zz['fields']);
 	
+	// add participations or events_contacts
+	
+	$formfields[] = mf_activities_formkit_event($event_id, $parameters);
+	
 	foreach ($formfields as $formfield) {
+		$my_no = $no;
 		if (empty($formfield['definition']['db_field'])) continue; // @todo, captcha
 		// @todo hide_behind_login=1 and form = login: continue;
 		$formfield['custom'] = mf_activities_formkit_normalize_parameters($formfield['custom']);
-		$zz['fields'][$no] = mf_activities_formkit_subtable($formfield, $no);
-		$zz['fields'][$no]['title'] = $formfield['formfield'];
-		$zz['fields'][$no]['explanation'] = $formfield['explanation'];
-		$zz['fields'][$no]['hide_in_form'] = false;
+		list($formfield['table'], $formfield['field_name']) = explode('.', $formfield['definition']['db_field']);
+		if ($formfield['table'] === $zz['table']) {
+			$my_no = mf_activities_formkit_field($formfield, $zz['fields']);
+			$zz['fields'][$my_no]['type'] = $formfield['definition']['type'];
+		} else {
+			$zz['fields'][$my_no] = mf_activities_formkit_subtable($formfield, $my_no);
+		}
+		$zz['fields'][$my_no]['title'] = $formfield['formfield'];
+		$zz['fields'][$my_no]['explanation'] = $formfield['explanation'];
+		$zz['fields'][$my_no]['hide_in_form'] = false;
 		$no++;
 	}
 	
 	$last_update['hide_in_form'] = true;
 	$zz['fields'][] = $last_update;
 	return $zz;
+}
+
+/**
+ * get link to event_id
+ *
+ * @param int $event_id
+ * @param array $parameters
+ * @return array
+ */
+function mf_activities_formkit_event($event_id, $parameters) {
+	$formfield = [];
+	$formfield['formfield'] = wrap_text('Event');
+	$formfield['explanation'] = '';
+	$formfield['area'] = '';
+	$formfield['custom'] = '';
+	$formfield['hide_in_form'] = true;
+	$formfield['definition']['type'] = 'hidden';
+	$formfield['definition']['db_values']['usergroup_id'] = $parameters['db_values']['participants.usergroup_id'] ?? 'ID usergroups participants';
+	$formfield['definition']['db_values']['event_id'] = $event_id;
+	$formfield['definition']['db_values']['status_category_id'] = 'ID categories participation-status/subscribed';
+	$formfield['definition']['db_field'] = 'participations.contact_id';
+	return $formfield;
 }
 
 /**
@@ -92,6 +137,22 @@ function mf_activities_formkit_normalize_parameters($parameters) {
 }
 
 /**
+ * get no. of field in table
+ *
+ * @param array $formfield
+ * @param array $fields
+ * @return int
+ */
+function mf_activities_formkit_field($formfield, $fields) {
+	foreach ($fields as $no => $field) {
+		if (empty($field['field_name'])) continue;
+		if ($field['field_name'] !== $formfield['field_name']) continue;
+		return $no;
+	}
+	wrap_error(sprintf('Configuration error: Form field %s not found in definition.', $formfield['field_name']), E_USER_ERROR);
+}
+
+/**
  * create definition for form
  *
  * @param array $formfield
@@ -102,8 +163,8 @@ function mf_activities_formkit_subtable($formfield, $def_no) {
 	static $area;
 	if (empty($area)) $area = '';
 	
-	list($table, $field_name) = explode('.', $formfield['definition']['db_field']);
-	$def = zzform_include($table);
+	$def = zzform_include($formfield['table']);
+	$def['table'] = wrap_db_prefix($def['table']);
 	$def['type'] = 'subtable';
 	$def['table_name'] = $def['table'].'_'.$def_no;
 	$def['form_display'] = 'lines';
@@ -115,11 +176,21 @@ function mf_activities_formkit_subtable($formfield, $def_no) {
 		$def['separator_before'] = 'text <h3><strong>'.$formfield['area'].'</strong></h3>';
 		$area = $formfield['area'];
 	}
-
+	$def['class'] = !empty($formfield['hide_in_form']) ? 'hidden' : '';
+	
 	$has_formfield_id = false;
 	foreach ($def['fields'] as $field_no => $field) {
+		if (empty($field)) continue;
+		if (!empty($formfield['hide_in_form']))
+			$def['fields'][$field_no]['hide_in_form'] = $formfield['hide_in_form'];
+		if (empty($field['field_name'])) continue;
 		switch ($field['field_name']) {
-		case $field_name:
+		case 'registration_id':
+		case 'contact_id':
+			// check before field_name, as contact_id might be field name here
+			$def['fields'][$field_no]['type'] = 'foreign_key';
+			break;
+		case $formfield['field_name']:
 			$def['fields'][$field_no]['type'] = $formfield['definition']['type'];
 			$def['fields'][$field_no]['title'] = $formfield['formfield']; // for better error messages
 			$def['fields'][$field_no]['maxlength'] = $formfield['custom']['maxlength'] ?? wrap_setting('maxlength_memo');
@@ -136,9 +207,11 @@ function mf_activities_formkit_subtable($formfield, $def_no) {
 			$def['fields'][$field_no]['exclude_from_search'] = true;
 			$has_formfield_id = true;
 			break;
-		case 'registration_id':
-			$def['fields'][$field_no]['type'] = 'foreign_key';
-			break;
+		}
+		if (!empty($formfield['definition']['db_values'][$field['field_name']])) {
+			$def['fields'][$field_no]['value'] = mf_activities_formkit_value($formfield['definition']['db_values'][$field['field_name']]);
+			$def['fields'][$field_no]['type'] = 'hidden';
+			$def['fields'][$field_no]['hide_in_form'] = true;
 		}
 	}
 	
@@ -171,3 +244,20 @@ function mf_activities_formkit_select($field, $formfield) {
 	return $field;
 }
 
+/**
+ * translate a field value
+ * supported: ID with wrap_id()
+ *
+ * @param string $value
+ * @return mixed (string or int)
+ */
+function mf_activities_formkit_value($value) {
+	$content = explode(' ', $value);
+	switch ($content[0]) {
+	case 'ID':
+		if (count($content) !== 3) return $value;
+		$value = wrap_id($content[1], $content[2]);
+		break;
+	}
+	return $value;
+}

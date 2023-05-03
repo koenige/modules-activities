@@ -2,7 +2,7 @@
 
 /**
  * activities module
- * form script: usergroups
+ * form script: registration
  *
  * Part of »Zugzwang Project«
  * https://www.zugzwang.org/modules/activities
@@ -18,18 +18,16 @@ if ($brick['data']['formtemplates_authentication_missing']) wrap_quit(503, wrap_
 if ($brick['data']['formtemplates_confirmation_missing']) wrap_quit(503, wrap_text('Confirmation mail is missing.'));
 if (empty($brick['data']['formfields'])) wrap_quit(503, wrap_text('One or more of the required form fields are missing.'));
 
-$zz = zzform_include('registrations');
-$zz['where']['event_id'] = $brick['data']['event_id'];
+$zz = zzform_include('contacts');
 
 $zz['title'] = $brick['data']['event'];
-
 $zz['access'] = 'add_only';
 
 // abstract
 // description
 
 wrap_include_files('zzform/formkit');
-$zz = mf_activities_formkit($zz, $brick['data']['event_id']);
+$zz = mf_activities_formkit($zz, $brick['data']['event_id'], $brick['data']['form_parameters']);
 
 $zz_conf['text'][wrap_setting('lang')]['Add a record'] = $brick['data']['form_parameters']['legend'] ?? $brick['data']['category'];
 if (!empty($brick['data']['form_parameters']['action']))
