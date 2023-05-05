@@ -1,0 +1,202 @@
+<?php 
+
+/**
+ * activities module
+ * send a mail related to a form
+ *
+ * Part of »Zugzwang Project«
+ * https://www.zugzwang.org/modules/activities
+ *
+ * @author Gustaf Mossakowski <gustaf@koenige.org>
+ * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+ */
+
+
+/** 
+ * send a mail related to a form
+ * 
+ * @param array @params
+ *		[0]: event_id
+ *		[1]: contact_id
+ *		[2]: type of template
+ *		[3]: (optional) formfield_id
+ * @return array
+ */
+function mod_activities_make_formmail($params) {
+	if (count($params) < 3) return false;
+	if ($params[2] === 'field-changed' AND count($params) !== 4) return false;
+	elseif (count($params) !== 3) return false;
+	
+	if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+		$page['text'] = wrap_template('formmail');
+		return $page;
+	}
+	
+	if (str_ends_with($params[2], '-reminder')) {
+		$params[2] = substr($params[2], 0, strlen('-reminder'));
+		$extra_message = wrap_text('Reminder –', wrap_setting('lang')).' ';
+	} else {
+		$extra_message = '';
+	}
+	if (!in_array($params[2], ['authentication', 'confirmation', 'field-changed']))
+		wrap_error(sprintf('Unknown form mail type %s.', $params[2]), E_USER_ERROR);
+
+	$data = mod_activities_formmail_prepare($params[0], $params[1], $params[2]);
+
+	$mail['to']['name'] = $data['contact'];
+	$mail['to']['e_mail'] = $data['e_mail'];
+	
+	// @todo get e_mail from event
+	$data['sender'] = wrap_setting('own_name');
+	$mail['headers']['From']['name'] = $data['sender'];
+	$mail['headers']['From']['e_mail'] = $data['sender_mail'] ?? wrap_setting('own_e_mail');
+
+	$mailtitle = $data['form_parameters']['formmail_subject'][$params[2]] ?? '';
+	$mail['subject'] = $data['event'].': '.$extra_message.wrap_text($mailtitle);
+	$mail['message'] = wrap_template($data['formmail_template']."\n", $data);
+	$mail['parameters'] = '-f '.$data['sender_mail'];
+	$mail['headers']['Bcc'] = wrap_setting('mail_bcc');
+	$success = wrap_mail($mail);
+	if (!$success) {
+		wrap_error(sprintf(
+			'%s mail could not be sent to %s (ID %d)', ucfirst($params[2]), $data['e_mail'], $data['contact_id']
+		));
+		$page['text'] = wrap_text('Failed to send mail.');
+		$page['status'] = 404;
+		return $page;
+	}
+
+	mod_activities_formmail_log($data, $params[2]);
+
+	$page['text'] = wrap_text('Mail was successfully sent.');
+	$page['status'] = 200;
+	return $page;
+}
+
+/**
+ * log that a form mail was sent
+ *
+ * @param array $data
+ *		for contactverifications: int contact_id
+ *		otherwise: int participation_id
+ * @param string $type
+ */
+function mod_activities_formmail_log($data, $type) {
+	if (wrap_setting('activities_use_contactverifications')) {
+		// @deprecated
+		if ($type === 'authentication')
+			mod_activities_make_formmail_log_cv($data['contact_id']);
+		return;
+	}
+	$values = [];
+	$values['action'] = 'insert';
+	$values['ids'] = ['participation_id', 'activity_category_id'];
+	$values['POST']['participation_id'] = $data['participation_id'];
+	$values['POST']['activity_category_id'] = wrap_category_id('activities/mail');
+	$ops = zzform_multi('activities', $values);
+	if (!$ops['id'])
+		wrap_error(sprintf('Unable to add activity mail to participation ID %d', $data['participation_id']));
+}
+
+/**
+ * update contacts_verifications.mails_sent
+ *
+ * @param int $contact_id
+ */
+function mod_activities_make_formmail_log_cv($contact_id) {
+	$sql = 'UPDATE contacts_verifications SET mails_sent = mails_sent + 1 WHERE contact_id = %d';
+	$sql = sprintf($sql, $contact_id);
+	$result = wrap_db_query($sql);
+	if (!$result) return;
+	wrap_include_files('database', 'zzform');
+	zz_log_sql($sql);
+}
+
+/**
+ * get fields for confirmation and authentication mails
+ *
+ * @param int $event_id
+ * @param int $contact_id
+ * @param string $type
+ * @return array $data
+ */
+function mod_activities_formmail_prepare($event_id, $contact_id, $type) {
+	// person
+	if (wrap_setting('activities_use_contactverifications')) {
+		$sql = 'SELECT contacts.contact_id
+				, first_name, last_name, contact
+				, IF(sex = "male", 1, NULL) AS male
+				, IF(sex = "female", 1, NULL) AS female
+				, IF(sex = "diverse", 1, NULL) AS diverse
+				, IF(ISNULL(sex), 1, NULL) AS unknown
+				, identification AS e_mail
+				, verification_hash
+				, languages.iso_639_1
+			FROM contacts
+			LEFT JOIN persons USING (contact_id)
+			LEFT JOIN contacts_verifications USING (contact_id)
+			LEFT JOIN languages USING (language_id)
+			LEFT JOIN contactdetails
+				ON contactdetails.contact_id = contacts.contact_id
+				AND contactdetails.provider_category_id = %d
+			WHERE contacts.contact_id = %d';
+	} else {
+		$sql = 'SELECT contacts.contact_id
+				, first_name, last_name, contact
+				, IF(sex = "male", 1, NULL) AS male
+				, IF(sex = "female", 1, NULL) AS female
+				, IF(sex = "diverse", 1, NULL) AS diverse
+				, IF(ISNULL(sex), 1, NULL) AS unknown
+				, identification AS e_mail
+				, participation_id
+				, verification_hash
+			FROM contacts
+			LEFT JOIN persons USING (contact_id)
+			LEFT JOIN participations USING (contact_id)
+			LEFT JOIN contactdetails
+				ON contactdetails.contact_id = contacts.contact_id
+				AND contactdetails.provider_category_id = %d
+			WHERE contacts.contact_id = %d';
+	}
+	$sql = sprintf($sql, wrap_category_id('provider/e-mail'), $contact_id);
+	$data = wrap_db_fetch($sql);
+
+	// set mail language depending on registration process, not current or default language
+	if (!empty($data['iso_639_1']))
+		wrap_setting('lang', $data['iso_639_1']);
+	
+	$sql = 'SELECT event_id, event, events.identifier
+			, CONCAT(IFNULL(date_begin, ""), "/", IFNULL(date_end, "")) AS duration
+			, form_id
+			, IF(address = "formal", 1, NULL) AS formal_address
+			, IF(address = "informal", 1, NULL) AS informal_address
+			, formcategories.category AS form_category
+			, formcategories.parameters AS form_parameters
+	    FROM events
+		LEFT JOIN forms USING (event_id)
+		LEFT JOIN categories formcategories
+			ON formcategories.category_id = forms.form_category_id
+	    WHERE event_id = %d';
+	$sql = sprintf($sql
+		, $event_id
+	);
+	$event = wrap_db_fetch($sql);
+	if ($event['informal_address']) wrap_setting('language_variation', 'informal');
+	if ($event['form_parameters'])
+		parse_str($event['form_parameters'], $event['form_parameters']);
+	$data = array_merge($data, $event);
+
+	$data['duration'] = wrap_date($data['duration']);
+	$data['formmail_template'] = mf_activities_form_templates($data['form_id'], $type);
+	$data['values'] = mf_activities_formfielddata($contact_id, $data['form_id']);
+
+	$data['authentication_link'] = wrap_path('activities_registration_confirmation').sprintf('?confirm=%s', $data['verification_hash']);
+	$data['rejection_link'] = wrap_path('activities_registration_confirmation').sprintf('?delete=%s', $data['verification_hash']);
+
+	// custom data?	
+	if (function_exists('my_formmail_prepare'))
+		$data = my_formmail_prepare($data);
+	
+	return $data;
+}

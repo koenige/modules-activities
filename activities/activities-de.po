@@ -24,6 +24,10 @@ msgstr ""
 "Language: de\n"
 
 #: templates/registrationinternal.template.txt
+msgid "Send form mail"
+msgstr "Formularmail senden"
+
+#: templates/registrationinternal.template.txt
 msgid "Form on public website"
 msgstr "Formular auf öffentlicher Website"
 
@@ -106,6 +110,18 @@ msgstr "Bestätigungsmail fehlt."
 #: zzbrick_forms/registration.php
 msgid "One or more of the required form fields are missing."
 msgstr "Eines oder mehrere der erforderlichen Formularfelder fehlen."
+
+#: zzbrick_make/formmail.inc.php
+msgid "Reminder –"
+msgstr "Erinnerung –"
+
+#: zzbrick_make/formmail.inc.php
+msgid "Failed to send mail."
+msgstr "E-Mail konnte nicht gesendet werden."
+
+#: zzbrick_make/formmail.inc.php
+msgid "Mail was successfully sent."
+msgstr "E-Mail wurde erfolgreich versendet."
 
 #: zzbrick_tables/access.php
 msgid "Access Rights"
