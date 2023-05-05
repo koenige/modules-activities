@@ -55,7 +55,6 @@ function mod_activities_make_formmail($params) {
 	$mailtitle = $data['form_parameters']['formmail_subject'][$params[2]] ?? '';
 	$mail['subject'] = $data['event'].': '.$extra_message.wrap_text($mailtitle);
 	$mail['message'] = wrap_template($data['formmail_template']."\n", $data);
-	$mail['parameters'] = '-f '.$data['sender_mail'];
 	$mail['headers']['Bcc'] = wrap_setting('mail_bcc');
 	$success = wrap_mail($mail);
 	if (!$success) {
@@ -151,6 +150,7 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type) {
 				, identification AS e_mail
 				, participation_id
 				, verification_hash
+				, entry_date
 			FROM contacts
 			LEFT JOIN persons USING (contact_id)
 			LEFT JOIN participations USING (contact_id)
@@ -191,8 +191,8 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type) {
 	$data['formmail_template'] = mf_activities_form_templates($data['form_id'], $type);
 	$data['values'] = mf_activities_formfielddata($contact_id, $data['form_id']);
 
-	$data['authentication_link'] = wrap_path('activities_registration_confirmation').sprintf('?confirm=%s', $data['verification_hash']);
-	$data['rejection_link'] = wrap_path('activities_registration_confirmation').sprintf('?delete=%s', $data['verification_hash']);
+	$data['authentication_link'] = wrap_setting('host_base').wrap_path('activities_registration_confirmation', [], false).sprintf('?confirm=%s', $data['verification_hash']);
+	$data['rejection_link'] = wrap_setting('host_base').wrap_path('activities_registration_confirmation', [], false).sprintf('?delete=%s', $data['verification_hash']);
 
 	// custom data?	
 	if (function_exists('my_formmail_prepare'))
