@@ -379,34 +379,40 @@ function mf_activities_formfields_required($data) {
  * get templates for a form
  *
  * @param int $form_id
+ * @param string $type (optional)
  * @return array
  *		authentication = tpl
  *		confirmation = tpl
  *		field-changed[field_id] = tpl
  */
-function mf_activities_form_templates($form_id) {
-	$sql = 'SELECT formtemplate_id, template, formfield_id, template_category_id
-			, categories.parameters
-			, SUBSTRING_INDEX(categories.path, "/", -1) AS path_fragment
-		FROM formtemplates
-		LEFT JOIN categories
-			ON formtemplates.template_category_id = categories.category_id
-		WHERE form_id = %d';
-	$sql = sprintf($sql, $form_id);
-	$templates = wrap_db_fetch($sql, 'formtemplate_id');
-	$templates = wrap_translate($templates, 'formtemplates');
+function mf_activities_form_templates($form_id, $type = '') {
+	static $data;
 	
-	$data = [];
-	foreach ($templates as $template) {
-		if ($template['parameters']) parse_str($template['parameters'], $template['parameters']);
-		else $template['parameters'] = [];
-		$key = !empty($template['parameters']['alias'])
-			? substr($template['parameters']['alias'], strrpos($template['parameters']['alias'], '/') + 1)
-			: $template['path_fragment'];
-		if (!empty($template['parameters']['formfield']))
-			$data[$key][$template['formfield_id']] = $template['template'];
-		else
-			$data[$key] = $template['template'];
+	if (empty($data)) {
+		$sql = 'SELECT formtemplate_id, template, formfield_id, template_category_id
+				, categories.parameters
+				, SUBSTRING_INDEX(categories.path, "/", -1) AS path_fragment
+			FROM formtemplates
+			LEFT JOIN categories
+				ON formtemplates.template_category_id = categories.category_id
+			WHERE form_id = %d';
+		$sql = sprintf($sql, $form_id);
+		$templates = wrap_db_fetch($sql, 'formtemplate_id');
+		$templates = wrap_translate($templates, 'formtemplates');
+	
+		$data = [];
+		foreach ($templates as $template) {
+			if ($template['parameters']) parse_str($template['parameters'], $template['parameters']);
+			else $template['parameters'] = [];
+			$key = !empty($template['parameters']['alias'])
+				? substr($template['parameters']['alias'], strrpos($template['parameters']['alias'], '/') + 1)
+				: $template['path_fragment'];
+			if (!empty($template['parameters']['formfield']))
+				$data[$key][$template['formfield_id']] = $template['template'];
+			else
+				$data[$key] = $template['template'];
+		}
 	}
+	if ($type) return $data[$type];
 	return $data;
 }
