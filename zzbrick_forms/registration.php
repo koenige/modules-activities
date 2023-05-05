@@ -19,6 +19,8 @@ if ($brick['data']['formtemplates_confirmation_missing']) wrap_quit(503, wrap_te
 if (empty($brick['data']['formfields'])) wrap_quit(503, wrap_text('One or more of the required form fields are missing.'));
 
 $zz = zzform_include('contacts');
+$zz['record']['form_lead'] = $brick['data']['header']; // @todo this is lead, not header actually
+$zz_conf['footer_text'] = $brick['data']['footer'];
 
 $zz['title'] = $brick['data']['event'];
 $zz['access'] = 'add_only';
@@ -34,3 +36,5 @@ $zz = mf_activities_formkit($zz, $brick['data']['event_id'], $brick['data']['for
 $zz_conf['text'][wrap_setting('lang')]['Add a record'] = $brick['data']['form_parameters']['legend'] ?? $brick['data']['category'];
 if (!empty($brick['data']['form_parameters']['action']))
 	$zz_conf['text'][wrap_setting('lang')]['Add record'] = $brick['data']['form_parameters']['action'];
+
+$zz['request'][] = 'form';

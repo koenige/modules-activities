@@ -36,6 +36,7 @@ function mod_activities_placeholder_form($brick) {
 			, form_categories.category_id
 			, form_categories.category
 			, form_categories.parameters AS form_parameters
+			, forms.lead, forms.header, forms.footer
 		FROM events
 		LEFT JOIN forms USING (event_id)
 		LEFT JOIN websites USING (website_id)
