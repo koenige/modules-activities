@@ -22,7 +22,7 @@ function mod_activities_make_registrationconfirmation() {
 
 	$form = [];
 	$form['reminder'] = false;
-	$url = parse_url($_SERVER['REQUEST_URI']);
+	$url = parse_url(wrap_setting('request_uri'));
 	$form['action'] = $url['path'];
 
 	$possible_actions = ['confirm', 'delete'];
@@ -54,15 +54,18 @@ function mod_activities_make_registrationconfirmation() {
 	$form['codes'] = explode('-', $form['code']);
 	$has_data = false;
 	foreach ($form['codes'] as $code) {
-		$sql = 'SELECT participation_id, status_category_id, identifier, contact_id
-				, registrations.parameters
+		$sql = 'SELECT participations.participation_id, status_category_id, contact_id
+				, contacts.identifier
+				, invitations.parameters
 			FROM participations
 			LEFT JOIN contacts USING (contact_id)
-			LEFT JOIN registrations
-				ON registrations.event_id = participations.event_id
-				AND registrations.usergroup_id = participations.usergroup_id
-			WHERE verification_hash = "%s"
-			AND ISNULL(date_end)';
+			LEFT JOIN invitations
+				ON invitations.event_id = participations.event_id
+				AND invitations.usergroup_id = participations.usergroup_id
+			LEFT JOIN events
+				ON invitations.event_id = events.event_id
+			WHERE participations.verification_hash = "%s"
+			AND ISNULL(events.date_end)';
 		$sql = sprintf($sql, wrap_db_escape($code));
 		$data = wrap_db_fetch($sql);
 		if (!$data) continue;
