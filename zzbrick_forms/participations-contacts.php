@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021 Gustaf Mossakowski
+ * @copyright Copyright © 2021, 2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -41,4 +41,4 @@ $zz['page']['breadcrumbs'][] = sprintf('<a href="%s">%s</a>'
 	, $zz_conf['referer'], $data['contact']
 );
 $zz['page']['breadcrumbs'][] = wrap_text('Participations');
-$zz_conf['dont_show_title_as_breadcrumb'] = true;
+$zz['page']['dont_show_title_as_breadcrumb'] = true;
