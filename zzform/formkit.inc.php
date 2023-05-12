@@ -51,6 +51,8 @@ function mf_activities_formkit($zz, $event_id, $parameters) {
 	foreach ($zz['fields'] as $no => $field) {
 		if (empty($zz['fields'][$no])) continue;
 		$zz['fields'][$no]['hide_in_form'] = true;
+		$zz['fields'][$no]['hide_in_list'] = true;
+		$zz['fields'][$no]['export'] = false;
 		if (empty($field['field_name'])) continue;
 		if (!empty($parameters['db_values'][$zz['table'].'.'.$field['field_name']])) {
 			$zz['fields'][$no]['type'] = 'hidden';
@@ -76,6 +78,8 @@ function mf_activities_formkit($zz, $event_id, $parameters) {
 		$zz['fields'][$my_no]['title'] = $formfield['formfield'];
 		$zz['fields'][$my_no]['explanation'] = $formfield['explanation'];
 		$zz['fields'][$my_no]['hide_in_form'] = false;
+		$zz['fields'][$my_no]['export'] = true;
+		$zz['fields'][$my_no]['hide_in_list'] = $formfield['custom']['hide_in_list'] ?? false;
 		$no++;
 	}
 	
@@ -237,6 +241,18 @@ function mf_activities_formkit_value($value) {
 }
 
 /**
+ * read used usergroup_id for formkit
+ *
+ * @param array $parameters
+ * @return int
+ */
+function mf_activities_formkit_usergroup($parameters) {
+	return mf_activities_formkit_value(
+		$parameters['db_values']['participants.usergroup_id'] ?? 'ID usergroups '.wrap_setting('activities_registration_usergroup_default')
+	);
+}
+
+/**
  * hook after inserting a registration
  *
  * @param array $ops
@@ -275,7 +291,7 @@ function mf_activities_formkit_hook_participation($contact_id, $event_id, $param
 		'contact_id', 'usergroup_id', 'event_id', 'status_category_id'
 	];
 	$values['POST']['contact_id'] = $contact_id;
-	$values['POST']['usergroup_id'] = mf_activities_formkit_value($parameters['db_values']['participants.usergroup_id'] ?? 'ID usergroups participants');
+	$values['POST']['usergroup_id'] = mf_activities_formkit_usergroup($parameters);
 	$values['POST']['event_id'] = $event_id;
 	$values['POST']['status_category_id'] = mf_activities_formkit_value('ID categories participation-status/subscribed');
 	$values['POST']['entry_contact_id'] = $_SESSION['contact_id'] ?? $contact_id;
