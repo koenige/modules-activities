@@ -8,8 +8,14 @@
 # @copyright Copyright © 2023 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
+<div class="abstract">
 %%% item abstract markdown %%%
+</div>
 
+<div class="description">
 %%% item description markdown %%%
+</div>
 
+<div class="form_header">
 %%% item header markdown %%%
+</div>

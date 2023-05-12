@@ -27,9 +27,6 @@ $zz['access'] = 'add_only';
 $zz['hooks']['after_insert'] = 'mf_activities_formkit_hook';
 $zz['page']['data'] = $brick['data'];
 
-// abstract
-// description
-
 wrap_include_files('zzform/formkit');
 $zz = mf_activities_formkit($zz, $brick['data']['event_id'], $brick['data']['form_parameters']);
 
