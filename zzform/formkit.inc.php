@@ -243,7 +243,8 @@ function mf_activities_formkit_value($value) {
  * @return bool
  */
 function mf_activities_formkit_hook($ops) {
-	$event_id = $ops['page']['data']['event_id'];
+	$data = wrap_static('page', 'data');
+	$event_id = $data['event_id'];
 	$contact_id = 0;
 	foreach ($ops['return'] as $table) {
 		if ($table['table'] !== 'contacts') continue;
@@ -252,9 +253,9 @@ function mf_activities_formkit_hook($ops) {
 	if (!$contact_id)
 		wrap_error('Unable to find registration.', E_USER_ERROR);
 
-	$participation_id = mf_activities_formkit_hook_participation($contact_id, $event_id, $ops['page']['data']['form_parameters']);
+	$participation_id = mf_activities_formkit_hook_participation($contact_id, $event_id, $data['form_parameters']);
 	$activity_id = mf_activities_formkit_hook_activity($participation_id);
-	if (empty($ops['page']['data']['form_parameters']['no_authentication_mail']))
+	if (empty($data['form_parameters']['no_authentication_mail']))
 		mf_activities_formkit_mail_send($event_id, $contact_id, 'authentication');
 	return true;
 }
