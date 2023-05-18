@@ -32,6 +32,12 @@ $zz['page']['dont_show_title_as_breadcrumb'] = true;
 wrap_include_files('zzform/formkit');
 $zz = mf_activities_formkit($zz, $brick['data']['event_id'], $brick['data']['form_parameters']);
 
+foreach (array_keys($zz['fields']) as $no) continue;
+$no++;
+$zz['fields'][$no] = mf_activities_formkit_participations($brick['data']['event_id']);
+$no++;
+//$zz['fields'][$no] = mf_activities_formkit_activities($brick['data']['event_id']);
+
 $zz_conf['delete'] = false;
 $zz_conf['add'] = false;
 $zz_conf['merge'] = false;
@@ -48,5 +54,3 @@ $zz['filter'][2]['sql'] = wrap_edit_sql($zz['filter'][2]['sql'], 'JOIN',
 $zz['filter'][2]['sql'] = wrap_edit_sql($zz['filter'][2]['sql'], 'WHERE',
 	sprintf('participations.event_id = %d', $brick['data']['event_id'])
 );
-
-// @todo add table participations

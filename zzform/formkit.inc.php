@@ -89,6 +89,63 @@ function mf_activities_formkit($zz, $event_id, $parameters) {
 }
 
 /**
+ * show link to participations from applicants table
+ *
+ * @param int $event_id
+ * @return array
+ */
+function mf_activities_formkit_participations($event_id) {
+	$def = zzform_include_table('participations');
+	$def['type'] = 'subtable';
+	$def['min_records'] = 1;
+	$def['min_records_required'] = 1;
+	$def['max_records'] = 1;
+	$def['form_display'] = 'inline';
+	$def['list_display'] = 'inline';
+	foreach ($def['fields'] as $sub_no => $field) {
+		if (empty($def['fields'][$sub_no])) continue;
+		$def['fields'][$sub_no]['hide_in_form'] = true;
+		$def['fields'][$sub_no]['hide_in_list'] = true;
+		$def['fields'][$sub_no]['export'] = false;
+		if (empty($field['field_name'])) continue;
+		switch ($field['field_name']) {
+		case 'participation_id':
+			$def['fields'][$sub_no]['export'] = true;
+			$def['fields'][$sub_no]['type'] = 'number';
+			$def['fields'][$sub_no]['hide_in_list'] = false;
+			$def['fields'][$sub_no]['field_sequence'] = 1;
+			break;
+		case 'contact_id':
+			$def['fields'][$sub_no]['type'] = 'foreign_key';
+			break;
+		case 'entry_date':
+			$def['fields'][$sub_no]['hide_in_form'] = false;
+			$def['fields'][$sub_no]['hide_in_list'] = false;
+			$def['fields'][$sub_no]['append_next'] = false;
+			$def['fields'][$sub_no]['suffix'] = false;
+			$def['fields'][$sub_no]['export'] = true;
+			break;
+		case 'status_category_id':
+			$def['fields'][$sub_no]['hide_in_form'] = false;
+			$def['fields'][$sub_no]['hide_in_list'] = false;
+			$def['fields'][$sub_no]['append_next'] = false;
+			$def['fields'][$sub_no]['list_append_next'] = false;
+			$def['fields'][$sub_no]['export'] = true;
+			break;
+		case 'usergroup_id':
+			$def['fields'][$sub_no]['hide_in_form'] = false;
+			$def['fields'][$sub_no]['hide_in_list'] = false;
+			$def['fields'][$sub_no]['export'] = true;
+			break;
+		}
+	}
+	$def['sql'] = wrap_edit_sql($def['sql']
+		, 'WHERE', sprintf('events.event_id = %d', $event_id)
+	);
+	return $def;
+}
+
+/**
  * get next available index in fields definition
  *
  * @param array $fields
