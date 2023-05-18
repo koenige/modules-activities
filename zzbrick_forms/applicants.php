@@ -23,6 +23,21 @@ $zz['sql'] = wrap_edit_sql($zz['sql'], 'JOIN',
 $zz['sql'] = wrap_edit_sql($zz['sql'], 'WHERE',
 	sprintf('participations.event_id = %d', $brick['data']['event_id'])
 );
+$zz['sql'] = wrap_edit_sql($zz['sql'], 'JOIN',
+	sprintf('LEFT JOIN activities verifications
+		ON participations.participation_id = verifications.participation_id
+		AND verifications.activity_category_id = %d', wrap_category_id('activities/verify'))
+);
+$zz['sql'] = wrap_edit_sql($zz['sql'], 'JOIN',
+	sprintf('LEFT JOIN activities subscriptions
+		ON participations.participation_id = subscriptions.participation_id
+		AND subscriptions.activity_category_id = %d', wrap_category_id('activities/subscribe'))
+);
+$zz['sql'] = wrap_edit_sql($zz['sql'], 'SELECT',
+	'verifications.activity_ip AS verify_activity_ip
+	, verifications.activity_date AS verify_activity_date
+	, subscriptions.activity_ip AS subscribe_activity_ip'
+);
 
 $zz['title'] = wrap_text('Registrations').' <br><a href="../">'.$brick['data']['event'].'</a>';
 $zz['hooks']['after_insert'] = 'mf_activities_formkit_hook';
@@ -36,6 +51,37 @@ foreach (array_keys($zz['fields']) as $no) continue;
 $zz['fields'][++$no] = mf_activities_formkit_participations($brick['data']['event_id']);
 //$zz['fields'][++$no] = mf_activities_formkit_activities($brick['data']['event_id']);
 
+// export fields
+$zz['fields'][++$no] = [
+	'title' => 'Entry IP',
+	'type' => 'display',
+	'type_detail' => 'ip',
+	'field_name' => 'subscribe_activity_ip',
+	'search' => 'subscriptions.activity_ip',
+	'character_set' => 'latin1',
+	'hide_in_list' => true
+];
+$zz['fields'][++$no] = [
+	'title' => 'Verification',
+	'type' => 'display',
+	'type_detail' => 'datetime',
+	'field_name' => 'verify_activity_date',
+	'search' => 'verifications.activity_date',
+	'character_set' => 'latin1',
+	'hide_in_list' => true
+];
+$zz['fields'][++$no] = [
+	'title' => 'Verification IP',
+	'type' => 'display',
+	'type_detail' => 'ip',
+	'field_name' => 'verify_activity_ip',
+	'search' => 'verifications.activity_ip',
+	'character_set' => 'latin1',
+	'hide_in_list' => true
+];
+
+// @todo change where to something else, records must not be deleted completely if
+// contact_id is used from other parts of system
 $zz['conditions'][1]['scope'] = 'record';
 $zz['conditions'][1]['where'] = sprintf('participations.status_category_id = %d', wrap_category_id('participation-status/subscribed'));
 
