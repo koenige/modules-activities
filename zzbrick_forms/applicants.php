@@ -49,7 +49,6 @@ $zz = mf_activities_formkit($zz, $brick['data']['event_id'], $brick['data']['for
 
 foreach (array_keys($zz['fields']) as $no) continue;
 $zz['fields'][++$no] = mf_activities_formkit_participations($brick['data']['event_id']);
-//$zz['fields'][++$no] = mf_activities_formkit_activities($brick['data']['event_id']);
 
 // export fields
 $zz['fields'][++$no] = [
