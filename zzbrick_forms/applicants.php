@@ -33,14 +33,17 @@ wrap_include_files('zzform/formkit');
 $zz = mf_activities_formkit($zz, $brick['data']['event_id'], $brick['data']['form_parameters']);
 
 foreach (array_keys($zz['fields']) as $no) continue;
-$no++;
-$zz['fields'][$no] = mf_activities_formkit_participations($brick['data']['event_id']);
-$no++;
-//$zz['fields'][$no] = mf_activities_formkit_activities($brick['data']['event_id']);
+$zz['fields'][++$no] = mf_activities_formkit_participations($brick['data']['event_id']);
+//$zz['fields'][++$no] = mf_activities_formkit_activities($brick['data']['event_id']);
+
+$zz['conditions'][1]['scope'] = 'record';
+$zz['conditions'][1]['where'] = sprintf('participations.status_category_id = %d', wrap_category_id('participation-status/subscribed'));
 
 $zz_conf['delete'] = false;
 $zz_conf['add'] = false;
 $zz_conf['merge'] = false;
+
+$zz_conf['if'][1]['delete'] = true;
 
 $zz['filter'][1]['sql'] = wrap_edit_sql($zz['filter'][1]['sql'], 'JOIN',
 	'LEFT JOIN participations USING (contact_id)'
