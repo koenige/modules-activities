@@ -50,9 +50,11 @@ function mf_activities_formkit($zz, $event_id, $parameters) {
 	$zz['table'] = wrap_db_prefix($zz['table']);
 	foreach ($zz['fields'] as $no => $field) {
 		if (empty($zz['fields'][$no])) continue;
+		$zz['fields'][$no]['export'] = false;
+		// keep ID field
+		if (!empty($zz['fields'][$no]['type']) AND $zz['fields'][$no]['type'] === 'id') continue; 
 		$zz['fields'][$no]['hide_in_form'] = true;
 		$zz['fields'][$no]['hide_in_list'] = true;
-		$zz['fields'][$no]['export'] = false;
 		if (empty($field['field_name'])) continue;
 		if (!empty($parameters['db_values'][$zz['table'].'.'.$field['field_name']])) {
 			$zz['fields'][$no]['type'] = 'hidden';
@@ -111,9 +113,9 @@ function mf_activities_formkit_participations($event_id) {
 		switch ($field['field_name']) {
 		case 'participation_id':
 			$def['fields'][$sub_no]['export'] = true;
-			$def['fields'][$sub_no]['type'] = 'number';
 			$def['fields'][$sub_no]['if']['export']['hide_in_list'] = false;
 			$def['fields'][$sub_no]['field_sequence'] = 1;
+			$def['fields'][$sub_no]['hide_in_form'] = false; // won’t be shown, but is needed
 			break;
 		case 'contact_id':
 			$def['fields'][$sub_no]['type'] = 'foreign_key';
