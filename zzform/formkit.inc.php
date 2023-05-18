@@ -112,7 +112,7 @@ function mf_activities_formkit_participations($event_id) {
 		case 'participation_id':
 			$def['fields'][$sub_no]['export'] = true;
 			$def['fields'][$sub_no]['type'] = 'number';
-			$def['fields'][$sub_no]['hide_in_list'] = false;
+			$def['fields'][$sub_no]['if']['export']['hide_in_list'] = false;
 			$def['fields'][$sub_no]['field_sequence'] = 1;
 			break;
 		case 'contact_id':
