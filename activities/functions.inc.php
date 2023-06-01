@@ -145,9 +145,9 @@ function mf_activities_contact_access($contact, $access) {
  */
 function mf_activities_access_cfg($cfg) {
 	if (!array_key_exists('description', $cfg)) $cfg['description'] = '';
-	if (!array_key_exists('module', $cfg)) $cfg['module'] = '';
+	if (!array_key_exists('package', $cfg)) $cfg['package'] = '';
 	return [
-		$cfg['description'], $cfg['module']
+		$cfg['description'], $cfg['package']
 	];
 }
 
