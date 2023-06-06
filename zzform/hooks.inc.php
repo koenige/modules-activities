@@ -21,7 +21,7 @@
  * @return bool
  */
 function mf_activities_copy_formfields($ops) {
-	wrap_include_files('zzform/copy', 'zzform');
+	wrap_include_files('copy', 'zzform');
 	foreach ($ops['return'] as $index => $table) {
 		if ($table['table'] !== 'forms') continue;
 		if ($table['action'] !== 'insert') continue;
@@ -247,4 +247,59 @@ function mf_activities_hook_mailing_send($ops) {
 	wrap_setting('brick_fulltextformat', $old_brick_fulltextformat);
 	$record['record_replace'][0]['sent'] = date('Y-m-d H:i:s');
 	return $record;
+}
+
+/**
+ * watch if a field in a form changes that has an e-mail template attached to it
+ *
+ * @param array $ops
+ * @return array
+ */
+function mf_activities_formfield_watch($ops) {
+	// check if something was changed in field with formtemplate
+	$sql = 'SELECT formfield_id, event_id, categories.parameters
+		FROM formtemplates
+		LEFT JOIN forms USING (form_id)
+		LEFT JOIN formfields USING (formfield_id)
+		LEFT JOIN categories
+			ON formfields.formfield_category_id = categories.category_id
+		WHERE template_category_id = %d
+		AND formtemplates.form_id = %d';
+	$sql = sprintf($sql
+		, wrap_category_id('template-types/field-changed-mail')
+		, wrap_static('page', 'form_id')
+	);
+	$formfields = wrap_db_fetch($sql, 'formfield_id');
+	if (!$formfields) return [];
+	
+	// get contact ID
+	foreach ($ops['return'] as $index => $table) {
+		if ($table['table_name'] !== 'contacts') continue;
+		$contact_id = $ops['record_new'][$index]['contact_id'];
+		break;
+	}
+	if (empty($contact_id)) return;
+
+	foreach ($formfields as $formfield_id => &$formfield) {
+		if (empty($formfield['parameters'])) continue;
+		parse_str($formfield['parameters'], $formfield['parameters']);
+		if (empty($formfield['parameters']['db_field'])) continue;
+		list($formfield['table'], $formfield['field_name']) = explode('.', $formfield['parameters']['db_field']);
+		foreach ($ops['return'] as $index => $table) {
+			if ($table['table'] !== $formfield['table']) continue;
+			if ($table['action'] === 'nothing') continue;
+			if (!empty($formfield['parameters']['db_foreign_key'])) {
+				// identification via a foreign key, e. g. formfield_id
+				if (empty($ops['record_new'][$index][$formfield['parameters']['db_foreign_key']])) continue;
+				if ($ops['record_new'][$index][$formfield['parameters']['db_foreign_key']]
+					!== $formfield[$formfield['parameters']['db_foreign_key']]) continue;
+			} else {
+				// linked directly, check field value for changes
+				if ($ops['record_diff'][$index][$formfield['field_name']] === 'same') continue;
+			}
+			$value = sprintf('%d/%d/%s/%d', $formfield['event_id'], $contact_id, 'field-changed', $formfield['formfield_id']);
+			// there were changes
+			wrap_job(wrap_path('activities_formmail_send', $value));
+		}
+	}
 }
