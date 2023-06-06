@@ -228,7 +228,7 @@ function mf_activities_merge_contact($contact_id) {
  * @return array
  */
 function mf_activities_formfielddata($contact_id, $form_id) {
-	$sql = 'SELECT formfield_id, formfield, area, categories.parameters
+	$sql = 'SELECT formfield_id, formfield, area, categories.parameters, main_formfield_id
 		FROM formfields
 		LEFT JOIN categories
 			ON formfields.formfield_category_id = categories.category_id
@@ -240,77 +240,140 @@ function mf_activities_formfielddata($contact_id, $form_id) {
 	$fields = wrap_db_fetch($sql, 'formfield_id');
 	$fields = wrap_translate($fields, 'formfields');
 	
-	$db_fields = [];
-	foreach ($fields as &$field) {
-		if (empty($field['parameters'])) continue;
-		parse_str($field['parameters'], $field['parameters']);
-		if (empty($field['parameters']['db_field'])) continue;
-		list($table_name, $field_name) = explode('.', $field['parameters']['db_field']);
-		$db_fields[$table_name][$field['formfield_id']] = $field_name;
-		if (empty($field['parameters']['db_fields'])) continue;
-		$extra_fields[$table_name][$field['formfield_id']] = $field['parameters']['db_fields'];
-	}
-	foreach ($db_fields as $table_name => $table_fields) {
-		if (in_array($table_name, ['persons', 'contacts'])) {
-			// SELECT first_name, last_name, sex FROM persons WHERE contact_id = 23
-			$sql = 'SELECT %s FROM %s WHERE contact_id = %d';
-			$sql = sprintf($sql, implode(', ', array_unique($table_fields)), $table_name, $contact_id);
-			$record = wrap_db_fetch($sql);
-			foreach ($table_fields as $formfield_id => $field_name) {
-				$fields[$formfield_id]['value'][] = mf_activities_formfielddata_format($fields[$formfield_id], $record[$field_name]);
-			}
-		} else {
-			// SELECT formfield_id, identification FROM contactdetails WHERE contact_id = 23 AND formfield_id IN (%s)
-			switch ($table_name) {
-			case 'addresses':
-				$join = 'LEFT JOIN countries USING (country_id)'; break;
-			case 'media':
-				$join = 'LEFT JOIN filetypes USING (filetype_id)'; break;
-			default:
-				$join = '';
-			}
-			$sql = 'SELECT formfield_id, %s FROM %s %s WHERE contact_id = %d AND formfield_id IN (%s)';
-			$field_names = array_unique($table_fields);
-			if (!empty($extra_fields[$table_name])) {
-				foreach ($extra_fields[$table_name] as $extra_field_names) {
-					$field_names += $extra_field_names;
-				}
-				$field_names = array_unique($field_names);
-			}
-			$sql = sprintf($sql
-				, implode(', ', $field_names)
-				, $table_name
-				, $join
-				, $contact_id
-				, implode(', ', array_keys($table_fields))
-			);
-			$record = wrap_db_fetch($sql, 'formfield_id');
-			foreach ($table_fields as $formfield_id => $field_name) {
-				if (empty($record[$formfield_id])) continue; // no value
-				$fields[$formfield_id]['value'][] = mf_activities_formfielddata_format($fields[$formfield_id], $record[$formfield_id][$field_name]);
-			}
-			if (!empty($extra_fields[$table_name])) {
-				foreach ($extra_fields[$table_name] as $formfield_id => $field_names) {
-					if (empty($record[$formfield_id])) continue; // no value
-					foreach ($field_names as $field_name) {
-						$field_name = explode('.', $field_name);
-						$field_name = $field_name[1];
-						$fields[$formfield_id]['value'][] = $record[$formfield_id][$field_name];
-					}
-				}
-			}
+	$defs = mf_activities_formfielddata_defs($fields);
+	$fields = mf_activities_formfielddata_values($contact_id, $fields, $defs);
+	foreach ($fields as $formfield_id => $field) {
+		if ($field['main_formfield_id'] === 'NULL') continue;
+		if (!array_key_exists($field['main_formfield_id'], $fields)) {
+			unset($fields[$formfield_id]);
+			continue; // copy error
 		}
+		$fields[$field['main_formfield_id']]['formfield_titles'][] = $field['formfield'];
+		unset($fields[$formfield_id]);
 	}
 	foreach (array_keys($fields) AS $formfield_id) {
-		if (empty($fields[$formfield_id]['value']))
+		unset($fields[$formfield_id]['main_formfield_id']);
+		if (empty($fields[$formfield_id]['values']))
 			$fields[$formfield_id]['value'] = '';
 		else
-			$fields[$formfield_id]['value'] = implode('; ', $fields[$formfield_id]['value']);
+			$fields[$formfield_id]['value'] = implode(wrap_setting('activities_formfielddata_concat'), $fields[$formfield_id]['values']);
+		if (empty($fields[$formfield_id]['formfield_titles']))
+			$fields[$formfield_id]['formfield_title'] = '';
+		else
+			$fields[$formfield_id]['formfield_title'] = implode(wrap_setting('activities_formfielddata_concat'), $fields[$formfield_id]['formfield_titles']);
+		
 	}
 	return $fields;
 }
 
+/**
+ * sort formfield_ids per main_formfield_id, table in key _fields
+ * get table definitions, sorted per table in key with table name
+ *
+ * @param array $fields
+ * @return array
+ */
+function mf_activities_formfielddata_defs(&$fields) {
+	$keys = ['db_foreign_key', 'db_fields', 'db_joins', 'db_where_field'];
+	$defs = [];
+	foreach ($fields as &$field) {
+		if (empty($field['parameters'])) continue;
+		parse_str($field['parameters'], $field['parameters']);
+		if (empty($field['parameters']['db_field'])) continue;
+		if (!$field['main_formfield_id']) $field['main_formfield_id'] = 'NULL';
+		list($table_name, $field_name) = explode('.', $field['parameters']['db_field']);
+		$defs['_fields'][$field['main_formfield_id']][$table_name][$field['formfield_id']] = $field_name;
+		foreach ($keys as $key) {
+			if (empty($field['parameters'][$key])) continue;
+			if (str_ends_with($key, 's')) {
+				if (empty($defs[$table_name][$key])) $defs[$table_name][$key] = [];
+				$defs[$table_name][$key] += $field['parameters'][$key];
+			} else {
+				$defs[$table_name][$key] = $field['parameters'][$key];
+			}
+		}
+	}
+	return $defs;
+}
+
+/**
+ * write all values into form fields
+ *
+ * @param int $contact_id
+ * @param array $fields
+ * @param array $defs
+ * @param string $top_key, optional
+ * @return array
+ */
+function mf_activities_formfielddata_values($contact_id, $fields, $defs, $top_key = 'NULL') {
+	foreach ($defs['_fields'][$top_key] as $table_name => $table_fields) {
+		// get query
+		$def = $defs[$table_name] ?? [];
+		if ($fk = $def['db_foreign_key'] ?? '')
+			$sql = sprintf('SELECT %s, %%s FROM %%s %%s WHERE %%s = %%d AND %s IN (%%s)', $fk, $fk);
+		else
+			$sql = 'SELECT %s FROM %s %s WHERE %s = %d %s';
+		$field_names = array_unique($table_fields);
+		if (!empty($def['db_fields'])) {
+			$field_names += $def['db_fields'];
+			$field_names = array_unique($field_names);
+		}
+		if (!empty($def['db_joins'])) {
+			foreach ($def['db_joins'] as $db_join) {
+				$db_join = explode('.', $db_join);
+				$joins[] = vsprintf('LEFT JOIN %s USING (%s)', $db_join);
+			}
+		} else
+			$joins = [];
+
+		// get data from database
+		$sql = sprintf($sql
+			, implode(', ', $field_names)
+			, $table_name
+			, implode(' ', $joins)
+			, $def['db_where_field'] ?? 'contact_id'
+			, $contact_id
+			, $fk ? implode(', ', array_keys($table_fields)) : ''
+		);
+		if ($fk)
+			$record = wrap_db_fetch($sql, $fk);
+		else
+			$record = wrap_db_fetch($sql);
+
+		// format values
+		foreach ($table_fields as $formfield_id => $field_name) {
+			if ($fk)
+				$value = $record[$formfield_id][$field_name] ?? '';
+			else
+				$value = $record[$field_name] ?? '';
+			if (!$value) continue;
+			if (!empty($defs['_fields'][$formfield_id])) {
+				$data = mf_activities_formfielddata_values($value, $fields, $defs, $formfield_id);
+				foreach ($defs['_fields'][$formfield_id] as $fielddef)
+					foreach ($fielddef as $my_formfield_id => $my_table)
+						$fields[$formfield_id]['values'][] = mf_activities_formfielddata_format($fields[$my_formfield_id], $data[$my_formfield_id]['values'] ?? '');
+			} else {
+				$fields[$formfield_id]['values'][] = mf_activities_formfielddata_format($fields[$formfield_id], $value);
+			}
+			if (!empty($def['db_fields'])) foreach ($def['db_fields'] as $field_name) {
+				$field_name = explode('.', $field_name);
+				$field_name = $field_name[1];
+				$fields[$formfield_id]['values'][] = $record[$formfield_id][$field_name];
+			}
+		}
+	}
+	return $fields;
+}
+
+/**
+ * format value in form field
+ *
+ * @param array $form_field
+ * @param mixed $value
+ * @return string
+ */
 function mf_activities_formfielddata_format($form_field, $value) {
+	if (is_array($value) AND count($value) === 1) $value = reset($value);
 	if (empty($form_field['parameters']['format'])) return $value;
 	return $form_field['parameters']['format']($value);
 }
@@ -380,12 +443,13 @@ function mf_activities_formfields_required($data) {
  *
  * @param int $form_id
  * @param string $type (optional)
+ * @param int $formfield_id (optional)
  * @return array
  *		authentication = tpl
  *		confirmation = tpl
  *		field-changed[field_id] = tpl
  */
-function mf_activities_form_templates($form_id, $type = '') {
+function mf_activities_form_templates($form_id, $type = '', $formfield_id = 0) {
 	static $data;
 	
 	if (empty($data)) {
@@ -413,6 +477,7 @@ function mf_activities_form_templates($form_id, $type = '') {
 				$data[$key] = $template['template'];
 		}
 	}
+	if ($type and $formfield_id) return $data[$type][$formfield_id];
 	if ($type) return $data[$type];
 	return $data;
 }
