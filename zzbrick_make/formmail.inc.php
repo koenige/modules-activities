@@ -25,9 +25,10 @@
  */
 function mod_activities_make_formmail($params) {
 	if (count($params) < 3) return false;
-	if ($params[2] === 'field-changed' AND count($params) !== 4) return false;
-	elseif (count($params) !== 3) return false;
-	
+	if ($params[2] === 'field-changed') {
+		if (count($params) !== 4) return false;
+	} elseif (count($params) !== 3) return false;
+
 	if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 		$page['text'] = wrap_template('formmail');
 		return $page;
@@ -42,7 +43,7 @@ function mod_activities_make_formmail($params) {
 	if (!in_array($params[2], ['authentication', 'confirmation', 'field-changed']))
 		wrap_error(sprintf('Unknown form mail type %s.', $params[2]), E_USER_ERROR);
 
-	$data = mod_activities_formmail_prepare($params[0], $params[1], $params[2]);
+	$data = mod_activities_formmail_prepare($params[0], $params[1], $params[2], $params[3] ?? NULL);
 
 	$mail['to']['name'] = $data['contact'];
 	$mail['to']['e_mail'] = $data['e_mail'];
@@ -118,9 +119,10 @@ function mod_activities_make_formmail_log_cv($contact_id) {
  * @param int $event_id
  * @param int $contact_id
  * @param string $type
+ * @param int $formfield_id
  * @return array $data
  */
-function mod_activities_formmail_prepare($event_id, $contact_id, $type) {
+function mod_activities_formmail_prepare($event_id, $contact_id, $type, $formfield_id = NULL) {
 	// person
 	if (wrap_setting('activities_use_contactverifications')) {
 		$sql = 'SELECT contacts.contact_id
@@ -188,8 +190,12 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type) {
 	$data = array_merge($data, $event);
 
 	$data['duration'] = wrap_date($data['duration']);
-	$data['formmail_template'] = mf_activities_form_templates($data['form_id'], $type);
+	$data['formmail_template'] = mf_activities_form_templates($data['form_id'], $type, $formfield_id);
 	$data['values'] = mf_activities_formfielddata($contact_id, $data['form_id']);
+	if ($formfield_id) {
+		$data['fieldvalue'] = $data['values'][$formfield_id]['value'];
+		$data['fieldtitle'] = $data['values'][$formfield_id]['formfield'];
+	}
 
 	$data['authentication_link'] = wrap_setting('host_base').wrap_path('activities_registration_confirmation', [], false).sprintf('?confirm=%s', $data['verification_hash']);
 	$data['rejection_link'] = wrap_setting('host_base').wrap_path('activities_registration_confirmation', [], false).sprintf('?delete=%s', $data['verification_hash']);
