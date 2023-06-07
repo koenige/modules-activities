@@ -45,9 +45,6 @@ function mod_activities_make_formmail($params) {
 
 	$data = mod_activities_formmail_prepare($params[0], $params[1], $params[2], $params[3] ?? NULL);
 
-	$mail['to']['name'] = $data['contact'];
-	$mail['to']['e_mail'] = $data['e_mail'];
-	
 	// @todo get e_mail from event
 	$data['sender'] = wrap_setting('own_name');
 	$mail['headers']['From']['name'] = $data['sender'];
@@ -57,10 +54,26 @@ function mod_activities_make_formmail($params) {
 	$mail['subject'] = $data['event'].': '.$extra_message.wrap_text($mailtitle);
 	$mail['message'] = wrap_template($data['formmail_template']."\n", $data);
 	$mail['headers']['Bcc'] = wrap_setting('mail_bcc');
-	$success = wrap_mail($mail);
-	if (!$success) {
+
+	// check if there is a custom recipient list
+	$recipients = $data['recipients'] ?? [];
+	if (!$recipients) {
+		$recipients[] = [
+			'contact' => $data['contact'],
+			'e_mail' => $data['e_mail']
+		];
+	}
+	$mails_failed = [];
+	foreach ($recipients as $recipient) {
+		$mail['to']['name'] = $recipient['contact'];
+		$mail['to']['e_mail'] = $recipient['e_mail'];
+
+		$success = wrap_mail($mail);
+		if (!$success) $mails_failed[] = $recipient['e_mail'];
+	}
+	if ($mails_failed) {
 		wrap_error(sprintf(
-			'%s mail could not be sent to %s (ID %d)', ucfirst($params[2]), $data['e_mail'], $data['contact_id']
+			'%s mails could not be sent to %s (ID %d)', ucfirst($params[2]), implode(',', $mails_failed), $data['contact_id']
 		));
 		$page['text'] = wrap_text('Failed to send mail.');
 		$page['status'] = 404;
