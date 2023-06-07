@@ -299,7 +299,7 @@ function mf_activities_formfield_watch($ops) {
 			}
 			$value = sprintf('%d/%d/%s/%d', $formfield['event_id'], $contact_id, 'field-changed', $formfield['formfield_id']);
 			// there were changes
-			wrap_job(wrap_path('activities_formmail_send', $value));
+			wrap_job(wrap_path('activities_formmail_send', $value), ['wait_until' => wrap_setting('activities_formfield_watch_wait_seconds')]);
 		}
 	}
 }
