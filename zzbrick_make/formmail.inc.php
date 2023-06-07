@@ -51,6 +51,8 @@ function mod_activities_make_formmail($params) {
 	$mail['headers']['From']['e_mail'] = $data['sender_mail'] ?? wrap_setting('own_e_mail');
 
 	$mailtitle = $data['form_parameters']['formmail_subject'][$params[2]] ?? '';
+	if (!$mailtitle AND !empty($data['fieldtitle'])) // field-changed mail
+		$mailtitle = $data['fieldtitle'];
 	$mail['subject'] = $data['event'].': '.$extra_message.wrap_text($mailtitle);
 	$mail['message'] = wrap_template($data['formmail_template']."\n", $data);
 	$mail['headers']['Bcc'] = wrap_setting('mail_bcc');
@@ -79,7 +81,21 @@ function mod_activities_make_formmail($params) {
 		$page['status'] = 404;
 		return $page;
 	}
-
+	if (wrap_setting('activities_formmail_field_changed_sender_copy') AND $params[2] === 'field-changed') {
+		$mail['to'] = $data['sender'];
+		$mail['subject'] .= ' '.wrap_text('(copy of e-mail)');
+		$mail_copy_text = wrap_text('This e-mail was just sent to:')."\r\n";
+		foreach ($recipients as $recipient) {
+			$mail_copy_text .= $recipient['contact'].' <'.$recipient['e_mail'].">\r\n";
+		}
+		$mail['message'] = $mail_copy_text."\r\n\r\n".$mail['message'];
+		$success = wrap_mail($mail);
+		if (!$success)
+			wrap_error(sprintf(
+				'%s mail could not be sent as copy to %s (ID %d)', ucfirst($params[2]), $data['sender'], $data['contact_id']
+			));
+	}
+	
 	mod_activities_formmail_log($data, $params[2]);
 
 	$page['text'] = wrap_text('Mail was successfully sent.');
@@ -188,6 +204,7 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type, $formfie
 			, IF(address = "informal", 1, NULL) AS informal_address
 			, formcategories.category AS form_category
 			, formcategories.parameters AS form_parameters
+			, events.parameters AS event_parameters
 	    FROM events
 		LEFT JOIN forms USING (event_id)
 		LEFT JOIN categories formcategories
@@ -200,6 +217,8 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type, $formfie
 	if ($event['informal_address']) wrap_setting('language_variation', 'informal');
 	if ($event['form_parameters'])
 		parse_str($event['form_parameters'], $event['form_parameters']);
+	if ($event['event_parameters'])
+		wrap_module_parameters('events', $event['event_parameters']);
 	$data = array_merge($data, $event);
 
 	$data['duration'] = wrap_date($data['duration']);

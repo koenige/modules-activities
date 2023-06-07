@@ -123,6 +123,14 @@ msgstr "E-Mail konnte nicht gesendet werden."
 msgid "Mail was successfully sent."
 msgstr "E-Mail wurde erfolgreich versendet."
 
+#: zzbrick_make/formmail.inc.php
+msgid "(copy of e-mail)"
+msgstr "(Kopie der E-Mail)"
+
+#: zzbrick_make/formmail.inc.php
+msgid "This e-mail was just sent to:"
+msgstr "Diese E-Mail wurde gerade versendet an:"
+
 #: zzbrick_tables/access.php
 msgid "Access Rights"
 msgstr "Zugriffsrechte"
