@@ -28,8 +28,8 @@ function mf_activities_copy_formfields($ops) {
 		if (empty($ops['record_new'][$index]['copy_formfields'])) continue;
 		if ($ops['record_new'][$index]['copy_formfields'] === 'none') continue;
 
-		zz_copy_records('formfields', 'form_id', $ops['record_new'][$index]['copy_formfields'], $ops['id']);
-		zz_copy_records('formtemplates', 'form_id', $ops['record_new'][$index]['copy_formfields'], $ops['id']);
+		$map = zz_copy_records('formfields', 'form_id', $ops['record_new'][$index]['copy_formfields'], $ops['id']);
+		zz_copy_records('formtemplates', 'form_id', $ops['record_new'][$index]['copy_formfields'], $ops['id'], '', $map);
 	}
 	return true;
 }
