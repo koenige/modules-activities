@@ -93,7 +93,7 @@ function mod_activities_make_formmail($params) {
 		$page['status'] = 404;
 		return $page;
 	}
-	if (wrap_setting('activities_formmail_field_changed_sender_copy') AND $params[2] === 'field-changed') {
+	if (wrap_setting('activities_formmail_sender_copy['.$params[2].']')) {
 		$mail['to'] = $data['sender'];
 		$mail['subject'] .= ' '.wrap_text('(copy of e-mail)');
 		$mail_copy_text = wrap_text('This e-mail was just sent to:')."\r\n";
