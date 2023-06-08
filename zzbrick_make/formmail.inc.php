@@ -60,10 +60,22 @@ function mod_activities_make_formmail($params) {
 	// check if there is a custom recipient list
 	$recipients = $data['recipients'] ?? [];
 	if (!$recipients) {
-		$recipients[] = [
-			'contact' => $data['contact'],
-			'e_mail' => $data['e_mail']
-		];
+		if ($data['e_mail']) {
+			$recipients[] = [
+				'contact' => $data['contact'],
+				'e_mail' => $data['e_mail']
+			];
+		} else {
+			// no mail? wait for some time, try to send again if there are mails
+			// increase try_no so job automatically stops at some point
+			wrap_job(wrap_setting('request_uri'), [
+				'wait_until' => wrap_setting('activities_formmail_wait_no_address_seconds'),
+				'try_no_increase' => 1
+			]);
+			$page['text'] = '<p>'.wrap_text('Form mail: No recipient email address found.').'</p>';
+			$page['status'] = 404;
+			return $page;
+		}
 	}
 	$mails_failed = [];
 	foreach ($recipients as $recipient) {
