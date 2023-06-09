@@ -44,6 +44,11 @@ function mod_activities_make_formmail($params) {
 		wrap_error(sprintf('Unknown form mail type %s.', $params[2]), E_USER_ERROR);
 
 	$data = mod_activities_formmail_prepare($params[0], $params[1], $params[2], $params[3] ?? NULL);
+	if (!$data) {
+		$page['text'] = sprintf(wrap_text('Contact ID %d for form mail (%s), event ID %d, not found.'), $params[1], $params[2], $params[0]);
+		$page['status'] = 404;
+		return $page;
+	}
 
 	// @todo get e_mail from event
 	$data['sender'] = wrap_setting('own_name');
@@ -204,6 +209,7 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type, $formfie
 	}
 	$sql = sprintf($sql, wrap_category_id('provider/e-mail'), $contact_id);
 	$data = wrap_db_fetch($sql);
+	if (!$data) return [];
 
 	// set mail language depending on registration process, not current or default language
 	if (!empty($data['iso_639_1']))

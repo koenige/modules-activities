@@ -135,6 +135,10 @@ msgstr "Formularmail: Keine Empfänger-E-Mail-Adresse gefunden."
 msgid "This e-mail was just sent to:"
 msgstr "Diese E-Mail wurde gerade versendet an:"
 
+#: zzbrick_make/formmail.inc.php
+msgid "Contact ID %d for form mail (%s), event ID %d, not found.."
+msgstr "Kontakt ID %d für Formular-Mail (%s), Veranstaltung ID %d nicht gefunden."
+
 #: zzbrick_tables/access.php
 msgid "Access Rights"
 msgstr "Zugriffsrechte"
