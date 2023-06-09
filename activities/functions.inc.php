@@ -253,15 +253,9 @@ function mf_activities_formfielddata($contact_id, $form_id) {
 	}
 	foreach (array_keys($fields) AS $formfield_id) {
 		unset($fields[$formfield_id]['main_formfield_id']);
-		if (empty($fields[$formfield_id]['values']))
-			$fields[$formfield_id]['value'] = '';
-		else
-			$fields[$formfield_id]['value'] = implode(wrap_setting('activities_formfielddata_concat'), $fields[$formfield_id]['values']);
-		if (empty($fields[$formfield_id]['formfield_titles']))
-			$fields[$formfield_id]['formfield_title'] = '';
-		else
-			$fields[$formfield_id]['formfield_title'] = implode(wrap_setting('activities_formfielddata_concat'), $fields[$formfield_id]['formfield_titles']);
-		
+		$fields[$formfield_id]['values'] = mf_activities_formfielddata_format($fields[$formfield_id], $fields[$formfield_id]['values'] ?? []);
+		$fields[$formfield_id]['value'] = mf_activities_formfielddata_concat($fields[$formfield_id], $fields[$formfield_id]['values']);
+		$fields[$formfield_id]['formfield_title'] = mf_activities_formfielddata_concat($fields[$formfield_id], $fields[$formfield_id]['formfield_titles'] ?? []);
 	}
 	return $fields;
 }
@@ -350,10 +344,12 @@ function mf_activities_formfielddata_values($contact_id, $fields, $defs, $top_ke
 			if (!empty($defs['_fields'][$formfield_id])) {
 				$data = mf_activities_formfielddata_values($value, $fields, $defs, $formfield_id);
 				foreach ($defs['_fields'][$formfield_id] as $fielddef)
-					foreach ($fielddef as $my_formfield_id => $my_table)
-						$fields[$formfield_id]['values'][] = mf_activities_formfielddata_format($fields[$my_formfield_id], $data[$my_formfield_id]['values'] ?? '');
+					foreach ($fielddef as $my_formfield_id => $my_table) {
+						if (empty($fields[$formfield_id]['values'])) $fields[$formfield_id]['values'] = [];
+						$fields[$formfield_id]['values'] = array_merge($fields[$formfield_id]['values'], $data[$my_formfield_id]['values'] ?? '');
+					}
 			} else {
-				$fields[$formfield_id]['values'][] = mf_activities_formfielddata_format($fields[$formfield_id], $value);
+				$fields[$formfield_id]['values'][] = $value;
 			}
 			if (!empty($def['db_fields'])) foreach ($def['db_fields'] as $field_name) {
 				$field_name = explode('.', $field_name);
@@ -370,12 +366,39 @@ function mf_activities_formfielddata_values($contact_id, $fields, $defs, $top_ke
  *
  * @param array $form_field
  * @param mixed $value
+ * @return array
+ */
+function mf_activities_formfielddata_format($form_field, $values) {
+	if (empty($form_field['parameters']['format'])) return $values;
+	foreach ($form_field['parameters']['format'] as $index => $format) {
+		if (empty($values[$index])) continue;
+		$values[$index] = $format($values[$index]);
+	}
+	return $values;
+}
+
+/**
+ * concat values/titles in form field
+ *
+ * @param array $form_field
+ * @param mixed $value
  * @return string
  */
-function mf_activities_formfielddata_format($form_field, $value) {
-	if (is_array($value) AND count($value) === 1) $value = reset($value);
-	if (empty($form_field['parameters']['format'])) return $value;
-	return $form_field['parameters']['format']($value);
+function mf_activities_formfielddata_concat($form_field, $values) {
+	if (!$values) return '';
+	if (empty($form_field['parameters']['concat']))
+		return implode(wrap_setting('activities_formfielddata_concat'), $values);
+	$result = '';
+	foreach ($values as $index => $value) {
+		$result .= $value;
+		if (array_key_exists($index, $form_field['parameters']['concat'])) {
+			$form_field['parameters']['concat'][$index] = trim($form_field['parameters']['concat'][$index], '"');
+			$result .= $form_field['parameters']['concat'][$index];
+		} elseif ($index !== count($values) - 1) {
+			$result .= wrap_setting('activities_formfielddata_concat');
+		}
+	}
+	return $result;
 }
 
 /**
