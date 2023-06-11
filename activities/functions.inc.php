@@ -13,34 +13,6 @@
  */
 
 
-function mf_activities_random_hash($fields) {
-	if (!empty($fields['verification_hash'])) return $fields['verification_hash'];
-	$duplicate = true;
-	while ($duplicate) {
-		$hash = wrap_random_hash(8);
-		$sql = 'SELECT participation_id
-			FROM /*_PREFIX_*/participations
-			WHERE verification_hash = "%s"';
-		$sql = sprintf($sql, $hash);
-		$duplicate = wrap_db_fetch($sql, '', 'single value');
-	}
-	return $hash;
-}
-
-function mf_activities_random_hash_invitations($fields) {
-	if (!empty($fields['invitation_hash'])) return $fields['invitation_hash'];
-	$duplicate = true;
-	while ($duplicate) {
-		$hash = wrap_random_hash(6);
-		$sql = 'SELECT invitation_id
-			FROM /*_PREFIX_*/invitations
-			WHERE invitation_hash = "%s"';
-		$sql = sprintf($sql, $hash);
-		$duplicate = wrap_db_fetch($sql, '', 'single value');
-	}
-	return $hash;
-}
-
 /**
  * get path to profile for a group
  *

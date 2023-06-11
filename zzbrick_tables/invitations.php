@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2021, 2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -74,10 +74,10 @@ $zz['fields'][8]['hide_in_list'] = true;
 $zz['fields'][9]['title'] = 'Hash';
 $zz['fields'][9]['field_name'] = 'invitation_hash';
 $zz['fields'][9]['hide_in_list'] = true;
-$zz['fields'][9]['type'] = 'hidden';
+$zz['fields'][9]['type'] = 'identifier';
 $zz['fields'][9]['class'] = 'hidden';
 $zz['fields'][9]['hide_in_list'] = true;
-$zz['fields'][9]['function'] = 'mf_activities_random_hash_invitations';
+$zz['fields'][9]['conf_identifier']['random_hash'] = 6;
 $zz['fields'][9]['fields'] = ['invitation_hash'];
 $zz['fields'][9]['export'] = false;
 
