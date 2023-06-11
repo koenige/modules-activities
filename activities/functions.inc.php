@@ -284,13 +284,14 @@ function mf_activities_formfielddata_values($contact_id, $fields, $defs, $top_ke
 			$field_names += $def['db_fields'];
 			$field_names = array_unique($field_names);
 		}
+		
+		$joins = [];
 		if (!empty($def['db_joins'])) {
 			foreach ($def['db_joins'] as $db_join) {
 				$db_join = explode('.', $db_join);
 				$joins[] = vsprintf('LEFT JOIN %s USING (%s)', $db_join);
 			}
-		} else
-			$joins = [];
+		}
 
 		// get data from database
 		$sql = sprintf($sql
