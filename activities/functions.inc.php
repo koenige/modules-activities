@@ -302,10 +302,12 @@ function mf_activities_formfielddata_values($contact_id, $fields, $defs, $top_ke
 			, $contact_id
 			, $fk ? implode(', ', array_keys($table_fields)) : ''
 		);
-		if ($fk)
-			$record = wrap_db_fetch($sql, $fk);
-		else
+		if ($fk) {
+			$record = wrap_db_fetch($sql, $fk, 'numeric');
+			$record = mf_activities_formfielddata_record($record);
+		} else {
 			$record = wrap_db_fetch($sql);
+		}
 
 		// format values
 		foreach ($table_fields as $formfield_id => $field_name) {
@@ -315,12 +317,18 @@ function mf_activities_formfielddata_values($contact_id, $fields, $defs, $top_ke
 				$value = $record[$field_name] ?? '';
 			if (!$value) continue;
 			if (!empty($defs['_fields'][$formfield_id])) {
-				$data = mf_activities_formfielddata_values($value, $fields, $defs, $formfield_id);
-				foreach ($defs['_fields'][$formfield_id] as $fielddef)
-					foreach ($fielddef as $my_formfield_id => $my_table) {
-						if (empty($fields[$formfield_id]['values'])) $fields[$formfield_id]['values'] = [];
-						$fields[$formfield_id]['values'] = array_merge($fields[$formfield_id]['values'], $data[$my_formfield_id]['values'] ?? '');
+				if (!is_array($value)) $value = [$value];
+				$details = [];
+				foreach ($value as $id) {
+					$data = mf_activities_formfielddata_values($id, $fields, $defs, $formfield_id);
+					foreach ($defs['_fields'][$formfield_id] as $fielddef) {
+						foreach ($fielddef as $my_formfield_id => $my_table) {
+							if (!array_key_exists($id, $details)) $details[$id] = [];
+							$details[$id] = array_merge($details[$id], $data[$my_formfield_id]['values'] ?? [0 => '']);
+						}
 					}
+				}
+				$fields[$formfield_id]['values'] = $details;
 			} else {
 				$fields[$formfield_id]['values'][] = $value;
 			}
@@ -332,6 +340,33 @@ function mf_activities_formfielddata_values($contact_id, $fields, $defs, $top_ke
 		}
 	}
 	return $fields;
+}
+
+/**
+ * index record by formfield_id
+ *
+ * @param array $record
+ * @return array
+ */
+function mf_activities_formfielddata_record($record) {
+	$new = [];
+	$details = [];
+	foreach ($record as $line) {
+		if (array_key_exists($line['formfield_id'], $new)) {
+			if (!is_numeric(key($new[$line['formfield_id']])))
+				$new[$line['formfield_id']] = [$new[$line['formfield_id']]];
+			$new[$line['formfield_id']][] = $line;
+			$details[] = $line['formfield_id'];
+		} else {
+			$new[$line['formfield_id']] = $line;
+		}
+	}
+	foreach ($details as $formfield_id) {
+		foreach ($new[$formfield_id] as $line)
+			foreach ($line as $field => $value)
+				$new[$formfield_id][$field][] = $value;
+	}
+	return $new;
 }
 
 /**
@@ -359,8 +394,15 @@ function mf_activities_formfielddata_format($form_field, $values) {
  */
 function mf_activities_formfielddata_concat($form_field, $values) {
 	if (!$values) return '';
+	$first = reset($values);
+	if (is_array($first)) {
+		$result = [];
+		foreach ($values as $index => $line)
+			$result[] = mf_activities_formfielddata_concat($form_field, $line);
+		return implode(wrap_setting('activities_formfielddata_concat_rows'), $result);
+	}
 	if (empty($form_field['parameters']['concat']))
-		return implode(wrap_setting('activities_formfielddata_concat'), $values);
+		return implode(wrap_setting('activities_formfielddata_concat_fields'), $values);
 	$result = '';
 	foreach ($values as $index => $value) {
 		$result .= $value;
@@ -368,7 +410,7 @@ function mf_activities_formfielddata_concat($form_field, $values) {
 			$form_field['parameters']['concat'][$index] = trim($form_field['parameters']['concat'][$index], '"');
 			$result .= $form_field['parameters']['concat'][$index];
 		} elseif ($index !== count($values) - 1) {
-			$result .= wrap_setting('activities_formfielddata_concat');
+			$result .= wrap_setting('activities_formfielddata_concat_fields');
 		}
 	}
 	return $result;
@@ -473,7 +515,7 @@ function mf_activities_form_templates($form_id, $type = '', $formfield_id = 0) {
 				$data[$key] = $template['template'];
 		}
 	}
-	if ($type and $formfield_id) return $data[$type][$formfield_id];
+	if ($type and $formfield_id) return $data[$type][$formfield_id] ?? '';
 	if ($type) return $data[$type];
 	return $data;
 }
