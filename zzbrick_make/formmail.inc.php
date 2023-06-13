@@ -241,6 +241,7 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type, $formfie
 
 	$data['duration'] = wrap_date($data['duration']);
 	$data['formmail_template'] = mf_activities_form_templates($data['form_id'], $type, $formfield_id);
+	if (!$data['formmail_template']) return false;
 	$data['values'] = mf_activities_formfielddata($contact_id, $data['form_id']);
 	if ($formfield_id) {
 		$data['fieldvalue'] = $data['values'][$formfield_id]['value'];
