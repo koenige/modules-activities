@@ -378,6 +378,13 @@ function mf_activities_formfielddata_record($record) {
  */
 function mf_activities_formfielddata_format($form_field, $values) {
 	if (empty($form_field['parameters']['format'])) return $values;
+	$first = reset($values);
+	if (is_array($first)) {
+		$result = [];
+		foreach ($values as $index => $line)
+			$result[] = mf_activities_formfielddata_format($form_field, $line);
+		return $result;
+	}
 	foreach ($form_field['parameters']['format'] as $index => $format) {
 		if (empty($values[$index])) continue;
 		$values[$index] = $format($values[$index]);
