@@ -111,3 +111,4 @@
 /* 2023-05-03-2 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'formfields', 'formfield_id', (SELECT DATABASE()), 'contactdetails', 'contactdetail_id', 'formfield_id', 'no-delete');
 /* 2023-05-03-3 */	ALTER TABLE `addresses` ADD `formfield_id` int unsigned NULL AFTER `receive_mail`, ADD INDEX `formfield_id` (`formfield_id`);
 /* 2023-05-03-4 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'formfields', 'formfield_id', (SELECT DATABASE()), 'addresses', 'address_id', 'formfield_id', 'no-delete');
+/* 2023-06-14-1 */	UPDATE webpages SET content = REPLACE(content, '%%% forms participations-contacts * ', '%%% forms participations-contacts * *=contact ') WHERE content LIKE '%\%\%\% forms participations-contacts * %';
