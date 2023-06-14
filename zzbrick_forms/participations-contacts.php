@@ -28,3 +28,9 @@ $zz['filter'][1]['sql'] = wrap_edit_sql(
 $zz_conf['referer'] = mf_contacts_profile_path(['identifier' => $brick['data']['identifier'], 'contact_parameters' => 'type='.$brick['data']['scope']]);
 $zz['page']['breadcrumbs'][]['title'] = wrap_text('Participations');
 $zz['page']['dont_show_title_as_breadcrumb'] = true;
+
+$zz['conditions'][10]['scope'] = 'record';
+$zz['conditions'][10]['where'] = 'contact_categories.parameters LIKE "%&contacts_no_delete=1%"';
+
+$zz_conf['if'][10]['delete'] = false;
+$zz_conf['if'][10]['edit'] = false;
