@@ -30,9 +30,9 @@ $zz['page']['data'] = $brick['data'];
 wrap_include_files('zzform/formkit');
 $zz = mf_activities_formkit($zz, $brick['data']['event_id'], $brick['data']['form_parameters']);
 
-$zz_conf['text'][wrap_setting('lang')]['Add a record'] = $brick['data']['form_parameters']['legend'] ?? $brick['data']['category'];
+wrap_text_set('Add a record', $brick['data']['form_parameters']['legend'] ?? $brick['data']['category']);
 if (!empty($brick['data']['form_parameters']['action']))
-	$zz_conf['text'][wrap_setting('lang')]['Add record'] = $brick['data']['form_parameters']['action'];
-$zz_conf['text'][wrap_setting('lang')]['Record was inserted'] = $brick['data']['form_parameters']['legend_insert'] ?? $brick['data']['category'];
+	wrap_text_set('Add record', $brick['data']['form_parameters']['action']);
+wrap_text_set('Record was inserted', $brick['data']['form_parameters']['legend_insert'] ?? $brick['data']['category']);
 
 $zz['request'][] = 'form';
