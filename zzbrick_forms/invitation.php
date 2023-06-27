@@ -49,8 +49,8 @@ $zz = zzform_include('contacts', $values, 'forms');
 $zz['title'] = $invitation['event'].' <br>'.wrap_date($invitation['duration']);
 $zz['record']['form_lead'] = $invitation['lead'];
 $zz['explanation'] = $invitation['header'];
-$zz_conf['footer_text'] = $invitation['footer'];
-$zz_conf['footer_text_insert'] = markdown(wrap_text('We just sent you an e-mail. Please click on the link inside it to confirm your registration.'));
+$zz['footer']['text'] = $invitation['footer'];
+$zz['footer']['text_insert'] = markdown(wrap_text('We just sent you an e-mail. Please click on the link inside it to confirm your registration.'));
 
 $zz['access'] = 'add_only';
 

@@ -20,7 +20,7 @@ if (empty($brick['data']['formfields'])) wrap_quit(503, wrap_text('One or more o
 
 $zz = zzform_include('contacts');
 $zz['record']['form_lead'] = $brick['data']['header']; // @todo this is lead, not header actually
-$zz_conf['footer_text'] = $brick['data']['footer'];
+$zz['footer']['text'] = $brick['data']['footer'];
 
 $zz['title'] = $brick['data']['event'];
 $zz['access'] = 'add_only';

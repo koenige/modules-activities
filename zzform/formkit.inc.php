@@ -68,7 +68,8 @@ function mf_activities_formkit($zz, $event_id, $parameters) {
 	foreach ($formfields as $formfield) {
 		$my_no = $no;
 		if (empty($formfield['definition']['db_field'])) continue; // @todo, captcha
-		// @todo hide_behind_login=1 and form = login: continue;
+		// @todo show_without_login=0 and form = login: continue;
+		// if (form === login AND empty($formfield['definition']['show_without_login'])) continue;
 		$formfield['custom'] = mf_activities_formkit_normalize_parameters($formfield['custom']);
 		list($formfield['table'], $formfield['field_name']) = explode('.', $formfield['definition']['db_field']);
 		if ($formfield['table'] === $zz['table']) {
