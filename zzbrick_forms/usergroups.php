@@ -59,5 +59,5 @@ $zz['fields'][12]['default'] = $brick['data']['contact_id'];
 $zz['conditions'][10]['scope'] = 'record';
 $zz['conditions'][10]['where'] = sprintf('(ISNULL(organisation_contact_id) OR organisation_contact_id != %d)', $brick['data']['contact_id']);
 
-$zz_conf['if'][10]['edit'] = false;
-$zz_conf['if'][10]['delete'] = false;
+$zz['if'][10]['record']['edit'] = false;
+$zz['if'][10]['record']['delete'] = false;

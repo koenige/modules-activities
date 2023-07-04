@@ -113,7 +113,7 @@ if (empty($_GET['order']) OR $_GET['order'] === 'contact')
 $zz['subtitle']['org_contact_id']['sql'] = $zz['fields'][6]['sql'];
 $zz['subtitle']['org_contact_id']['var'] = ['contact'];
 
-$zz_conf['copy'] = true;
+$zz['record']['copy'] = true;
 
 if (!wrap_access('activities_formtemplates_default_edit'))
 	$zz['access'] = 'none';

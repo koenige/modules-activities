@@ -25,12 +25,12 @@ $zz['filter'][1]['sql'] = wrap_edit_sql(
 	$zz['filter'][1]['sql'], 'WHERE', sprintf('contact_id = %d', $brick['data']['contact_id'])
 );
 
-$zz_conf['referer'] = mf_contacts_profile_path(['identifier' => $brick['data']['identifier'], 'contact_parameters' => 'type='.$brick['data']['scope']]);
+$zz['page']['referer'] = mf_contacts_profile_path(['identifier' => $brick['data']['identifier'], 'contact_parameters' => 'type='.$brick['data']['scope']]);
 $zz['page']['breadcrumbs'][]['title'] = wrap_text('Participations');
 $zz['page']['dont_show_title_as_breadcrumb'] = true;
 
 $zz['conditions'][10]['scope'] = 'record';
 $zz['conditions'][10]['where'] = 'contact_categories.parameters LIKE "%&contacts_no_delete=1%"';
 
-$zz_conf['if'][10]['delete'] = false;
-$zz_conf['if'][10]['edit'] = false;
+$zz['if'][10]['record']['delete'] = false;
+$zz['if'][10]['record']['edit'] = false;

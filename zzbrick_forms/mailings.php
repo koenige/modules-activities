@@ -56,4 +56,4 @@ $zz['fields'][5]['fields'][3]['sql_replace']['participation_id'] = 'contact_id';
 
 $zz['hooks']['before_upload'] = 'mf_activities_hook_mailing_add_addresses';
 
-$zz_conf['referer'] = '../';
+$zz['page']['referer'] = '../';

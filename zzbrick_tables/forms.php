@@ -112,5 +112,5 @@ $zz['sqlorder'] = ' ORDER BY events.identifier';
 
 $zz['hooks']['after_insert'][] = 'mf_activities_copy_formfields';
 
-$zz_conf['copy'] = true;
-$zz_conf['if'][1]['delete'] = false;
+$zz['record']['copy'] = true;
+$zz['if'][1]['record']['delete'] = false;

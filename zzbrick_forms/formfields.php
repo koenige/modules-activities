@@ -24,4 +24,4 @@ if ($required_fields)
 	$zz['explanation'] .= ' '.wrap_text('Note: Each form must have at least these fields:').' '.implode(', ', $required_fields['text']);
 $zz['explanation'] = markdown($zz['explanation']);
 
-$zz_conf['referer'] = '../';
+$zz['page']['referer'] = '../';

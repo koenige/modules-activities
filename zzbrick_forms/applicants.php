@@ -84,11 +84,11 @@ $zz['fields'][++$no] = [
 $zz['conditions'][1]['scope'] = 'record';
 $zz['conditions'][1]['where'] = sprintf('participations.status_category_id = %d', wrap_category_id('participation-status/subscribed'));
 
-$zz_conf['delete'] = false;
-$zz_conf['add'] = false;
+$zz['record']['delete'] = false;
+$zz['record']['add'] = false;
 $zz_conf['merge'] = false;
 
-$zz_conf['if'][1]['delete'] = true;
+$zz['if'][1]['record']['delete'] = true;
 
 $zz['filter'][1]['sql'] = wrap_edit_sql($zz['filter'][1]['sql'], 'JOIN',
 	'LEFT JOIN participations USING (contact_id)'

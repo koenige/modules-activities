@@ -33,4 +33,4 @@ $zz['fields'][6]['hide_in_list'] = true;
 
 unset($zz['list']['group']);
 
-$zz_conf['referer'] = '../';
+$zz['page']['referer'] = '../';

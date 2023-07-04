@@ -19,4 +19,4 @@ $zz['title'] = 'Registration';
 $zz['where']['event_id'] = $brick['data']['event_id'];
 $zz['access'] = 'edit_only';
 
-$zz_conf['referer'] = '../';
+$zz['page']['referer'] = '../';

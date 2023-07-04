@@ -19,4 +19,4 @@ $zz['title'] = 'Form';
 $zz['where']['event_id'] = $brick['data']['event_id'];
 $zz['access'] = 'add_then_edit';
 
-$zz_conf['referer'] = '../';
+$zz['page']['referer'] = '../';

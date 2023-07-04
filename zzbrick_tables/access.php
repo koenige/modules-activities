@@ -61,4 +61,4 @@ $zz['filter'][1]['sql'] = 'SELECT DISTINCT module, module
 	FROM /*_PREFIX_*/access
 	ORDER BY module';
 
-$zz_conf['copy'] = true;
+$zz['record']['copy'] = true;
