@@ -98,7 +98,7 @@ function mf_activities_formkit($zz, $event_id, $parameters) {
  * @return array
  */
 function mf_activities_formkit_participations($event_id) {
-	$def = zzform_include_table('participations');
+	$def = zzform_include('participations');
 	$def['type'] = 'subtable';
 	$def['min_records'] = 1;
 	$def['min_records_required'] = 1;

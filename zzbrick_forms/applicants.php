@@ -16,7 +16,7 @@
 if (empty($brick['data']['event_id'])) wrap_quit(404);
 wrap_include_files('zzform/formkit', 'activities');
 
-$zz = zzform_include_table('contacts');
+$zz = zzform_include('contacts');
 $zz['sql'] = wrap_edit_sql($zz['sql'], 'JOIN',
 	'LEFT JOIN participations USING (contact_id)'
 );

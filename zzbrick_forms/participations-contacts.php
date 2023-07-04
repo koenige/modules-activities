@@ -14,7 +14,7 @@
 
 
 if (empty($brick['data']['contact_id'])) wrap_quit(404);
-$zz = zzform_include_table('participations');
+$zz = zzform_include('participations');
 
 $zz['where']['contact_id'] = $brick['data']['contact_id'];
 
