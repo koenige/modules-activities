@@ -86,7 +86,7 @@ $zz['conditions'][1]['where'] = sprintf('participations.status_category_id = %d'
 
 $zz['record']['delete'] = false;
 $zz['record']['add'] = false;
-$zz_conf['merge'] = false;
+$zz['list']['merge'] = false;
 
 $zz['if'][1]['record']['delete'] = true;
 
