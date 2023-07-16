@@ -124,6 +124,7 @@ function mf_activities_hook_mailing_add_addresses($ops) {
 	$contact_ids = [];
 	foreach ($ops['not_validated'] as $index => $table) {
 		if ($table['table'] !== 'mailings_contacts') continue;
+		if (empty($ops['record_new'][$index])) continue; // no record, e. g. if nothing was addded
 		if (!empty($ops['record_new'][$index]['recipient_mail'])) continue;
 		$contact_ids[$index] = $ops['record_new'][$index]['recipient_contact_id'];
 	}
