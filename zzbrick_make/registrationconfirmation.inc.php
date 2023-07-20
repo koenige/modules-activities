@@ -22,8 +22,7 @@ function mod_activities_make_registrationconfirmation() {
 
 	$form = [];
 	$form['reminder'] = false;
-	$url = parse_url(wrap_setting('request_uri'));
-	$form['action'] = $url['path'];
+	$form['action'] = parse_url(wrap_setting('request_uri'), PHP_URL_PATH);
 
 	$possible_actions = ['confirm', 'delete'];
 	$page['query_strings'] = ['code', 'action', 'confirm', 'delete'];
