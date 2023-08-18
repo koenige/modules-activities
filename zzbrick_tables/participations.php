@@ -63,6 +63,9 @@ $zz['fields'][3]['sql'] = 'SELECT usergroup_id, usergroup, category
 		, IF(categories.parameters LIKE "%&hide[role]=1%"
 			, IF(usergroups.parameters LIKE "%&show[role]%", 1, NULL), 1
 		) AS show_role
+		, IF(categories.parameters LIKE "%&show[event]=1%"
+			, IF((ISNULL(usergroups.parameters) OR usergroups.parameters NOT LIKE "%&hide[event]%"), 1, NULL), NULL
+		) AS show_event
 		, categories.parameters
 	FROM usergroups
 	LEFT JOIN categories
@@ -71,7 +74,7 @@ $zz['fields'][3]['sql'] = 'SELECT usergroup_id, usergroup, category
 	ORDER BY category, identifier';
 $zz['fields'][3]['sql_ignore'] = [
 	'show_date_begin', 'show_date_end', 'show_status_category_id', 'parameters',
-	'show_sequence', 'show_role'
+	'show_sequence', 'show_role', 'show_event'
 ];
 $zz['fields'][3]['display_field'] = 'usergroup';
 $zz['fields'][3]['group'] = 'category';
@@ -83,15 +86,18 @@ $zz['fields'][3]['dependent_fields'][6]['if_selected'] = 'show_status_category_i
 $zz['fields'][3]['dependent_fields'][6]['value'] = 'parameters';
 $zz['fields'][3]['dependent_fields'][9]['if_selected'] = 'show_sequence';
 $zz['fields'][3]['dependent_fields'][11]['if_selected'] = 'show_role';
+$zz['fields'][3]['dependent_fields'][12]['if_selected'] = 'show_event';
 
 $zz['fields'][12]['field_name'] = 'event_id';
 $zz['fields'][12]['type'] = 'select';
-$zz['fields'][12]['sql'] = 'SELECT event_id
-		, CONCAT(event, " ", IFNULL(date_begin, ""), "/", IFNULL(date_end, ""))
-	FROM events
-	ORDER BY identifier';
+$zz['fields'][12]['sql'] = 'SELECT event_id, event
+		, CONCAT(IFNULL(events.date_begin, ""), IFNULL(CONCAT("/", events.date_end), "")) AS duration
+		, identifier
+	FROM /*_PREFIX_*/events
+	WHERE ISNULL(main_event_id)
+	ORDER BY identifier DESC';
+$zz['fields'][12]['sql_format'][2] = 'wrap_date';
 $zz['fields'][12]['display_field'] = 'event';
-$zz['fields'][12]['hide_in_form'] = true;
 $zz['fields'][12]['hide_in_list'] = true;
 
 $zz['fields'][13] = zzform_include('participations-contacts');
