@@ -233,6 +233,7 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type, $formfie
 	);
 	$event = wrap_db_fetch($sql);
 	if ($event['informal_address']) wrap_setting('language_variation', 'informal');
+	$event = wrap_translate($event, 'events');
 	if ($event['form_parameters'])
 		parse_str($event['form_parameters'], $event['form_parameters']);
 	if ($event['event_parameters'])
