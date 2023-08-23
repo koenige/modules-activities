@@ -77,7 +77,7 @@ $zz['fields'][9]['hide_in_list'] = true;
 $zz['fields'][9]['type'] = 'identifier';
 $zz['fields'][9]['class'] = 'hidden';
 $zz['fields'][9]['hide_in_list'] = true;
-$zz['fields'][9]['conf_identifier']['random_hash'] = 6;
+$zz['fields'][9]['identifier']['random_hash'] = 6;
 $zz['fields'][9]['fields'] = ['invitation_hash'];
 $zz['fields'][9]['export'] = false;
 
