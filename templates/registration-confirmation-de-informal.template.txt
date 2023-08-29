@@ -6,7 +6,7 @@
 # https://www.zugzwang.org/modules/activities
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2021 Gustaf Mossakowski
+# @copyright Copyright © 2021, 2023 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div class="activities">
@@ -53,7 +53,7 @@ erneute Bestätigung ist nicht notwendig.</p>
 %%% condition endif %%%
 
 %%% condition if addlogin %%%
-<p><a href="%%% setting login_entryurl %%%">Weiter zur Hauptseite</a></p>
+<p><a href="%%% setting login_entry_path %%%">Weiter zur Hauptseite</a></p>
 %%% condition else %%%
 <p><a href="%%% setting homepage_url %%%">Weiter zur Hauptseite</a></p>
 %%% condition endif %%%
