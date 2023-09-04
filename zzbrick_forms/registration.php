@@ -35,4 +35,4 @@ if (!empty($brick['data']['form_parameters']['action']))
 	wrap_text_set('Add record', $brick['data']['form_parameters']['action']);
 wrap_text_set('Record was inserted', $brick['data']['form_parameters']['legend_insert'] ?? $brick['data']['category']);
 
-$zz['request'][] = 'form';
+$zz['page']['request'][] = 'form';
