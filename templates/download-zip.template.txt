@@ -1,0 +1,20 @@
+# activities module
+# template for ZIP download if not downloadable in one chunk
+# 
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/activities
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2023 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+# 
+%%% condition if inexistent_part %%%
+<p class="error">%%% text This part of the ZIP archive does not exist. %%%</p>
+%%% condition endif %%%
+
+<p>%%% text File is too big to download. Download in parts: %%%</p>
+<ul>
+%%% loop parts %%%
+<li><a href="%%% setting request_uri %%%&amp;part=%%% item part %%%">%%% item part %%%</a></li>
+%%% loop end %%%
+</ul>

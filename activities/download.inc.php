@@ -77,3 +77,29 @@ function mf_activities_media_zip_folders($media, $event_id) {
 	}
 	return $media;
 }
+
+/**
+ * get size of media for download, if too high, split media in several parts
+ *
+ * @param array $media
+ * @return array
+ */
+function mf_activities_media_split($media) {
+	$file_size = 0;
+	foreach ($media as $medium)
+		$file_size += $medium['filesize'];
+	if ($file_size < wrap_setting('activities_download_max_filesize'))
+		return [$media];
+	$new_media = [];
+	$index = 0;
+	$file_size = 0;
+	foreach ($media as $medium_id => $medium) {
+		$file_size += $medium['filesize'];
+		if ($file_size > wrap_setting('activities_download_max_filesize')) {
+			$index++;
+			$file_size = $medium['filesize'];
+		}
+		$new_media[$index][$medium_id] = $medium;
+	}
+	return $new_media;
+}
