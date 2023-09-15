@@ -15,6 +15,6 @@
 <p>%%% text File is too big to download. Download in parts: %%%</p>
 <ul>
 %%% loop parts %%%
-<li><a href="%%% setting request_uri %%%&amp;part=%%% item part %%%">%%% item part %%%</a></li>
+<li><a href="%%% setting request_uri %%%&amp;part=%%% item part %%%">%%% item part %%%</a>%%% condition if files %%% (%%% text "%s files" files %%%)%%% condition endif %%%</li>
 %%% loop end %%%
 </ul>
