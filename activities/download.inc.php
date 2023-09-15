@@ -91,7 +91,7 @@ function mf_activities_media_split($media) {
 	if ($file_size < wrap_setting('activities_download_max_filesize'))
 		return [$media];
 	$new_media = [];
-	$index = 0;
+	$index = 1;
 	$file_size = 0;
 	foreach ($media as $medium_id => $medium) {
 		$file_size += $medium['filesize'];
