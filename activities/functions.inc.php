@@ -58,8 +58,8 @@ function mf_activities_contact_path($values) {
  * @param string $access
  */
 function mf_activities_contact_access($contact, $access) {
-	static $access_properties;
-	if (empty($access_properties)) {
+	static $access_properties = [];
+	if (!$access_properties) {
 		$sql = 'SELECT categories.category_id, categories.category
 				, categories.parameters, categories.path
 				, main_categories.parameters AS main_parameters
@@ -495,9 +495,9 @@ function mf_activities_formfields_required($data) {
  *		field-changed[field_id] = tpl
  */
 function mf_activities_form_templates($form_id, $type = '', $formfield_id = 0) {
-	static $data;
+	static $data = [];
 	
-	if (empty($data)) {
+	if (!$data) {
 		$sql = 'SELECT formtemplate_id, template, formfield_id, template_category_id
 				, categories.parameters
 				, SUBSTRING_INDEX(categories.path, "/", -1) AS path_fragment
@@ -509,7 +509,6 @@ function mf_activities_form_templates($form_id, $type = '', $formfield_id = 0) {
 		$templates = wrap_db_fetch($sql, 'formtemplate_id');
 		$templates = wrap_translate($templates, 'formtemplates');
 	
-		$data = [];
 		foreach ($templates as $template) {
 			if ($template['parameters']) parse_str($template['parameters'], $template['parameters']);
 			else $template['parameters'] = [];

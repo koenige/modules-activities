@@ -41,7 +41,7 @@ $zz['sql'] = wrap_edit_sql($zz['sql'], 'SELECT',
 
 $zz['title'] = wrap_text('Registrations').' <br><a href="../">'.$brick['data']['event'].'</a>';
 $zz['hooks']['after_insert'] = 'mf_activities_formkit_hook';
-$zz['page']['data'] = $brick['data'];
+$zz['vars']['event'] = $brick['data'];
 $zz['page']['dont_show_title_as_breadcrumb'] = true;
 
 wrap_include_files('zzform/formkit');

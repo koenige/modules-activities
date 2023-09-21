@@ -198,8 +198,7 @@ function mf_activities_formkit_field($formfield, $fields) {
  * @return array
  */
 function mf_activities_formkit_subtable($formfield, $def_no) {
-	static $area;
-	if (empty($area)) $area = '';
+	static $area = '';
 	
 	$def = zzform_include($formfield['table']);
 	$def['table'] = wrap_db_prefix($def['table']);
@@ -319,7 +318,7 @@ function mf_activities_formkit_usergroup($parameters) {
  * @return bool
  */
 function mf_activities_formkit_hook($ops) {
-	$data = wrap_static('page', 'data');
+	$data = wrap_static('zzform', 'event');
 	$event_id = $data['event_id'];
 	$contact_id = 0;
 	foreach ($ops['return'] as $table) {

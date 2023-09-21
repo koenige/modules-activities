@@ -50,7 +50,7 @@ unset($zz['fields'][23]); // show_in_news
 
 unset($zz['fields'][62]); // event_media
 
-unset($zz['fields'][16]); // direct_link
+unset($zz['fields'][16]); // eventdetails
 
 unset($zz['fields'][17]); // registration
 
