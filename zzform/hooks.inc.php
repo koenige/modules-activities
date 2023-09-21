@@ -268,7 +268,7 @@ function mf_activities_formfield_watch($ops) {
 		AND formtemplates.form_id = %d';
 	$sql = sprintf($sql
 		, wrap_category_id('template-types/field-changed-mail')
-		, wrap_static('page', 'form_id')
+		, wrap_static('zzform', 'form_id')
 	);
 	$formfields = wrap_db_fetch($sql, 'formfield_id');
 	if (!$formfields) return [];
