@@ -48,7 +48,7 @@ unset($zz['fields'][20]); // takes_place
 
 unset($zz['fields'][23]); // show_in_news
 
-unset($zz['fields'][62]); // event_media
+unset($zz['fields'][80]); // event_media
 
 unset($zz['fields'][16]); // eventdetails
 
