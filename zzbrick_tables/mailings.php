@@ -137,7 +137,7 @@ $zz['hooks']['before_update'] = 'mf_activities_hook_mailing_send';
 $zz['record']['copy'] = true;
 $zz['if'][1]['record']['edit'] = false;
 $zz['if'][1]['record']['delete'] = false;
-wrap_setting('zzform_max_detail_records', 200); // max recipients, adapt if needed
+$zz['setting']['zzform_max_detail_records'] = 200; // max recipients, adapt if needed
 
 $zz['subtitle']['event_id']['sql'] = $zz['fields'][2]['sql'];
 $zz['subtitle']['event_id']['var'] = ['event', 'duration'];

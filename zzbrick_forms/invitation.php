@@ -159,6 +159,6 @@ wrap_text_set('Add record', 'Submit Registration');
 wrap_text_set('Record was inserted', 'The registration has been sent successfully!');
 
 if (!empty($_POST['contact']))
-	wrap_setting('log_username_default', strtolower(wrap_filename($_POST['contact'], '.')));
+	$zz['setting']['log_username_default'] = strtolower(wrap_filename($_POST['contact'], '.'));
 
 $zz['hooks']['after_insert'][] = 'mf_activities_confirm_registration';

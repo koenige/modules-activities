@@ -235,4 +235,4 @@ $zz['filter'][2]['default_selection'] = 1;
 $zz['subtitle']['contact_id']['sql'] = $zz['fields'][2]['sql'];
 $zz['subtitle']['contact_id']['var'] = ['contact'];
 
-wrap_setting('zzform_search', 'both');
+$zz['setting']['zzform_search'] = 'both';
