@@ -188,10 +188,8 @@ function mf_activities_hook_mailing_send($ops) {
 		, wrap_category_id('provider/e-mail')
 	);
 	$mail['headers']['From'] = wrap_db_fetch($sql, '', 'key/value');
-	if (empty($mail['headers']['From'])) {
+	if (empty($mail['headers']['From']))
 		wrap_error(wrap_text('There does not seem to be a clear email address entered for the sender of the mailings. Therefore the mails cannot be sent.'), E_USER_ERROR);
-		exit;
-	}
 	if ($maildata['sender_mail']) {
 		if ($suffix = wrap_setting('activities_mailings_suffix_alternative_from'))
 			$mail['headers']['From']['name'] .= sprintf(', %s', $suffix);
