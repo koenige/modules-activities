@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2022 Gustaf Mossakowski
+ * @copyright Copyright © 2022-2023 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -35,6 +35,7 @@ $zz['fields'][3]['sql'] = 'SELECT website_id, website, domain
 	FROM websites
 	ORDER BY domain';
 $zz['fields'][3]['display_field'] = 'domain';
+$zz['fields'][3]['character_set'] = 'latin1';
 
 $zz['subselect']['sql'] = 'SELECT participation_id, domain
 	FROM /*_PREFIX_*/websites
