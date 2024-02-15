@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -256,9 +256,10 @@ function mf_activities_formkit_subtable($formfield, $def_no) {
 		$def['sql'] = wrap_edit_sql($def['sql'], 'WHERE',
 			sprintf('formfield_id = %d', $formfield['formfield_id'])
 		);
-		$def['subselect']['sql'] = wrap_edit_sql($def['subselect']['sql'], 'WHERE',
-			sprintf('formfield_id = %d', $formfield['formfield_id'])
-		);
+		if (!empty($def['subselect']['sql']))
+			$def['subselect']['sql'] = wrap_edit_sql($def['subselect']['sql'], 'WHERE',
+				sprintf('formfield_id = %d', $formfield['formfield_id'])
+			);
 	}
 
 	// @todo edit_from
