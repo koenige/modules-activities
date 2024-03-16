@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -113,3 +113,6 @@
 /* 2023-05-03-4 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'formfields', 'formfield_id', (SELECT DATABASE()), 'addresses', 'address_id', 'formfield_id', 'no-delete');
 /* 2023-06-14-1 */	UPDATE webpages SET content = REPLACE(content, '%%% forms participations-contacts * ', '%%% forms participations-contacts * *=contact ') WHERE content LIKE '%\%\%\% forms participations-contacts * %';
 /* 2023-07-11-1 */	ALTER TABLE `activities` CHANGE `comment` `comment` varchar(1000) NULL AFTER `activity_uri`;
+/* 2024-03-16-1 */	ALTER TABLE `contacts_access` CHANGE `last_update` `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP;
+/* 2024-03-16-2 */	ALTER TABLE `usergroups` CHANGE `last_update` `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP;
+/* 2024-03-16-3 */	ALTER TABLE `participations` CHANGE `last_update` `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP;

@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -44,7 +44,7 @@ CREATE TABLE `contacts_access` (
   `usergroup_id` int unsigned NOT NULL,
   `access_category_id` int unsigned NOT NULL,
   `property_category_id` int unsigned NOT NULL,
-  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`contact_access_id`),
   UNIQUE KEY `contact_id_usergroup_id_property_category_id` (`contact_id`,`usergroup_id`,`property_category_id`),
   KEY `usergroup_id` (`usergroup_id`),
@@ -254,7 +254,7 @@ CREATE TABLE `usergroups` (
   `active` enum('yes','no') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'yes',
   `organisation_contact_id` int unsigned DEFAULT NULL,
   `parameters` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_update` timestamp NOT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`usergroup_id`),
   UNIQUE KEY `identifier` (`identifier`),
   KEY `usergroup_category_id` (`usergroup_category_id`),
@@ -295,7 +295,7 @@ CREATE TABLE `participations` (
   `sequence` smallint unsigned DEFAULT NULL,
   `remarks` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `verification_hash` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_update` timestamp NOT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`participation_id`),
   UNIQUE KEY `verification_hash` (`verification_hash`),
   KEY `usergroup_id` (`usergroup_id`),
