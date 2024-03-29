@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -98,19 +98,13 @@ function mod_activities_make_registrationconfirmation() {
 				break;
 			case 'delete':
 				// delete participation + activities (via CASCADE)
-				$values = [];
-				$values['action'] = 'delete';
-				$values['POST']['participation_id'] = $data['participation_id'];
-				$participation = zzform_multi('participations', $values);
-				if (!$participation['id'])
+				$deleted = zzform_delete('participations', $data['participation_id']);
+				if (!$deleted)
 					wrap_error(sprintf('The registration for code %s was not deleted.', $code), E_USER_ERROR);
 				
 				// delete contact and contactdetails (if there's no other link)
 				// @todo add check before
-				$values = [];
-				$values['action'] = 'delete';
-				$values['POST']['contact_id'] = $data['contact_id'];
-				$contacts = zzform_multi('contacts', $values);
+				zzform_delete('contacts', $data['contact_id']);
 				// errors don’t matter
 				break;
 			}
