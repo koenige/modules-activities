@@ -8,31 +8,37 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
-if (!$brick['data']['published']) wrap_quit(404);
-if ($brick['data']['formtemplates_authentication_missing']) wrap_quit(503, wrap_text('Authentication mail is missing.'));
-if ($brick['data']['formtemplates_confirmation_missing']) wrap_quit(503, wrap_text('Confirmation mail is missing.'));
-if (empty($brick['data']['formfields'])) wrap_quit(503, wrap_text('One or more of the required form fields are missing.'));
+// read form placeholder if not there
+$data = $brick['data'] ?? $brick['parameter'];
+
+if (!$data['published']) wrap_quit(404);
+if ($data['formtemplates_authentication_missing']) wrap_quit(503, wrap_text('Authentication mail is missing.'));
+if ($data['formtemplates_confirmation_missing']) wrap_quit(503, wrap_text('Confirmation mail is missing.'));
+if (empty($data['formfields'])) wrap_quit(503, wrap_text('One or more of the required form fields are missing.'));
 
 $zz = zzform_include('contacts');
-$zz['record']['form_lead'] = $brick['data']['header']; // @todo this is lead, not header actually
-$zz['footer']['text'] = $brick['data']['footer'];
+$zz['record']['form_lead'] = $data['header']; // @todo this is lead, not header actually
+$zz['footer']['text'] = $data['footer'];
 
-$zz['title'] = $brick['data']['event'];
+$zz['title'] = $data['event'];
 $zz['access'] = 'add_only';
 $zz['hooks']['after_insert'] = 'mf_activities_formkit_hook';
-$zz['vars']['event'] = $brick['data'];
+$zz['vars']['event'] = $data;
+$zz['setting']['zzform_autofocus'] = false;
 
 wrap_include_files('zzform/formkit');
-$zz = mf_activities_formkit($zz, $brick['data']['event_id'], $brick['data']['form_parameters']);
+$zz = mf_activities_formkit($zz, $data['event_id'], $data['form_parameters']);
 
-wrap_text_set('Add a record', $brick['data']['form_parameters']['legend'] ?? $brick['data']['category']);
-if (!empty($brick['data']['form_parameters']['action']))
-	wrap_text_set('Add record', $brick['data']['form_parameters']['action']);
-wrap_text_set('Record was inserted', $brick['data']['form_parameters']['legend_insert'] ?? $brick['data']['category']);
+wrap_text_set('Add a record', $data['form_parameters']['legend'] ?? $data['category']);
+if (!empty($data['form_parameters']['action']))
+	wrap_text_set('Add record', $data['form_parameters']['action']);
+wrap_text_set('Record was inserted', $data['form_parameters']['legend_insert'] ?? $data['category']);
 
-$zz['page']['request'][] = 'form';
+// call request script only if it is a standalone form
+if (!empty($brick['data']))
+	$zz['page']['request'][] = 'form';
