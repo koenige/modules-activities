@@ -35,7 +35,10 @@ $zz['title'] = $data['event'];
 $zz['access'] = 'add_only';
 $zz['hooks']['after_insert'] = 'mf_activities_formkit_hook';
 $zz['vars']['event'] = $data;
+
 $zz['setting']['zzform_autofocus'] = false;
+$zz['setting']['translate_fields'] = false;
+wrap_setting('contacts_details_with_label', false);
 
 wrap_include_files('zzform/formkit', 'activities');
 $zz = mf_activities_formkit($zz, $data['event_id'], $data['form_parameters']);
