@@ -558,3 +558,19 @@ function mf_activities_form($identifier, $event_category_id, $website_id = NULL)
 	if (empty($required['missing'])) $event['formfields'] = true;
 	return $event;
 }
+
+/**
+ * check if an event has a form and return it
+ *
+ * @param array $event
+ * @return string
+ */
+function mf_activities_event_form($event) {
+	$sql = 'SELECT form_id FROM forms WHERE event_id = %d';
+	$sql = sprintf($sql, $event['event_id']);
+	$form = wrap_db_fetch($sql, '', 'single value');
+	if (!$form) return '';
+	$event = array_merge($event, mf_activities_form($event['identifier'], wrap_category_id('event/event')));
+	$form = brick_format('%%% forms registration '.$event['identifier'].' %%%', $event);
+	return $form['text'];
+}
