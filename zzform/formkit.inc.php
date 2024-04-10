@@ -46,25 +46,12 @@ function mf_activities_formkit($zz, $event_id, $parameters) {
 			parse_str($formfield['definition'], $formfields[$formfield_id]['definition']);
 	}
 
-	// prepare main table
-	$zz['table'] = wrap_db_prefix($zz['table']);
-	foreach ($zz['fields'] as $no => $field) {
-		if (empty($zz['fields'][$no])) continue;
-		$zz['fields'][$no]['export'] = false;
-		// keep ID field
-		if (!empty($zz['fields'][$no]['type']) AND $zz['fields'][$no]['type'] === 'id') continue; 
-		$zz['fields'][$no]['hide_in_form'] = true;
-		$zz['fields'][$no]['hide_in_list'] = true;
-		if (empty($field['field_name'])) continue;
-		if (!empty($parameters['db_values'][$zz['table'].'.'.$field['field_name']])) {
-			$zz['fields'][$no]['type'] = 'hidden';
-			$zz['fields'][$no]['value'] = mf_activities_formkit_value($parameters['db_values'][$zz['table'].'.'.$field['field_name']]);
-		}
-	}
+	mf_activities_formkit_contacts($zz, $parameters);
 	$last_update = $zz['fields'][99];
 	unset($zz['fields'][99]);
 	$no = mf_activities_formkit_no($zz['fields']);
 	
+	$area = '';
 	foreach ($formfields as $formfield) {
 		$my_no = $no;
 		if (empty($formfield['definition']['db_field'])) continue; // @todo, captcha
@@ -83,12 +70,40 @@ function mf_activities_formkit($zz, $event_id, $parameters) {
 		$zz['fields'][$my_no]['hide_in_form'] = false;
 		$zz['fields'][$my_no]['export'] = true;
 		$zz['fields'][$my_no]['hide_in_list'] = $formfield['custom']['hide_in_list'] ?? false;
+		if ($formfield['area'] AND $formfield['area'] !== $area) {
+			$zz['fields'][$my_no]['separator_before'] = 'text <h3><strong>'.$formfield['area'].'</strong></h3>';
+			$area = $formfield['area'];
+		}
 		$no++;
 	}
 	
 	$last_update['hide_in_form'] = true;
 	$zz['fields'][] = $last_update;
 	return $zz;
+}
+
+/**
+ * prepare main table (contacts)
+ * hide fields from list, record, export, set values
+ *
+ * @param array $zz
+ * @param array $parameters
+ */
+function mf_activities_formkit_contacts(&$zz, $parameters) {
+	$zz['table'] = wrap_db_prefix($zz['table']);
+	foreach ($zz['fields'] as $no => $field) {
+		if (empty($zz['fields'][$no])) continue;
+		$zz['fields'][$no]['export'] = false;
+		// keep ID field
+		if (!empty($zz['fields'][$no]['type']) AND $zz['fields'][$no]['type'] === 'id') continue; 
+		$zz['fields'][$no]['hide_in_form'] = true;
+		$zz['fields'][$no]['hide_in_list'] = true;
+		if (empty($field['field_name'])) continue;
+		if (!empty($parameters['db_values'][$zz['table'].'.'.$field['field_name']])) {
+			$zz['fields'][$no]['type'] = 'hidden';
+			$zz['fields'][$no]['value'] = mf_activities_formkit_value($parameters['db_values'][$zz['table'].'.'.$field['field_name']]);
+		}
+	}
 }
 
 /**
@@ -198,8 +213,6 @@ function mf_activities_formkit_field($formfield, $fields) {
  * @return array
  */
 function mf_activities_formkit_subtable($formfield, $def_no) {
-	static $area = '';
-	
 	$def = zzform_include($formfield['table']);
 	$def['table'] = wrap_db_prefix($def['table']);
 	$def['type'] = 'subtable';
@@ -209,10 +222,6 @@ function mf_activities_formkit_subtable($formfield, $def_no) {
 	$def['max_records'] = $formfield['custom']['max_records'] ?? 1;
 	$def['min_records_required'] = $formfield['custom']['optional'] ?? 1;
 	$def['dont_show_missing'] = true; // show only individual errors
-	if ($formfield['area'] AND $formfield['area'] !== $area) {
-		$def['separator_before'] = 'text <h3><strong>'.$formfield['area'].'</strong></h3>';
-		$area = $formfield['area'];
-	}
 	$def['class'] = !empty($formfield['hide_in_form']) ? 'hidden' : '';
 	
 	$has_formfield_id = false;
