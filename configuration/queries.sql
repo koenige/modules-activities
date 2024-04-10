@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -61,6 +61,35 @@ AND participations.event_id = %d
 SELECT contact_id, contact, parameters
 FROM contacts
 WHERE contact_id = %d
+
+-- activities_placeholder_form --
+SELECT event_id, event, identifier, form_id, abstract, events.description
+	, IF(published = "yes", 1, NULL) AS published
+	, IF((SELECT COUNT(*) FROM formtemplates
+		WHERE formtemplates.form_id = forms.form_id
+		AND template_category_id = /*_ID CATEGORIES template-types/authentication _*/)
+	>= 1, NULL, IF(form_categories.parameters LIKE "%%&no_authentication_mail=1%%", NULL, 1
+	)) AS formtemplates_authentication_missing
+	, IF((SELECT COUNT(*) FROM formtemplates
+		WHERE formtemplates.form_id = forms.form_id
+		AND template_category_id = /*_ID CATEGORIES template-types/confirmation _*/)
+	>= 1, NULL, IF(form_categories.parameters LIKE "%%&no_confirmation_mail=1%%", NULL, 1
+	)) AS formtemplates_confirmation_missing
+	, (SELECT GROUP_CONCAT(formfield_category_id SEPARATOR ",") FROM formfields
+		WHERE formfields.form_id = forms.form_id) AS formfield_category_ids
+	, forms.access
+	, form_categories.category_id
+	, form_categories.category
+	, form_categories.parameters AS form_parameters
+	, forms.lead, forms.header, forms.footer
+FROM events
+LEFT JOIN forms USING (event_id)
+LEFT JOIN websites USING (website_id)
+LEFT JOIN categories form_categories
+	ON forms.form_category_id = form_categories.category_id
+WHERE identifier = "%s"
+AND event_category_id = %d
+AND website_id = %d;
 
 -- activities_website_id --
 /* ignore */

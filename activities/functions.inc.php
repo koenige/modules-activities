@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -524,4 +524,37 @@ function mf_activities_form_templates($form_id, $type = '', $formfield_id = 0) {
 	if ($type and $formfield_id) return $data[$type][$formfield_id] ?? '';
 	if ($type) return $data[$type];
 	return $data;
+}
+
+/**
+ * get form with event data
+ * plus checks
+ *
+ * @param string $identifier
+ * @param int $event_category_id
+ * @param int $website_id (optional)
+ * @return array
+ */
+function mf_activities_form($identifier, $event_category_id, $website_id = NULL) {
+	if (!$website_id) $website_id = wrap_setting('website_id') ?? 1;
+	$sql = wrap_sql_query('activities_placeholder_form');
+	$sql = sprintf($sql
+		, wrap_db_escape($identifier)
+		, $event_category_id
+		, $website_id
+	);
+	$event = wrap_db_fetch($sql);
+	if (!$event) return [];
+	$event = wrap_translate($event, 'event');
+	$event = wrap_translate($event, 'categories', 'category_id');
+	if (!$event['formtemplates_confirmation_missing'] AND !$event['formtemplates_authentication_missing'])
+		$event['formtemplates'] = true;
+	if ($event['formfield_category_ids'])
+		$event['formfield_category_ids'] = explode(',', $event['formfield_category_ids']);
+	if ($event['form_parameters'])
+		parse_str($event['form_parameters'], $event['form_parameters']);
+
+	$required = mf_activities_formfields_required($event);
+	if (empty($required['missing'])) $event['formfields'] = true;
+	return $event;
 }
