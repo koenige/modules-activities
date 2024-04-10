@@ -14,7 +14,13 @@
 
 
 // read form placeholder if not there
-$data = $brick['data'] ?? $brick['parameter'];
+if (!empty($brick['data'])) {
+	$data = $brick['data'];
+	$separate_page = true;
+} else {
+	$data = $brick['parameter'];
+	$separate_page = false;
+}
 
 if (!$data['published']) wrap_quit(404);
 if ($data['formtemplates_authentication_missing']) wrap_quit(503, wrap_text('Authentication mail is missing.'));
@@ -31,7 +37,7 @@ $zz['hooks']['after_insert'] = 'mf_activities_formkit_hook';
 $zz['vars']['event'] = $data;
 $zz['setting']['zzform_autofocus'] = false;
 
-wrap_include_files('zzform/formkit');
+wrap_include_files('zzform/formkit', 'activities');
 $zz = mf_activities_formkit($zz, $data['event_id'], $data['form_parameters']);
 
 wrap_text_set('Add a record', $data['form_parameters']['legend'] ?? $data['category']);
@@ -39,6 +45,11 @@ if (!empty($data['form_parameters']['action']))
 	wrap_text_set('Add record', $data['form_parameters']['action']);
 wrap_text_set('Record was inserted', $data['form_parameters']['legend_insert'] ?? $data['category']);
 
-// call request script only if it is a standalone form
-if (!empty($brick['data']))
+if ($separate_page) {
+	// call request script only if it is a standalone form
 	$zz['page']['request'][] = 'form';
+
+} else {
+	$zz['title'] = '';
+
+}
