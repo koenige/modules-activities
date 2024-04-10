@@ -66,7 +66,8 @@ function mf_activities_formkit($zz, $event_id, $parameters) {
 			$zz['fields'][$my_no] = mf_activities_formkit_subtable($formfield, $my_no);
 		}
 		$zz['fields'][$my_no]['title'] = $formfield['formfield'];
-		$zz['fields'][$my_no]['explanation'] = $formfield['explanation'];
+		if (empty($formfield['definition']['selection_from_explanation']))
+			$zz['fields'][$my_no]['explanation'] = $formfield['explanation'];
 		$zz['fields'][$my_no]['hide_in_form'] = false;
 		$zz['fields'][$my_no]['export'] = true;
 		$zz['fields'][$my_no]['hide_in_list'] = $formfield['custom']['hide_in_list'] ?? false;
@@ -286,7 +287,10 @@ function mf_activities_formkit_subtable($formfield, $def_no) {
 function mf_activities_formkit_select($field, $formfield) {
 	$field['null'] = true;
 	$select_type = $formfield['definition']['select_type'] ?? 'enum';
-	$field[$select_type] = $formfield['custom']['selection'] ?? [];
+	if (!empty($formfield['definition']['selection_from_explanation']))
+		$field[$select_type] = [trim(str_replace("\n", " ", $formfield['explanation']))];
+	else
+		$field[$select_type] = $formfield['custom']['selection'] ?? $formfield['definition']['selection'] ?? [];
 	$field['show_values_as_list'] = $formfield['custom']['show_values_as_list'] ?? $formfield['definition']['show_values_as_list'] ?? false;
 	return $field;
 }
