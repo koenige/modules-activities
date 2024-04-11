@@ -22,13 +22,27 @@
  */
 function mf_activities_formkit($event_id, $parameters) {
 	$formfields = mf_activities_formkit_fields($event_id);
+	$main_table = mf_activities_formkit_which($formfields);
 
 	if (!$parameters) $parameters = [];
 	elseif (!is_array($parameters)) $parameters = parse_str($parameters, $parameters);
 
-	$zz = zzform_include('contacts');
+	switch ($main_table) {
+	case 'contacts':
+		$zz = zzform_include('contacts');
+		mf_activities_formkit_table($zz, $parameters);
+		break;
+	case 'persons':
+		$zz = zzform_include('persons', [], 'forms');
+		mf_activities_formkit_table($zz, $parameters);
+		foreach ($zz['fields'] as $no => $field) {
+			if (empty($field['table'])) continue;
+			if (wrap_db_prefix($field['table']) !== wrap_db_prefix('/*_PREFIX_*/persons')) continue;
+			mf_activities_formkit_table($zz['fields'][$no], $parameters);
+			$persons_no = $no;
+		}
+	}
 
-	mf_activities_formkit_contacts($zz, $parameters);
 	$last_update = $zz['fields'][99];
 	unset($zz['fields'][99]);
 	$no = mf_activities_formkit_no($zz['fields']);
@@ -43,19 +57,26 @@ function mf_activities_formkit($event_id, $parameters) {
 		if ($formfield['table'] === $zz['table']) {
 			$my_no = mf_activities_formkit_field($formfield, $zz['fields']);
 			$zz['fields'][$my_no]['type'] = $formfield['definition']['type'];
+			$my_field = &$zz['fields'][$my_no];
+		} elseif (wrap_db_prefix($formfield['table']) === wrap_db_prefix('/*_PREFIX_*/persons')) {
+			$zz['fields'][$persons_no]['hide_in_form'] = false;
+			$my_no = mf_activities_formkit_field($formfield, $zz['fields'][$persons_no]['fields']);
+			$my_field = &$zz['fields'][$persons_no]['fields'][$my_no];
 		} else {
 			$zz['fields'][$my_no] = mf_activities_formkit_subtable($formfield, $my_no);
+			$my_field = &$zz['fields'][$my_no];
 		}
-		$zz['fields'][$my_no]['title'] = $formfield['formfield'];
+		$my_field['title'] = $formfield['formfield'];
 		if (empty($formfield['definition']['selection_from_explanation']))
-			$zz['fields'][$my_no]['explanation'] = $formfield['explanation'];
-		$zz['fields'][$my_no]['hide_in_form'] = false;
-		$zz['fields'][$my_no]['export'] = true;
-		$zz['fields'][$my_no]['hide_in_list'] = $formfield['custom']['hide_in_list'] ?? false;
+			$my_field['explanation'] = $formfield['explanation'];
+		$my_field['hide_in_form'] = false;
+		$my_field['export'] = true;
+		$my_field['hide_in_list'] = $formfield['custom']['hide_in_list'] ?? false;
 		if ($formfield['area'] AND $formfield['area'] !== $area) {
-			$zz['fields'][$my_no]['separator_before'] = 'text <h3><strong>'.$formfield['area'].'</strong></h3>';
+			$my_field['separator_before'] = 'text <h3><strong>'.$formfield['area'].'</strong></h3>';
 			$area = $formfield['area'];
 		}
+		$my_field['field_sequence'] = $no;
 		$no++;
 	}
 	
@@ -101,13 +122,28 @@ function mf_activities_formkit_fields($event_id) {
 }
 
 /**
- * prepare main table (contacts)
+ * determine which table or form should be used as main table
+ *
+ * @param array $formfields
+ * @return string
+ */
+function mf_activities_formkit_which($formfields) {
+	foreach ($formfields as $field) {
+		if (empty($field['definition']['db_field'])) continue;
+		if (str_starts_with($field['definition']['db_field'], 'persons.'))
+			return 'persons';
+	}
+	return 'contacts';
+}
+
+/**
+ * prepare main tables (contacts, persons)
  * hide fields from list, record, export, set values
  *
  * @param array $zz
  * @param array $parameters
  */
-function mf_activities_formkit_contacts(&$zz, $parameters) {
+function mf_activities_formkit_table(&$zz, $parameters) {
 	$zz['table'] = wrap_db_prefix($zz['table']);
 	foreach ($zz['fields'] as $no => $field) {
 		if (empty($zz['fields'][$no])) continue;
