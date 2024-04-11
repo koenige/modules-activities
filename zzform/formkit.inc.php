@@ -186,8 +186,10 @@ function mf_activities_formkit_no($fields) {
  */
 function mf_activities_formkit_normalize_parameters($parameters) {
 	if (!$parameters) return [];
-	foreach ($parameters as $key => $value)
+	foreach ($parameters as $key => $value) {
 		if (!$value) unset($parameters[$key]);
+		$parameters[$key] = wrap_setting_value($value);
+	}
 	return $parameters;
 }
 
@@ -222,7 +224,8 @@ function mf_activities_formkit_subtable($formfield, $def_no) {
 	$def['form_display'] = 'lines';
 	$def['min_records'] = 1;
 	$def['max_records'] = $formfield['custom']['max_records'] ?? 1;
-	$def['min_records_required'] = $formfield['custom']['optional'] ?? 1;
+	$optional = $formfield['custom']['optional'] ?? 0;
+	$def['min_records_required'] = !$optional;
 	$def['dont_show_missing'] = true; // show only individual errors
 	$def['class'] = !empty($formfield['hide_in_form']) ? 'hidden' : '';
 	
