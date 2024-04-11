@@ -461,9 +461,9 @@ function mf_activities_formkit_value($value) {
  * @return int
  */
 function mf_activities_formkit_usergroup($parameters) {
-	return mf_activities_formkit_value(
-		$parameters['db_values']['participants.usergroup_id'] ?? 'ID usergroups '.wrap_setting('activities_registration_usergroup_default')
-	);
+	if (!empty($parameters['db_values']['participants.usergroup_id']))
+		return mf_activities_formkit_value($parameters['db_values']['participants.usergroup_id']);
+	return wrap_id('usergroups', wrap_setting('activities_registration_usergroup_default'));
 }
 
 /**
@@ -499,20 +499,14 @@ function mf_activities_formkit_hook($ops) {
  * @return int
  */
 function mf_activities_formkit_hook_participation($contact_id, $event_id, $parameters) {
-	$values = [];
-	$values['action'] = 'insert';
-	$values['ids'] = [
-		'contact_id', 'usergroup_id', 'event_id', 'status_category_id'
+	$line = [
+		'contact_id' => $contact_id,
+		'usergroup_id' => mf_activities_formkit_usergroup($parameters),
+		'event_id' => $event_id,
+		'status_category_id' => wrap_category_id('participation-status/subscribed'),
+		'entry_contact_id' => $_SESSION['contact_id'] ?? $contact_id
 	];
-	$values['POST']['contact_id'] = $contact_id;
-	$values['POST']['usergroup_id'] = mf_activities_formkit_usergroup($parameters);
-	$values['POST']['event_id'] = $event_id;
-	$values['POST']['status_category_id'] = mf_activities_formkit_value('ID categories participation-status/subscribed');
-	$values['POST']['entry_contact_id'] = $_SESSION['contact_id'] ?? $contact_id;
-	$ops = zzform_multi('participations', $values);
-	if (empty($ops['id']))
-		wrap_error(sprintf('Unable to add participation for registration with contact ID %d.', $contact_id), E_USER_ERROR);
-	return $ops['id'];
+	return zzform_insert('participations', $line, E_USER_ERROR);
 }
 
 /**
@@ -522,15 +516,11 @@ function mf_activities_formkit_hook_participation($contact_id, $event_id, $param
  * @return int
  */
 function mf_activities_formkit_hook_activity($participation_id) {
-	$values = [];
-	$values['action'] = 'insert';
-	$values['ids'] = ['participation_id', 'activity_category_id'];
-	$values['POST']['participation_id'] = $participation_id;
-	$values['POST']['activity_category_id'] = wrap_category_id('activities/subscribe'); // register?
-	$ops = zzform_multi('activities', $values);
-	if (empty($ops['id']))
-		wrap_error(sprintf('Unable to add activity for participation with ID %d.', $participation_id), E_USER_ERROR);
-	return $ops['id'];
+	$line = [
+		'participation_id' => $participation_id,
+		'activity_category_id' => wrap_category_id('activities/subscribe') // register?
+	];
+	return zzform_insert('activities', $line, E_USER_ERROR);
 }
 
 /**
