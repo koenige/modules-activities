@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/activities
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020-2023 Gustaf Mossakowski
+# @copyright Copyright © 2020-2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 msgid ""
@@ -65,7 +65,7 @@ msgstr "Für den Absender der Mailings scheint keine eindeutige E-Mail-Adresse e
 
 #: zzbrick_forms/formfields.php
 msgid "Here you can define a form field by field."
-msgstr "Hier können Sie ein Formularfeld Feld für Feld definieren."
+msgstr "Hier können Sie ein Formular Feld für Feld definieren."
 
 #: zzbrick_forms/formfields.php
 msgid "Note: Each form must have at least these fields:"
