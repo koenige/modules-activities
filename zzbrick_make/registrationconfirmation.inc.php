@@ -54,6 +54,7 @@ function mod_activities_make_registrationconfirmation() {
 		$sql = 'SELECT participations.participation_id, status_category_id, contact_id
 				, contacts.identifier
 				, invitations.parameters
+				, participations.event_id
 			FROM participations
 			LEFT JOIN contacts USING (contact_id)
 			LEFT JOIN invitations
@@ -92,6 +93,9 @@ function mod_activities_make_registrationconfirmation() {
 				$participation = zzform_multi('participations', $values);
 				if (!$participation['id'])
 					wrap_error(sprintf('The registration for code %s was not completed.', $code), E_USER_ERROR);
+				
+				wrap_include_files('zzform/formkit', 'activities');
+				mf_activities_formkit_mail_send($data['event_id'], $data['contact_id'], 'confirmation');
 				
 				$old_contact_id = mf_activities_merge_contact($data['contact_id']);
 				if ($old_contact_id) $data['contact_id'] = $old_contact_id;
