@@ -535,8 +535,9 @@ function mf_activities_form_templates($form_id, $type = '', $formfield_id = 0) {
  * @param int $website_id (optional)
  * @return array
  */
-function mf_activities_form($identifier, $event_category_id, $website_id = NULL) {
+function mf_activities_form($identifier, $event_category_id = NULL, $website_id = NULL) {
 	if (!$website_id) $website_id = wrap_setting('website_id') ?? 1;
+	if (!$event_category_id) $event_category_id = wrap_category_id('event/event');
 	$sql = wrap_sql_query('activities_placeholder_form');
 	$sql = sprintf($sql
 		, wrap_db_escape($identifier)
