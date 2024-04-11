@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -17,6 +17,9 @@ if (!$brick['data']['form_id']) wrap_quit(404);
 
 $zz = zzform_include('formfields');
 $zz['where']['form_id'] = $brick['data']['form_id'];
+
+// sequence
+$zz['fields'][7]['type'] = 'sequence';
 
 $zz['explanation'] = wrap_text('Here you can define a form field by field.');
 $required_fields = mf_activities_formfields_required($brick['data']);
