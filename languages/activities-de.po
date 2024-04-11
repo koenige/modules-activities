@@ -367,6 +367,18 @@ msgstr "Rolle"
 msgid "Status"
 msgstr "Status"
 
+#: zzbrick_tables/participations.php
+msgid "Entry"
+msgstr "Eintrag"
+
+#: zzbrick_tables/participations.php
+msgid "Entry on"
+msgstr "Eintrag am"
+
+#: zzbrick_tables/participations.php
+msgid "Entry by"
+msgstr "Eintrag durch"
+
 #: zzbrick_tables/usergroups.php
 msgid "Groups"
 msgstr "Gruppen"

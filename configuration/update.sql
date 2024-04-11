@@ -116,3 +116,6 @@
 /* 2024-03-16-1 */	ALTER TABLE `contacts_access` CHANGE `last_update` `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP;
 /* 2024-03-16-2 */	ALTER TABLE `usergroups` CHANGE `last_update` `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP;
 /* 2024-03-16-3 */	ALTER TABLE `participations` CHANGE `last_update` `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP;
+/* 2024-04-11-1 */	ALTER TABLE `participations` ADD `entry_date` datetime NULL AFTER `verification_hash`, ADD `entry_contact_id` int unsigned NULL AFTER `entry_date`;
+/* 2024-04-11-2 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'contacts', 'contact_id', (SELECT DATABASE()), 'participations', 'participation_id', 'entry_contact_id', 'no-delete');
+/* 2024-04-11-3 */	ALTER TABLE `participations` ADD INDEX `entry_contact_id` (`entry_contact_id`);

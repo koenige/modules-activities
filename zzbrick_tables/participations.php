@@ -179,6 +179,30 @@ $zz['fields'][8]['identifier']['random_hash'] = 8;
 $zz['fields'][8]['fields'] = ['verification_hash'];
 $zz['fields'][8]['export'] = false;
 
+$zz['fields'][34]['title_append'] = 'Entry';
+$zz['fields'][34]['title'] = 'Entry on';
+$zz['fields'][34]['field_name'] = 'entry_date';
+$zz['fields'][34]['type'] = 'hidden';
+$zz['fields'][34]['type_detail'] = 'datetime';
+$zz['fields'][34]['hide_in_list'] = true;
+$zz['fields'][34]['if']['insert']['default'] = date('Y-m-d H:i:s');
+$zz['fields'][34]['export'] = false;
+$zz['fields'][34]['append_next'] = true;
+$zz['fields'][34]['suffix'] = ' / ';
+
+$zz['fields'][35]['title'] = 'Entry by';
+$zz['fields'][35]['field_name'] = 'entry_contact_id';
+$zz['fields'][35]['type'] = 'hidden';
+$zz['fields'][35]['type_detail'] = 'select';
+$zz['fields'][35]['key_field_name'] = 'contact_id';
+$zz['fields'][35]['sql'] = 'SELECT contact_id, contact, identifier
+	FROM /*_PREFIX_*/contacts
+	ORDER BY contact';
+$zz['fields'][35]['if']['insert']['default'] = $_SESSION['contact_id'] ?? false;
+$zz['fields'][35]['hide_in_list'] = true;
+$zz['fields'][35]['exclude_from_search'] = true;
+$zz['fields'][35]['export'] = false;
+
 $zz['fields'][99]['field_name'] = 'last_update';
 $zz['fields'][99]['type'] = 'timestamp';
 $zz['fields'][99]['hide_in_list'] = true;
