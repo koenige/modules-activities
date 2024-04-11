@@ -117,8 +117,33 @@ function mf_activities_formkit_fields($event_id) {
 			$formfields[$formfield_id][$param]
 				= mf_activities_formkit_normalize_parameters($formfield[$param]);
 		}
+		$type = $formfields[$formfield_id]['definition']['type'] ?? '';
+		if ($type === 'upload')
+			$formfields[$formfield_id]['definition']['main_medium_id']
+				= mf_activities_formkit_upload_folder($event_id);
 	}
 	return $formfields;
+}
+
+/**
+ * get (and create) upload folder for event
+ *
+ * @param int $event_id
+ * @return int
+ */
+function mf_activities_formkit_upload_folder($event_id) {
+	$sql = 'SELECT identifier FROM events WHERE event_id = %d';
+	$sql = sprintf($sql, $event_id);
+	$identifier = wrap_db_fetch($sql, '', 'single value');
+	if (!$identifier) return 0;
+	
+	if ($folder = wrap_setting('activities_form_upload_folder'))
+	    $folder = sprintf('%s/%s', $folder, $identifier);
+	else
+		$folder = $identifier;
+
+	wrap_include_files('zzform/batch', 'media');	
+	return mf_media_folder($folder);
 }
 
 /**
@@ -281,6 +306,10 @@ function mf_activities_formkit_subtable($formfield, $def_no) {
 	$def['dont_show_missing'] = true; // show only individual errors
 	$def['class'] = !empty($formfield['hide_in_form']) ? 'hidden' : '';
 	
+	switch ($formfield['table']) {
+		case 'media': $def = mf_activities_formkit_media($formfield, $def); break;
+	}
+	
 	$has_formfield_id = false;
 	foreach ($def['fields'] as $field_no => $field) {
 		if (empty($field)) continue;
@@ -349,6 +378,62 @@ function mf_activities_formkit_select($field, $formfield) {
 		$field[$select_type] = $formfield['custom']['selection'] ?? $formfield['definition']['selection'] ?? [];
 	$field['show_values_as_list'] = $formfield['custom']['show_values_as_list'] ?? $formfield['definition']['show_values_as_list'] ?? false;
 	return $field;
+}
+
+/**
+ * prepare media table, hide fields
+ *
+ * @param array $formfield
+ * @param array $def
+ * @return array
+ */
+function mf_activities_formkit_media($formfield, $def) {
+	$def['records_depend_on_upload'] = true;
+	// no background uploads via this form, @todo
+	wrap_setting('zzform_upload_background_thumbnails', false);
+
+	foreach ($def['fields'] as $no => $field) {
+		if (empty($field['field_name'])) {
+			// subtables, not needed here
+			unset($def['fields'][$no]);
+			continue;
+		}
+		switch ($field['field_name']) {
+		case 'main_medium_id':
+			$def['fields'][$no]['type'] = 'hidden';
+			$def['fields'][$no]['type_detail'] = 'select';
+			$def['fields'][$no]['value'] = $formfield['custom']['main_medium_id']
+				?? $formfield['definition']['main_medium_id'];
+			$def['fields'][$no]['hide_in_form'] = true;
+			break;
+		case 'title':
+			$def['fields'][$no]['dont_show_missing'] = true;
+			$def['fields'][$no]['hide_in_form'] = true;
+		case 'image':
+			$def['fields'][$no]['image'][0]['required'] = false;
+			$def['fields'][$no]['show_title'] = false;
+			$filetypes = $formfield['custom']['input_filetypes']
+				?? $formfield['definition']['input_filetypes'] ?? [];
+			if ($filetypes)
+				$def['fields'][$no]['input_filetypes'] = $filetypes;
+			$max_filesize = $formfield['custom']['upload_max_filesize']
+				?? $formfield['definition']['upload_max_filesize'] ?? [];
+			if ($max_filesize)
+				$def['fields'][$no]['upload_max_filesize'] = $max_filesize;
+			break;
+		case 'published':
+			$def['fields'][$no]['type'] = 'hidden';
+			$def['fields'][$no]['type_detail'] = 'select';
+			$def['fields'][$no]['value'] = 'no';
+			$def['fields'][$no]['hide_in_form'] = true;
+			break;
+		default:
+			$def['fields'][$no]['hide_in_form'] = true;
+			$def['fields'][$no]['for_action_ignore'] = true;
+			break;
+		}
+	}
+	return $def;
 }
 
 /**
