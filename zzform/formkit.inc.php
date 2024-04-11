@@ -16,12 +16,13 @@
 /**
  * create a form based on formfields
  *
- * @param array $zz
  * @param int $event_id
  * @param array $parameters
  * @return array
  */
-function mf_activities_formkit($zz, $event_id, $parameters) {
+function mf_activities_formkit($event_id, $parameters) {
+	$zz = zzform_include('contacts');
+
 	$sql = 'SELECT formfield_id, formfield, explanation, area
 			, category_id, categories.path
 			, edit_from, edit_by

@@ -27,7 +27,9 @@ if ($data['formtemplates_authentication_missing']) wrap_quit(503, wrap_text('Aut
 if ($data['formtemplates_confirmation_missing']) wrap_quit(503, wrap_text('Confirmation mail is missing.'));
 if (empty($data['formfields'])) wrap_quit(503, wrap_text('One or more of the required form fields are missing.'));
 
-$zz = zzform_include('contacts');
+wrap_include_files('zzform/formkit', 'activities');
+$zz = mf_activities_formkit($data['event_id'], $data['form_parameters']);
+
 $zz['record']['form_lead'] = $data['header']; // @todo this is lead, not header actually
 $zz['footer']['text'] = $data['footer'];
 
@@ -40,9 +42,6 @@ $zz['setting']['zzform_autofocus'] = false;
 $zz['setting']['translate_fields'] = false;
 wrap_setting('contacts_details_with_label', false);
 
-wrap_include_files('zzform/formkit', 'activities');
-$zz = mf_activities_formkit($zz, $data['event_id'], $data['form_parameters']);
-
 wrap_text_set('Add a record', $data['form_parameters']['legend'] ?? $data['category']);
 if (!empty($data['form_parameters']['action']))
 	wrap_text_set('Add record', $data['form_parameters']['action']);
@@ -51,8 +50,6 @@ wrap_text_set('Record was inserted', $data['form_parameters']['legend_insert'] ?
 if ($separate_page) {
 	// call request script only if it is a standalone form
 	$zz['page']['request'][] = 'form';
-
 } else {
 	$zz['title'] = '';
-
 }

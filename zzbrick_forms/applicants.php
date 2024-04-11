@@ -15,8 +15,8 @@
 
 if (empty($brick['data']['event_id'])) wrap_quit(404);
 wrap_include_files('zzform/formkit', 'activities');
+$zz = mf_activities_formkit($brick['data']['event_id'], $brick['data']['form_parameters']);
 
-$zz = zzform_include('contacts');
 $zz['sql'] = wrap_edit_sql($zz['sql'], 'JOIN',
 	'LEFT JOIN participations USING (contact_id)'
 );
@@ -43,9 +43,6 @@ $zz['title'] = wrap_text('Registrations').' <br><a href="../">'.$brick['data']['
 $zz['hooks']['after_insert'] = 'mf_activities_formkit_hook';
 $zz['vars']['event'] = $brick['data'];
 $zz['page']['dont_show_title_as_breadcrumb'] = true;
-
-wrap_include_files('zzform/formkit', 'activities');
-$zz = mf_activities_formkit($zz, $brick['data']['event_id'], $brick['data']['form_parameters']);
 
 foreach (array_keys($zz['fields']) as $no) continue;
 $zz['fields'][++$no] = mf_activities_formkit_participations($brick['data']['event_id']);
