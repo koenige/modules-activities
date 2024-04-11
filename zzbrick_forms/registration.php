@@ -27,6 +27,8 @@ if ($data['formtemplates_authentication_missing']) wrap_quit(503, wrap_text('Aut
 if ($data['formtemplates_confirmation_missing']) wrap_quit(503, wrap_text('Confirmation mail is missing.'));
 if (empty($data['formfields'])) wrap_quit(503, wrap_text('One or more of the required form fields are missing.'));
 
+wrap_setting('contacts_details_with_label', false);
+
 wrap_include_files('zzform/formkit', 'activities');
 $zz = mf_activities_formkit($data['event_id'], $data['form_parameters']);
 
@@ -40,7 +42,6 @@ $zz['vars']['event'] = $data;
 
 $zz['setting']['zzform_autofocus'] = false;
 $zz['setting']['translate_fields'] = false;
-wrap_setting('contacts_details_with_label', false);
 
 wrap_text_set('Add a record', $data['form_parameters']['legend'] ?? $data['category']);
 if (!empty($data['form_parameters']['action']))
