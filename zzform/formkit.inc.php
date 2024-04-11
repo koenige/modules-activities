@@ -533,6 +533,10 @@ function mf_activities_formkit_hook_activity($participation_id) {
 function mf_activities_formkit_mail_send($event_id, $contact_id, $type) {
 	$value = sprintf('%d/%d/%s', $event_id, $contact_id, $type);
 	$url = wrap_path('activities_formmail_send', $value, false);
+	if (!$url) {
+		wrap_error('No path for `activities_formmail_send` found.', E_USER_WARNING);
+		return false;
+	}
 	$success = wrap_job($url);
 	if ($success) return true;
 	return false;
