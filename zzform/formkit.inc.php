@@ -43,13 +43,11 @@ function mf_activities_formkit($event_id, $parameters) {
 		}
 	}
 
-	$last_update = $zz['fields'][99];
-	unset($zz['fields'][99]);
 	$no = mf_activities_formkit_no($zz['fields']);
 	
 	$area = '';
-	foreach ($formfields as $formfield) {
-		$my_no = $no;
+	$nos = [];
+	foreach ($formfields as $formfield_id => $formfield) {
 		if (empty($formfield['definition']['db_field'])) continue; // @todo, captcha
 		// @todo show_without_login=0 and form = login: continue;
 		// if (form === login AND empty($formfield['definition']['show_without_login'])) continue;
@@ -63,8 +61,9 @@ function mf_activities_formkit($event_id, $parameters) {
 			$my_no = mf_activities_formkit_field($formfield, $zz['fields'][$persons_no]['fields']);
 			$my_field = &$zz['fields'][$persons_no]['fields'][$my_no];
 		} else {
-			$zz['fields'][$my_no] = mf_activities_formkit_subtable($formfield, $my_no);
-			$my_field = &$zz['fields'][$my_no];
+			$zz['fields'][$no] = mf_activities_formkit_subtable($formfield, $no, $nos);
+			$my_field = &$zz['fields'][$no];
+			$nos[$formfield_id] = $no;
 		}
 		$my_field['title'] = $formfield['formfield'];
 		if (empty($formfield['definition']['selection_from_explanation']))
@@ -80,8 +79,9 @@ function mf_activities_formkit($event_id, $parameters) {
 		$no++;
 	}
 	
-	$last_update['hide_in_form'] = true;
-	$zz['fields'][] = $last_update;
+	// last_update
+	$zz['fields'][99]['hide_in_form'] = true;
+	$zz['fields'][99]['field_sequence'] = $no;
 	return $zz;
 }
 
@@ -118,9 +118,18 @@ function mf_activities_formkit_fields($event_id) {
 				= mf_activities_formkit_normalize_parameters($formfield[$param]);
 		}
 		$type = $formfields[$formfield_id]['definition']['type'] ?? '';
-		if ($type === 'upload')
+		if ($type === 'upload') {
 			$formfields[$formfield_id]['definition']['main_medium_id']
 				= mf_activities_formkit_upload_folder($event_id);
+			// add extra formfield for contacts_media JOIN
+			$formfield['area'] = '';
+			$formfield['explanation'] = '';
+			$formfield['definition'] = [
+				'db_field' => 'contacts_media.medium_id',
+				'type' => 'foreign_id'
+			];
+			$formfields[] = $formfield;
+		}
 	}
 	return $formfields;
 }
@@ -291,10 +300,12 @@ function mf_activities_formkit_field($formfield, $fields) {
  *
  * @param array $formfield
  * @param int $def_no
+ * @param array $nos
  * @return array
  */
-function mf_activities_formkit_subtable($formfield, $def_no) {
-	$def = zzform_include($formfield['table']);
+function mf_activities_formkit_subtable($formfield, $def_no, $nos) {
+	$script = str_replace('_', '-', $formfield['table']);
+	$def = zzform_include($script);
 	$def['table'] = wrap_db_prefix($def['table']);
 	$def['type'] = 'subtable';
 	$def['table_name'] = $def['table'].'_'.$def_no;
@@ -308,6 +319,7 @@ function mf_activities_formkit_subtable($formfield, $def_no) {
 	
 	switch ($formfield['table']) {
 		case 'media': $def = mf_activities_formkit_media($formfield, $def); break;
+		case 'contacts_media': $def = mf_activities_formkit_contacts_media($formfield, $def, $nos); break;
 	}
 	
 	$has_formfield_id = false;
@@ -389,6 +401,7 @@ function mf_activities_formkit_select($field, $formfield) {
  */
 function mf_activities_formkit_media($formfield, $def) {
 	$def['records_depend_on_upload'] = true;
+	$def['type'] = 'foreign_table';
 	// no background uploads via this form, @todo
 	wrap_setting('zzform_upload_background_thumbnails', false);
 
@@ -431,6 +444,38 @@ function mf_activities_formkit_media($formfield, $def) {
 			$def['fields'][$no]['hide_in_form'] = true;
 			$def['fields'][$no]['for_action_ignore'] = true;
 			break;
+		}
+	}
+	return $def;
+}
+
+/**
+ * prepare contacts_media table for linking
+ *
+ * @param array $formfield
+ * @param array $def
+ * @return array
+ */
+function mf_activities_formkit_contacts_media($formfield, $def, $nos) {
+	$def['show_title'] = false;
+	foreach ($def['fields'] as $subno => $subfield) {
+		if (empty($subfield['field_name'])) continue;
+		switch ($subfield['field_name']) {
+			case 'medium_id':
+				$def['fields'][$subno]['type_detail'] = 'select';
+				$def['fields'][$subno]['foreign_id_field'] = $nos[$formfield['formfield_id']];
+				$def['fields'][$subno]['hide_in_form'] = true;
+				break;
+			case 'sequence':
+				// show as hidden field so record is not ignored by zzform
+				// @todo solve this in zzform() and remove this case
+				$def['fields'][$subno]['type'] = 'hidden';
+				$def['fields'][$subno]['value'] = 1;
+				$def['fields'][$subno]['class'] = 'hidden';
+				break;
+			case 'image':
+				$def['fields'][$subno]['hide_in_form'] = true;
+				break;
 		}
 	}
 	return $def;
