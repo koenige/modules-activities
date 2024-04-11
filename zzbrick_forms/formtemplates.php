@@ -8,12 +8,14 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
 if (!$brick['data']['form_id']) wrap_quit(404);
+if (empty($brick['data']['access']))
+	$brick['data'] = array_merge($brick['data'], mf_activities_form($brick['data']['identifier']));
 
 $zz = zzform_include('formtemplates');
 $zz['where']['form_id'] = $brick['data']['form_id'];
