@@ -17,35 +17,16 @@
  * create a form based on formfields
  *
  * @param int $event_id
- * @param array $parameters
+ * @param string $parameters
  * @return array
  */
 function mf_activities_formkit($event_id, $parameters) {
+	$formfields = mf_activities_formkit_fields($event_id);
+
+	if (!$parameters) $parameters = [];
+	elseif (!is_array($parameters)) $parameters = parse_str($parameters, $parameters);
+
 	$zz = zzform_include('contacts');
-
-	$sql = 'SELECT formfield_id, formfield, explanation, area
-			, category_id, categories.path
-			, edit_from, edit_by
-			, formfields.parameters AS custom
-			, categories.parameters AS definition
-		FROM formfields
-		LEFT JOIN forms USING (form_id)
-		LEFT JOIN events USING (event_id)
-		LEFT JOIN categories
-			ON formfields.formfield_category_id = categories.category_id
-		WHERE event_id = %d
-		AND ISNULL(main_formfield_id)
-		ORDER BY formfields.sequence';
-	$sql = sprintf($sql, $event_id);
-	$formfields = wrap_db_fetch($sql, 'formfield_id');
-	$formfields = wrap_translate($formfields, 'formfields');
-
-	foreach ($formfields as $formfield_id => $formfield) {
-		if ($formfield['custom'])
-			parse_str($formfield['custom'], $formfields[$formfield_id]['custom']);
-		if ($formfield['definition'])
-			parse_str($formfield['definition'], $formfields[$formfield_id]['definition']);
-	}
 
 	mf_activities_formkit_contacts($zz, $parameters);
 	$last_update = $zz['fields'][99];
@@ -58,7 +39,6 @@ function mf_activities_formkit($event_id, $parameters) {
 		if (empty($formfield['definition']['db_field'])) continue; // @todo, captcha
 		// @todo show_without_login=0 and form = login: continue;
 		// if (form === login AND empty($formfield['definition']['show_without_login'])) continue;
-		$formfield['custom'] = mf_activities_formkit_normalize_parameters($formfield['custom']);
 		list($formfield['table'], $formfield['field_name']) = explode('.', $formfield['definition']['db_field']);
 		if ($formfield['table'] === $zz['table']) {
 			$my_no = mf_activities_formkit_field($formfield, $zz['fields']);
@@ -82,6 +62,42 @@ function mf_activities_formkit($event_id, $parameters) {
 	$last_update['hide_in_form'] = true;
 	$zz['fields'][] = $last_update;
 	return $zz;
+}
+
+/**
+ * get form fields for event
+ *
+ * @param int $event_id
+ * @return array
+ */
+function mf_activities_formkit_fields($event_id) {
+	$sql = 'SELECT formfield_id, formfield, explanation, area
+			, category_id, categories.path
+			, edit_from, edit_by
+			, formfields.parameters AS custom
+			, categories.parameters AS definition
+		FROM formfields
+		LEFT JOIN forms USING (form_id)
+		LEFT JOIN events USING (event_id)
+		LEFT JOIN categories
+			ON formfields.formfield_category_id = categories.category_id
+		WHERE event_id = %d
+		AND ISNULL(main_formfield_id)
+		ORDER BY formfields.sequence';
+	$sql = sprintf($sql, $event_id);
+	$formfields = wrap_db_fetch($sql, 'formfield_id');
+	$formfields = wrap_translate($formfields, 'formfields');
+
+	$params = ['custom', 'definition'];
+	foreach ($formfields as $formfield_id => $formfield) {
+		foreach ($params as $param) {
+			if (!$formfield[$param]) continue;
+			parse_str($formfield[$param], $formfield[$param]);
+			$formfields[$formfield_id][$param]
+				= mf_activities_formkit_normalize_parameters($formfield[$param]);
+		}
+	}
+	return $formfields;
 }
 
 /**
