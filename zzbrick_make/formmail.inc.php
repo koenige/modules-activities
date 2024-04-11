@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -135,14 +135,11 @@ function mod_activities_formmail_log($data, $type) {
 			mod_activities_make_formmail_log_cv($data['contact_id']);
 		return;
 	}
-	$values = [];
-	$values['action'] = 'insert';
-	$values['ids'] = ['participation_id', 'activity_category_id'];
-	$values['POST']['participation_id'] = $data['participation_id'];
-	$values['POST']['activity_category_id'] = wrap_category_id('activities/mail');
-	$ops = zzform_multi('activities', $values);
-	if (!$ops['id'])
-		wrap_error(sprintf('Unable to add activity mail to participation ID %d', $data['participation_id']));
+	$line = [
+		'participation_id' => $data['participation_id'],
+		'activity_category_id' => wrap_category_id('activities/mail')
+	];
+	zzform_insert('activities', $line);
 }
 
 /**
