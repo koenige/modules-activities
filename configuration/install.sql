@@ -384,3 +384,9 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 ALTER TABLE `addresses` ADD `formfield_id` int unsigned NULL AFTER `receive_mail`, ADD INDEX `formfield_id` (`formfield_id`);
 
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'formfields', 'formfield_id', (SELECT DATABASE()), 'addresses', 'address_id', 'formfield_id', 'no-delete');
+
+-- contacts_media --
+ALTER TABLE `contacts_media` ADD `formfield_id` int unsigned NULL AFTER `sequence`;
+ALTER TABLE `contacts_media` ADD INDEX `formfield_id` (`formfield_id`);
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'formfields', 'formfield_id', (SELECT DATABASE()), 'contacts_media', 'contact_medium_id', 'formfield_id', 'no-delete');

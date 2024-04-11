@@ -119,3 +119,5 @@
 /* 2024-04-11-1 */	ALTER TABLE `participations` ADD `entry_date` datetime NULL AFTER `verification_hash`, ADD `entry_contact_id` int unsigned NULL AFTER `entry_date`;
 /* 2024-04-11-2 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'contacts', 'contact_id', (SELECT DATABASE()), 'participations', 'participation_id', 'entry_contact_id', 'no-delete');
 /* 2024-04-11-3 */	ALTER TABLE `participations` ADD INDEX `entry_contact_id` (`entry_contact_id`);
+/* 2024-04-11-4 */	ALTER TABLE `contacts_media` ADD `formfield_id` int unsigned NULL AFTER `sequence`;
+/* 2024-04-11-5 */	ALTER TABLE `contacts_media` ADD INDEX `formfield_id` (`formfield_id`);
