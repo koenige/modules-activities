@@ -202,7 +202,7 @@ msgid "This e-mail was just sent to:"
 msgstr ""
 
 #: zzbrick_make/formmail.inc.php
-msgid "Contact ID %d for form mail (%s), event ID %d, not found.."
+msgid "Contact ID %d for form mail (%s), event ID %d, not found."
 msgstr ""
 
 #: zzbrick_tables/access.php
