@@ -548,6 +548,7 @@ function mf_activities_form($identifier, $event_category_id = NULL, $website_id 
 	if (!$event) return [];
 	$event = wrap_translate($event, 'event');
 	$event = wrap_translate($event, 'categories', 'category_id');
+	$event = wrap_translate($event, 'forms', 'form_id');
 	if (!$event['formtemplates_confirmation_missing'] AND !$event['formtemplates_authentication_missing'])
 		$event['formtemplates'] = true;
 	if ($event['formfield_category_ids'])
