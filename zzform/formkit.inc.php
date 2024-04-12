@@ -555,6 +555,10 @@ function mf_activities_formkit_hook_participation($contact_id, $event_id, $param
 		'status_category_id' => wrap_category_id('participation-status/subscribed'),
 		'entry_contact_id' => $_SESSION['contact_id'] ?? $contact_id
 	];
+	if (wrap_category_id('participations/registration', 'check')) {
+		$line['participations_categories_'.wrap_category_id('participations/registration')][]['category_id']
+			= wrap_category_id('participations/registration/direct');
+	}
 	return zzform_insert('participations', $line, E_USER_ERROR);
 }
 
