@@ -81,7 +81,7 @@ SELECT event_id, event, identifier, form_id, abstract, events.description
 	, form_categories.category_id
 	, form_categories.category
 	, form_categories.parameters AS form_parameters
-	, forms.lead, forms.header, forms.footer
+	, forms.form_id, forms.lead, forms.header, forms.footer
 FROM events
 LEFT JOIN forms USING (event_id)
 LEFT JOIN websites USING (website_id)
