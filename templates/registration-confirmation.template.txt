@@ -5,44 +5,47 @@
 # https://www.zugzwang.org/modules/activities
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2021, 2023 Gustaf Mossakowski
+# @copyright Copyright © 2021, 2023-2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 <div class="activities">
 <div class="msg">
 %%% condition if delete %%%
-<p>Your data was removed successfully from our database!</p>
+<p>%%% text Your data was deleted successfully! %%%</p>
 
 %%% condition elseif confirmed_delete %%%
-<p>Your data could not be removed from our database, because it looks like you
-already confirmed your registration. This way, a cancellation is not possible.</p>
-<p>Please contact us directly (E-Mail: 
-<a href="mailto:%%% setting own_e_mail %%%">%%% setting own_e_mail %%%</a>).</p>
+<p>%%% text Your data could not be deleted because you have already confirmed your registration. %%%
+ %%% text This way, a cancellation is not possible. %%%</p>
+%%% define mail %%%
+<a href="mailto:%%% setting own_e_mail %%%">%%% setting own_e_mail %%%</a>
+%%% define end %%%
+<p>%%% text "Please contact us directly (E-Mail: %s)." mail %%% 
+</p>
 
 %%% condition elseif no_data %%%
-<p><strong>Your data was not found in the database.</strong></p>
+<p><strong>%%% text Your data was not found. %%%</strong></p>
 
 %%% condition elseif confirm %%%
-<p>Thank you for your interest. Your registration was confirmed.</p>
+<p>%%% text Thank you for your interest. Your registration has been confirmed. %%%</p>
 
 %%% condition elseif already_confirmed %%%
-<p><strong>You already confirmed your registration.</strong> Another 
-confirmation is not necessary.</p>
+<p><strong>%%% text You have already confirmed your registration. %%%</strong>
+%%% text No further confirmation is required. %%%</p>
 
 %%% condition endif %%%
 </div>
 
 %%% condition if form %%%
 <fieldset>
-<legend>Confirmation/Deletion of the registration</legend>
-<p>Please enter the confirmation code from your e-mail into the form:</p>
+<legend>%%% text Confirmation/deletion of registration %%%</legend>
+<p>%%% text Please enter the verification code from your email: %%%</p>
 <form method="GET" action="%%% item action wrap_html_escape %%%" id="confirmation">
 <table>
-<tr><th><label for="code">Code:</label></th> <td><input type="text" name="code" id="code" size="32" value="%%% item code %%%"></td></tr>
+<tr><th><label for="code">%%% text Code: %%%</label></th> <td><input type="text" name="code" id="code" size="32" value="%%% item code %%%"></td></tr>
 <tr><th><td>
 %%% condition if reminder %%%<div class="reminder">%%% condition endif %%%
-<label for="confirm"><input type="radio" name="action" value="confirm" id="confirm" required="required"> Confirm subscription</label>
-<label for="delete"><input type="radio" name="action" value="delete" id="delete" required="required"> Delete subscription</label>
+<label for="confirm"><input type="radio" name="action" value="confirm" id="confirm" required="required"> %%% text Confirm registration %%%</label>
+<label for="delete"><input type="radio" name="action" value="delete" id="delete" required="required"> %%% text Delete registration %%%</label>
 %%% condition if reminder %%%</div>%%% condition endif %%%
 <br><input type="submit" class="submit"></td></tr>
 </table>
@@ -51,8 +54,8 @@ confirmation is not necessary.</p>
 %%% condition endif %%%
 
 %%% condition if addlogin %%%
-<p><a href="%%% setting login_entry_path %%%">Back to homepage</a></p>
+<p><a href="%%% setting login_entry_path %%%">%%% text Continue to the home page %%%</a></p>
 %%% condition else %%%
-<p><a href="%%% setting homepage_url %%%">Back to homepage</a></p>
+<p><a href="%%% setting base %%%%%% setting homepage_url %%%">%%% text Continue to the home page %%%</a></p>
 %%% condition endif %%%
 </div>

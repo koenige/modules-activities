@@ -1,5 +1,5 @@
 # activities module
-# Translations to German
+# Translations template
 #
 # Part of »Zugzwang Project«
 # https://www.zugzwang.org/modules/activities
@@ -10,491 +10,453 @@
 #
 msgid ""
 msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
 "Project-Id-Version: Zugzwang Project – Activities Module\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.4.2\n"
+"PO-Revision-Date: \n"
+"X-Generator: Poedit 1.8.12\n"
+"Language: de\n"
 
 #: templates/registration-confirmation.template.txt
 msgid "Your data was deleted successfully!"
-msgstr "Ihre Daten wurden erfolgreich gelöscht!"
+msgstr ""
 
 #: templates/registration-confirmation.template.txt
-msgid ""
-"Your data could not be deleted because you have already confirmed your "
-"registration."
+msgid "Your data could not be deleted because you have already confirmed your registration."
 msgstr ""
-"Ihre Daten konnten nicht gelöscht werden, da Sie Ihre Anmeldung bereits "
-"bestätigt haben."
 
 #: templates/registration-confirmation.template.txt
 msgid "This way, a cancellation is not possible."
-msgstr "Auf diese Weise ist eine Stornierung nicht möglich."
+msgstr ""
 
 #: templates/registration-confirmation.template.txt
 msgid "Please contact us directly (E-Mail: %s)."
-msgstr "Bitte setzen Sie sich direkt mit uns in Verbindung (E-Mail: %s)."
+msgstr ""
 
 #: templates/registration-confirmation.template.txt
 msgid "Your data was not found."
-msgstr "Ihre Daten wurden nicht gefunden."
+msgstr ""
 
 #: templates/registration-confirmation.template.txt
 msgid "Thank you for your interest. Your registration has been confirmed."
-msgstr "Vielen Dank für Ihr Interesse. Ihre Anmeldung wurde bestätigt."
+msgstr ""
 
 #: templates/registration-confirmation.template.txt
 msgid "You have already confirmed your registration."
-msgstr "Sie haben Ihre Anmeldung bereits bestätigt."
+msgstr ""
 
 #: templates/registration-confirmation.template.txt
 msgid "No further confirmation is required."
-msgstr "Eine weitere Bestätigung ist nicht erforderlich."
+msgstr ""
 
 #: templates/registration-confirmation.template.txt
 msgid "Confirmation/deletion of registration"
-msgstr "Bestätigung/Löschung der Registrierung"
+msgstr ""
 
 #: templates/registration-confirmation.template.txt
-msgid "Please enter the verification code you received:"
-msgstr "Bitte geben Sie den Bestätigungscode ein, den Sie erhalten haben:"
+msgid "Please enter the verification code from your email:"
+msgstr ""
 
 #: templates/registration-confirmation.template.txt
 msgid "Code:"
-msgstr "Code:"
+msgstr ""
 
 #: templates/registration-confirmation.template.txt
 msgid "Confirm registration"
-msgstr "Registrierung bestätigen"
+msgstr ""
 
 #: templates/registration-confirmation.template.txt
 msgid "Delete registration"
-msgstr "Registrierung löschen"
+msgstr ""
 
 #: templates/registration-confirmation.template.txt
 msgid "Continue to the home page"
-msgstr "Weiter zur Hauptseite"
+msgstr ""
 
 #: templates/registrationinternal.template.txt
 msgid "Send form mail"
-msgstr "Formularmail senden"
+msgstr ""
 
 #: templates/registrationinternal.template.txt
 msgid "Form on public website"
-msgstr "Formular auf öffentlicher Website"
+msgstr ""
 
 #: templates/registrationinternal.template.txt
 msgid "The form has not yet been published."
-msgstr "Das Formular wurde noch nicht veröffentlicht."
+msgstr ""
 
 #: templates/registrationinternal.template.txt
 msgid "Please create a form first."
-msgstr "Bitte erstellen Sie zuerst ein Formular."
+msgstr ""
 
 #: templates/registrationinternal.template.txt
 msgid "Please add email templates for the form."
-msgstr "Bitte fügen Sie E-Mailvorlagen für das Formular hinzu."
+msgstr ""
 
 #: templates/registrationinternal.template.txt
 msgid "Please add all the required fields for the form."
-msgstr "Bitte ergänzen Sie alle erforderlichen Felder für das Formular."
+msgstr ""
 
 #: zzbrick_forms/eventregistrations.php
 msgid "Registrations"
-msgstr "Registrierungen"
+msgstr ""
 
 #: zzbrick_forms/eventregistrations.php
 msgid "Registration"
-msgstr "Registrierung"
+msgstr ""
 
 #: zzbrick_forms/form.php
 msgid "Form"
-msgstr "Formular"
+msgstr ""
 
 #: zzbrick_forms/form.php
-msgid ""
-"There does not seem to be a clear email address entered for the sender of "
-"the mailings. Therefore the mails cannot be sent."
+msgid "There does not seem to be a clear email address entered for the sender of the mailings. Therefore the mails cannot be sent."
 msgstr ""
-"Für den Absender der Mailings scheint keine eindeutige E-Mail-Adresse "
-"eingetragen zu sein. Daher können die Mails nicht versendet werden."
 
 #: zzbrick_forms/formfields.php
 msgid "Here you can define a form field by field."
-msgstr "Hier können Sie ein Formular Feld für Feld definieren."
+msgstr ""
 
 #: zzbrick_forms/formfields.php
 msgid "Note: Each form must have at least these fields:"
-msgstr "Hinweis: Jedes Formular muss mindestens folgende Felder enthalten:"
+msgstr ""
 
 #: zzbrick_forms/invitation.php
 msgid "Register"
-msgstr "Registrieren"
+msgstr ""
 
 #: zzbrick_forms/invitation.php
 msgid "Submit Registration"
-msgstr "Registrierung absenden"
+msgstr ""
 
 #: zzbrick_forms/invitation.php
 msgid "The registration has been sent successfully!"
-msgstr "Die Registrierung wurde erfolgreich versendet!"
+msgstr ""
 
 #: zzbrick_forms/invitation.php
-msgid ""
-"We just sent you an e-mail. Please click on the link inside it to confirm "
-"your registration."
+msgid "We just sent you an e-mail. Please click on the link inside it to confirm your registration."
 msgstr ""
-"Wir haben Ihnen gerade eine E-Mail geschickt. Bitte klicken Sie auf den "
-"darin enthaltenen Link, um Ihre Registrierung zu bestätigen."
 
 #: zzbrick_forms/invitation.php
 msgid "There is no invitation for this code."
-msgstr "Es gibt keine Einladung unter diesem Code."
+msgstr ""
 
 #: zzbrick_forms/participations-usergroups.php
 msgid "with E-Mail"
-msgstr "mit E-Mail"
+msgstr ""
 
 #: zzbrick_forms/participations-usergroups.php
 msgid "without E-Mail"
-msgstr "ohne E-Mail"
+msgstr ""
 
 #: zzbrick_forms/registration.php
 msgid "Authentication mail is missing."
-msgstr "Authentifizierungsmail fehlt."
+msgstr ""
 
 #: zzbrick_forms/registration.php
 msgid "Confirmation mail is missing."
-msgstr "Bestätigungsmail fehlt."
+msgstr ""
 
 #: zzbrick_forms/registration.php
 msgid "One or more of the required form fields are missing."
-msgstr "Eines oder mehrere der erforderlichen Formularfelder fehlen."
+msgstr ""
 
 #: zzbrick_make/formmail.inc.php
 msgid "Reminder –"
-msgstr "Erinnerung –"
+msgstr ""
 
 #: zzbrick_make/formmail.inc.php
 msgid "Failed to send mail."
-msgstr "E-Mail konnte nicht gesendet werden."
+msgstr ""
 
 #: zzbrick_make/formmail.inc.php
 msgid "Mail was successfully sent."
-msgstr "E-Mail wurde erfolgreich versendet."
+msgstr ""
 
 #: zzbrick_make/formmail.inc.php
 msgid "(copy of e-mail)"
-msgstr "(Kopie der E-Mail)"
+msgstr ""
 
 #: zzbrick_make/formmail.inc.php
 msgid "Form mail: No recipient email address found."
-msgstr "Formularmail: Keine Empfänger-E-Mail-Adresse gefunden."
+msgstr ""
 
 #: zzbrick_make/formmail.inc.php
 msgid "This e-mail was just sent to:"
-msgstr "Diese E-Mail wurde gerade versendet an:"
+msgstr ""
 
 #: zzbrick_make/formmail.inc.php
 msgid "Contact ID %d for form mail (%s), event ID %d, not found."
 msgstr ""
-"Kontakt ID %d für Formular-Mail (%s), Veranstaltung ID %d nicht gefunden."
 
 #: zzbrick_tables/access.php
 msgid "Access Rights"
-msgstr "Zugriffsrechte"
+msgstr ""
 
 #: zzbrick_tables/access.php
 msgid "Module"
-msgstr "Modul"
+msgstr ""
 
 #: zzbrick_tables/access-usergroups.php
 msgid "Usergroups per Access Right"
-msgstr "Benutzergruppen pro Zugriffsrecht"
+msgstr ""
 
 #: zzbrick_tables/access-usergroups.php
 msgid "Restrictions?"
-msgstr "Einschränkungen?"
+msgstr ""
 
 #: zzbrick_tables/access-usergroups.php
-msgid ""
-"Field name if access for an item is restricted to a participation with this "
-"ID"
+msgid "Field name if access for an item is restricted to a participation with this ID"
 msgstr ""
-"Feldname, wenn der Zugriff für ein Element auf eine Teilnahme mit dieser ID "
-"beschränkt ist"
 
 #: zzbrick_tables/contacts-access.php
 msgid "Access Rights to Contacts"
-msgstr "Zugriffsrechte der Kontakte"
+msgstr ""
 
 #: zzbrick_tables/contacts-access.php
 msgid "Property"
-msgstr "Eigenschaft"
+msgstr ""
 
 #: zzbrick_tables/formfields.php
 msgid "Form Fields"
-msgstr "Formularfelder"
+msgstr ""
 
 #: zzbrick_tables/formfields.php
-msgid ""
-"The title of the form field that appears on the left (= what to type in the "
-"field)."
+msgid "The title of the form field that appears on the left (= what to type in the field)."
 msgstr ""
-"Der Titel des Formularfelds, das links erscheint (= was in das Feld "
-"einzugeben ist)."
 
 #: zzbrick_tables/formfields.php
-msgid ""
-"A heading that can be used to divide a long form into parts. Fields with the "
-"same heading are grouped."
+msgid "A heading that can be used to divide a long form into parts. Fields with the same heading are grouped."
 msgstr ""
-"Eine Überschrift, die verwendet werden kann, um ein langes Formular zu "
-"unterteilen. Felder mit der gleichen Überschrift werden gruppiert."
 
 #: zzbrick_tables/formfields.php
 msgid "An explanation below the form field like this one."
-msgstr "Eine Erläuterung unter dem Formularfeld wie diese hier."
+msgstr ""
 
 #: zzbrick_tables/forms.php
 msgid "For the labeling of forms as well as the content of default mails"
-msgstr "Für den Text von Formularen sowie den Inhalt von Standard-Mails"
+msgstr ""
 
 #: zzbrick_tables/forms.php
 msgid "Public"
-msgstr "Öffentlich"
+msgstr ""
 
 #: zzbrick_tables/forms.php
 msgid "Salutation"
-msgstr "Anrede"
+msgstr ""
 
 #: zzbrick_tables/forms.php
 msgid "Behind login mask"
-msgstr "Hinter Login-Maske"
+msgstr ""
 
 #: zzbrick_tables/forms.php
 msgid "formal"
-msgstr "formell"
+msgstr ""
 
 #: zzbrick_tables/forms.php
 msgid "informal"
-msgstr "informell"
+msgstr ""
 
 #: zzbrick_tables/forms.php
 msgid "Whether to address formally or informally in mails and on website"
 msgstr ""
-"Ob formell oder informell in Mails und auf der Website angesprochen werden "
-"soll"
 
 #: zzbrick_tables/forms.php
 msgid "Header"
-msgstr "Kopfbereich"
+msgstr ""
 
 #: zzbrick_tables/forms.php
 msgid "Text to appear before the form"
-msgstr "Text, der vor dem Formular angezeigt werden soll"
+msgstr ""
 
 #: zzbrick_tables/forms.php
 msgid "Text to appear before the form, after header"
 msgstr ""
-"Text, der vor dem Formular, aber nach dem Kopfbereich angezeigt werden soll"
 
 #: zzbrick_tables/forms.php
 msgid "Footer"
-msgstr "Fußbereich"
+msgstr ""
 
 #: zzbrick_tables/forms.php
 msgid "Text to appear behind the form"
-msgstr "Text, der hinter dem Formular angezeigt wird"
+msgstr ""
 
 #: zzbrick_tables/formtemplates.php
 msgid "Templates for Mails"
-msgstr "Vorlagen für Mails"
+msgstr ""
 
 #: zzbrick_tables/formtemplates.php
 msgid "Template"
-msgstr "Vorlage"
+msgstr ""
 
 #: zzbrick_tables/formtemplates.php
 msgid "Content of the template."
-msgstr "Inhalt der Vorlage."
+msgstr ""
 
 #: zzbrick_tables/formtemplates-defaults.php
 msgid "Default Templates for Forms"
-msgstr "Standardvorlagen für Formulare"
+msgstr ""
 
 #: zzbrick_tables/formtemplates-defaults.php
 msgid "Default Template"
-msgstr "Standardvorlage"
+msgstr ""
 
 #: zzbrick_tables/invitations.php
 msgid "Invitations"
-msgstr "Einladungen"
+msgstr ""
 
 #: zzbrick_tables/mailings.php
 msgid "Mailings"
-msgstr "Mails"
+msgstr ""
 
 #: zzbrick_tables/mailings.php
 msgid "Sender"
-msgstr "Absender"
+msgstr ""
 
 #: zzbrick_tables/mailings.php
-msgid ""
-"Alternative e-mail address for sending the e-mails if you do not want to "
-"send from your own address."
+msgid "Alternative e-mail address for sending the e-mails if you do not want to send from your own address."
 msgstr ""
-"Alternative E-Mail-Adresse zum Versand der Mails, falls nicht von der "
-"eigenen Adresse gesendet werden soll."
 
 #: zzbrick_tables/mailings.php
 msgid "In this case “, %s” is appended to the name."
-msgstr "In diesem Fall wird », %s« an den Namen drangehängt."
+msgstr ""
 
 #: zzbrick_tables/mailings.php
 msgid "Subject"
-msgstr "Betreff"
+msgstr ""
 
 #: zzbrick_tables/mailings.php
 msgid "Message"
-msgstr "Nachricht"
+msgstr ""
 
 #: zzbrick_tables/mailings.php
 msgid "%d characters per line."
-msgstr "%d Zeichen pro Zeile."
+msgstr ""
 
 #: zzbrick_tables/mailings.php
 msgid "(<a href=\"%s\">Possible placeholders</a>)."
-msgstr "(<a href=\"%s\">Mögliche Platzhalter</a>)"
+msgstr ""
 
 #: zzbrick_tables/mailings.php
 msgid "Recipients"
-msgstr "Empfänger"
+msgstr ""
 
 #: zzbrick_tables/mailings.php
 msgid "Sent"
-msgstr "Versendet"
+msgstr ""
 
 #: zzbrick_tables/mailings.php
 msgid "Send (if not clicked, mail will only be saved for later sending)"
 msgstr ""
-"Versenden (falls nicht angeklickt, wird Mail für späteren Versand nur "
-"gespeichert)"
 
 #: zzbrick_tables/mailings.php
 msgid "not yet"
-msgstr "noch nicht"
+msgstr ""
 
 #: zzbrick_tables/mailings.php
-msgid ""
-"Clicking on the mail text shows the full mail text or just a short excerpt "
-"from the mail text"
+msgid "Clicking on the mail text shows the full mail text or just a short excerpt from the mail text"
 msgstr ""
-"Klick auf Mailtext zeigt den gesamten oder wieder nur den kurzen Ausschnitt "
-"aus dem Mailtext"
 
 #: zzbrick_tables/mailings-contacts.php
 msgid "Mailings: Recipients"
-msgstr "Mails: Empfänger"
+msgstr ""
 
 #: zzbrick_tables/mailings-contacts.php
 msgid "Mailing"
-msgstr "Mail"
+msgstr ""
 
 #: zzbrick_tables/mailings-contacts.php
 msgid "Recipient"
-msgstr "Empfänger"
+msgstr ""
 
 #: zzbrick_tables/mailings-contacts.php
 msgid "E-mail"
-msgstr "E-Mail"
+msgstr ""
 
 #: zzbrick_tables/participations.php
 msgid "Participations"
-msgstr "Teilnahmen"
+msgstr ""
 
 #: zzbrick_tables/participations.php
 msgid "Usergroup"
-msgstr "Gruppe"
+msgstr ""
 
 #: zzbrick_tables/participations.php
 msgid "Usergroups"
-msgstr "Gruppen"
+msgstr ""
 
 #: zzbrick_tables/participations.php
 msgid "Date begin"
-msgstr "Datum Beginn"
+msgstr ""
 
 #: zzbrick_tables/participations.php
 msgid "Date end"
-msgstr "Datum Ende"
+msgstr ""
 
 #: zzbrick_tables/participations.php
 msgid "(internal remarks only)"
-msgstr "(nur interne Anmerkungen)"
+msgstr ""
 
 #: zzbrick_tables/participations.php
 msgid "Active?"
-msgstr "Aktiv?"
+msgstr ""
 
 #: zzbrick_tables/participations.php
 msgid "active"
-msgstr "aktiv"
+msgstr ""
 
 #: zzbrick_tables/participations.php
 msgid "inactive"
-msgstr "inaktiv"
+msgstr ""
 
 #: zzbrick_tables/participations.php
 msgid "Role"
-msgstr "Rolle"
+msgstr ""
 
 #: zzbrick_tables/participations.php
 msgid "Status"
-msgstr "Status"
+msgstr ""
 
 #: zzbrick_tables/participations.php
 msgid "Entry"
-msgstr "Eintrag"
+msgstr ""
 
 #: zzbrick_tables/participations.php
 msgid "Entry on"
-msgstr "Eintrag am"
+msgstr ""
 
 #: zzbrick_tables/participations.php
 msgid "Entry by"
-msgstr "Eintrag durch"
+msgstr ""
 
 #: zzbrick_tables/usergroups.php
 msgid "Groups"
-msgstr "Gruppen"
+msgstr ""
 
 #: zzbrick_tables/usergroups.php
 msgid "Group"
-msgstr "Gruppe"
+msgstr ""
 
 #: zzbrick_tables/usergroups.php
 msgid "Members"
-msgstr "Mitglieder"
+msgstr ""
 
 #: zzbrick_tables/usergroups.php
 msgid "Ex-members"
-msgstr "Ex-Mitglieder"
+msgstr ""
 
 #: zzbrick_tables/usergroups.php
 # Abbreviation for Members
 msgid "M."
-msgstr "M."
+msgstr ""
 
 #: zzbrick_tables/usergroups.php
 # Abbreviation for Ex-members
 msgid "E. M."
-msgstr "E. M."
+msgstr ""
