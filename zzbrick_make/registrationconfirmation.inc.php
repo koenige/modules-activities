@@ -55,7 +55,10 @@ function mod_activities_make_registrationconfirmation() {
 				, contacts.identifier
 				, invitations.parameters
 				, participations.event_id
+				, IF(forms.address = "informal", 1, NULL) AS informal_address
 			FROM participations
+			LEFT JOIN forms
+				ON forms.event_id = participations.event_id
 			LEFT JOIN contacts USING (contact_id)
 			LEFT JOIN invitations
 				ON invitations.event_id = participations.event_id
@@ -68,6 +71,8 @@ function mod_activities_make_registrationconfirmation() {
 		$data = wrap_db_fetch($sql);
 		if (!$data) continue;
 		wrap_setting('log_username', $data['identifier']);
+		if ($data['informal_address'])
+			wrap_setting('language_variation', 'informal');
 
 		$has_data = true;
 		if ($data['status_category_id'] === wrap_category_id('participation-status/subscribed')) {
