@@ -386,8 +386,12 @@ function mf_activities_formkit_select($field, $formfield) {
 	$select_type = $formfield['definition']['select_type'] ?? 'enum';
 	if (!empty($formfield['definition']['selection_from_explanation']))
 		$field[$select_type] = [trim(str_replace("\n", " ", $formfield['explanation']))];
-	else
-		$field[$select_type] = $formfield['custom']['selection'] ?? $formfield['definition']['selection'] ?? [];
+	else {
+		$selections = $formfield['custom']['selection'] ?? $formfield['definition']['selection'] ?? [];
+		foreach ($selections as $index => $selection)
+			$selections[$index] = wrap_text($selection);
+		$field[$select_type] = $selections;
+	}
 	$field['show_values_as_list'] = $formfield['custom']['show_values_as_list'] ?? $formfield['definition']['show_values_as_list'] ?? false;
 	return $field;
 }
