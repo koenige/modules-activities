@@ -38,7 +38,7 @@
 %%% condition if form %%%
 <fieldset>
 <legend>%%% text Confirmation/deletion of registration %%%</legend>
-<p>%%% text Please enter the verification code from your email: %%%</p>
+<p>%%% text Please enter the verification code you received: %%%</p>
 <form method="GET" action="%%% item action wrap_html_escape %%%" id="confirmation">
 <table>
 <tr><th><label for="code">%%% text Code: %%%</label></th> <td><input type="text" name="code" id="code" size="32" value="%%% item code %%%"></td></tr>

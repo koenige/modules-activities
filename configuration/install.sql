@@ -322,6 +322,26 @@ INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('blocked', NULL, (SELECT category_id FROM categories c WHERE path = 'participation-status'), 'participation-status/blocked', NULL, 6, NOW());
 
 
+-- participations_categories --
+CREATE TABLE `participations_categories` (
+  `participation_category_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `participation_id` int unsigned NOT NULL,
+  `category_id` int unsigned NOT NULL,
+  `property` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type_category_id` int unsigned NOT NULL,
+  `sequence` tinyint unsigned DEFAULT NULL,
+  `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`participation_category_id`),
+  UNIQUE KEY `participation_id_category_id` (`participation_id`,`category_id`),
+  KEY `category_id` (`category_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'participations_categories', 'participation_category_id', 'category_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'participations', 'participation_id', (SELECT DATABASE()), 'participations_categories', 'participation_category_id', 'participation_id', 'no-delete');
+INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'participations_categories', 'participation_category_id', 'type_category_id', 'no-delete');
+INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Participations', NULL, NULL, 'participations', 'alias=participations', NULL, NOW());
+
+
 -- participations_contacts --
 CREATE TABLE `participations_contacts` (
   `participation_contact_id` int unsigned NOT NULL AUTO_INCREMENT,

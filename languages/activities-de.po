@@ -473,6 +473,14 @@ msgstr "Eintrag am"
 msgid "Entry by"
 msgstr "Eintrag durch"
 
+#: zzbrick_tables/participations-categories.php
+msgid "Categories of Participations"
+msgstr "Teilnahmekategorien"
+
+#: zzbrick_tables/participations-categories.php
+msgid "Participation"
+msgstr "Teilnahme"
+
 #: zzbrick_tables/usergroups.php
 msgid "Groups"
 msgstr "Gruppen"
@@ -489,12 +497,12 @@ msgstr "Mitglieder"
 msgid "Ex-members"
 msgstr "Ex-Mitglieder"
 
-#: zzbrick_tables/usergroups.php
 # Abbreviation for Members
+#: zzbrick_tables/usergroups.php
 msgid "M."
 msgstr "M."
 
-#: zzbrick_tables/usergroups.php
 # Abbreviation for Ex-members
+#: zzbrick_tables/usergroups.php
 msgid "E. M."
 msgstr "E. M."

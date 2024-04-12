@@ -65,7 +65,7 @@ msgid "Confirmation/deletion of registration"
 msgstr "Potwierdzenie/usunięcie rejestracji"
 
 #: templates/registration-confirmation.template.txt
-msgid "Please enter the verification code from your email:"
+msgid "Please enter the verification code you received:"
 msgstr "Wprowadź kod weryfikacyjny zawarty w wiadomości e-mail:"
 
 #: templates/registration-confirmation.template.txt

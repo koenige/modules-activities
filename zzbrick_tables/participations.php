@@ -155,6 +155,8 @@ $zz['fields'][6]['if']['where']['hide_in_list'] = true;
 $zz['fields'][6]['display_field'] = 'category';
 $zz['fields'][6]['hide_in_list_if_empty'] = true;
 
+mf_default_categories_subtable($zz, 'participations', 'participations', 80);
+
 $zz['fields'][11]['field_name'] = 'role';
 $zz['fields'][11]['hide_in_list_if_empty'] = true;
 $zz['fields'][11]['sql'] = 'SELECT DISTINCT role, role FROM participations';
