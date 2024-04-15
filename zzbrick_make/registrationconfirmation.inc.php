@@ -78,26 +78,23 @@ function mod_activities_make_registrationconfirmation() {
 		if ($data['status_category_id'] === wrap_category_id('participation-status/subscribed')) {
 			switch ($action) {
 			case 'confirm':
+				$error_msg = wrap_text(
+					'The registration for code %s was not completed.', ['values' => [$code]]
+				);
 				// add activities
-				$values = [];
-				$values['action'] = 'insert';
-				$values['ids'] = ['participation_id', 'activity_category_id'];
-				$values['POST']['participation_id'] = $data['participation_id'];
-				$values['POST']['activity_category_id'] = wrap_category_id('activities/verify');
-				$activity = zzform_multi('activities', $values);
-				if (!$activity['id'])
-					wrap_error(sprintf('The registration for code %s was not completed.', $code), E_USER_ERROR);
+				$line = [
+					'participation_id' => $data['participation_id'],
+					'activity_category_id' => wrap_category_id('activities/verify')
+				];
+				zzform_insert('activities', $line, E_USER_ERROR, ['msg' => $error_msg]);
 
 				// update participations
-				$values = [];
-				$values['action'] = 'update';
-				$values['ids'] = ['status_category_id'];
-				$values['POST']['participation_id'] = $data['participation_id'];
-				$values['POST']['date_begin'] = date('Y-m-d');
-				$values['POST']['status_category_id'] = wrap_category_id('participation-status/verified');
-				$participation = zzform_multi('participations', $values);
-				if (!$participation['id'])
-					wrap_error(sprintf('The registration for code %s was not completed.', $code), E_USER_ERROR);
+				$line = [
+					'participation_id' => $data['participation_id'],
+					'date_begin' => date('Y-m-d'),
+					'status_category_id' => wrap_category_id('participation-status/verified')
+				];
+				zzform_update('participations', $line, E_USER_ERROR, ['msg' => $error_msg]);
 				
 				wrap_include_files('zzform/formkit', 'activities');
 				mf_activities_formkit_mail_send($data['event_id'], $data['contact_id'], 'confirmation');

@@ -170,22 +170,21 @@ function mf_activities_merge_contact($contact_id) {
 		foreach ($update as $field_name => $table) {
 			$this_sql = sprintf($sql, $field_name, $table, $contact_id);
 			$ids = wrap_db_fetch($this_sql, $field_name, 'single value');
-			foreach ($ids as $id) {
-				$values = [];
-				$values['action'] = $action;
-				$values['ids'][] = $field_name;
-				$values['POST'][$field_name] = $id;
-				if ($action === 'update') {
-					$values['ids'][] = 'contact_id';
-					$values['POST']['contact_id'] = $old_contact_id;
+			switch ($action) {
+			case 'delete':
+				$success = zzform_delete($table, $ids, E_USER_NOTICE, ['msg' => 'Merging contacts was not successful.']);
+				if (count($success) !== count($ids)) return false;
+				break;
+			case 'update':
+				foreach ($ids as $id) {
+					$line = [
+						$field_name => $id,
+						'contact_id' => $old_contact_id
+					];
+					$success = zzform_update($table, $line, E_USER_NOTICE, ['msg' => 'Merging contacts was not successful.']);
+					if (!$sucess) return false;
 				}
-				$ops = zzform_multi($table, $values);
-				if (!$ops['id']) {
-					wrap_error(sprintf('Merging contacts was not successful. Failed to %s ID %d (table %s)'
-						, $action, $id, $table
-					));
-					return false;
-				}
+				break;
 			}
 		}
 	}

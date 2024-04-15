@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -67,15 +67,15 @@ function mf_activities_confirm_registration($ops) {
 
 	// write activities
 	foreach ($data['participation_id'] as $participation_id) {
-		$values = [];
-		$values['action'] = 'insert';
-		$values['ids'] = ['activity_category_id'];
-		$values['POST']['participation_id'] = $participation_id;
-		$values['POST']['activity_category_id'] = wrap_category_id('activities/subscribe');
-		$values['POST']['activity_uri'] = sprintf('mailto:%s', $data['e_mail']);
-		$activity = zzform_multi('activities', $values);
-		if (!$activity['id'])
-			wrap_error(sprintf('The registration for %s was not completed.', $data['e_mail']), E_USER_ERROR);
+		$error_msg = wrap_text(
+			'The registration for %s was not completed.', ['values' => [$data['e_mail']]]
+		);
+		$line = [
+			'participation_id' => $participation_id,
+			'activity_category_id' => wrap_category_id('activities/subscribe'),
+			'activity_uri' => sprintf('mailto:%s', $data['e_mail'])
+		];
+		zzform_insert('activities', $line, E_USER_ERROR, ['msg' => $error_msg]);
 	}
 
 	// get events
