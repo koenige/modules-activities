@@ -51,9 +51,10 @@ $zz['fields'][3]['show_hierarchy'] = 'main_category_id';
 $zz['fields'][3]['show_hierarchy_subtree'] = wrap_category_id('participations');
 
 $zz['fields'][5]['field_name'] = 'type_category_id';
-$zz['fields'][5]['type'] = 'hidden';
-$zz['fields'][5]['type_detail'] = 'select';
-$zz['fields'][5]['value'] = wrap_category_id('events');
+$zz['fields'][5]['unless']['multi']['type'] = 'hidden';
+$zz['fields'][5]['unless']['multi']['type_detail'] = 'select';
+$zz['fields'][5]['unless']['multi']['value'] = wrap_category_id('participations');
+$zz['fields'][5]['if']['multi']['type'] = 'select';
 $zz['fields'][5]['hide_in_form'] = true;
 $zz['fields'][5]['hide_in_list'] = true;
 $zz['fields'][5]['exclude_from_search'] = true;
