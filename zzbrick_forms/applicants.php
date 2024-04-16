@@ -46,6 +46,11 @@ $zz['page']['dont_show_title_as_breadcrumb'] = true;
 
 foreach (array_keys($zz['fields']) as $no) continue;
 $zz['fields'][++$no] = mf_activities_formkit_participations($brick['data']['event_id']);
+$zz['fields'][$no]['fields'][1]['separator'] = true;
+foreach (array_keys($zz['fields'][$no]['fields']) as $sub_no) {
+	if (!$zz['fields'][$no]['fields'][$sub_no]) continue;
+	$zz['fields'][$no]['fields'][$sub_no]['field_sequence'] = $no.'.'.$sub_no;
+}
 
 // export fields
 $zz['fields'][++$no] = [
@@ -55,7 +60,8 @@ $zz['fields'][++$no] = [
 	'field_name' => 'subscribe_activity_ip',
 	'search' => 'subscriptions.activity_ip',
 	'character_set' => 'latin1',
-	'hide_in_list' => true
+	'hide_in_list' => true,
+	'field_sequence' => $no
 ];
 $zz['fields'][++$no] = [
 	'title' => 'Verification',
@@ -64,7 +70,8 @@ $zz['fields'][++$no] = [
 	'field_name' => 'verify_activity_date',
 	'search' => 'verifications.activity_date',
 	'character_set' => 'latin1',
-	'hide_in_list' => true
+	'hide_in_list' => true,
+	'field_sequence' => $no
 ];
 $zz['fields'][++$no] = [
 	'title' => 'Verification IP',
@@ -73,7 +80,8 @@ $zz['fields'][++$no] = [
 	'field_name' => 'verify_activity_ip',
 	'search' => 'verifications.activity_ip',
 	'character_set' => 'latin1',
-	'hide_in_list' => true
+	'hide_in_list' => true,
+	'field_sequence' => $no
 ];
 
 // @todo change where to something else, records must not be deleted completely if
