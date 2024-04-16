@@ -383,17 +383,32 @@ function mf_activities_formkit_subtable($formfield, $def_no, $nos) {
  */
 function mf_activities_formkit_select($field, $formfield) {
 	$field['null'] = true;
-	$select_type = $formfield['definition']['select_type'] ?? 'enum';
+	$select_type = $formfield['definition']['select_type'] ?? $formfield['custom']['select_type'] ?? 'enum';
 	if (!empty($formfield['definition']['selection_from_explanation']))
 		$field[$select_type] = [trim(str_replace("\n", " ", $formfield['explanation']))];
 	else {
-		$selections = $formfield['custom']['selection'] ?? $formfield['definition']['selection'] ?? [];
-		foreach ($selections as $index => $selection)
-			$selections[$index] = wrap_text($selection);
-		$field[$select_type] = $selections;
+		$field[$select_type] = mf_activities_formkit_selection($formfield['custom']['selection'] ?? $formfield['definition']['selection'] ?? []);
 	}
 	$field['show_values_as_list'] = $formfield['custom']['show_values_as_list'] ?? $formfield['definition']['show_values_as_list'] ?? false;
 	return $field;
+}
+
+/**
+ * format selection entry as array
+ *
+ * @param array $selections
+ * @return array
+ */
+function mf_activities_formkit_selection($selections) {
+	if (array_key_exists(wrap_setting('lang'), $selections))
+		$selections = $selections[wrap_setting('lang')];
+	if (!is_array($selections))
+		$selections = explode(',', $selections);
+	foreach ($selections as $index => $selection) {
+		$selection = trim($selection);
+		$selections[$index] = wrap_text($selection);
+	}
+	return $selections;
 }
 
 /**
