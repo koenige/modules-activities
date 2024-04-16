@@ -284,13 +284,7 @@ function mf_activities_formfielddata_values($contact_id, $fields, $defs, $top_ke
 			$field_names = array_unique($field_names);
 		}
 		
-		$joins = [];
-		if (!empty($def['db_joins'])) {
-			foreach ($def['db_joins'] as $db_join) {
-				$db_join = explode('.', $db_join);
-				$joins[] = vsprintf('LEFT JOIN %s USING (%s)', $db_join);
-			}
-		}
+		$joins = mf_formkit_joins($def['db_joins'] ?? []);
 
 		// get data from database
 		$sql = sprintf($sql
@@ -339,6 +333,22 @@ function mf_activities_formfielddata_values($contact_id, $fields, $defs, $top_ke
 		}
 	}
 	return $fields;
+}
+
+/**
+ * create JOINs from definition
+ *
+ * @param array $db_joins
+ * @return array
+ */
+function mf_formkit_joins($db_joins) {
+	$joins = [];
+	if (!$db_joins) return $joins;
+	foreach ($db_joins as $db_join) {
+		$db_join = explode('.', $db_join);
+		$joins[] = vsprintf('LEFT JOIN %s USING (%s)', $db_join);
+	}
+	return $joins;
 }
 
 /**
