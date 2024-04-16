@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -216,6 +216,7 @@ $zz['sql'] = sprintf('SELECT /*_PREFIX_*/participations.*, contact, usergroup
 			AND provider_category_id = %d LIMIT 1) AS e_mail
 		,  /*_PREFIX_*/contacts.identifier
 		, contact_categories.parameters AS contact_parameters
+		, event
 	FROM /*_PREFIX_*/participations
 	LEFT JOIN /*_PREFIX_*/contacts USING (contact_id)
 	LEFT JOIN /*_PREFIX_*/persons USING (contact_id)
