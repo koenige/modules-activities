@@ -87,15 +87,18 @@ $zz['list']['merge'] = false;
 
 $zz['if'][1]['record']['delete'] = true;
 
-$zz['filter'][1]['sql'] = wrap_edit_sql($zz['filter'][1]['sql'], 'JOIN',
-	'LEFT JOIN participations USING (contact_id)'
-);
-$zz['filter'][1]['sql'] = wrap_edit_sql($zz['filter'][1]['sql'], 'WHERE',
-	sprintf('participations.event_id = %d', $brick['data']['event_id'])
-);
+if (!empty($zz['filter'][1])) {
+	$zz['filter'][1]['sql'] = wrap_edit_sql($zz['filter'][1]['sql'], 'JOIN',
+		'LEFT JOIN participations USING (contact_id)'
+	);
+	$zz['filter'][1]['sql'] = wrap_edit_sql($zz['filter'][1]['sql'], 'WHERE',
+		sprintf('participations.event_id = %d', $brick['data']['event_id'])
+	);
+}
 $zz['filter'][2]['sql'] = wrap_edit_sql($zz['filter'][2]['sql'], 'JOIN',
 	'LEFT JOIN participations USING (contact_id)'
 );
 $zz['filter'][2]['sql'] = wrap_edit_sql($zz['filter'][2]['sql'], 'WHERE',
 	sprintf('participations.event_id = %d', $brick['data']['event_id'])
 );
+unset($zz['filter'][3]); // published from persons form
