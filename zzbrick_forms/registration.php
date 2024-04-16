@@ -32,6 +32,7 @@ wrap_setting('contacts_details_with_label', false);
 wrap_include_files('zzform/formkit', 'activities');
 $zz = mf_activities_formkit($data['event_id'], $data['form_parameters']);
 
+$zz['record']['form_anchor'] = 'zzform';
 $zz['record']['form_lead'] = $data['header']; // @todo this is lead, not header actually
 $zz['footer']['text'] = $data['footer'];
 
