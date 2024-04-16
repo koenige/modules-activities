@@ -40,6 +40,12 @@ function mf_activities_formkit($event_id, $parameters) {
 			if (wrap_db_prefix($field['table']) !== wrap_db_prefix('/*_PREFIX_*/persons')) continue;
 			mf_activities_formkit_table($zz['fields'][$no], $parameters);
 			$persons_no = $no;
+			foreach ($field['fields'] as $sub_no => $sub_field) {
+				if ($sub_field['field_name'] === 'last_name') {
+					unset($zz['fields'][$no]['fields'][$sub_no]['list_append_next']);
+					unset($zz['fields'][$no]['fields'][$sub_no]['unless']['export_mode']['list_append_next']);
+				}
+			}
 		}
 	}
 
@@ -64,13 +70,15 @@ function mf_activities_formkit($event_id, $parameters) {
 			$zz['fields'][$no] = mf_activities_formkit_subtable($formfield, $no, $nos);
 			$my_field = &$zz['fields'][$no];
 			$nos[$formfield_id] = $no;
+			if (wrap_db_prefix($formfield['table']) === wrap_db_prefix('/*_PREFIX_*/media'))
+				$formfield['custom']['hide_in_list'] = true;
 		}
 		$my_field['title'] = $formfield['formfield'];
 		if (empty($formfield['definition']['selection_from_explanation']))
 			$my_field['explanation'] = $formfield['explanation'];
 		$my_field['hide_in_form'] = false;
 		$my_field['export'] = true;
-		$my_field['hide_in_list'] = $formfield['custom']['hide_in_list'] ?? false;
+		$my_field['hide_in_list'] = $formfield['custom']['hide_in_list'] ?? $formfield['definition']['hide_in_list'] ?? false;
 		if ($formfield['area'] AND $formfield['area'] !== $area) {
 			$my_field['separator_before'] = 'text <h3><strong>'.$formfield['area'].'</strong></h3>';
 			$area = $formfield['area'];
@@ -465,6 +473,12 @@ function mf_activities_formkit_media($formfield, $def) {
 			break;
 		}
 	}
+	$joins = mf_formkit_joins($formfield['definition']['db_joins'] ?? []);
+	foreach ($joins as $join) {
+		if (strstr($join, 'filetypes')) continue;
+		$def['sql'] = wrap_edit_sql($def['sql'], 'JOIN', $join);
+	}
+	$def['foreign_key_field_name'] = 'contacts_media.contact_id';
 	return $def;
 }
 
