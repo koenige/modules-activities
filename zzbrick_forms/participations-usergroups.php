@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -41,6 +41,9 @@ if ($data['usergroup_parameters'])
 else
 	$u_parameters = [];
 $parameters += $u_parameters;
+
+if (!empty($parameters['access']))
+	$zz['access'] = $parameters['access'];
 
 $zz['where']['usergroup_id'] = $data['usergroup_id'];
 $zz['title'] = $data['usergroup'];
