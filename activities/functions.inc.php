@@ -531,7 +531,7 @@ function mf_activities_form_templates($form_id, $type = '', $formfield_id = 0) {
 		}
 	}
 	if ($type and $formfield_id) return $data[$type][$formfield_id] ?? '';
-	if ($type) return $data[$type];
+	if ($type) return $data[$type] ?? '';
 	return $data;
 }
 
