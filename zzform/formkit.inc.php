@@ -225,7 +225,7 @@ function mf_activities_formkit_participations($event_id) {
 		switch ($field['field_name']) {
 		case 'participation_id':
 			$def['fields'][$sub_no]['export'] = true;
-			$def['fields'][$sub_no]['if']['export']['hide_in_list'] = false;
+			$def['fields'][$sub_no]['if']['export_mode']['hide_in_list'] = false;
 			$def['fields'][$sub_no]['field_sequence'] = 1;
 			$def['fields'][$sub_no]['hide_in_form'] = false; // won’t be shown, but is needed
 			break;
