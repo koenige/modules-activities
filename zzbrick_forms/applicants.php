@@ -14,7 +14,7 @@
 
 
 if (empty($brick['data']['event_id'])) wrap_quit(404);
-wrap_include_files('zzform/formkit', 'activities');
+wrap_include('zzform/formkit', 'activities');
 $zz = mf_activities_formkit($brick['data']['event_id'], $brick['data']['form_parameters']);
 
 $zz['sql'] = wrap_edit_sql($zz['sql'], 'JOIN',

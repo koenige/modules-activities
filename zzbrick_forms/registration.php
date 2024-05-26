@@ -29,7 +29,7 @@ if (empty($data['formfields'])) wrap_quit(503, wrap_text('One or more of the req
 
 wrap_setting('contacts_details_with_label', false);
 
-wrap_include_files('zzform/formkit', 'activities');
+wrap_include('zzform/formkit', 'activities');
 $zz = mf_activities_formkit($data['event_id'], $data['form_parameters']);
 
 $zz['record']['form_anchor'] = 'zzform';

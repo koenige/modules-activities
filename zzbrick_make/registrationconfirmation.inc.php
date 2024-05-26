@@ -96,7 +96,7 @@ function mod_activities_make_registrationconfirmation() {
 				];
 				zzform_update('participations', $line, E_USER_ERROR, ['msg' => $error_msg]);
 				
-				wrap_include_files('zzform/formkit', 'activities');
+				wrap_include('zzform/formkit', 'activities');
 				mf_activities_formkit_mail_send($data['event_id'], $data['contact_id'], 'confirmation');
 				
 				$old_contact_id = mf_activities_merge_contact($data['contact_id']);

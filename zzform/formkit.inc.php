@@ -159,7 +159,7 @@ function mf_activities_formkit_upload_folder($event_id) {
 	else
 		$folder = $identifier;
 
-	wrap_include_files('zzform/batch', 'media');	
+	wrap_include('zzform/batch', 'media');	
 	return mf_media_folder($folder);
 }
 

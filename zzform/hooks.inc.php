@@ -21,7 +21,7 @@
  * @return bool
  */
 function mf_activities_copy_formfields($ops) {
-	wrap_include_files('copy', 'zzform');
+	wrap_include('copy', 'zzform');
 	foreach ($ops['return'] as $index => $table) {
 		if ($table['table'] !== 'forms') continue;
 		if ($table['action'] !== 'insert') continue;
