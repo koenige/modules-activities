@@ -14,6 +14,7 @@
 
 
 function mf_activities_contact($data, $ids) {
+	wrap_include('functions', 'activities');
 	$sql = 'SELECT participation_id, contact_id
 			, usergroup_id, usergroup, identifier
 			, date_begin, date_end, remarks, role
