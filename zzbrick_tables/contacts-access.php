@@ -8,12 +8,12 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021 Gustaf Mossakowski
+ * @copyright Copyright © 2021, 2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
-$zz['title'] = 'Access Rights to Contacts';
+$zz['title'] = 'Access to Contact Details';
 $zz['table'] = '/*_PREFIX_*/contacts_access';
 
 $zz['fields'][1]['title'] = 'ID';
