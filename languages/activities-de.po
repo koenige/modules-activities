@@ -21,7 +21,200 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#: configuration/access.cfg
+msgid "create and view registrations for an event"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "access a public form"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "edit default templates for forms"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "send form mail after event"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "send mass mailings to participants of an event"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "show participant list of an event"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "show and edit participant list of an event"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "show, edit and delete from participant list of an event"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "read group memberships for contacts"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "read usergroups"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "read group memberships for persons"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "read list of applicants per form"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "edit templates and fields of a form"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "create mail templates for forms"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "create registration forms for websites"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "public form view"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "allow editing of usergroups"
+msgstr ""
+
+#: configuration/access.cfg
+msgid "edit parameters of usergroups?"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "text on action button for forms"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "maximum file size of a downloadable archive"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to single form on website"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid ""
+"path to folder where uploads from forms go to (sub folders per event will be "
+"created there)"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid ""
+"seconds to wait after the content of a field was change before sending out a "
+"form mail"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "wait until retrying to send a mail if no recipient mails are available"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid ""
+"if a form field has more than one value (e. g. detail record with several "
+"fields), characters to concat values"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "if a form field has more than one line, characters to concat lines"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to send form mail after event"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "send a copy of each form mail to the sender e-mail address"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "link to webpage with help for placeholders in mailings"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid ""
+"if not the own mail address is used as From: address in mailings, append "
+"this as suffix"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to internal profile page of a group"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to activities page of a contact"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to activities page of a person"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "path to confirm a registration (double opt-in)"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "default usergroup identifier for registration forms"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "use contactverifications table instead of activities (deprecated)"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "allow to link a usergroup to an organisation contact"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "show description of usergroups in list view"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "do not show in formfield data"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "h2 heading above form"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "h2 heading above form after insert"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "enable registrations for events of this category"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "list of required fields per form"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid ""
+"always show this field if form requires login, even if user is not logged in"
+msgstr ""
+
+#: configuration/settings.cfg
+msgid "use children of this category as categories for usergroups"
+msgstr ""
+
+#: templates/contact-participations.template.txt
+msgid "No access rights are defined for the contact details."
+msgstr "Für die Kontaktdetails sind keine Zugriffsrechte definiert."
 
 #: templates/registration-confirmation.template.txt
 msgid "Your data was deleted successfully!"
@@ -232,9 +425,21 @@ msgstr ""
 "Feldname, wenn der Zugriff für ein Element auf eine Teilnahme mit dieser ID "
 "beschränkt ist"
 
+#: zzbrick_tables/activities.php
+msgid "Activity IP"
+msgstr "Aktivitäts-IP"
+
+#: zzbrick_tables/activities.php
+msgid "URI"
+msgstr "URI"
+
+#: zzbrick_tables/activities.php
+msgid "Comment"
+msgstr "Kommentar"
+
 #: zzbrick_tables/contacts-access.php
-msgid "Access Rights to Contacts"
-msgstr "Zugriffsrechte der Kontakte"
+msgid "Access to Contact Details"
+msgstr "Zugriff auf Kontaktdetails"
 
 #: zzbrick_tables/contacts-access.php
 msgid "Property"

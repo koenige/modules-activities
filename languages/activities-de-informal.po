@@ -228,7 +228,7 @@ msgid ""
 msgstr ""
 
 #: zzbrick_tables/contacts-access.php
-msgid "Access Rights to Contacts"
+msgid "Access to Contact Details"
 msgstr ""
 
 #: zzbrick_tables/contacts-access.php

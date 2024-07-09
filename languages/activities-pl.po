@@ -233,8 +233,8 @@ msgstr ""
 "identyfikatorem"
 
 #: zzbrick_tables/contacts-access.php
-msgid "Access Rights to Contacts"
-msgstr "Prawa dostępu do kontaktów"
+msgid "Access to Contact Details"
+msgstr "Dostęp do danych kontaktowych"
 
 #: zzbrick_tables/contacts-access.php
 msgid "Property"

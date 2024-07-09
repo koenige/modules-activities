@@ -1,13 +1,13 @@
 # activities module
-# template for contact: participations
+# template for contact: participations, contacts_access
 # 
 # Part of »Zugzwang Project«
 # https://www.zugzwang.org/modules/activities
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2023 Gustaf Mossakowski
+# @copyright Copyright © 2023-2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
-# 
+#
 %%% condition if participations %%%
 <tr><th>%%% text Usergroups %%%
 %%% condition if participation_contact_path %%%
@@ -20,4 +20,23 @@
 %%% loop end %%%
 </ul>
 </td></tr>
+%%% condition endif %%%
+%%% condition if person %%%
+%%% condition if path activities_contactdata_access[person] %%%
+<tr><th>%%% text Access Rights %%%
+<p class="edit"><small><a href="%%% path activities_contactdata_access[person] identifier %%%">%%% text Edit %%%</a></small></p>
+</th>
+<td>
+%%% condition if access %%%
+<ul>
+%%% loop access %%%
+<li><em>%%% item usergroup %%%:</em> %%% item area_category %%% %%% item property_category %%% – %%% item access_category %%%</li>
+%%% loop end %%%
+</ul>
+%%% condition else %%%
+%%% text No access rights are defined for the contact details. %%%
+%%% condition endif %%%
+</td>
+</tr>
+%%% condition endif %%%
 %%% condition endif %%%

@@ -202,6 +202,10 @@ msgstr ""
 msgid "use children of this category as categories for usergroups"
 msgstr ""
 
+#: templates/contact-participations.template.txt
+msgid "No access rights are defined for the contact details."
+msgstr ""
+
 #: templates/registration-confirmation.template.txt
 msgid "Your data was deleted successfully!"
 msgstr ""
@@ -394,8 +398,20 @@ msgstr ""
 msgid "Field name if access for an item is restricted to a participation with this ID"
 msgstr ""
 
+#: zzbrick_tables/activities.php
+msgid "Activity IP"
+msgstr ""
+
+#: zzbrick_tables/activities.php
+msgid "URI"
+msgstr ""
+
+#: zzbrick_tables/activities.php
+msgid "Comment"
+msgstr ""
+
 #: zzbrick_tables/contacts-access.php
-msgid "Access Rights to Contacts"
+msgid "Access to Contact Details"
 msgstr ""
 
 #: zzbrick_tables/contacts-access.php
