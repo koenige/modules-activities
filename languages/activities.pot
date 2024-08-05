@@ -286,6 +286,10 @@ msgstr ""
 msgid "Please add all the required fields for the form."
 msgstr ""
 
+#: zzbrick_forms/contacts-access.php
+msgid "No categories for access rights are defined (via `%s`)"
+msgstr ""
+
 #: zzbrick_forms/eventregistrations.php
 msgid "Registrations"
 msgstr ""

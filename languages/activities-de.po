@@ -300,6 +300,10 @@ msgstr "Bitte fügen Sie E-Mailvorlagen für das Formular hinzu."
 msgid "Please add all the required fields for the form."
 msgstr "Bitte ergänzen Sie alle erforderlichen Felder für das Formular."
 
+#: zzbrick_forms/contacts-access.php
+msgid "No categories for access rights are defined (via `%s`)"
+msgstr "Es sind keine Kategorien für Zugriffsrechte definiert (über `%s`)"
+
 #: zzbrick_forms/eventregistrations.php
 msgid "Registrations"
 msgstr "Registrierungen"

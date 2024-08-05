@@ -21,6 +21,8 @@ if (empty($brick['data']['contact_id'])) wrap_quit(404);
 $sql = 'SELECT category_id FROM categories
 	WHERE parameters LIKE "%&contacts_access=1%"';
 $categories = wrap_db_fetch($sql, 'category_id');
+if (!$categories)
+	wrap_quit(404, wrap_text('No categories for access rights are defined (via `%s`)', ['values' => ['contacts_access=1']]));
 
 $zz = zzform_include('usergroups');
 
