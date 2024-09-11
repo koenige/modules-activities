@@ -36,15 +36,18 @@ function mf_activities_formkit($event_id, $parameters) {
 		$zz = zzform_include('persons', [], 'forms');
 		mf_activities_formkit_table($zz, $parameters);
 		foreach ($zz['fields'] as $no => $field) {
-			if (empty($field['table'])) continue;
-			if (wrap_db_prefix($field['table']) !== wrap_db_prefix('/*_PREFIX_*/persons')) continue;
-			mf_activities_formkit_table($zz['fields'][$no], $parameters);
-			$persons_no = $no;
-			foreach ($field['fields'] as $sub_no => $sub_field) {
-				if ($sub_field['field_name'] === 'last_name') {
-					unset($zz['fields'][$no]['fields'][$sub_no]['list_append_next']);
-					unset($zz['fields'][$no]['fields'][$sub_no]['unless']['export_mode']['list_append_next']);
+			$identifier = zzform_field_identifier($field);
+			switch ($identifier) {
+			case 'persons':
+				mf_activities_formkit_table($zz['fields'][$no], $parameters);
+				$persons_no = $no;
+				foreach ($field['fields'] as $sub_no => $sub_field) {
+					if ($sub_field['field_name'] === 'last_name') {
+						unset($zz['fields'][$no]['fields'][$sub_no]['list_append_next']);
+						unset($zz['fields'][$no]['fields'][$sub_no]['unless']['export_mode']['list_append_next']);
+					}
 				}
+				break;
 			}
 		}
 	}

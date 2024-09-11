@@ -43,8 +43,8 @@ unset($zz['list']['group']);
 $zz['access'] = 'edit_details_only';
 
 foreach ($zz['fields'] as $no => $field) {
-	$field_name = $field['field_name'] ?? '';
-	switch ($field_name) {
+	$identifier = zzform_field_identifier($field);
+	switch ($identifier) {
 	case 'last_update':
 	case 'parameters':
 	case 'active':
