@@ -142,7 +142,7 @@ function mod_activities_make_registrationconfirmation() {
 		$sql = sprintf($sql, $data['contact_id']);
 		$has_logins = wrap_db_fetch($sql, '', 'single value');
 		if (!$has_logins) {
-			return brick_format('%%% forms addlogin '.$data['contact_id'].' url_self='.wrap_setting('request_uri').' query_strings[]=confirm %%%');
+			return brick_format('%%% forms addlogin '.$data['contact_id'].' query_strings[]=confirm %%%');
 		}
 	}
 	
