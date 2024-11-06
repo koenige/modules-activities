@@ -336,6 +336,27 @@ function mf_activities_formfielddata_values($contact_id, $fields, $defs, $top_ke
 }
 
 /**
+ * format all submitted data per form into a simple key: value list
+ *
+ * @param array $values
+ * @return string
+ */
+function mf_activities_formfielddata_submission($values) {
+	$data = [];
+	$longest = 0;
+	foreach ($values as $line) {
+		if (mb_strlen($line['formfield']) > $longest) $longest = mb_strlen($line['formfield']);
+	}
+	foreach ($values as $line) {
+		$line['formfield'] .= ':';
+		while (mb_strlen($line['formfield']) < $longest + 1)
+			$line['formfield'] .= ' ';
+		$out[] = sprintf('%s %s', $line['formfield'], $line['value']);
+	}
+	return implode("\r\n", $out);
+}
+
+/**
  * create JOINs from definition
  *
  * @param array $db_joins

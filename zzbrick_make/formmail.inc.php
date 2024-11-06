@@ -225,9 +225,7 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type, $formfie
 		LEFT JOIN categories formcategories
 			ON formcategories.category_id = forms.form_category_id
 	    WHERE event_id = %d';
-	$sql = sprintf($sql
-		, $event_id
-	);
+	$sql = sprintf($sql, $event_id);
 	$event = wrap_db_fetch($sql);
 	if ($event['informal_address']) wrap_setting('language_variation', 'informal');
 	$event = wrap_translate($event, 'events');
@@ -241,6 +239,7 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type, $formfie
 	$data['formmail_template'] = mf_activities_form_templates($data['form_id'], $type, $formfield_id);
 	if (!$data['formmail_template']) return false;
 	$data['values'] = mf_activities_formfielddata($contact_id, $data['form_id']);
+	$data['submission'] = mf_activities_formfielddata_submission($data['values']);
 	if ($formfield_id) {
 		$data['fieldvalue'] = $data['values'][$formfield_id]['value'];
 		$data['fieldtitle'] = $data['values'][$formfield_id]['formfield'];
