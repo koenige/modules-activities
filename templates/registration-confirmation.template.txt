@@ -44,8 +44,8 @@
 <tr><th><label for="code">%%% text Code: %%%</label></th> <td><input type="text" name="code" id="code" size="32" value="%%% item code %%%"></td></tr>
 <tr><th><td>
 %%% condition if reminder %%%<div class="reminder">%%% condition endif %%%
-<label for="confirm"><input type="radio" name="action" value="confirm" id="confirm" required="required"> %%% text Confirm registration %%%</label>
-<label for="delete"><input type="radio" name="action" value="delete" id="delete" required="required"> %%% text Delete registration %%%</label>
+<label for="confirm"><input type="radio" name="action" value="confirm" id="confirm" required> %%% text Confirm registration %%%</label>
+<label for="delete"><input type="radio" name="action" value="delete" id="delete" required> %%% text Delete registration %%%</label>
 %%% condition if reminder %%%</div>%%% condition endif %%%
 <br><input type="submit" class="submit"></td></tr>
 </table>
