@@ -153,7 +153,7 @@ function mod_activities_make_formmail_log_cv($contact_id) {
 	$result = wrap_db_query($sql);
 	if (!$result) return;
 	wrap_include('database', 'zzform');
-	zz_log_sql($sql);
+	zz_db_log($sql);
 }
 
 /**
