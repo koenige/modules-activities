@@ -89,6 +89,7 @@ function mf_activities_confirm_registration($ops) {
 	}
 
 	$data['verification_hash'] = implode('-', $data['verification_hash']);
+	$data['contact'] = wrap_mailclean($data['contact']);
 
 	$mail['to']['name'] = $data['contact'];
 	$mail['to']['e_mail'] = $data['e_mail'];
