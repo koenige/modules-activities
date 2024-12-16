@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2006-2013, 2016-2017, 2019-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2006-2013, 2016-2017, 2019-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -45,12 +45,9 @@ $zz['fields'][4]['character_set'] = 'latin1';
 $zz['fields'][5]['title'] = 'Category';
 $zz['fields'][5]['field_name'] = 'usergroup_category_id';
 $zz['fields'][5]['type'] = 'select';
-$zz['fields'][5]['sql'] = sprintf('SELECT category_id, category
+$zz['fields'][5]['sql'] = 'SELECT category_id, category
 	FROM /*_PREFIX_*/categories
-	WHERE main_category_id = %d',
-	wrap_category_id('usergroups')
-);
-$zz['fields'][5]['key_field_name'] = 'category_id';
+	WHERE main_category_id = /*_ID categories usergroups _*/';
 $zz['fields'][5]['if']['where']['hide_in_form'] = true;
 $zz['fields'][5]['if']['where']['hide_in_list'] = true;
 $zz['fields'][5]['display_field'] = 'category';
@@ -111,7 +108,6 @@ if (wrap_setting('activities_usergroups_organisation')) {
 	$zz['fields'][12]['title'] = 'Organisation';
 	$zz['fields'][12]['field_name'] = 'organisation_contact_id';
 	$zz['fields'][12]['type'] = 'select';
-	$zz['fields'][12]['key_field_name'] = 'contact_id';
 	$zz['fields'][12]['sql'] = 'SELECT contact_id, contact
 		FROM /*_PREFIX_*/contacts
 		LEFT JOIN /*_PREFIX_*/categories

@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -34,13 +34,11 @@ $zz['fields'][2]['display_field'] = 'event';
 $zz['fields'][4]['title'] = 'Type';
 $zz['fields'][4]['field_name'] = 'template_category_id';
 $zz['fields'][4]['type'] = 'select';
-$zz['fields'][4]['sql'] = sprintf('SELECT category_id, category
+$zz['fields'][4]['sql'] = 'SELECT category_id, category
 		, IF(parameters LIKE "%%&formfield=1%%", 1, NULL) AS show_formfield
 	FROM /*_PREFIX_*/categories
-	WHERE main_category_id = %d
-	ORDER BY sequence',
-	wrap_category_id('template-types')
-);
+	WHERE main_category_id = /*_ID categories template-types _*/
+	ORDER BY sequence';
 $zz['fields'][4]['display_field'] = 'category';
 $zz['fields'][4]['sql_translate'] = ['category_id' => 'categories'];
 $zz['fields'][4]['dependent_fields'][5]['if_selected'] = 'show_formfield';

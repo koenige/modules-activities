@@ -38,15 +38,12 @@ $zz['fields'][3]['field_name'] = 'category_id';
 $zz['fields'][3]['type'] = 'select';
 $zz['fields'][3]['display_field'] = 'category';
 //$zz['fields'][3]['add_details'] = 'categories';
-$zz['fields'][3]['id_field_name'] = 'categories.category_id';
-$zz['fields'][3]['sql'] = sprintf('SELECT categories.category_id, categories.category
-		, IF(main.category_id != %d, main.category, "") AS main_category, categories.main_category_id
+$zz['fields'][3]['sql'] = 'SELECT categories.category_id, categories.category
+		, IF(main.category_id != /*_ID categories participations _*/, main.category, "") AS main_category, categories.main_category_id
 	FROM categories
 	LEFT JOIN categories main
 		ON main.category_id = categories.main_category_id
-	ORDER BY main.sequence, categories.sequence, categories.category', 
-	wrap_category_id('participations')
-);
+	ORDER BY main.sequence, categories.sequence, categories.category';
 $zz['fields'][3]['show_hierarchy'] = 'main_category_id';
 $zz['fields'][3]['show_hierarchy_subtree'] = wrap_category_id('participations');
 

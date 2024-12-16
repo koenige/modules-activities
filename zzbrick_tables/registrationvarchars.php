@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2018-2021 Gustaf Mossakowski
+ * @copyright Copyright © 2018-2021, 2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -21,10 +21,10 @@ $zz['fields'][1]['type'] = 'id';
 
 $zz['fields'][2]['field_name'] = 'contact_id';
 $zz['fields'][2]['type'] = 'select';
-$zz['fields'][2]['sql'] = sprintf('SELECT contact_id, contact
+$zz['fields'][2]['sql'] = 'SELECT contact_id, contact
 	FROM contacts
-	WHERE contact_category_id = %d
-	ORDER BY contact', wrap_category_id('contact/person'));
+	WHERE contact_category_id = /*_ID categories contact/person _*/
+	ORDER BY contact';
 $zz['fields'][2]['display_field'] = 'contact';
 $zz['fields'][2]['list_append_next'] = true;
 $zz['fields'][2]['list_prefix'] = '<strong>';

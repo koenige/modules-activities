@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021, 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2021, 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -31,7 +31,6 @@ $zz['fields'][2]['display_field'] = 'contact';
 
 $zz['fields'][3]['title'] = 'Category';
 $zz['fields'][3]['field_name'] = 'activity_category_id';
-$zz['fields'][3]['key_field_name'] = 'category_id';
 $zz['fields'][3]['type'] = 'write_once';
 $zz['fields'][3]['type_detail'] = 'select';
 $zz['fields'][3]['sql'] = 'SELECT category_id, category, main_category_id

@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2012, 2018-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2012, 2018-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -34,15 +34,15 @@ $zz['fields'][2]['if']['where']['class'] = 'hidden';
 $zz['fields'][4]['title'] = 'Sender';
 $zz['fields'][4]['field_name'] = 'sender_contact_id';
 $zz['fields'][4]['type'] = 'select';
-$zz['fields'][4]['sql'] = sprintf('SELECT contact_id, contact
+$zz['fields'][4]['sql'] = 'SELECT contact_id, contact
 	, (SELECT identification FROM contactdetails
 			WHERE contactdetails.contact_id = contacts.contact_id
-			AND provider_category_id = %d
+			AND provider_category_id = /*_ID categories provider/e-mail _*/
 			LIMIT 1
 		) AS e_mail
 	FROM /*_PREFIX_*/persons
 	LEFT JOIN /*_PREFIX_*/contacts USING (contact_id)
-	ORDER BY last_name, first_name', wrap_category_id('provider/e-mail'));
+	ORDER BY last_name, first_name';
 $zz['fields'][4]['display_field'] = 'contact';
 $zz['fields'][4]['default'] = $_SESSION['contact_id'];
 $zz['fields'][4]['list_append_next'] = true;

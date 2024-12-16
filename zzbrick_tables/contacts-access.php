@@ -44,7 +44,6 @@ $zz['fields'][3]['character_set'] = 'utf8';
 
 $zz['fields'][4]['title'] = 'Property';
 $zz['fields'][4]['field_name'] = 'property_category_id';
-$zz['fields'][4]['id_field_name'] = 'categories.category_id';
 $zz['fields'][4]['type'] = 'select';
 $zz['fields'][4]['sql'] = 'SELECT categories.category_id
 		, categories.category
@@ -62,14 +61,12 @@ $zz['fields'][4]['group'] = 'main_category';
 $zz['fields'][5]['title'] = 'Access';
 $zz['fields'][5]['field_name'] = 'access_category_id';
 $zz['fields'][5]['type'] = 'select';
-$zz['fields'][5]['sql'] = sprintf('SELECT categories.category_id
+$zz['fields'][5]['sql'] = 'SELECT categories.category_id
 		, categories.category
 	FROM categories
 	WHERE parameters LIKE "%%&contacts_access=1%%"
-	AND main_category_id = %d
-	ORDER BY category'
-	, wrap_category_id('access')
-);
+	AND main_category_id = /*_ID categories access _*/
+	ORDER BY category';
 $zz['fields'][5]['display_field'] = 'access_category';
 $zz['fields'][5]['search'] = '/*_PREFIX_*/categories.category';
 

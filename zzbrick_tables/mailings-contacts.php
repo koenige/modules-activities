@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2012, 2019-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2012, 2019-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -32,17 +32,16 @@ $zz['fields'][2]['search'] = 'CONCAT(events.identifier, ": ", IFNULL(sent, CONCA
 
 $zz['fields'][3]['title'] = 'Recipient';
 $zz['fields'][3]['field_name'] = 'recipient_contact_id';
-$zz['fields'][3]['key_field_name'] = 'contact_id';
 $zz['fields'][3]['type'] = 'select';
-$zz['fields'][3]['sql'] = sprintf('SELECT contact_id, contact
+$zz['fields'][3]['sql'] = 'SELECT contact_id, contact
 	, (SELECT identification FROM contactdetails
 			WHERE contactdetails.contact_id = contacts.contact_id
-			AND provider_category_id = %d
+			AND provider_category_id = /*_ID categories provider/e-mail _*/
 			LIMIT 1
 		) AS e_mail
 	FROM /*_PREFIX_*/persons
 	LEFT JOIN contacts USING (contact_id)
-	ORDER BY last_name, first_name', wrap_category_id('provider/e-mail'));
+	ORDER BY last_name, first_name';
 $zz['fields'][3]['display_field'] = 'contact';
 
 $zz['fields'][4]['title'] = 'E-mail';

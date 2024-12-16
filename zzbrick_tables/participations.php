@@ -143,12 +143,9 @@ $zz['fields'][5]['hide_in_list_if_empty'] = true;
 $zz['fields'][6]['title'] = 'Status';
 $zz['fields'][6]['field_name'] = 'status_category_id';
 $zz['fields'][6]['type'] = 'select';
-$zz['fields'][6]['sql'] = sprintf('SELECT category_id, category
+$zz['fields'][6]['sql'] = 'SELECT category_id, category
 	FROM /*_PREFIX_*/categories
-	WHERE main_category_id = %d',
-	wrap_category_id('participation-status')
-);
-$zz['fields'][6]['key_field_name'] = 'category_id';
+	WHERE main_category_id = /*_ID categories participation-status _*/';
 $zz['fields'][6]['search'] = '/*_PREFIX_*/categories.category';
 $zz['fields'][6]['if']['where']['hide_in_form'] = true;
 $zz['fields'][6]['if']['where']['hide_in_list'] = true;
@@ -196,7 +193,6 @@ $zz['fields'][35]['title'] = 'Entry by';
 $zz['fields'][35]['field_name'] = 'entry_contact_id';
 $zz['fields'][35]['type'] = 'hidden';
 $zz['fields'][35]['type_detail'] = 'select';
-$zz['fields'][35]['key_field_name'] = 'contact_id';
 $zz['fields'][35]['sql'] = 'SELECT contact_id, contact, identifier
 	FROM /*_PREFIX_*/contacts
 	ORDER BY contact';
@@ -209,11 +205,11 @@ $zz['fields'][99]['field_name'] = 'last_update';
 $zz['fields'][99]['type'] = 'timestamp';
 $zz['fields'][99]['hide_in_list'] = true;
 
-$zz['sql'] = sprintf('SELECT /*_PREFIX_*/participations.*, contact, usergroup
-		, IF(/*_PREFIX_*/categories.parameters LIKE "%%&hide_in_list=1%%", "", /*_PREFIX_*/categories.category) AS category
+$zz['sql'] = 'SELECT /*_PREFIX_*/participations.*, contact, usergroup
+		, IF(/*_PREFIX_*/categories.parameters LIKE "%&hide_in_list=1%", "", /*_PREFIX_*/categories.category) AS category
 		, (SELECT identification FROM /*_PREFIX_*/contactdetails
 			WHERE /*_PREFIX_*/contactdetails.contact_id = /*_PREFIX_*/participations.contact_id
-			AND provider_category_id = %d LIMIT 1) AS e_mail
+			AND provider_category_id = /*_ID categories provider/e-mail _*/ LIMIT 1) AS e_mail
 		,  /*_PREFIX_*/contacts.identifier
 		, contact_categories.parameters AS contact_parameters
 		, event
@@ -225,10 +221,7 @@ $zz['sql'] = sprintf('SELECT /*_PREFIX_*/participations.*, contact, usergroup
 		ON /*_PREFIX_*/participations.status_category_id = /*_PREFIX_*/categories.category_id
 	LEFT JOIN /*_PREFIX_*/categories contact_categories
 		ON contact_categories.category_id = /*_PREFIX_*/contacts.contact_category_id
-	LEFT JOIN /*_PREFIX_*/events USING (event_id)
-'
-	, wrap_category_id('provider/e-mail')
-);
+	LEFT JOIN /*_PREFIX_*/events USING (event_id)';
 $zz['sqlorder'] = ' ORDER BY /*_PREFIX_*/usergroups.identifier
 	, IF(ISNULL(/*_PREFIX_*/participations.sequence), 1, NULL), /*_PREFIX_*/participations.sequence
 	, IFNULL(/*_PREFIX_*/persons.last_name, /*_PREFIX_*/contacts.identifier)

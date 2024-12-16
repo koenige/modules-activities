@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2018-2019, 2021, 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2018-2019, 2021, 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -36,13 +36,10 @@ $zz['fields'][2]['if']['where']['hide_in_list'] = true;
 $zz['fields'][12]['title'] = 'Category';
 $zz['fields'][12]['title_tab'] = 'C.';
 $zz['fields'][12]['field_name'] = 'form_category_id';
-$zz['fields'][12]['key_field_name'] = 'category_id';
 $zz['fields'][12]['type'] = 'select';
-$zz['fields'][12]['sql'] = sprintf('SELECT category_id, category
+$zz['fields'][12]['sql'] = 'SELECT category_id, category
 	FROM /*_PREFIX_*/categories
-	WHERE main_category_id = %d',
-	wrap_category_id('forms')
-);
+	WHERE main_category_id = /*_ID categories forms _*/';
 $zz['fields'][12]['show_values_as_list'] = true;
 $zz['fields'][12]['default'] = wrap_category_id('forms/registration');
 $zz['fields'][12]['display_field'] = 'category';

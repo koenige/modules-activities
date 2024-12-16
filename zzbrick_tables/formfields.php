@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014, 2018-2021, 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2014, 2018-2021, 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -44,12 +44,10 @@ $zz['fields'][3]['typo_remove_double_spaces'] = true;
 $zz['fields'][5]['title'] = 'Type';
 $zz['fields'][5]['field_name'] = 'formfield_category_id';
 $zz['fields'][5]['type'] = 'select';
-$zz['fields'][5]['sql'] = sprintf('SELECT category_id, category
+$zz['fields'][5]['sql'] = 'SELECT category_id, category
 	FROM /*_PREFIX_*/categories
-	WHERE main_category_id = %d
-	ORDER BY sequence',
-	wrap_category_id('field-types')
-);
+	WHERE main_category_id = /*_ID categories field-types _*/
+	ORDER BY sequence';
 $zz['fields'][5]['display_field'] = 'category';
 $zz['fields'][5]['sql_translate'] = ['category_id' => 'categories'];
 

@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2018-2019, 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2018-2019, 2023-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -21,13 +21,10 @@ $zz['fields'][1]['type'] = 'id';
 
 $zz['fields'][5]['title'] = 'Form';
 $zz['fields'][5]['field_name'] = 'form_category_id';
-$zz['fields'][5]['key_field_name'] = 'category_id';
 $zz['fields'][5]['type'] = 'select';
-$zz['fields'][5]['sql'] = sprintf('SELECT category_id, category
+$zz['fields'][5]['sql'] = 'SELECT category_id, category
 	FROM /*_PREFIX_*/categories
-	WHERE main_category_id = %d',
-	wrap_category_id('forms')
-);
+	WHERE main_category_id = /*_ID categories forms _*/';
 $zz['fields'][5]['show_values_as_list'] = true;
 $zz['fields'][5]['default'] = wrap_category_id('forms/application');
 $zz['fields'][5]['display_field'] = 'formcategory';
@@ -36,13 +33,10 @@ $zz['fields'][5]['sql_translate'] = ['category_id' => 'categories'];
 
 $zz['fields'][4]['title'] = 'Template';
 $zz['fields'][4]['field_name'] = 'template_category_id';
-$zz['fields'][4]['key_field_name'] = 'category_id';
 $zz['fields'][4]['type'] = 'select';
-$zz['fields'][4]['sql'] = sprintf('SELECT category_id, category
+$zz['fields'][4]['sql'] = 'SELECT category_id, category
 	FROM /*_PREFIX_*/categories
-	WHERE main_category_id = %d',
-	wrap_category_id('template-types')
-);
+	WHERE main_category_id = /*_ID categories template-types _*/';
 $zz['fields'][4]['show_values_as_list'] = true;
 $zz['fields'][4]['display_field'] = 'templatecategory';
 $zz['fields'][4]['search'] = 'templatecategories.category';
@@ -61,13 +55,12 @@ $zz['fields'][3]['show_values_as_list'] = true;
 
 $zz['fields'][6]['title'] = 'Organisation';
 $zz['fields'][6]['field_name'] = 'org_contact_id';
-$zz['fields'][6]['key_field_name'] = 'contact_id';
 $zz['fields'][6]['type'] = 'select';
 if (wrap_category_id('contact/organisation', 'check'))
-	$zz['fields'][6]['sql'] = sprintf('SELECT contact_id, contact
+	$zz['fields'][6]['sql'] = 'SELECT contact_id, contact
 		FROM contacts
-		WHERE contact_category_id = %d
-		ORDER BY contact', wrap_category_id('contact/organisation'));
+		WHERE contact_category_id = /*_ID categories contact/organisation _*/
+		ORDER BY contact';
 else
 	$zz['fields'][6]['sql'] = 'SELECT contact_id, contact
 		FROM contacts
