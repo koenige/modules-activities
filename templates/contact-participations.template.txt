@@ -8,35 +8,35 @@
 # @copyright Copyright © 2023-2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
-%%% condition if participations %%%
+%%% if participations %%%
 <tr><th>%%% text Usergroups %%%
-%%% condition if participation_contact_path %%%
+%%% if participation_contact_path %%%
 <p class="edit"><small><a href="%%% item participation_contact_path %%%">%%% text Edit %%%</a></small></p>
-%%% condition endif %%%</th>
+%%% endif %%%</th>
 <td>
 <ul>
 %%% loop participations %%%
-<li>%%% item profile_path "<a href='%s'>" %%%%%% item usergroup %%%%%% item profile_path "</a>" %%% %%% item role %%% %%% condition if date_begin %%%%%% condition unless date_end %%%%%% text since %%% %%% condition endif %%%%%% condition endif %%%%%% item date_begin wrap_date %%%%%% condition if date_end %%%–%%% condition endif %%%%%% item date_end wrap_date %%% %%% item remarks "<em>%s</em>" %%%</li>
+<li>%%% item profile_path "<a href='%s'>" %%%%%% item usergroup %%%%%% item profile_path "</a>" %%% %%% item role %%% %%% if date_begin %%%%%% unless date_end %%%%%% text since %%% %%% endif %%%%%% endif %%%%%% item date_begin wrap_date %%%%%% if date_end %%%–%%% endif %%%%%% item date_end wrap_date %%% %%% item remarks "<em>%s</em>" %%%</li>
 %%% loop end %%%
 </ul>
 </td></tr>
-%%% condition endif %%%
-%%% condition if person %%%
-%%% condition if path activities_contactdata_access[person] %%%
+%%% endif %%%
+%%% if person %%%
+%%% if path activities_contactdata_access[person] %%%
 <tr><th>%%% text Access Rights %%%
 <p class="edit"><small><a href="%%% path activities_contactdata_access[person] identifier %%%">%%% text Edit %%%</a></small></p>
 </th>
 <td>
-%%% condition if access %%%
+%%% if access %%%
 <ul>
 %%% loop access %%%
 <li><em>%%% item usergroup %%%:</em> %%% item area_category %%% %%% item property_category %%% – %%% item access_category %%%</li>
 %%% loop end %%%
 </ul>
-%%% condition else %%%
+%%% else %%%
 %%% text No access rights are defined for the contact details. %%%
-%%% condition endif %%%
+%%% endif %%%
 </td>
 </tr>
-%%% condition endif %%%
-%%% condition endif %%%
+%%% endif %%%
+%%% endif %%%

@@ -5,16 +5,16 @@
 # https://www.zugzwang.org/modules/activities
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2023 Gustaf Mossakowski
+# @copyright Copyright © 2023, 2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
-%%% condition if inexistent_part %%%
+%%% if inexistent_part %%%
 <p class="error">%%% text This part of the ZIP archive does not exist. %%%</p>
-%%% condition endif %%%
+%%% endif %%%
 
 <p>%%% text File is too big to download. Download in parts: %%%</p>
 <ul>
 %%% loop parts %%%
-<li><a href="%%% setting request_uri %%%&amp;part=%%% item part %%%">%%% item part %%%</a>%%% condition if files %%% (%%% text "%s files" files %%%)%%% condition endif %%%</li>
+<li><a href="%%% setting request_uri %%%&amp;part=%%% item part %%%">%%% item part %%%</a>%%% if files %%% (%%% text "%s files" files %%%)%%% endif %%%</li>
 %%% loop end %%%
 </ul>

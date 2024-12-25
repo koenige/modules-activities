@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/activities
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2023 Gustaf Mossakowski
+# @copyright Copyright © 2023-2024 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 # 
 %%% item abstract markdown %%%
@@ -14,16 +14,16 @@
 
 %%% page subpages %%%
 
-%%% condition if formfields %%%
+%%% if formfields %%%
 %%% access activities_registration_public event_id:* %%%
 <p><a href="%%% path activities_form identifier %%%">%%% text Form on public website %%%</a></p>
 %%% access else %%%
 <p class="error">%%% text The form has not yet been published. %%%</p>
 %%% access off %%%
-%%% condition elseif formtemplates %%%
+%%% elseif formtemplates %%%
 <p class="error">%%% text Please add all the required fields for the form. %%%</p>
-%%% condition elseif form_id %%%
+%%% elseif form_id %%%
 <p class="error">%%% text Please add email templates for the form. %%%</p>
-%%% condition else %%%
+%%% else %%%
 <p class="error">%%% text Please create a form first. %%%</p>
-%%% condition endif %%%
+%%% endif %%%

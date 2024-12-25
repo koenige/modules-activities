@@ -10,10 +10,10 @@
 #
 <div class="activities">
 <div class="msg">
-%%% condition if delete %%%
+%%% if delete %%%
 <p>%%% text Your data was deleted successfully! %%%</p>
 
-%%% condition elseif confirmed_delete %%%
+%%% elseif confirmed_delete %%%
 <p>%%% text Your data could not be deleted because you have already confirmed your registration. %%%
  %%% text This way, a cancellation is not possible. %%%</p>
 %%% define mail %%%
@@ -22,20 +22,20 @@
 <p>%%% text "Please contact us directly (E-Mail: %s)." mail %%% 
 </p>
 
-%%% condition elseif no_data %%%
+%%% elseif no_data %%%
 <p><strong>%%% text Your data was not found. %%%</strong></p>
 
-%%% condition elseif confirm %%%
+%%% elseif confirm %%%
 <p>%%% text Thank you for your interest. Your registration has been confirmed. %%%</p>
 
-%%% condition elseif already_confirmed %%%
+%%% elseif already_confirmed %%%
 <p><strong>%%% text You have already confirmed your registration. %%%</strong>
 %%% text No further confirmation is required. %%%</p>
 
-%%% condition endif %%%
+%%% endif %%%
 </div>
 
-%%% condition if form %%%
+%%% if form %%%
 <fieldset>
 <legend>%%% text Confirmation/deletion of registration %%%</legend>
 <p>%%% text Please enter the verification code you received: %%%</p>
@@ -43,19 +43,19 @@
 <table>
 <tr><th><label for="code">%%% text Code: %%%</label></th> <td><input type="text" name="code" id="code" size="32" value="%%% item code %%%"></td></tr>
 <tr><th><td>
-%%% condition if reminder %%%<div class="reminder">%%% condition endif %%%
-%%% condition unless setting html_label_after_input %%%<label for="confirm">%%% condition endif %%%<input type="radio" name="action" value="confirm" id="confirm" required> %%% condition if setting html_label_after_input %%%<label for="confirm">%%% condition endif %%%%%% text Confirm registration %%%</label>
-%%% condition unless setting html_label_after_input %%%<label for="delete">%%% condition endif %%%<input type="radio" name="action" value="delete" id="delete" required> %%% condition if setting html_label_after_input %%%<label for="delete">%%% condition endif %%%%%% text Delete registration %%%</label>
-%%% condition if reminder %%%</div>%%% condition endif %%%
+%%% if reminder %%%<div class="reminder">%%% endif %%%
+%%% unless setting html_label_after_input %%%<label for="confirm">%%% endif %%%<input type="radio" name="action" value="confirm" id="confirm" required> %%% if setting html_label_after_input %%%<label for="confirm">%%% endif %%%%%% text Confirm registration %%%</label>
+%%% unless setting html_label_after_input %%%<label for="delete">%%% endif %%%<input type="radio" name="action" value="delete" id="delete" required> %%% if setting html_label_after_input %%%<label for="delete">%%% endif %%%%%% text Delete registration %%%</label>
+%%% if reminder %%%</div>%%% endif %%%
 <br><input type="submit" class="submit"></td></tr>
 </table>
 </form>
 </fieldset>
-%%% condition endif %%%
+%%% endif %%%
 
-%%% condition if addlogin %%%
+%%% if addlogin %%%
 <p><a href="%%% setting login_entry_path %%%">%%% text Continue to the home page %%%</a></p>
-%%% condition else %%%
+%%% else %%%
 <p><a href="%%% setting base %%%%%% setting homepage_url %%%">%%% text Continue to the home page %%%</a></p>
-%%% condition endif %%%
+%%% endif %%%
 </div>
