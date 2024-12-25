@@ -42,16 +42,16 @@ necessary to include at least the `authentication_link`.
 
 - `%%% item last_name %%%` – Inserts only last name of registrant
 
-- `%%% condition if male %%%` … `%%% condition endif %%%` – Condition
+- `%%% if male %%%` … `%%% endif %%%` – Condition
 that shows content only if registrant is male, e. g. to address a
 person. `female`, `diverse` and `unknown` are available, too. Instead of
 an `endif`, you can also combine several of these conditions with an
 `elseif`. Examples: 
-`%%% condition if female %%%` … `%%% condition endif %%%` 
-`%%% condition if diverse %%%` … `%%% condition endif %%%` 
-`%%% condition if unknown %%%` … `%%% condition endif %%%` 
-`%%% condition if male %%%` … `%%% condition elseif fmale %%%` … 
-`%%% condition endif %%%`
+`%%% if female %%%` … `%%% endif %%%` 
+`%%% if diverse %%%` … `%%% endif %%%` 
+`%%% if unknown %%%` … `%%% endif %%%` 
+`%%% if male %%%` … `%%% elseif fmale %%%` … 
+`%%% endif %%%`
 
 - `%%% item e_mail %%%` – Inserts e-mail address of registrant
 
@@ -75,10 +75,10 @@ the URL)
 - `%%% item duration %%%` – Inserts duration of the event, formatted
 according to language settings
 
-- `%%% condition if formal_address %%%` … `%%% condition endif %%%` –
+- `%%% if formal_address %%%` … `%%% endif %%%` –
 Show content only if the form addresses registrants formally.
 
-- `%%% condition if informal_address %%%` … `%%% condition endif %%%` –
+- `%%% if informal_address %%%` … `%%% endif %%%` –
 Show content only if the form addresses registrants informally.
 
 - `%%% item form_category %%%` – Inserts category of form, e. g.
