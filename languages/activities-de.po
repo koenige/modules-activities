@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.5\n"
 
 #: configuration/access.cfg
 msgid "create and view registrations for an event"
@@ -577,8 +577,10 @@ msgid "Message"
 msgstr "Nachricht"
 
 #: zzbrick_tables/mailings.php
-msgid "%d characters per line."
-msgstr "%d Zeichen pro Zeile."
+msgid "%d character per line."
+msgid_plural "%d characters per line."
+msgstr[0] "%d Zeichen pro Zeile."
+msgstr[1] "%d Zeichen pro Zeile."
 
 #: zzbrick_tables/mailings.php
 msgid "(<a href=\"%s\">Possible placeholders</a>)."

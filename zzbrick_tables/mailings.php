@@ -73,7 +73,7 @@ $zz['fields'][3]['format'] = 'nl2br';
 $zz['fields'][3]['hide_format_in_title_desc'] = true;
 $zz['fields'][3]['rows'] = 30;
 $zz['fields'][3]['cols'] = 80;
-$zz['fields'][3]['explanation'] = sprintf(wrap_text('%d characters per line.'), $zz['fields'][3]['cols']);
+$zz['fields'][3]['explanation'] = wrap_text('%d characters per line.', ['values' => [$zz['fields'][3]['cols']]]);
 if ($path = wrap_setting('activities_mailings_help')) {
 	$zz['fields'][3]['explanation'] .= ' '.sprintf('(<a href="%s">Possible placeholders</a>)', $path);
 }
