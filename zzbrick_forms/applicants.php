@@ -87,7 +87,7 @@ $zz['fields'][++$no] = [
 // @todo change where to something else, records must not be deleted completely if
 // contact_id is used from other parts of system
 $zz['conditions'][1]['scope'] = 'record';
-$zz['conditions'][1]['where'] = sprintf('participations.status_category_id = %d', wrap_category_id('participation-status/subscribed'));
+$zz['conditions'][1]['where'] = 'participations.status_category_id = /*_ID categories participation-status/subscribed _*/';
 
 $zz['record']['delete'] = false;
 $zz['record']['add'] = false;

@@ -117,15 +117,14 @@ $zz['fields'][20]['field_name'] = 'last_update';
 $zz['fields'][20]['type'] = 'timestamp';
 $zz['fields'][20]['hide_in_list'] = true;
 
-$zz['sql'] = sprintf('SELECT mailings.*
+$zz['sql'] = 'SELECT mailings.*
 		, event
 		, contact
-		, IFNULL(sent, "%s") AS status
+		, IFNULL(sent, "/*_TEXT not yet _*/") AS status
 	FROM mailings
 	LEFT JOIN events USING (event_id)
 	LEFT JOIN contacts
-		ON contacts.contact_id = mailings.sender_contact_id
-', wrap_text('not yet'));
+		ON contacts.contact_id = mailings.sender_contact_id';
 $zz['sqlorder'] = ' ORDER BY events.identifier DESC, sent, last_update';
 
 $zz['conditions'][1]['scope'] = 'record';

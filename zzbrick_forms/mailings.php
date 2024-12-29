@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014, 2016-2017, 2019-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2014, 2016-2017, 2019-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -21,7 +21,7 @@ $sql = 'SELECT participation_id
 		, contacts.contact
 		, (SELECT identification FROM contactdetails
 			WHERE contactdetails.contact_id = contacts.contact_id
-			AND provider_category_id = %d
+			AND provider_category_id = /*_ID categories provider/e-mail_*/
 			LIMIT 1
 		) AS e_mail
 		, usergroup
@@ -31,14 +31,12 @@ $sql = 'SELECT participation_id
 	LEFT JOIN contacts USING (contact_id)
 	LEFT JOIN usergroups USING (usergroup_id)
 	WHERE participations.event_id = %d
-	AND status_category_id IN (%d, %d)
+	AND status_category_id IN (
+		/*_ID categories participation-status/verified _*/,
+		/*_ID categories participation-status/participant _*/
+	)
 	ORDER BY usergroup, last_name, first_name';
-$sql = sprintf($sql
-	, wrap_category_id('participation-status/verified')
-	, wrap_category_id('participation-status/participant')
-	, wrap_category_id('provider/e-mail')
-	, $brick['data']['event_id']
-);
+$sql = sprintf($sql, $brick['data']['event_id']);
 
 $zz['fields'][5]['form_display'] = 'set';
 $zz['fields'][5]['fields'][3]['sql'] = $sql;

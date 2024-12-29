@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021-2023 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2024 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -23,11 +23,8 @@ $sql = 'SELECT invitation_id, usergroup_id
     LEFT JOIN events USING (event_id)
     LEFT JOIN forms USING (event_id)
     WHERE invitation_hash = "%s"
-    AND forms.form_category_id = %d';
-$sql = sprintf($sql
-	, wrap_db_escape($brick['vars'][0])
-	, wrap_category_id('forms/registration')
-);
+    AND forms.form_category_id = /*_ID categories forms/registration _*/';
+$sql = sprintf($sql, wrap_db_escape($brick['vars'][0]));
 $invitation = wrap_db_fetch($sql);
 if (!$invitation) wrap_quit(404, wrap_text('There is no invitation for this code.'));
 

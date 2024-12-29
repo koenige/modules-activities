@@ -40,9 +40,9 @@ $zz['fields'][10]['field_name'] = 'e_mail';
 $zz['fields'][10]['type'] = 'display';
 $zz['fields'][10]['type_detail'] = 'mail';
 $zz['fields'][10]['list_prefix'] = '<br>';
-$zz['fields'][10]['search'] = sprintf('(SELECT identification FROM /*_PREFIX_*/contactdetails
-			WHERE /*_PREFIX_*/contactdetails.contact_id = /*_PREFIX_*/participations.contact_id
-			AND provider_category_id = %d LIMIT 1)', wrap_category_id('provider/e-mail'));
+$zz['fields'][10]['search'] = '(SELECT identification FROM /*_PREFIX_*/contactdetails
+	WHERE /*_PREFIX_*/contactdetails.contact_id = /*_PREFIX_*/participations.contact_id
+	AND provider_category_id = /*_ID categories provider/e-mail _*/ LIMIT 1)';
 $zz['fields'][10]['if']['add']['hide_in_form'] = true;
 
 $zz['fields'][3]['field_name'] = 'usergroup_id';

@@ -134,22 +134,18 @@ function mf_activities_merge_contact($contact_id) {
 	    FROM contacts
 	    LEFT JOIN contactdetails
 	    	ON contactdetails.contact_id = contacts.contact_id
-	    	AND provider_category_id = %d
+	    	AND provider_category_id = /*_ID categories provider/e-mail _*/
 	    WHERE contacts.contact_id = %d';
-	$sql = sprintf($sql
-		, wrap_category_id('provider/e-mail')
-		, $contact_id
-	);
+	$sql = sprintf($sql, $contact_id);
 	$new_contact = wrap_db_fetch($sql);
 	
 	$sql = 'SELECT contacts.contact_id
 		FROM contacts
 	    LEFT JOIN contactdetails
 	    	ON contactdetails.contact_id = contacts.contact_id
-	    	AND provider_category_id = %d
+	    	AND provider_category_id = /*_ID categories provider/e-mail _*/
 		WHERE contact = "%s" AND contacts.contact_id != %d AND identification = "%s"';
 	$sql = sprintf($sql
-		, wrap_category_id('provider/e-mail')
 		, $new_contact['contact']
 		, $contact_id
 		, $new_contact['identification']

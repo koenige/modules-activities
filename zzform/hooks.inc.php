@@ -134,11 +134,8 @@ function mf_activities_hook_mailing_add_addresses($ops) {
 	$sql = 'SELECT contact_id, identification
 		FROM contactdetails
 		WHERE contact_id IN (%s)
-		AND contactdetails.provider_category_id = %d';
-	$sql = sprintf($sql
-		, implode(',', $contact_ids)
-		, wrap_category_id('provider/e-mail')
-	);
+		AND contactdetails.provider_category_id = /*_ID categories provider/e-mail _*/';
+	$sql = sprintf($sql, implode(',', $contact_ids));
 	$mails = wrap_db_fetch($sql, 'contact_id');
 	if (!$mails) return [];
 	
@@ -183,11 +180,8 @@ function mf_activities_hook_mailing_send($ops) {
 		FROM contacts
 		LEFT JOIN contactdetails USING (contact_id)
 		WHERE contact_id = %d
-		AND provider_category_id = %d';
-	$sql = sprintf($sql
-		, $maildata['sender_contact_id']
-		, wrap_category_id('provider/e-mail')
-	);
+		AND provider_category_id = /*_ID categories provider/e-mail _*/';
+	$sql = sprintf($sql, $maildata['sender_contact_id']);
 	$mail['headers']['From'] = wrap_db_fetch($sql, '', 'key/value');
 	if (empty($mail['headers']['From']))
 		wrap_error(wrap_text('There does not seem to be a clear email address entered for the sender of the mailings. Therefore the mails cannot be sent.'), E_USER_ERROR);
@@ -263,12 +257,9 @@ function mf_activities_formfield_watch($ops) {
 		LEFT JOIN formfields USING (formfield_id)
 		LEFT JOIN categories
 			ON formfields.formfield_category_id = categories.category_id
-		WHERE template_category_id = %d
+		WHERE template_category_id = /*_ID template-types/field-changed-mail _*/
 		AND formtemplates.form_id = %d';
-	$sql = sprintf($sql
-		, wrap_category_id('template-types/field-changed-mail')
-		, wrap_static('zzform', 'form_id')
-	);
+	$sql = sprintf($sql, wrap_static('zzform', 'form_id'));
 	$formfields = wrap_db_fetch($sql, 'formfield_id');
 	if (!$formfields) return [];
 	
