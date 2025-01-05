@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -256,3 +256,9 @@ $zz['subtitle']['contact_id']['sql'] = $zz['fields'][2]['sql'];
 $zz['subtitle']['contact_id']['var'] = ['contact'];
 
 $zz['setting']['zzform_search'] = 'both';
+
+if (!empty($_GET['filter']['status'])
+	AND $_GET['filter']['status'] === wrap_category_id('participation-status/subscribed'))
+{
+	$zz['list']['batch_delete'] = true;
+}
