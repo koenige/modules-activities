@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -24,14 +24,14 @@ $zz['sql'] = wrap_edit_sql($zz['sql'], 'WHERE',
 	sprintf('participations.event_id = %d', $brick['data']['event_id'])
 );
 $zz['sql'] = wrap_edit_sql($zz['sql'], 'JOIN',
-	sprintf('LEFT JOIN activities verifications
+	'LEFT JOIN activities verifications
 		ON participations.participation_id = verifications.participation_id
-		AND verifications.activity_category_id = %d', wrap_category_id('activities/verify'))
+		AND verifications.activity_category_id = /*_ID categories activities/verify _*/'
 );
 $zz['sql'] = wrap_edit_sql($zz['sql'], 'JOIN',
-	sprintf('LEFT JOIN activities subscriptions
+	'LEFT JOIN activities subscriptions
 		ON participations.participation_id = subscriptions.participation_id
-		AND subscriptions.activity_category_id = %d', wrap_category_id('activities/subscribe'))
+		AND subscriptions.activity_category_id = /*_ID categories activities/subscribe _*/'
 );
 $zz['sql'] = wrap_edit_sql($zz['sql'], 'SELECT',
 	'verifications.activity_ip AS verify_activity_ip

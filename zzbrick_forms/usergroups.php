@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023, 2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -18,18 +18,14 @@ $zz['title'] = wrap_text($zz['title']).':<br>'.$brick['data']['contact'];
 
 if (wrap_category_id('relations/organisation')) {
 	$zz['sql'] = wrap_edit_sql($zz['sql'], 'JOIN', 
-		sprintf('LEFT JOIN /*_PREFIX_*/usergroups_categories
+		'LEFT JOIN /*_PREFIX_*/usergroups_categories
 			ON /*_PREFIX_*/usergroups_categories.usergroup_id = /*_PREFIX_*/usergroups.usergroup_id
-			AND /*_PREFIX_*/usergroups_categories.category_id = %d'
-		, wrap_category_id('relations/organisation')
-		)
+			AND /*_PREFIX_*/usergroups_categories.category_id = /*_ID categories relations/organisation _*/'
 	);
 	$zz['filter'][1]['sql'] = wrap_edit_sql($zz['filter'][1]['sql'], 'JOIN', 
-		sprintf('LEFT JOIN /*_PREFIX_*/usergroups_categories
+		'LEFT JOIN /*_PREFIX_*/usergroups_categories
 			ON /*_PREFIX_*/usergroups_categories.usergroup_id = /*_PREFIX_*/usergroups.usergroup_id
-			AND /*_PREFIX_*/usergroups_categories.category_id = %d'
-		, wrap_category_id('relations/organisation')
-		)
+			AND /*_PREFIX_*/usergroups_categories.category_id = /*_ID categories relations/organisation _*/'
 	);
 	$zz['sql'] = wrap_edit_sql($zz['sql'], 'WHERE', sprintf(
 		'(/*_PREFIX_*/usergroups.organisation_contact_id = %d OR NOT ISNULL(/*_PREFIX_*/usergroups_categories.uc_id))'
