@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -83,7 +83,7 @@ function mf_activities_formkit($event_id, $parameters) {
 		$my_field['export'] = true;
 		$my_field['hide_in_list'] = $formfield['custom']['hide_in_list'] ?? $formfield['definition']['hide_in_list'] ?? false;
 		if ($formfield['area'] AND $formfield['area'] !== $area) {
-			$my_field['separator_before'] = 'text <h3><strong>'.$formfield['area'].'</strong></h3>';
+			$my_field['separator_before'] = 'text <h3>'.$formfield['area'].'</h3>';
 			$area = $formfield['area'];
 		}
 		$my_field['field_sequence'] = $no;
