@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014, 2018-2021, 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2014, 2018-2021, 2023-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -40,6 +40,7 @@ $zz['fields'][3]['title'] = 'Title';
 $zz['fields'][3]['field_name'] = 'formfield';
 $zz['fields'][3]['explanation'] = 'The title of the form field that appears on the left (= what to type in the field).';
 $zz['fields'][3]['typo_remove_double_spaces'] = true;
+$zz['fields'][3]['typo_cleanup'] = true;
 
 $zz['fields'][5]['title'] = 'Type';
 $zz['fields'][5]['field_name'] = 'formfield_category_id';
@@ -63,6 +64,7 @@ $zz['fields'][4]['list_append_next'] = true;
 $zz['fields'][4]['list_suffix'] = '<br>';
 $zz['fields'][4]['type'] = 'memo';
 $zz['fields'][4]['rows'] = 2;
+$zz['fields'][4]['typo_cleanup'] = true;
 
 $zz['fields'][8]['field_name'] = 'parameters';
 $zz['fields'][8]['type'] = 'parameter';
