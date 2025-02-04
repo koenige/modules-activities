@@ -1,0 +1,22 @@
+# activities module
+# template for contact: add participations in foot
+# 
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/activities
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2025 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+%%% unless participations %%%
+%%% switch scope %%%
+%%% case person %%%
+%%% if path activities_profile[person] %%%
+<p class="edit"><a href="%%% path activities_profile[person] identifier %%%?add">%%% text Add to a group %%%</a></p>
+%%% endif %%%
+%%% default %%%
+%%% if path activities_profile[*] %%%
+<p class="edit"><a href="%%% path activities_profile[*] identifier %%%?add">%%% text Add to a group %%%</a></p>
+%%% endif %%%
+%%% switch - %%%
+%%% endif %%%
