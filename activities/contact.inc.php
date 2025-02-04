@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -43,13 +43,6 @@ function mf_activities_contact_participations($data, $ids) {
 	// @todo translations
 	
 	foreach ($participations as $participation_id => $participation) {
-		if (empty($data[$participation['contact_id']]['participations'])) {
-			$data[$participation['contact_id']]['participation_contact_path']
-				= mf_activities_contact_path([
-					'identifier' => $data[$participation['contact_id']]['identifier']
-					, 'category_parameters' => 'type='.$data[$participation['contact_id']]['scope']
-				]);
-		}
 		$participation['profile_path']
 			= mf_activities_group_path(['identifier' => $participation['identifier']]);
 		$data[$participation['contact_id']]['participations'][$participation['participation_id']] = $participation;

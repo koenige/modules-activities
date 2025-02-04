@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -27,27 +27,6 @@ function mf_activities_group_path($values) {
 		if (!empty($parameters['no_participations'])) return false;
 	}
 	return wrap_path('activities_profile[usergroup]', $values['identifier']);
-}
-
-/**
- * get path to group for a contact profile
- *
- * @param array $values
- *		string 'identifier'
- * @return string
- */
-function mf_activities_contact_path($values) {
-	if (!empty($values['category_parameters'])) {
-		parse_str($values['category_parameters'], $parameters);
-	}
-	$type = !empty($parameters['type']) ? $parameters['type'] : 'contact';
-	
-	// @todo use wrap_path()
-	if (!wrap_setting('activities_profile_path['.$type.']')) {
-		$success = wrap_setting_path('activities_profile_path['.$type.']', 'forms participations-contacts', ['scope' => $type]);
-		if (!$success) return false;
-	}
-	return sprintf(wrap_setting('base').wrap_setting('activities_profile_path['.$type.']'), $values['identifier']);
 }
 
 /**

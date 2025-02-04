@@ -5,14 +5,21 @@
 # https://www.zugzwang.org/modules/activities
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2023-2024 Gustaf Mossakowski
+# @copyright Copyright © 2023-2025 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 %%% if participations %%%
 <tr><th>%%% text Usergroups %%%
-%%% if participation_contact_path %%%
-<p class="edit"><small><a href="%%% item participation_contact_path %%%">%%% text Edit %%%</a></small></p>
-%%% endif %%%</th>
+%%% switch scope %%%
+%%% case person %%%
+%%% if path activities_profile[person] %%%
+<p class="edit"><small><a href="%%% path activities_profile[person] identifier %%%">%%% text Edit %%%</a></small></p>
+%%% endif %%%
+%%% default %%%
+%%% if path activities_profile[*] %%%
+<p class="edit"><small><a href="%%% path activities_profile[*] identifier %%%">%%% text Edit %%%</a></small></p>
+%%% endif %%%
+%%% switch - %%%</th>
 <td>
 <ul>
 %%% loop participations %%%
