@@ -257,7 +257,7 @@ function mf_activities_formfield_watch($ops) {
 		LEFT JOIN formfields USING (formfield_id)
 		LEFT JOIN categories
 			ON formfields.formfield_category_id = categories.category_id
-		WHERE template_category_id = /*_ID template-types/field-changed-mail _*/
+		WHERE template_category_id = /*_ID categories template-types/field-changed-mail _*/
 		AND formtemplates.form_id = %d';
 	$sql = sprintf($sql, wrap_static('zzform', 'form_id'));
 	$formfields = wrap_db_fetch($sql, 'formfield_id');
