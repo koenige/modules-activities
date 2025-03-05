@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2012, 2018-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2012, 2018-2025 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -25,7 +25,7 @@ $zz['fields'][2]['type'] = 'select';
 $zz['fields'][2]['sql'] = 'SELECT event_id, event
 		, CONCAT(events.date_begin, IFNULL(CONCAT("/", events.date_end), "")) AS duration
 	FROM events
-	WHERE ISNULL(main_event_id)
+	WHERE events.event_category_id = /*_ID categories event/event _*/
 	ORDER BY event';
 $zz['fields'][2]['display_field'] = 'event';
 $zz['fields'][2]['if']['where']['hide_in_list'] = true;
