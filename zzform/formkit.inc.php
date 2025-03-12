@@ -30,6 +30,8 @@ function mf_activities_formkit($event_id, $parameters) {
 	switch ($main_table) {
 	case 'contacts':
 		$zz = zzform_include('contacts');
+		if (empty($parameters['db_values']['contacts.contact_category_id']))
+			$parameters['db_values']['contacts.contact_category_id'] = wrap_category_id('contact/person');
 		mf_activities_formkit_table($zz, $parameters);
 		break;
 	case 'persons':
