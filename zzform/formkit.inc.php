@@ -349,6 +349,10 @@ function mf_activities_formkit_subtable($formfield, $def_no, $nos) {
 			break;
 		case $formfield['field_name']:
 			$def['fields'][$field_no]['type'] = $formfield['definition']['type'];
+			if (!empty($formfield['definition']['sql_query']))
+				$def['fields'][$field_no]['sql'] = wrap_sql_query($formfield['definition']['sql_query']);
+			elseif (!empty($formfield['definition']['sql']))
+				$def['fields'][$field_no]['sql'] = $formfield['definition']['sql'];
 			$def['fields'][$field_no]['title'] = $formfield['formfield']; // for better error messages
 			$def['fields'][$field_no]['maxlength'] = $formfield['custom']['maxlength'] ?? wrap_setting('maxlength_memo');
 			$def['fields'][$field_no]['hide_in_list'] = true;
