@@ -349,10 +349,6 @@ function mf_activities_formkit_subtable($formfield, $def_no, $nos) {
 			break;
 		case $formfield['field_name']:
 			$def['fields'][$field_no]['type'] = $formfield['definition']['type'];
-			if (!empty($formfield['definition']['sql_query']))
-				$def['fields'][$field_no]['sql'] = wrap_sql_query($formfield['definition']['sql_query']);
-			elseif (!empty($formfield['definition']['sql']))
-				$def['fields'][$field_no]['sql'] = $formfield['definition']['sql'];
 			$def['fields'][$field_no]['title'] = $formfield['formfield']; // for better error messages
 			$def['fields'][$field_no]['maxlength'] = $formfield['custom']['maxlength'] ?? wrap_setting('maxlength_memo');
 			$def['fields'][$field_no]['hide_in_list'] = true;
@@ -407,6 +403,13 @@ function mf_activities_formkit_select($field, $formfield) {
 		$field[$select_type] = mf_activities_formkit_selection($formfield['custom']['selection'] ?? $formfield['definition']['selection'] ?? []);
 	}
 	$field['show_values_as_list'] = $formfield['custom']['show_values_as_list'] ?? $formfield['definition']['show_values_as_list'] ?? false;
+	if (!empty($formfield['definition']['sql_query'])) {
+		$field['sql'] = wrap_sql_query($formfield['definition']['sql_query']);
+		$field['select_save_value'] = $formfield['definition']['select_save_value'] ?? false;
+	} elseif (!empty($formfield['definition']['sql'])) {
+		$field['sql'] = $formfield['definition']['sql'];
+		$field['select_save_value'] = $formfield['definition']['select_save_value'] ?? false;
+	}
 	return $field;
 }
 
