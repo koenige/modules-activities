@@ -157,7 +157,7 @@ function mf_activities_merge_contact($contact_id) {
 						'contact_id' => $old_contact_id
 					];
 					$success = zzform_update($table, $line, E_USER_NOTICE, ['msg' => 'Merging contacts was not successful.']);
-					if (!$sucess) return false;
+					if (!$success) return false;
 				}
 				break;
 			}
