@@ -52,7 +52,7 @@ $zz['fields'][4]['sql'] = 'SELECT categories.category_id
 	LEFT JOIN categories main_categories
 		ON categories.main_category_id = main_categories.category_id
 	WHERE main_categories.parameters LIKE "%&access_property=1%"
-	ORDER BY main_categories.category, category';
+	ORDER BY main_categories.category, categories.category';
 $zz['fields'][4]['display_field'] = 'property_category';
 $zz['fields'][4]['search'] = 'properties.category';
 $zz['fields'][4]['character_set'] = 'utf8';
