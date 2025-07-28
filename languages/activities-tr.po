@@ -1,0 +1,731 @@
+# activities module
+# Translations template
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/activities
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2020-2024 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Zugzwang Project – Activities Module\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
+"Language-Team: \n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 3.6\n"
+
+#: configuration/access.cfg
+msgid "create and view registrations for an event"
+msgstr "bir etkinlik için kayıt oluşturma ve görüntüleme"
+
+#: configuration/access.cfg
+msgid "access a public form"
+msgstr "herkese açık bir forma erişim"
+
+#: configuration/access.cfg
+msgid "edit default templates for forms"
+msgstr "formlar için varsayılan şablonları düzenleme"
+
+#: configuration/access.cfg
+msgid "send form mail after event"
+msgstr "etkinlikten sonra form postası gönderin"
+
+#: configuration/access.cfg
+msgid "send mass mailings to participants of an event"
+msgstr "bir etkinliğin katılımcılarına toplu posta göndermek"
+
+#: configuration/access.cfg
+msgid "show participant list of an event"
+msgstr "bir etkinliğin katılımcı listesini göster"
+
+#: configuration/access.cfg
+msgid "show and edit participant list of an event"
+msgstr "bir etkinliğin katılımcı listesini gösterme ve düzenleme"
+
+#: configuration/access.cfg
+msgid "show, edit and delete from participant list of an event"
+msgstr "bir etkinliğin katılımcı listesini gösterme, düzenleme ve silme"
+
+#: configuration/access.cfg
+msgid "read group memberships for contacts"
+msgstr "kişiler için grup üyeliklerini okuma"
+
+#: configuration/access.cfg
+msgid "read usergroups"
+msgstr "kullanıcı gruplarını oku"
+
+#: configuration/access.cfg
+msgid "read group memberships for persons"
+msgstr "kişiler için grup üyeliklerini okuyun"
+
+#: configuration/access.cfg
+msgid "read list of applicants per form"
+msgstr "form başına başvuru sahiplerinin listesini okuyun"
+
+#: configuration/access.cfg
+msgid "edit templates and fields of a form"
+msgstr "bir formun şablonlarını ve alanlarını düzenleme"
+
+#: configuration/access.cfg
+msgid "create mail templates for forms"
+msgstr "formlar için posta şablonları oluşturma"
+
+#: configuration/access.cfg
+msgid "create registration forms for websites"
+msgstr "web siteleri için kayıt formları oluşturma"
+
+#: configuration/access.cfg
+msgid "public form view"
+msgstr "genel form görünümü"
+
+#: configuration/access.cfg
+msgid "allow editing of usergroups"
+msgstr "kullanıcı gruplarının düzenlenmesine izin vermek"
+
+#: configuration/access.cfg
+msgid "edit parameters of usergroups?"
+msgstr "kullanıcı gruplarının parametrelerini düzenleyebilir miyim?"
+
+#: configuration/settings.cfg
+msgid "text on action button for forms"
+msgstr "formlar için eylem düğmesindeki metin"
+
+#: configuration/settings.cfg
+msgid "maximum file size of a downloadable archive"
+msgstr "indirilebilir bir arşivin maksimum dosya boyutu"
+
+#: configuration/settings.cfg
+msgid "path to single form on website"
+msgstr "web sitesindeki tek forma giden yol"
+
+#: configuration/settings.cfg
+msgid ""
+"path to folder where uploads from forms go to (sub folders per event will be "
+"created there)"
+msgstr ""
+"formlardan yapılan yüklemelerin gideceği klasörün yolu (etkinlik başına alt "
+"klasörler burada oluşturulacaktır)"
+
+#: configuration/settings.cfg
+msgid ""
+"seconds to wait after the content of a field was change before sending out a "
+"form mail"
+msgstr ""
+"bir form postası göndermeden önce bir alanın içeriği değiştikten sonra "
+"beklenecek saniye"
+
+#: configuration/settings.cfg
+msgid "wait until retrying to send a mail if no recipient mails are available"
+msgstr "alıcı postası yoksa posta göndermeyi yeniden deneyene kadar bekleyin"
+
+#: configuration/settings.cfg
+msgid ""
+"if a form field has more than one value (e. g. detail record with several "
+"fields), characters to concat values"
+msgstr ""
+"bir form alanının birden fazla değeri varsa (örneğin, birkaç alana sahip "
+"ayrıntı kaydı), değerleri birleştirmek için karakterler"
+
+#: configuration/settings.cfg
+msgid "if a form field has more than one line, characters to concat lines"
+msgstr ""
+"bir form alanı birden fazla satıra sahipse, satırları birleştirmek için "
+"karakterler"
+
+#: configuration/settings.cfg
+msgid "path to send form mail after event"
+msgstr "olaydan sonra form postası gönderme yolu"
+
+#: configuration/settings.cfg
+msgid "send a copy of each form mail to the sender e-mail address"
+msgstr "her form postasının bir kopyasını gönderenin e-posta adresine gönderin"
+
+#: configuration/settings.cfg
+msgid "link to webpage with help for placeholders in mailings"
+msgstr "postalardaki yer tutucular için yardım içeren web sayfasına bağlantı"
+
+#: configuration/settings.cfg
+msgid ""
+"if not the own mail address is used as From: address in mailings, append "
+"this as suffix"
+msgstr ""
+"postalarda Kimden: adresi olarak kendi posta adresi kullanılmıyorsa, bunu "
+"son ek olarak ekleyin"
+
+#: configuration/settings.cfg
+msgid "path to internal profile page of a group"
+msgstr "bir grubun dahili profil sayfasına giden yol"
+
+#: configuration/settings.cfg
+msgid "path to activities page of a contact"
+msgstr "bir kişinin etkinlikler sayfasına giden yol"
+
+#: configuration/settings.cfg
+msgid "path to activities page of a person"
+msgstr "bir kişinin faaliyet sayfasına giden yol"
+
+#: configuration/settings.cfg
+msgid "path to confirm a registration (double opt-in)"
+msgstr "bir kaydı onaylama yolu (çift katılım)"
+
+#: configuration/settings.cfg
+msgid "default usergroup identifier for registration forms"
+msgstr "kayıt formları için varsayılan kullanıcı grubu tanımlayıcısı"
+
+#: configuration/settings.cfg
+msgid "use contactverifications table instead of activities (deprecated)"
+msgstr ""
+"activities yerine contactverifications tablosunu kullan (kullanımdan "
+"kaldırıldı)"
+
+#: configuration/settings.cfg
+msgid "allow to link a usergroup to an organisation contact"
+msgstr ""
+"bir kullanıcı grubunu bir kuruluş irtibat kişisine bağlamaya izin verir"
+
+#: configuration/settings.cfg
+msgid "show description of usergroups in list view"
+msgstr "liste görünümünde kullanıcı gruplarının açıklamasını göster"
+
+#: configuration/settings.cfg
+msgid "do not show in formfield data"
+msgstr "form alanı verilerinde gösterme"
+
+#: configuration/settings.cfg
+msgid "h2 heading above form"
+msgstr "h2 form üstü başlık"
+
+#: configuration/settings.cfg
+msgid "h2 heading above form after insert"
+msgstr "h2 başlığı eklendikten sonra formun üstünde"
+
+#: configuration/settings.cfg
+msgid "enable registrations for events of this category"
+msgstr "bu kategorideki etkinlikler için kayıtları etkinleştirin"
+
+#: configuration/settings.cfg
+msgid "list of required fields per form"
+msgstr "form başına gerekli alanların listesi"
+
+#: configuration/settings.cfg
+msgid ""
+"always show this field if form requires login, even if user is not logged in"
+msgstr ""
+"form giriş gerektiriyorsa, kullanıcı giriş yapmamış olsa bile bu alanı her "
+"zaman göster"
+
+#: configuration/settings.cfg
+msgid "use children of this category as categories for usergroups"
+msgstr ""
+"bu kategorinin çocuklarını kullanıcı grupları için kategori olarak kullanın"
+
+#: templates/contact-participations.template.txt
+msgid "No access rights are defined for the contact details."
+msgstr "İletişim bilgileri için herhangi bir erişim hakkı tanımlanmamıştır."
+
+#: templates/registration-confirmation.template.txt
+msgid "Your data was deleted successfully!"
+msgstr "Verileriniz başarıyla silindi!"
+
+#: templates/registration-confirmation.template.txt
+msgid ""
+"Your data could not be deleted because you have already confirmed your "
+"registration."
+msgstr "Kaydınızı zaten onayladığınız için verileriniz silinemedi."
+
+#: templates/registration-confirmation.template.txt
+msgid "This way, a cancellation is not possible."
+msgstr "Bu şekilde bir iptal mümkün değildir."
+
+#: templates/registration-confirmation.template.txt
+msgid "Please contact us directly (E-Mail: %s)."
+msgstr "Lütfen doğrudan bizimle iletişime geçin (E-Mail: %s)."
+
+#: templates/registration-confirmation.template.txt
+msgid "Your data was not found."
+msgstr "Verileriniz bulunamadı."
+
+#: templates/registration-confirmation.template.txt
+msgid "Thank you for your interest. Your registration has been confirmed."
+msgstr "İlginiz için teşekkür ederiz. Kaydınız onaylanmıştır."
+
+#: templates/registration-confirmation.template.txt
+msgid "You have already confirmed your registration."
+msgstr "Kaydınızı zaten onayladınız."
+
+#: templates/registration-confirmation.template.txt
+msgid "No further confirmation is required."
+msgstr "Başka bir teyide gerek yoktur."
+
+#: templates/registration-confirmation.template.txt
+msgid "Confirmation/deletion of registration"
+msgstr "Kaydın onaylanması/silinmesi"
+
+#: templates/registration-confirmation.template.txt
+msgid "Please enter the verification code you received:"
+msgstr "Lütfen aldığınız doğrulama kodunu girin:"
+
+#: templates/registration-confirmation.template.txt
+msgid "Code:"
+msgstr "Kod:"
+
+#: templates/registration-confirmation.template.txt
+msgid "Confirm registration"
+msgstr "Kaydı onaylayın"
+
+#: templates/registration-confirmation.template.txt
+msgid "Delete registration"
+msgstr "Kayıt silme"
+
+#: templates/registration-confirmation.template.txt
+msgid "Continue to the home page"
+msgstr "Ana sayfaya devam edin"
+
+#: templates/registrationinternal.template.txt
+msgid "Send form mail"
+msgstr "Form postası gönderin"
+
+#: templates/registrationinternal.template.txt
+msgid "Form on public website"
+msgstr "Kamuya açık web sitesindeki form"
+
+#: templates/registrationinternal.template.txt
+msgid "The form has not yet been published."
+msgstr "Form henüz yayınlanmamıştır."
+
+#: templates/registrationinternal.template.txt
+msgid "Please create a form first."
+msgstr "Lütfen önce bir form oluşturun."
+
+#: templates/registrationinternal.template.txt
+msgid "Please add email templates for the form."
+msgstr "Lütfen form için e-posta şablonları ekleyin."
+
+#: templates/registrationinternal.template.txt
+msgid "Please add all the required fields for the form."
+msgstr "Lütfen form için gerekli tüm alanları ekleyin."
+
+#: zzbrick_forms/contacts-access.php
+msgid "No categories for access rights are defined (via `%s`)"
+msgstr ""
+"Erişim hakları için hiçbir kategori tanımlanmamıştır (`%s` aracılığıyla)"
+
+#: zzbrick_forms/eventregistrations.php
+msgid "Registrations"
+msgstr "Kayıtlar"
+
+#: zzbrick_forms/eventregistrations.php
+msgid "Registration"
+msgstr "Kayıt"
+
+#: zzbrick_forms/form.php
+msgid "Form"
+msgstr "Form"
+
+#: zzbrick_forms/form.php
+msgid ""
+"There does not seem to be a clear email address entered for the sender of "
+"the mailings. Therefore the mails cannot be sent."
+msgstr ""
+"Postaların göndericisi için girilmiş net bir e-posta adresi görünmüyor. Bu "
+"nedenle postalar gönderilemiyor."
+
+#: zzbrick_forms/formfields.php
+msgid "Here you can define a form field by field."
+msgstr "Burada bir form alanını alan bazında tanımlayabilirsiniz."
+
+#: zzbrick_forms/formfields.php
+msgid "Note: Each form must have at least these fields:"
+msgstr "Not: Her form en az bu alanlara sahip olmalıdır:"
+
+#: zzbrick_forms/invitation.php
+msgid "Register"
+msgstr "Kayıt Ol"
+
+#: zzbrick_forms/invitation.php
+msgid "Submit Registration"
+msgstr "Kayıt Gönder"
+
+#: zzbrick_forms/invitation.php
+msgid "The registration has been sent successfully!"
+msgstr "Kayıt başarıyla gönderildi!"
+
+#: zzbrick_forms/invitation.php
+msgid ""
+"We just sent you an e-mail. Please click on the link inside it to confirm "
+"your registration."
+msgstr ""
+"Az önce size bir e-posta gönderdik. Kaydınızı onaylamak için lütfen içindeki "
+"bağlantıya tıklayın."
+
+#: zzbrick_forms/invitation.php
+msgid "There is no invitation for this code."
+msgstr "Bu kod için davetiye bulunmamaktadır."
+
+#: zzbrick_forms/participations-usergroups.php
+msgid "with E-Mail"
+msgstr "e-Posta ile"
+
+#: zzbrick_forms/participations-usergroups.php
+msgid "without E-Mail"
+msgstr "e-Posta olmadan"
+
+#: zzbrick_forms/registration.php
+msgid "Authentication mail is missing."
+msgstr "Kimlik doğrulama postası eksik."
+
+#: zzbrick_forms/registration.php
+msgid "Confirmation mail is missing."
+msgstr "Onay postası kayıp."
+
+#: zzbrick_forms/registration.php
+msgid "One or more of the required form fields are missing."
+msgstr "Gerekli form alanlarından biri veya daha fazlası eksik."
+
+#: zzbrick_make/formmail.inc.php
+msgid "Reminder –"
+msgstr "Hatırlatma -"
+
+#: zzbrick_make/formmail.inc.php
+msgid "Failed to send mail."
+msgstr "Posta gönderilemedi."
+
+#: zzbrick_make/formmail.inc.php
+msgid "Mail was successfully sent."
+msgstr "Posta başarıyla gönderildi."
+
+#: zzbrick_make/formmail.inc.php
+msgid "(copy of e-mail)"
+msgstr "(e-posta kopyası)"
+
+#: zzbrick_make/formmail.inc.php
+msgid "Form mail: No recipient email address found."
+msgstr "Form postası: Alıcı e-posta adresi bulunamadı."
+
+#: zzbrick_make/formmail.inc.php
+msgid "This e-mail was just sent to:"
+msgstr "Bu e-posta az önce gönderildi:"
+
+#: zzbrick_make/formmail.inc.php
+msgid "Contact ID %d for form mail (%s), event ID %d, not found."
+msgstr "Form postası (%s) için kişi kimliği %d, olay kimliği %d bulunamadı."
+
+#: zzbrick_tables/access.php
+msgid "Access Rights"
+msgstr "Erişim Hakları"
+
+#: zzbrick_tables/access.php
+msgid "Module"
+msgstr "Modül"
+
+#: zzbrick_tables/access-usergroups.php
+msgid "Usergroups per Access Right"
+msgstr "Erişim Hakkı Başına Kullanıcı Grupları"
+
+#: zzbrick_tables/access-usergroups.php
+msgid "Restrictions?"
+msgstr "Kısıtlamalar mı?"
+
+#: zzbrick_tables/access-usergroups.php
+msgid ""
+"Field name if access for an item is restricted to a participation with this "
+"ID"
+msgstr ""
+"Bir öğeye erişim bu kimliğe sahip bir katılımla sınırlandırılmışsa alan adı"
+
+#: zzbrick_tables/activities.php
+msgid "Activity IP"
+msgstr "Faaliyet IP'si"
+
+#: zzbrick_tables/activities.php
+msgid "URI"
+msgstr "Adres"
+
+#: zzbrick_tables/activities.php
+msgid "Comment"
+msgstr "Yorum"
+
+#: zzbrick_tables/contacts-access.php
+msgid "Access to Contact Details"
+msgstr "İletişim Bilgilerine Erişim"
+
+#: zzbrick_tables/contacts-access.php
+msgid "Property"
+msgstr "Emlak"
+
+#: zzbrick_tables/formfields.php
+msgid "Form Fields"
+msgstr "Form Alanları"
+
+#: zzbrick_tables/formfields.php
+msgid ""
+"The title of the form field that appears on the left (= what to type in the "
+"field)."
+msgstr "Sol tarafta görünen form alanının başlığı (= alana ne yazılacağı)."
+
+#: zzbrick_tables/formfields.php
+msgid ""
+"A heading that can be used to divide a long form into parts. Fields with the "
+"same heading are grouped."
+msgstr ""
+"Uzun bir formu parçalara bölmek için kullanılabilecek bir başlık. Aynı "
+"başlığa sahip alanlar gruplandırılır."
+
+#: zzbrick_tables/formfields.php
+msgid "An explanation below the form field like this one."
+msgstr "Form alanının altında bunun gibi bir açıklama."
+
+#: zzbrick_tables/forms.php
+msgid "For the labeling of forms as well as the content of default mails"
+msgstr ""
+"Formların etiketlenmesinin yanı sıra varsayılan postaların içeriği için"
+
+#: zzbrick_tables/forms.php
+msgid "Public"
+msgstr "Herkese Açık"
+
+#: zzbrick_tables/forms.php
+msgid "Salutation"
+msgstr "Selamlama"
+
+#: zzbrick_tables/forms.php
+msgid "Behind login mask"
+msgstr "Giriş maskesinin arkasında"
+
+#: zzbrick_tables/forms.php
+msgid "formal"
+msgstr "resmi"
+
+#: zzbrick_tables/forms.php
+msgid "informal"
+msgstr "gayri resmi"
+
+#: zzbrick_tables/forms.php
+msgid "Whether to address formally or informally in mails and on website"
+msgstr ""
+"Postalarda ve web sitesinde resmi veya gayri resmi olarak hitap edilip "
+"edilmeyeceği"
+
+#: zzbrick_tables/forms.php
+#, fuzzy
+msgid "Header"
+msgstr "Başlık"
+
+#: zzbrick_tables/forms.php
+msgid "Text to appear before the form"
+msgstr "Formdan önce görünecek metin"
+
+#: zzbrick_tables/forms.php
+msgid "Text to appear before the form, after header"
+msgstr "Formdan önce, başlıktan sonra görünecek metin"
+
+#: zzbrick_tables/forms.php
+#, fuzzy
+msgid "Footer"
+msgstr "Altbilgi"
+
+#: zzbrick_tables/forms.php
+msgid "Text to appear behind the form"
+msgstr "Formun arkasında görünecek metin"
+
+#: zzbrick_tables/formtemplates.php
+msgid "Templates for Mails"
+msgstr "Mailler için Şablonlar"
+
+#: zzbrick_tables/formtemplates.php
+msgid "Template"
+msgstr "Şablon"
+
+#: zzbrick_tables/formtemplates.php
+msgid "Content of the template."
+msgstr "Şablonun içeriği."
+
+#: zzbrick_tables/formtemplates-defaults.php
+msgid "Default Templates for Forms"
+msgstr "Formlar için Varsayılan Şablonlar"
+
+#: zzbrick_tables/formtemplates-defaults.php
+msgid "Default Template"
+msgstr "Varsayılan Şablon"
+
+#: zzbrick_tables/invitations.php
+msgid "Invitations"
+msgstr "Davetiyeler"
+
+#: zzbrick_tables/mailings.php
+msgid "Mailings"
+msgstr "Postalar"
+
+#: zzbrick_tables/mailings.php
+msgid "Sender"
+msgstr "Gönderen"
+
+#: zzbrick_tables/mailings.php
+msgid ""
+"Alternative e-mail address for sending the e-mails if you do not want to "
+"send from your own address."
+msgstr ""
+"Kendi adresinizden göndermek istemiyorsanız, e-postaları göndermek için "
+"alternatif e-posta adresi."
+
+#: zzbrick_tables/mailings.php
+msgid "In this case “, %s” is appended to the name."
+msgstr "Bu durumda isme \", %s\" eklenir."
+
+#: zzbrick_tables/mailings.php
+msgid "Subject"
+msgstr "Konu"
+
+#: zzbrick_tables/mailings.php
+msgid "Message"
+msgstr "Mesaj"
+
+#: zzbrick_tables/mailings.php
+msgid "%d character per line."
+msgid_plural "%d characters per line."
+msgstr[0] "satır başına %d karakter."
+msgstr[1] "satır başına %d karakter."
+
+#: zzbrick_tables/mailings.php
+msgid "(<a href=\"%s\">Possible placeholders</a>)."
+msgstr "<a href=\"%s\">(Olası yer tutucular</a>)."
+
+#: zzbrick_tables/mailings.php
+msgid "Recipients"
+msgstr "Alıcılar"
+
+#: zzbrick_tables/mailings.php
+msgid "Sent"
+msgstr "Gönderildi"
+
+#: zzbrick_tables/mailings.php
+msgid "Send (if not clicked, mail will only be saved for later sending)"
+msgstr ""
+"Gönder (tıklanmazsa, posta yalnızca daha sonra gönderilmek üzere kaydedilir)"
+
+#: zzbrick_tables/mailings.php
+msgid "not yet"
+msgstr "henüz değil"
+
+#: zzbrick_tables/mailings.php
+msgid ""
+"Clicking on the mail text shows the full mail text or just a short excerpt "
+"from the mail text"
+msgstr ""
+"Posta metnine tıklandığında, posta metninin tamamı veya posta metninden "
+"sadece kısa bir alıntı gösterilir"
+
+#: zzbrick_tables/mailings-contacts.php
+msgid "Mailings: Recipients"
+msgstr "Posta gönderileri: Alıcılar"
+
+#: zzbrick_tables/mailings-contacts.php
+msgid "Mailing"
+msgstr "Posta"
+
+#: zzbrick_tables/mailings-contacts.php
+msgid "Recipient"
+msgstr "Alıcı"
+
+#: zzbrick_tables/mailings-contacts.php
+msgid "E-mail"
+msgstr "E-posta"
+
+#: zzbrick_tables/participations.php
+msgid "Participations"
+msgstr "Katılımlar"
+
+#: zzbrick_tables/participations.php
+msgid "Usergroup"
+msgstr "Kullanıcı grubu"
+
+#: zzbrick_tables/participations.php
+msgid "Usergroups"
+msgstr "Kullanıcı Gurupları"
+
+#: zzbrick_tables/participations.php
+msgid "Date begin"
+msgstr "Tarih başlangıcı"
+
+#: zzbrick_tables/participations.php
+msgid "Date end"
+msgstr "Bitiş tarihi"
+
+#: zzbrick_tables/participations.php
+msgid "(internal remarks only)"
+msgstr "(sadece dahili açıklamalar)"
+
+#: zzbrick_tables/participations.php
+msgid "Active?"
+msgstr "Etkin?"
+
+#: zzbrick_tables/participations.php
+msgid "active"
+msgstr "Aktif"
+
+#: zzbrick_tables/participations.php
+msgid "inactive"
+msgstr "inaktif"
+
+#: zzbrick_tables/participations.php
+msgid "Role"
+msgstr "Rol"
+
+#: zzbrick_tables/participations.php
+msgid "Status"
+msgstr "Durum"
+
+#: zzbrick_tables/participations.php
+msgid "Entry"
+msgstr "Giriş"
+
+#: zzbrick_tables/participations.php
+msgid "Entry on"
+msgstr "Giriş"
+
+#: zzbrick_tables/participations.php
+msgid "Entry by"
+msgstr "Tarafından giriş"
+
+#: zzbrick_tables/participations-categories.php
+msgid "Categories of Participations"
+msgstr "Katılım Kategorileri"
+
+#: zzbrick_tables/participations-categories.php
+msgid "Participation"
+msgstr "Katılım"
+
+#: zzbrick_tables/usergroups.php
+msgid "Groups"
+msgstr "Gruplar"
+
+#: zzbrick_tables/usergroups.php
+msgid "Group"
+msgstr "Grup"
+
+#: zzbrick_tables/usergroups.php
+msgid "Members"
+msgstr "Üyeler"
+
+#: zzbrick_tables/usergroups.php
+msgid "Ex-members"
+msgstr "Eski üyeler"
+
+# Abbreviation for Members
+#: zzbrick_tables/usergroups.php
+msgid "M."
+msgstr "M."
+
+# Abbreviation for Ex-members
+#: zzbrick_tables/usergroups.php
+msgid "E. M."
+msgstr "E. M."
