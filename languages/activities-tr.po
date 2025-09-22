@@ -670,7 +670,7 @@ msgstr "Etkin?"
 
 #: zzbrick_tables/participations.php
 msgid "active"
-msgstr "Aktif"
+msgstr "aktif"
 
 #: zzbrick_tables/participations.php
 msgid "inactive"
