@@ -235,7 +235,7 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type, $formfie
 		wrap_match_module_parameters('events', $event['event_parameters']);
 	$data = array_merge($data, $event);
 
-	$data['duration'] = wrap_date($data['duration']);
+	$data['duration'] = wrap_date_plain($data['duration']);
 	$data['formmail_template'] = mf_activities_form_templates($data['form_id'], $type, $formfield_id);
 	if (!$data['formmail_template']) return false;
 	$data['values'] = mf_activities_formfielddata($contact_id, $data['form_id']);
