@@ -42,15 +42,14 @@ $zz['fields'][4]['display_field'] = 'templatecategory';
 $zz['fields'][4]['search'] = 'templatecategories.category';
 $zz['fields'][4]['sql_translate'] = ['category_id' => 'categories'];
 
-$iso_lang = in_array(wrap_setting('lang'), wrap_setting('language_translations')) ? wrap_setting('lang') : reset(wrap_setting('language_translations'));
 $zz['fields'][3]['field_name'] = 'language_id';
 $zz['fields'][3]['type'] = 'select';
-$zz['fields'][3]['sql'] = sprintf('SELECT language_id, language_%s, variation
+$zz['fields'][3]['sql'] = 'SELECT language_id, language, variation
 	FROM /*_PREFIX_*/languages
 	WHERE website = "yes"
-	ORDER BY language_%s', $iso_lang, $iso_lang);
+	ORDER BY language';
 $zz['fields'][3]['display_field'] = 'language_name';
-$zz['fields'][3]['search'] = sprintf('/*_PREFIX_*/languages.language_%s', $iso_lang);
+$zz['fields'][3]['search'] = '/*_PREFIX_*/languages.language';
 $zz['fields'][3]['show_values_as_list'] = true;
 
 $zz['fields'][6]['title'] = 'Organisation';
@@ -79,12 +78,12 @@ $zz['fields'][99]['type'] = 'timestamp';
 $zz['fields'][99]['hide_in_list'] = true;
 
 
-$zz['sql'] = sprintf('SELECT formtemplates_defaults.*
+$zz['sql'] = 'SELECT formtemplates_defaults.*
 		, categories.category_id AS formcategory_id
 		, categories.category AS formcategory
 		, templatecategories.category_id AS templatecategory_id
 		, templatecategories.category AS templatecategory
-		, CONCAT(languages.language_%s, IFNULL(CONCAT(" | ", languages.variation), "")) AS language_name
+		, CONCAT(IFNULL(languages.iso_639_1, iso_639_2t), IFNULL(CONCAT(" | ", languages.variation), "")) AS language_name
 		, contacts.contact
 	FROM formtemplates_defaults
 	LEFT JOIN categories
@@ -94,8 +93,8 @@ $zz['sql'] = sprintf('SELECT formtemplates_defaults.*
 	LEFT JOIN languages USING (language_id)
 	LEFT JOIN contacts
 		ON formtemplates_defaults.org_contact_id = contacts.contact_id
-', $iso_lang);
-$zz['sqlorder'] = sprintf(' ORDER BY contact, formcategory, templatecategory, language_%s, languages.variation', $iso_lang);
+';
+$zz['sqlorder'] = ' ORDER BY contact, formcategory, templatecategory, language, languages.variation';
 
 $zz['sql_translate']['formcategory_id'] = ['formcategory' => 'categories.category'];
 $zz['sql_translate']['templatecategory_id'] = ['templatecategory' => 'categories.category'];
