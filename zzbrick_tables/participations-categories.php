@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/actvities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2024 Gustaf Mossakowski
+ * @copyright Copyright © 2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -51,7 +51,7 @@ $zz['fields'][5]['field_name'] = 'type_category_id';
 $zz['fields'][5]['unless']['multi']['type'] = 'hidden';
 $zz['fields'][5]['unless']['multi']['type_detail'] = 'select';
 $zz['fields'][5]['unless']['multi']['value'] = wrap_category_id('participations');
-$zz['fields'][5]['if']['multi']['type'] = 'select';
+$zz['fields'][5]['if']['batch_mode']['type'] = 'select';
 $zz['fields'][5]['hide_in_form'] = true;
 $zz['fields'][5]['hide_in_list'] = true;
 $zz['fields'][5]['exclude_from_search'] = true;
