@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -184,7 +184,7 @@ $zz['fields'][34]['field_name'] = 'entry_date';
 $zz['fields'][34]['type'] = 'hidden';
 $zz['fields'][34]['type_detail'] = 'datetime';
 $zz['fields'][34]['hide_in_list'] = true;
-$zz['fields'][34]['if']['insert']['default'] = date('Y-m-d H:i:s');
+$zz['fields'][34]['if']['insert']['default'] = 'current_date';
 $zz['fields'][34]['export'] = false;
 $zz['fields'][34]['append_next'] = true;
 $zz['fields'][34]['suffix'] = ' / ';

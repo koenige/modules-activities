@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021, 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2021, 2023-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -47,7 +47,7 @@ $zz['fields'][4]['type_detail'] = 'datetime';
 $zz['fields'][4]['unless']['export_mode']['list_prefix'] = '<small style="color: #999;">';
 $zz['fields'][4]['unless']['export_mode']['list_suffix'] = '<br>';
 $zz['fields'][4]['unless']['export_mode']['list_append_next'] = true;
-$zz['fields'][4]['default'] = date('Y-m-d H:i:s');
+$zz['fields'][4]['default'] = 'current_date';
 
 $zz['fields'][5]['title'] = 'Activity IP';
 $zz['fields'][5]['field_name'] = 'activity_ip';
