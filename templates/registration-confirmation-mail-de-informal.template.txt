@@ -16,7 +16,7 @@ wir haben gerade von Dir eine Anfrage für eine Registrierung für die folgenden
 Ereignisse erhalten:
 
 %%% loop events %%%
-- %%% item event %%% %%% item duration date_plain "(%s)" %%% 
+- %%% item event %%% %%% item duration format=date_plain "(%s)" %%% 
 %%% loop end %%%
 
 Bitte bestätige Deine Anfrage hier:
