@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -287,7 +287,8 @@ function mf_activities_formkit_normalize_parameters($parameters) {
 	if (!$parameters) return [];
 	foreach ($parameters as $key => $value) {
 		if (!$value) unset($parameters[$key]);
-		$parameters[$key] = wrap_setting_value($value);
+		$parameters[$key] = wrap_setting_parse($value);
+		$parameters[$key] = wrap_setting_list($parameters[$key]);
 	}
 	return $parameters;
 }
