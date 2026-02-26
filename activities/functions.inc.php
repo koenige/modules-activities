@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -541,7 +541,7 @@ function mf_activities_form_templates($form_id, $type = '', $formfield_id = 0) {
  * @return array
  */
 function mf_activities_form($identifier, $event_category_id = NULL, $website_id = NULL) {
-	if (!$website_id) $website_id = wrap_setting('website_id') ?? 1;
+	if (!$website_id) $website_id = wrap_setting('website_id');
 	if (!$event_category_id) $event_category_id = wrap_category_id('event/event');
 	$sql = wrap_sql_query('activities_placeholder_form');
 	$sql = sprintf($sql
