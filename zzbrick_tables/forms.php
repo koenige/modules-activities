@@ -24,7 +24,7 @@ $zz['fields'][2]['type'] = 'select';
 $zz['fields'][2]['sql'] = sprintf('SELECT event_id
 	, CONCAT(events.event, " (", DATE_FORMAT(events.date_begin, "%s"), ")") AS event 
 	FROM events
-	WHERE event_category_id = /*_ID categories event/event _*/
+	WHERE event_category_id IN (/*_ID categories event/event _*/, /*_ID categories event/registration _*/)
 	ORDER BY date_begin DESC', wrap_placeholder('mysql_date_format'));
 $zz['fields'][2]['display_field'] = 'event';
 $zz['fields'][2]['search'] = sprintf('CONCAT(events.event, " (", 
