@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -60,7 +60,7 @@ function mod_activities_make_formmail($params) {
 		$mailtitle = $data['fieldtitle'];
 	$mail['subject'] = $data['event'].': '.$extra_message.wrap_text($mailtitle);
 	$mail['message'] = wrap_template($data['formmail_template']."\n", $data);
-	$mail['headers']['Bcc'] = wrap_setting('mail_bcc');
+	$mail['headers']['Bcc'] = wrap_setting('activities_mail_bcc');
 
 	// check if there is a custom recipient list
 	$recipients = $data['recipients'] ?? [];

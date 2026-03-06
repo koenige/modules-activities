@@ -128,3 +128,4 @@
 /* 2024-04-12-5 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Participations', NULL, NULL, 'participations', 'alias=participations', NULL, NOW());
 /* 2024-10-10-1 */	UPDATE _relations SET `delete` = 'delete' WHERE `master_table` = 'participations' AND `master_field` = 'participation_id' AND `detail_table` = 'participations_categories';
 /* 2026-03-06-1 */	UPDATE _settings SET setting_key = 'activities_maxlength_memo' WHERE setting_key = 'maxlength_memo';
+/* 2026-03-06-2 */	UPDATE _settings SET setting_key = 'activities_mail_bcc' WHERE setting_key = 'mail_bcc';
