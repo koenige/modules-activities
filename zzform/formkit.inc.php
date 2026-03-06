@@ -351,7 +351,7 @@ function mf_activities_formkit_subtable($formfield, $def_no, $nos) {
 		case $formfield['field_name']:
 			$def['fields'][$field_no]['type'] = $formfield['definition']['type'];
 			$def['fields'][$field_no]['title'] = $formfield['formfield']; // for better error messages
-			$def['fields'][$field_no]['maxlength'] = $formfield['custom']['maxlength'] ?? wrap_setting('maxlength_memo');
+			$def['fields'][$field_no]['maxlength'] = $formfield['custom']['maxlength'] ?? wrap_setting('activities_maxlength_memo');
 			$def['fields'][$field_no]['hide_in_list'] = true;
 			$field_function = 'mf_activities_formkit_'.$formfield['definition']['type'];
 			if (function_exists($field_function))

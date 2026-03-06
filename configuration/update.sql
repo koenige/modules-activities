@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -127,3 +127,4 @@
 /* 2024-04-12-4 */	INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'categories', 'category_id', (SELECT DATABASE()), 'participations_categories', 'participation_category_id', 'type_category_id', 'no-delete');
 /* 2024-04-12-5 */	INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('Participations', NULL, NULL, 'participations', 'alias=participations', NULL, NOW());
 /* 2024-10-10-1 */	UPDATE _relations SET `delete` = 'delete' WHERE `master_table` = 'participations' AND `master_field` = 'participation_id' AND `detail_table` = 'participations_categories';
+/* 2026-03-06-1 */	UPDATE _settings SET setting_key = 'activities_maxlength_memo' WHERE setting_key = 'maxlength_memo';
