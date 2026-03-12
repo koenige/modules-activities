@@ -129,3 +129,11 @@
 /* 2024-10-10-1 */	UPDATE _relations SET `delete` = 'delete' WHERE `master_table` = 'participations' AND `master_field` = 'participation_id' AND `detail_table` = 'participations_categories';
 /* 2026-03-06-1 */	UPDATE _settings SET setting_key = 'activities_maxlength_memo' WHERE setting_key = 'maxlength_memo';
 /* 2026-03-06-2 */	UPDATE _settings SET setting_key = 'activities_mail_bcc' WHERE setting_key = 'mail_bcc';
+/* 2026-03-12-1 */	DELETE FROM _settings WHERE setting_key = 'activities_contactdata_access_path[person]';
+/* 2026-03-12-2 */	DELETE FROM _settings WHERE setting_key = 'activities_contactdata_access_path[*]';
+/* 2026-03-12-3 */	DELETE FROM _settings WHERE setting_key = 'activities_form_path';
+/* 2026-03-12-4 */	DELETE FROM _settings WHERE setting_key = 'activities_formmail_send_path';
+/* 2026-03-12-5 */	DELETE FROM _settings WHERE setting_key = 'activities_profile_path[*]';
+/* 2026-03-12-6 */	DELETE FROM _settings WHERE setting_key = 'activities_profile_path[person]';
+/* 2026-03-12-7 */	DELETE FROM _settings WHERE setting_key = 'activities_profile_path[usergroup]';
+/* 2026-03-12-8 */	DELETE FROM _settings WHERE setting_key = 'activities_registration_confirmation_path';
