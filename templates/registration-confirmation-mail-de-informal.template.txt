@@ -5,7 +5,7 @@
 # https://www.zugzwang.org/modules/activities
 #
 # @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2021, 2025 Gustaf Mossakowski
+# @copyright Copyright © 2021, 2025-2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 Subject: Bitte bestätige Deine Registrierung
@@ -21,12 +21,12 @@ Ereignisse erhalten:
 
 Bitte bestätige Deine Anfrage hier:
 
-%%% setting host_base %%%%%% setting base %%%%%% setting activities_registration_confirmation_path %%%?confirm=%%% item verification_hash %%%
+%%% setting host_base %%%%%% path activities_registration_confirmation %%%?confirm=%%% item verification_hash %%%
 
 Falls Du Dich nicht registrieren möchtest oder die Anfrage gar nicht von Dir
 kam, kannst Du die Anfrage hier ausdrücklich verneinen:
 
-%%% setting host_base %%%%%% setting base %%%%%% setting activities_registration_confirmation_path %%%?delete=%%% item verification_hash %%%
+%%% setting host_base %%%%%% path activities_registration_confirmation %%%?delete=%%% item verification_hash %%%
 
 Falls Du nichts tust, werden wir Deine Anfrage ebenfalls löschen.
 

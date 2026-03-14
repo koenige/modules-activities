@@ -20,12 +20,12 @@ we just received a request to register for the following event(s) from you:
 
 Please confirm your request here:
 
-%%% setting host_base %%%%%% setting base %%%%%% setting activities_registration_confirmation_path %%%?confirm=%%% item verification_hash %%%
+%%% setting host_base %%%%%% path activities_registration_confirmation %%%?confirm=%%% item verification_hash %%%
 
 If you do not want to register to an event, you can explicitly deny the
 registration by following this link:
 
-%%% setting host_base %%%%%% setting base %%%%%% setting activities_registration_confirmation_path %%%?delete=%%% item verification_hash %%%
+%%% setting host_base %%%%%% path activities_registration_confirmation %%%?delete=%%% item verification_hash %%%
 
 If you do nothing, we’ll delete the request, too. 
 
