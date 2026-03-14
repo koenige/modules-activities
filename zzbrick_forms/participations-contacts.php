@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021, 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2021, 2023, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -25,7 +25,7 @@ $zz['filter'][1]['sql'] = wrap_edit_sql(
 	$zz['filter'][1]['sql'], 'WHERE', sprintf('contact_id = %d', $brick['data']['contact_id'])
 );
 
-$zz['page']['referer'] = mf_contacts_profile_path(['identifier' => $brick['data']['identifier'], 'contact_parameters' => 'type='.$brick['data']['scope']]);
+$zz['page']['referer'] = wrap_path('contacts_profile['.$brick['data']['scope'].']', $brick['data']['identifier']);
 $zz['page']['breadcrumbs'][]['title'] = wrap_text('Participations');
 $zz['page']['dont_show_title_as_breadcrumb'] = true;
 

@@ -28,8 +28,9 @@ $zz['fields'][2]['sql'] = 'SELECT contact_id, contact, identifier
 $zz['fields'][2]['display_field'] = 'contact';
 $zz['fields'][2]['list_append_next'] = true;
 $zz['fields'][2]['link'] = [
-	'function' => 'mf_contacts_profile_path',
-	'fields' => ['identifier', 'contact_parameters']
+	'area' => 'contacts_profile[%s]',
+	'area_fields' => ['contact_scope'],
+	'fields' => ['identifier']
 ];
 $zz['fields'][2]['if']['where']['hide_in_form'] = true;
 $zz['fields'][2]['if']['where']['hide_in_list'] = true;
@@ -210,8 +211,12 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/participations.*, contact, usergroup
 		, (SELECT identification FROM /*_PREFIX_*/contactdetails
 			WHERE /*_PREFIX_*/contactdetails.contact_id = /*_PREFIX_*/participations.contact_id
 			AND provider_category_id = /*_ID categories provider/e-mail _*/ LIMIT 1) AS e_mail
-		,  /*_PREFIX_*/contacts.identifier
+		, /*_PREFIX_*/contacts.identifier
 		, contact_categories.parameters AS contact_parameters
+		, (CASE WHEN LOCATE("&type=", contact_categories.parameters) > 0 THEN
+			SUBSTRING_INDEX(SUBSTRING_INDEX(contact_categories.parameters, "&type=", -1), "&", 1)
+			ELSE "*" END
+		) AS contact_scope
 		, event
 	FROM /*_PREFIX_*/participations
 	LEFT JOIN /*_PREFIX_*/contacts USING (contact_id)
