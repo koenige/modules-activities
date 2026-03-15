@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014, 2016-2017, 2019-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2014, 2016-2017, 2019-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -41,7 +41,7 @@ $sql = sprintf($sql, $brick['data']['event_id']);
 $zz['fields'][5]['form_display'] = 'set';
 $zz['fields'][5]['fields'][3]['sql'] = $sql;
 $zz['fields'][5]['fields'][3]['concat_fields'] = '';
-if ($path = wrap_path('contacts_profile[person]', '%s')) {
+if ($path = wrap_path('contacts_profile[person]', '%s', ['hide_missing' => true])) {
 	$zz['fields'][5]['fields'][3]['concat_0'] = sprintf('<a href="%s" target="_new">', $path);
 	$zz['fields'][5]['fields'][3]['concat_1'] = '%s</a>';
 } else {

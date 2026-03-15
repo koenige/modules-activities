@@ -26,7 +26,9 @@ function mf_activities_group_path($values) {
 		parse_str($values['category_parameters'], $parameters);
 		if (!empty($parameters['no_participations'])) return false;
 	}
-	return wrap_path('activities_profile[usergroup]', $values['identifier']);
+	return wrap_path(
+		'activities_profile[usergroup]', $values['identifier'], ['hide_missing' => true]
+	);
 }
 
 /**
