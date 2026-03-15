@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -290,7 +290,7 @@ function mf_activities_formfield_watch($ops) {
 			}
 			$value = sprintf('%d/%d/%s/%d', $formfield['event_id'], $contact_id, 'field-changed', $formfield['formfield_id']);
 			// there were changes
-			wrap_job(wrap_path('activities_formmail_send', $value, false), ['wait_until' => wrap_setting('activities_formfield_watch_wait_seconds')]);
+			wrap_job(wrap_path('activities_formmail_send', $value, ['check_rights' => false]), ['wait_until' => wrap_setting('activities_formfield_watch_wait_seconds')]);
 		}
 	}
 }

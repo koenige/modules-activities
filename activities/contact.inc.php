@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -62,7 +62,7 @@ function mf_activities_contact_access_rights($data, $ids) {
 	// is it possible to define access rights?
 	$first = reset($data);
 	
-	$path = wrap_path('activities_contactdata_access['.$first['scope'].']', [], true, true);
+	$path = wrap_path('activities_contactdata_access['.$first['scope'].']', [], ['testing' => true]);
 	if (!$path) return $data;
 
 	$sql = 'SELECT contact_access_id, contact_id, usergroup

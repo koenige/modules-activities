@@ -245,8 +245,9 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type, $formfie
 		$data['fieldtitle'] = $data['values'][$formfield_id]['formfield'];
 	}
 
-	$data['authentication_link'] = wrap_setting('host_base').wrap_path('activities_registration_confirmation', [], false).sprintf('?confirm=%s', $data['verification_hash']);
-	$data['rejection_link'] = wrap_setting('host_base').wrap_path('activities_registration_confirmation', [], false).sprintf('?delete=%s', $data['verification_hash']);
+	$settings = ['check_rights' => false];
+	$data['authentication_link'] = wrap_setting('host_base').wrap_path('activities_registration_confirmation', [], $settings).sprintf('?confirm=%s', $data['verification_hash']);
+	$data['rejection_link'] = wrap_setting('host_base').wrap_path('activities_registration_confirmation', [], $settings).sprintf('?delete=%s', $data['verification_hash']);
 
 	// custom data?	
 	if (function_exists('my_formmail_prepare'))
