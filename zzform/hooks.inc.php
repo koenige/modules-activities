@@ -195,7 +195,7 @@ function mf_activities_hook_mailing_send($ops) {
 	$sql = sprintf(wrap_sql_query('activities_mailings_event'), $maildata['event_id']);
 	$event = wrap_db_fetch($sql);
 	if (!empty($event['duration']))
-		$event['duration'] = html_entity_decode(wrap_date($event['duration']), ENT_QUOTES, 'UTF-8');
+		$event['duration'] = wrap_date_plain($event['duration']);
 
 	// get all recipients
 	$recipient_contact_ids = [];

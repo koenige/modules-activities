@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2012, 2018-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2012, 2018-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -103,6 +103,7 @@ $zz['fields'][6]['field_name'] = 'sent';
 $zz['fields'][6]['type'] = 'hidden';
 $zz['fields'][6]['type_detail'] = 'datetime';
 $zz['fields'][6]['display_field'] = 'status';
+$zz['fields'][6]['dont_copy'] = true;
 
 $zz['fields'][7]['show_title'] = false;
 $zz['fields'][7]['field_name'] = 'send_mailings';
