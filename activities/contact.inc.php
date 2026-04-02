@@ -17,7 +17,7 @@ function mf_activities_contact($data, $ids) {
 	$data = mf_activities_contact_participations($data, $ids);
 	$data = mf_activities_contact_access_rights($data, $ids);
 	
-	$data['templates']['contact_6'][] = 'contact-participations';
+	$data['templates']['contact_6'][] = 'contact-usergroups';
 	$data['templates']['contact_foot'][] = 'contact-participations-foot';
 	return $data;
 }

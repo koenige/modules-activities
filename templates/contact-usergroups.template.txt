@@ -1,5 +1,5 @@
 # activities module
-# template for contact: participations, contacts_access
+# template for contact: usergroups, contacts_access
 # 
 # Part of »Zugzwang Project«
 # https://www.zugzwang.org/modules/activities
