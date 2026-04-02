@@ -17,6 +17,7 @@ function mf_activities_contact($data, $ids) {
 	$data = mf_activities_contact_participations($data, $ids);
 	$data = mf_activities_contact_access_rights($data, $ids);
 	
+	$data['templates']['contact_6'][] = 'contact-participations';
 	$data['templates']['contact_6'][] = 'contact-usergroups';
 	$data['templates']['contact_foot'][] = 'contact-participations-foot';
 	return $data;
@@ -32,13 +33,20 @@ function mf_activities_contact($data, $ids) {
 function mf_activities_contact_participations($data, $ids) {
 	wrap_include('functions', 'activities');
 	$sql = 'SELECT participation_id, contact_id
-			, usergroup_id, usergroup, identifier
-			, date_begin, date_end, remarks, role
+			, usergroup_id, usergroup, usergroups.identifier
+			, participations.date_begin, participations.date_end, participations.remarks, role
+			, event_id, event, events.identifier AS event_identifier
+			, CONCAT(IFNULL(events.date_begin, ""), "/", IFNULL(events.date_end, "")) AS duration
+			, IF(
+				status_category_id != /*_ID categories participation-status/participant _*/, categories.category, ""
+			) AS participation_status
 		FROM participations
 		LEFT JOIN usergroups USING (usergroup_id)
+		LEFT JOIN events USING (event_id)
 		LEFT JOIN categories
 			ON participations.status_category_id = categories.category_id
-		WHERE contact_id IN (%s)';
+		WHERE contact_id IN (%s)
+		ORDER BY IFNULL(events.date_begin, events.date_end) DESC, usergroups.sequence ASC';
 	$sql = sprintf($sql, implode(',', $ids));
 	$participations = wrap_db_fetch($sql, 'participation_id');
 	// @todo translations
@@ -46,7 +54,10 @@ function mf_activities_contact_participations($data, $ids) {
 	foreach ($participations as $participation_id => $participation) {
 		$participation['profile_path']
 			= mf_activities_group_path(['identifier' => $participation['identifier']]);
-		$data[$participation['contact_id']]['participations'][$participation['participation_id']] = $participation;
+		if ($participation['event_id'])
+			$data[$participation['contact_id']]['participations'][$participation['participation_id']] = $participation;
+		else
+			$data[$participation['contact_id']]['usergroups'][$participation['participation_id']] = $participation;
 	}
 	return $data;
 }

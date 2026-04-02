@@ -8,7 +8,7 @@
 # @copyright Copyright © 2023-2026 Gustaf Mossakowski
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
-%%% if participations %%%
+%%% if usergroups %%%
 <tr><th>%%% text Usergroups %%%
 %%% switch scope %%%
 %%% case person %%%
@@ -22,7 +22,7 @@
 %%% switch - %%%</th>
 <td>
 <ul>
-%%% loop participations %%%
+%%% loop usergroups %%%
 <li>%%% item profile_path "<a href='%s'>" %%%%%% item usergroup %%%%%% item profile_path "</a>" %%% %%% item role %%% %%% if date_begin %%%%%% unless date_end %%%%%% text since %%% %%% endif %%%%%% endif %%%%%% item date_begin format=date %%%%%% if date_end %%%–%%% endif %%%%%% item date_end format=date %%% %%% item remarks "<em>%s</em>" %%%</li>
 %%% loop end %%%
 </ul>

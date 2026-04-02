@@ -1,0 +1,24 @@
+# activities module
+# template for contact: participations, contacts_access
+# 
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/activities
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2023-2026 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+%%% if participations %%%
+<tr><th>%%% text Participations %%%</th><td>
+<table class="participations">
+<thead>
+<tr><th>%%% text Date %%%</th><th>%%% text Event %%%</th></tr>
+</thead>
+<tbody>
+%%% loop participations %%%
+<tr><th class="nobr">%%% item duration format=date %%%</th><td><a href="%%% path events_internal_event event_identifier %%%">%%% item event %%%</a> (%%% item usergroup %%%%%% item participation_status ", %s" %%%)</td></tr>
+%%% loop end %%%
+</tbody>
+</table>
+</td></tr>
+%%% endif %%%
