@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -31,7 +31,7 @@ function mod_activities_placeholder_organisation($brick) {
 
 	// access
 	$zz_page['access'][] = sprintf('organisation_contact_id:%d', $brick['data']['contact_id']);
-	wrap_access_page($zz_page['db']['parameters'] ?? '', $zz_page['access']);
+	wrap_access_page(wrap_page_field('parameters'), $zz_page['access']);
 
 	// breadcrumbs
 	$zz_page['breadcrumb_placeholder'][] = [
