@@ -14,7 +14,6 @@
 
 
 function mod_activities_placeholder_form($brick) {
-	global $zz_page;
 	if (empty($brick['placeholder'])) return $brick;
 	if (empty($brick['data'])) $brick['data'] = [];
 
@@ -28,18 +27,20 @@ function mod_activities_placeholder_form($brick) {
 	$brick['data'] = array_merge($brick['data'], $event);
 	
 	// access
-	unset($zz_page['access']);
+	wrap_page_meta('access', [], 'set'); // unset previously set rights
 	if (!empty($brick['data']['website_id']))
-		$zz_page['access'][] = sprintf('event_id:%d+website_id:%d', $brick['data']['event_id'], $brick['data']['website_id']);
+		$access = sprintf('event_id:%d+website_id:%d', $brick['data']['event_id'], $brick['data']['website_id']);
 	else
-		$zz_page['access'][] = sprintf('event_id:%d', $brick['data']['event_id']);
-	wrap_access_page(wrap_page_field('parameters'), $zz_page['access']);
+		$access = sprintf('event_id:%d', $brick['data']['event_id']);
+	
+	wrap_page_meta('access', $access);
+	wrap_access_page();
 
 	// breadcrumbs
-	$zz_page['breadcrumb_placeholder'][] = [
+	wrap_page_meta('breadcrumb_placeholder', [
 		'title' => $brick['data']['event'],
 		'url_path' => $brick['data']['identifier']
-	];
+	]);
 	
 	return $brick;
 }

@@ -14,7 +14,6 @@
 
 
 function mod_activities_placeholder_organisation($brick) {
-	global $zz_page;
 	if (empty($brick['placeholder'])) return $brick;
 	if (empty($brick['data'])) $brick['data'] = [];
 	
@@ -30,14 +29,14 @@ function mod_activities_placeholder_organisation($brick) {
 	$brick['data'] = array_merge($brick['data'], $contact);
 
 	// access
-	$zz_page['access'][] = sprintf('organisation_contact_id:%d', $brick['data']['contact_id']);
-	wrap_access_page(wrap_page_field('parameters'), $zz_page['access']);
+	wrap_page_meta('access', sprintf('organisation_contact_id:%d', $brick['data']['contact_id']));
+	wrap_access_page();
 
 	// breadcrumbs
-	$zz_page['breadcrumb_placeholder'][] = [
+	wrap_page_meta('breadcrumb_placeholder', [
 		'title' => $brick['data']['contact'],
 		'url_path' => $brick['data']['identifier']
-	];
+	]);
 	
 	return $brick;
 }
