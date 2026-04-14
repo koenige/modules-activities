@@ -137,3 +137,4 @@
 /* 2026-03-12-6 */	DELETE FROM _settings WHERE setting_key = 'activities_profile_path[person]';
 /* 2026-03-12-7 */	DELETE FROM _settings WHERE setting_key = 'activities_profile_path[usergroup]';
 /* 2026-03-12-8 */	DELETE FROM _settings WHERE setting_key = 'activities_registration_confirmation_path';
+/* 2026-04-03-1 */	UPDATE webpages SET content = REPLACE(content, '%%% forms participations-usergroups *', '%%% request usergroup *') WHERE content LIKE '%\%\%\% forms participations-usergroups *%';
