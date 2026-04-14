@@ -218,6 +218,9 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/participations.*, contact, usergroup
 			ELSE "*" END
 		) AS contact_scope
 		, event
+		, CONCAT(
+			IFNULL(/*_PREFIX_*/participations.date_begin, ""), "/", IFNULL(/*_PREFIX_*/participations.date_end, "")
+		) AS duration
 	FROM /*_PREFIX_*/participations
 	LEFT JOIN /*_PREFIX_*/contacts USING (contact_id)
 	LEFT JOIN /*_PREFIX_*/persons USING (contact_id)

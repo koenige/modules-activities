@@ -57,6 +57,16 @@ foreach ($zz['fields'] as $no => $field) {
 		$zz['fields'][$no]['type'] = 'sequence';
 		break;
 
+	case 'date_begin':
+		$zz['fields'][$no]['display_field'] = 'duration';
+		$zz['fields'][$no]['title_tab'] = 'Period';
+		$zz['fields'][$no]['list_format'] = 'wrap_date';
+		break;
+
+	case 'date_end':
+		$zz['fields'][$no]['hide_in_list'] = true;
+		break;
+
 	default:
 		break;
 	}
