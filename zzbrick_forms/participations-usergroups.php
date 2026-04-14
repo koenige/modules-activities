@@ -40,24 +40,40 @@ $zz['title'] = $data['usergroup'];
 if (!$use_template)
 	$zz['explanation'] = markdown($data['description']);
 
-$zz['fields'][2]['type'] = 'write_once';
+$last_no = 0;
+foreach ($zz['fields'] as $no => $field) {
+	$identifier = zzform_field_identifier($field);
+	switch ($identifier) {
+	case 'contact_id':
+		$zz['fields'][$no]['type'] = 'write_once';
+		break;
 
-$zz['fields'][9]['type'] = 'sequence';
+	case 'status_category_id':
+		if (!empty($data['parameters']['hide']['status_category_id']))
+			$zz['fields'][$no]['hide_in_list'] = true;
+		break;
 
-if (!empty($data['parameters']['hide']['status_category_id']))
-	$zz['fields'][6]['hide_in_list'] = true;
+	case 'sequence':
+		$zz['fields'][$no]['type'] = 'sequence';
+		break;
+
+	default:
+		break;
+	}
+	$last_no = $no > $last_no ? $no : $last_no;
+}
+$last_no++;
+
+// search: postcode
+$zz['fields'][$last_no]['field_name'] = 'postcode';
+$zz['fields'][$last_no]['type'] = 'display';
+$zz['fields'][$last_no]['hide_in_list'] = true;
+$zz['fields'][$last_no]['hide_in_form'] = true;
+$zz['fields'][$last_no]['search'] = '(SELECT postcode FROM addresses WHERE addresses.contact_id = participations.contact_id LIMIT 1)';
 
 $zz['filter'][1]['sql'] = wrap_edit_sql(
 	$zz['filter'][1]['sql'], 'WHERE', sprintf('usergroup_id = %d', $data['usergroup_id'])
 );
-
-// search: postcode
-$zz['fields'][13]['field_name'] = 'postcode';
-$zz['fields'][13]['type'] = 'display';
-$zz['fields'][13]['hide_in_list'] = true;
-$zz['fields'][13]['hide_in_form'] = true;
-$zz['fields'][13]['search'] = '(SELECT postcode FROM addresses WHERE addresses.contact_id = participations.contact_id LIMIT 1)';
-
 
 if (!empty($data['parameters']['filter_mail'])) {
 	$zz['filter'][3]['title'] = wrap_text('E-Mail');
