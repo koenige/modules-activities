@@ -18,17 +18,27 @@ if (empty($brick['data_context']['usergroup_id'])) {
 	// direct access: get data
 	wrap_include('usergroups', 'activities');
 	$data = mf_activities_usergroup($brick['vars'][0]);
+	$use_template = false;
+} else {
+	$data = $brick['data_context'];
+	$use_template = true; // via template
 }
 
 $zz = zzform_include('activities/participations');
 
 if (!empty($data['parameters']['access'])) {
 	$zz['access'] = $data['parameters']['access'];
+} elseif (!wrap_access('activities_participants_delete')) {
+	if (wrap_access('activities_participants_edit'))
+		$zz['access'] = 'show_edit_add';
+	else
+		$zz['access'] = 'none';
 }
 
 $zz['where']['usergroup_id'] = $data['usergroup_id'];
 $zz['title'] = $data['usergroup'];
-$zz['explanation'] = markdown($data['description']);
+if (!$use_template)
+	$zz['explanation'] = markdown($data['description']);
 
 $zz['fields'][2]['type'] = 'write_once';
 
@@ -59,4 +69,9 @@ if (!empty($data['parameters']['filter_mail'])) {
 		AND provider_category_id = /*_ID categories provider/e-mail_*/';
 	$zz['filter'][3]['selection']['!NULL'] = wrap_text('with E-Mail');
 	$zz['filter'][3]['selection']['NULL'] = wrap_text('without E-Mail');
+}
+
+if ($use_template) {
+	$zz['dont_show_h1'] = true;
+	$zz['list']['no_add_above'] = true;
 }

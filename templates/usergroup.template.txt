@@ -1,0 +1,29 @@
+# activities module
+# template for list of members of usergroups, zzform explanation
+# 
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/activities
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2026 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<div class="usergroup">
+<div class="abstract">
+%%% item description format=markdown %%%
+</div>
+
+%%% if template %%%
+%%% section column %%%
+%%% endif %%%
+
+<h2>%%% text Members %%%</h2>
+
+%%% forms participations-usergroups * %%%
+
+%%% if template %%%
+%%% section column %%%
+%%% include value=template %%%
+%%% section - %%%
+%%% endif %%%
+</div>
