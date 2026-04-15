@@ -56,6 +56,6 @@
 %%% if addlogin %%%
 <p><a href="%%% path login_entry %%%">%%% text Continue to the home page %%%</a></p>
 %%% else %%%
-<p><a href="%%% setting base %%%%%% setting homepage_url %%%">%%% text Continue to the home page %%%</a></p>
+<p><a href="%%% path home %%%">%%% text Continue to the home page %%%</a></p>
 %%% endif %%%
 </div>
