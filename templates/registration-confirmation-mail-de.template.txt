@@ -21,12 +21,12 @@ Ereignisse erhalten:
 
 Bitte bestätigen Sie Ihre Anfrage hier:
 
-%%% setting host_base %%%%%% path activities_registration_confirmation %%%?confirm=%%% item verification_hash %%%
+%%% path activities_registration_confirmation absolute=1 %%%?confirm=%%% item verification_hash %%%
 
 Falls Sie sich nicht registrieren möchten oder die Anfrage gar nicht von Ihnen
 kam, können Sie die Anfrage hier ausdrücklich verneinen:
 
-%%% setting host_base %%%%%% path activities_registration_confirmation %%%?delete=%%% item verification_hash %%%
+%%% path activities_registration_confirmation absolute=1 %%%?delete=%%% item verification_hash %%%
 
 Falls Sie nichts tun, werden wir Ihre Anfrage ebenfalls löschen.
 
