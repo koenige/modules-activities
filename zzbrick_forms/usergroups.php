@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023, 2025 Gustaf Mossakowski
+ * @copyright Copyright © 2023, 2025-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -39,12 +39,6 @@ if (wrap_category_id('relations/organisation')) {
 	$zz['where']['organisation_contact_id'] = $brick['data']['contact_id'];
 	$zz['filter'][1]['sql'] = wrap_edit_sql($zz['filter'][1]['sql'], 'WHERE', sprintf('organisation_contact_id = %d', $brick['data']['contact_id']));
 }
-
-$zz['fields'][2]['link'] = [
-	'field1' => 'identifier',
-	'string1' => '/'
-];
-
 
 $zz['fields'][12]['hide_in_list'] = true;
 $zz['fields'][12]['hide_in_form'] = true;
