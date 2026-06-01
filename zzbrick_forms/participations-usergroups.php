@@ -28,12 +28,15 @@ $zz = zzform_include('activities/participations');
 
 if (!empty($data['parameters']['access'])) {
 	$zz['access'] = $data['parameters']['access'];
-} elseif (!wrap_access('activities_participants_delete')) {
-	if (wrap_access('activities_participants_edit'))
-		$zz['access'] = 'show_edit_add';
-	else
-		$zz['access'] = 'none';
+} elseif (!wrap_access('activities_participants')) {
+	$zz['access'] = 'none';
+} elseif (!wrap_access('activities_participants_edit')) {
+	$zz['access'] = 'show';
+} else {
+	$zz['access'] = 'show_edit_add';
 }
+if (!wrap_access('activities_participants_delete'))
+	$zz['record']['delete'] = false;
 
 $zz['where']['usergroup_id'] = $data['usergroup_id'];
 $zz['title'] = $data['usergroup'];
