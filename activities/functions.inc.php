@@ -105,6 +105,66 @@ function mf_activities_access_cfg($cfg) {
 }
 
 /**
+ * usergroups assigned to an access key in the database
+ *
+ * @param string $access_key
+ * @return list<string> usergroup names, sorted
+ */
+function mf_activities_access_usergroups($access_key) {
+	if (!$access_key) return [];
+
+	static $usergroups = [];
+	if (array_key_exists($access_key, $usergroups)) return $usergroups[$access_key];
+
+	$areas = [wrap_db_escape($access_key)];
+	if (strpos($access_key, '[') !== false) {
+		$base = wrap_access_area_base($access_key);
+		if ($base) $areas[] = wrap_db_escape($base);
+	}
+
+	$sql = 'SELECT usergroup_id, usergroup
+		FROM usergroups
+		LEFT JOIN access_usergroups USING (usergroup_id)
+		LEFT JOIN access USING (access_id)
+		WHERE access.access_key IN ("%s")
+		ORDER BY usergroup';
+	$sql = sprintf($sql, implode('","', $areas));
+	$groups = wrap_db_fetch($sql, ['usergroup_id', 'usergroup'], 'key/value');
+	if (!$groups) {
+		return $usergroups[$access_key] = [];
+	}
+	$groups = array_values($groups);
+	$groups = array_values(array_unique($groups));
+	return $usergroups[$access_key] = $groups;
+}
+
+/**
+ * usergroups assigned to included access keys (include_access, one level)
+ *
+ * Reads access.cfg and routes.cfg via wrap_cfg_files('access').
+ *
+ * @param string $access_key
+ * @return array<string, list<string>> included access_key => usergroup names
+ */
+function mf_activities_access_usergroups_included($access_key) {
+	if (!$access_key) return [];
+
+	static $config = null;
+	if ($config === null) $config = wrap_cfg_files('access');
+	if (empty($config[$access_key]['include_access'])) return [];
+
+	$includes = $config[$access_key]['include_access'];
+	if (!is_array($includes)) $includes = [$includes];
+
+	$included = [];
+	foreach ($includes as $included_key) {
+		$usergroups = mf_activities_access_usergroups($included_key);
+		if ($usergroups) $included[$included_key] = $usergroups;
+	}
+	return $included;
+}
+
+/**
  * merge contact with contact with identical name + mail
  *
  * @param int $contact_id

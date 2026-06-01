@@ -1,0 +1,40 @@
+# activities module
+# Admin translations to German
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/activities
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2026 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Zugzwang Project – Activities Module (admin)\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 3.9\n"
+
+#: zzbrick_tables/access.php
+msgid "Groups:"
+msgstr "Gruppen:"
+
+#: zzbrick_tables/access.php
+msgid "Included"
+msgstr "Eingebunden"
+
+#: templates/access-usergroups-list.template.txt
+msgid "Included groups via `%s`:"
+msgstr "Eingebundene Gruppen über `%s`:"
+
+#: templates/access-usergroups-record.template.txt
+msgid "No access groups are included."
+msgstr "Es sind keine Gruppen eingebunden."

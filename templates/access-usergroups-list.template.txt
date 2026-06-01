@@ -1,0 +1,16 @@
+# activities module
+# template for access usergroups, list
+# 
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/activities
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2026 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+%%% loop start %%%
+%%% text "Included groups via `%s`:" access_key %%%
+<p>%%% loop usergroups %%%
+%%% item usergroup %%%%%% loopposition first|middle ", " %%%
+%%% loop end %%%</p>
+%%% loop end %%%
