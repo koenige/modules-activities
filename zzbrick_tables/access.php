@@ -54,6 +54,7 @@ $zz['fields'][6]['hide_format_in_title_desc'] = true;
 $zz['fields'][6]['list_format'] = 'mf_activities_access_usergroups_included_list';
 $zz['fields'][6]['list_prefix'] = '<div class="explanation" style="margin: .75em 2.5em; max-width: 40em; font-style: italic;">';
 $zz['fields'][6]['list_suffix'] = '</div>';
+$zz['fields'][6]['exclude_from_search'] = true;
 
 $zz['fields'][4]['field_name'] = 'module';
 $zz['fields'][4]['default'] = 'custom';
