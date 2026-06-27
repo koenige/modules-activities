@@ -33,7 +33,7 @@ function mf_activities_contact($data, $ids) {
 function mf_activities_contact_participations($data, $ids) {
 	wrap_include('functions', 'activities');
 	$sql = 'SELECT participation_id, contact_id
-			, usergroup_id, usergroup, usergroups.identifier
+			, usergroups.usergroup_id, usergroup, usergroups.identifier
 			, participations.date_begin, participations.date_end, participations.remarks, role
 			, event_id, event, events.identifier AS event_identifier
 			, CONCAT(IFNULL(events.date_begin, ""), "/", IFNULL(events.date_end, "")) AS duration
