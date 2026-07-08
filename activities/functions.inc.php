@@ -175,7 +175,7 @@ function mf_activities_merge_contact($contact_id) {
 	    FROM contacts
 	    LEFT JOIN contactdetails
 	    	ON contactdetails.contact_id = contacts.contact_id
-	    	AND channel_category_id = /*_ID categories provider/e-mail _*/
+	    	AND channel_category_id = /*_ID categories channel/e-mail _*/
 	    WHERE contacts.contact_id = %d';
 	$sql = sprintf($sql, $contact_id);
 	$new_contact = wrap_db_fetch($sql);
@@ -184,7 +184,7 @@ function mf_activities_merge_contact($contact_id) {
 		FROM contacts
 	    LEFT JOIN contactdetails
 	    	ON contactdetails.contact_id = contacts.contact_id
-	    	AND channel_category_id = /*_ID categories provider/e-mail _*/
+	    	AND channel_category_id = /*_ID categories channel/e-mail _*/
 		WHERE contact = "%s" AND contacts.contact_id != %d AND identification = "%s"';
 	$sql = sprintf($sql
 		, $new_contact['contact']

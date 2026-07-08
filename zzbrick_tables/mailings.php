@@ -37,7 +37,7 @@ $zz['fields'][4]['type'] = 'select';
 $zz['fields'][4]['sql'] = 'SELECT contact_id, contact
 	, (SELECT identification FROM contactdetails
 			WHERE contactdetails.contact_id = contacts.contact_id
-			AND channel_category_id = /*_ID categories provider/e-mail _*/
+			AND channel_category_id = /*_ID categories channel/e-mail _*/
 			LIMIT 1
 		) AS e_mail
 	FROM /*_PREFIX_*/persons

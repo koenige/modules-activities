@@ -183,7 +183,7 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type, $formfie
 			LEFT JOIN languages USING (language_id)
 			LEFT JOIN contactdetails
 				ON contactdetails.contact_id = contacts.contact_id
-				AND contactdetails.channel_category_id = /*_ID categories provider/e-mail _*/
+				AND contactdetails.channel_category_id = /*_ID categories channel/e-mail _*/
 			WHERE contacts.contact_id = %d';
 	} else {
 		$sql = 'SELECT contacts.contact_id
@@ -201,7 +201,7 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type, $formfie
 			LEFT JOIN participations USING (contact_id)
 			LEFT JOIN contactdetails
 				ON contactdetails.contact_id = contacts.contact_id
-				AND contactdetails.channel_category_id = /*_ID categories provider/e-mail _*/
+				AND contactdetails.channel_category_id = /*_ID categories channel/e-mail _*/
 			WHERE contacts.contact_id = %d';
 	}
 	$sql = sprintf($sql, $contact_id);

@@ -54,7 +54,7 @@ function mf_activities_confirm_registration($ops) {
 				wrap_setting('log_username', $ops['record_new'][$index]['identifier']);
 				break;
 			case 'contactdetails':
-				if ($ops['record_new'][$index]['channel_category_id'] !== wrap_category_id('provider/e-mail')) break;
+				if ($ops['record_new'][$index]['channel_category_id'] !== wrap_category_id('channel/e-mail')) break;
 				$data['e_mail'] = $ops['record_new'][$index]['identification'];
 				break;
 			case 'participations':
@@ -134,7 +134,7 @@ function mf_activities_hook_mailing_add_addresses($ops) {
 	$sql = 'SELECT contact_id, identification
 		FROM contactdetails
 		WHERE contact_id IN (%s)
-		AND contactdetails.channel_category_id = /*_ID categories provider/e-mail _*/';
+		AND contactdetails.channel_category_id = /*_ID categories channel/e-mail _*/';
 	$sql = sprintf($sql, implode(',', $contact_ids));
 	$mails = wrap_db_fetch($sql, 'contact_id');
 	if (!$mails) return [];
@@ -180,7 +180,7 @@ function mf_activities_hook_mailing_send($ops) {
 		FROM contacts
 		LEFT JOIN contactdetails USING (contact_id)
 		WHERE contact_id = %d
-		AND channel_category_id = /*_ID categories provider/e-mail _*/';
+		AND channel_category_id = /*_ID categories channel/e-mail _*/';
 	$sql = sprintf($sql, $maildata['sender_contact_id']);
 	$mail['headers']['From'] = wrap_db_fetch($sql, '', 'key/value');
 	if (empty($mail['headers']['From']))

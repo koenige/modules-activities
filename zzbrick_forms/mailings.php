@@ -21,7 +21,7 @@ $sql = 'SELECT participation_id
 		, contacts.contact
 		, (SELECT identification FROM contactdetails
 			WHERE contactdetails.contact_id = contacts.contact_id
-			AND channel_category_id = /*_ID categories provider/e-mail_*/
+			AND channel_category_id = /*_ID categories channel/e-mail_*/
 			LIMIT 1
 		) AS e_mail
 		, usergroup

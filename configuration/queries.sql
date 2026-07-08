@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -39,7 +39,7 @@ WHERE event_id = %d
 SELECT persons.contact_id
 , (SELECT identification FROM contactdetails
 	WHERE contactdetails.contact_id = contacts.contact_id
-	AND channel_category_id = /*_ID categories provider/e-mail */
+	AND channel_category_id = /*_ID categories channel/e-mail */
 	LIMIT 1
 ) AS e_mail
 , contact AS name
