@@ -67,15 +67,15 @@ function mf_activities_confirm_registration($ops) {
 
 	// write activities
 	foreach ($data['participation_id'] as $participation_id) {
-		$error_msg = wrap_text(
-			'The registration for %s was not completed.', ['values' => [$data['e_mail']]]
-		);
 		$line = [
 			'participation_id' => $participation_id,
 			'activity_category_id' => wrap_category_id('activities/subscribe'),
 			'activity_uri' => sprintf('mailto:%s', $data['e_mail'])
 		];
-		zzform_insert('activities', $line, E_USER_ERROR, ['msg' => $error_msg]);
+		zzform_insert('activities', $line, E_USER_ERROR, [
+			'_msg' => 'The registration for %s was not completed.',
+			'_msg_values' => [$data['e_mail']]
+		]);
 	}
 
 	// get events

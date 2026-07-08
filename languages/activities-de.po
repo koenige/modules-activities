@@ -717,3 +717,15 @@ msgstr "M."
 #: zzbrick_tables/usergroups.php
 msgid "E. M."
 msgstr "E. M."
+
+#: activities/functions.inc.php
+msgid "Merging contacts was not successful."
+msgstr "Das Zusammenführen der Kontakte war nicht erfolgreich."
+
+#: zzform/hooks.inc.php
+msgid "The registration for %s was not completed."
+msgstr "Die Anmeldung für %s wurde nicht abgeschlossen."
+
+#: zzbrick_make/registrationconfirmation.inc.php
+msgid "The registration for code %s was not completed."
+msgstr "Die Anmeldung für den Code %s wurde nicht abgeschlossen."

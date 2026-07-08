@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -78,15 +78,16 @@ function mod_activities_make_registrationconfirmation() {
 		if ($data['status_category_id'] === wrap_category_id('participation-status/subscribed')) {
 			switch ($action) {
 			case 'confirm':
-				$error_msg = wrap_text(
-					'The registration for code %s was not completed.', ['values' => [$code]]
-				);
+				$error_settings = [
+					'_msg' => 'The registration for code %s was not completed.',
+					'_msg_values' => [$code]
+				];
 				// add activities
 				$line = [
 					'participation_id' => $data['participation_id'],
 					'activity_category_id' => wrap_category_id('activities/verify')
 				];
-				zzform_insert('activities', $line, E_USER_ERROR, ['msg' => $error_msg]);
+				zzform_insert('activities', $line, E_USER_ERROR, $error_settings);
 
 				// update participations
 				$line = [
@@ -94,7 +95,7 @@ function mod_activities_make_registrationconfirmation() {
 					'date_begin' => date('Y-m-d'),
 					'status_category_id' => wrap_category_id('participation-status/verified')
 				];
-				zzform_update('participations', $line, E_USER_ERROR, ['msg' => $error_msg]);
+				zzform_update('participations', $line, E_USER_ERROR, $error_settings);
 				
 				wrap_include('zzform/formkit', 'activities');
 				mf_activities_formkit_mail_send($data['event_id'], $data['contact_id'], 'confirmation');

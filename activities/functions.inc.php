@@ -209,7 +209,9 @@ function mf_activities_merge_contact($contact_id) {
 			$ids = wrap_db_fetch($this_sql, $field_name, 'single value');
 			switch ($action) {
 			case 'delete':
-				$success = zzform_delete($table, $ids, E_USER_NOTICE, ['msg' => 'Merging contacts was not successful.']);
+				$success = zzform_delete($table, $ids, E_USER_NOTICE, [
+					'_msg' => 'Merging contacts was not successful.'
+				]);
 				if (count($success) !== count($ids)) return false;
 				break;
 			case 'update':
@@ -218,7 +220,9 @@ function mf_activities_merge_contact($contact_id) {
 						$field_name => $id,
 						'contact_id' => $old_contact_id
 					];
-					$success = zzform_update($table, $line, E_USER_NOTICE, ['msg' => 'Merging contacts was not successful.']);
+					$success = zzform_update($table, $line, E_USER_NOTICE, [
+						'_msg' => 'Merging contacts was not successful.'
+					]);
 					if (!$success) return false;
 				}
 				break;
