@@ -39,7 +39,7 @@ WHERE event_id = %d
 SELECT persons.contact_id
 , (SELECT identification FROM contactdetails
 	WHERE contactdetails.contact_id = contacts.contact_id
-	AND provider_category_id = /*_ID categories provider/e-mail */
+	AND channel_category_id = /*_ID categories provider/e-mail */
 	LIMIT 1
 ) AS e_mail
 , contact AS name

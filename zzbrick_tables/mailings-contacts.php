@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2012, 2019-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2012, 2019-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -36,7 +36,7 @@ $zz['fields'][3]['type'] = 'select';
 $zz['fields'][3]['sql'] = 'SELECT contact_id, contact
 	, (SELECT identification FROM contactdetails
 			WHERE contactdetails.contact_id = contacts.contact_id
-			AND provider_category_id = /*_ID categories provider/e-mail _*/
+			AND channel_category_id = /*_ID categories provider/e-mail _*/
 			LIMIT 1
 		) AS e_mail
 	FROM /*_PREFIX_*/persons

@@ -43,7 +43,7 @@ $zz['fields'][10]['type_detail'] = 'mail';
 $zz['fields'][10]['list_prefix'] = '<br>';
 $zz['fields'][10]['search'] = '(SELECT identification FROM /*_PREFIX_*/contactdetails
 	WHERE /*_PREFIX_*/contactdetails.contact_id = /*_PREFIX_*/participations.contact_id
-	AND provider_category_id = /*_ID categories provider/e-mail _*/ LIMIT 1)';
+	AND channel_category_id = /*_ID categories provider/e-mail _*/ LIMIT 1)';
 $zz['fields'][10]['if']['add']['hide_in_form'] = true;
 
 $zz['fields'][3]['field_name'] = 'usergroup_id';
@@ -210,7 +210,7 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/participations.*, contact, usergroup
 		, IF(/*_PREFIX_*/categories.parameters LIKE "%&hide_in_list=1%", "", /*_PREFIX_*/categories.category) AS category
 		, (SELECT identification FROM /*_PREFIX_*/contactdetails
 			WHERE /*_PREFIX_*/contactdetails.contact_id = /*_PREFIX_*/participations.contact_id
-			AND provider_category_id = /*_ID categories provider/e-mail _*/ LIMIT 1) AS e_mail
+			AND channel_category_id = /*_ID categories provider/e-mail _*/ LIMIT 1) AS e_mail
 		, /*_PREFIX_*/contacts.identifier
 		, contact_categories.parameters AS contact_parameters
 		, (CASE WHEN LOCATE("&type=", contact_categories.parameters) > 0 THEN

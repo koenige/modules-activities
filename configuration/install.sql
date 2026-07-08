@@ -6,7 +6,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -396,7 +396,7 @@ INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `
 INSERT INTO categories (`category`, `description`, `main_category_id`, `path`, `parameters`, `sequence`, `last_update`) VALUES ('click', NULL, (SELECT category_id FROM categories c WHERE path = 'activities'), 'activities/click', NULL, NULL, NOW());
 
 -- contactdetails --
-ALTER TABLE `contactdetails` ADD `formfield_id` int unsigned NULL AFTER `provider_category_id`, ADD INDEX `formfield_id` (`formfield_id`);
+ALTER TABLE `contactdetails` ADD `formfield_id` int unsigned NULL AFTER `channel_category_id`, ADD INDEX `formfield_id` (`formfield_id`);
 
 INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`, `detail_table`, `detail_id_field`, `detail_field`, `delete`) VALUES ((SELECT DATABASE()), 'formfields', 'formfield_id', (SELECT DATABASE()), 'contactdetails', 'contactdetail_id', 'formfield_id', 'no-delete');
 
