@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -45,7 +45,7 @@ $zz['fields'][4]['dependent_fields'][5]['if_selected'] = 'show_formfield';
 $zz['fields'][4]['sql_ignore'] = ['show_formfield'];
 
 $zz['fields'][3]['field_name'] = 'template';
-$zz['fields'][3]['explanation'] = wrap_text('Content of the template.');
+$zz['fields'][3]['explanation'] = 'Content of the template.';
 $zz['fields'][3]['type'] = 'memo';
 $zz['fields'][3]['rows'] = 6;
 

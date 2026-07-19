@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -39,10 +39,10 @@ $zz['sql'] = wrap_edit_sql($zz['sql'], 'SELECT',
 	, subscriptions.activity_ip AS subscribe_activity_ip'
 );
 
-$zz['title'] = wrap_text('Registrations').' <br><a href="../">'.$brick['data']['event'].'</a>';
+$zz['title'] = 'Registrations';
+$zz['subtitle']['text'] = '<a href="../">'.$brick['data']['event'].'</a>';
 $zz['hooks']['after_insert'] = 'mf_activities_formkit_hook';
 $zz['vars']['event'] = $brick['data'];
-$zz['page']['dont_show_title_as_breadcrumb'] = true;
 
 foreach (array_keys($zz['fields']) as $no) continue;
 $zz['fields'][++$no] = mf_activities_formkit_participations($brick['data']['event_id']);

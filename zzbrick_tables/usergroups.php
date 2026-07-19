@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2006-2013, 2016-2017, 2019-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2006-2013, 2016-2017, 2019-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -69,7 +69,7 @@ $zz['fields'][7]['field_name'] = 'sequence';
 $zz['fields'][7]['type'] = 'text';
 $zz['fields'][7]['hide_in_list'] = true;
 
-$zz['fields'][8]['title'] = wrap_text('Active?');
+$zz['fields'][8]['title'] = 'Active?';
 $zz['fields'][8]['field_name'] = 'active';
 $zz['fields'][8]['type'] = 'select';
 $zz['fields'][8]['enum'] = ['yes', 'no'];

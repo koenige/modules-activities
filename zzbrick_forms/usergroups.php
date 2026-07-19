@@ -14,7 +14,7 @@
 
 
 $zz = zzform_include('usergroups');
-$zz['title'] = wrap_text($zz['title']).':<br>'.$brick['data']['contact'];
+$zz['subtitle']['text'] = $brick['data']['contact'];
 
 if (wrap_category_id('relations/organisation')) {
 	$zz['sql'] = wrap_edit_sql($zz['sql'], 'JOIN', 

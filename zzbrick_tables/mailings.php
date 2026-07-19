@@ -51,9 +51,9 @@ $zz['fields'][4]['list_append_next'] = true;
 // e. g. replace this field with sender_contactdetail_id
 $zz['fields'][14]['title'] = 'E-mail';
 $zz['fields'][14]['field_name'] = 'sender_mail';
-$zz['fields'][14]['explanation'] = wrap_text('Alternative e-mail address for sending the e-mails if you do not want to send from your own address.');
+$zz['fields'][14]['explanation'][] = ['Alternative e-mail address for sending the e-mails if you do not want to send from your own address.'];
 if ($suffix = wrap_setting('activities_mailings_suffix_alternative_from'))
-	$zz['fields'][14]['explanation'] .= ' '.sprintf(wrap_text('In this case “, %s” is appended to the name.'), $suffix);
+	$zz['fields'][14]['explanation'][] = ['In this case “, %s” is appended to the name.', ['values' => $suffix]];
 $zz['fields'][14]['list_prefix'] = '<br>&lt;';
 $zz['fields'][14]['list_suffix'] = '&gt;';
 
@@ -73,10 +73,9 @@ $zz['fields'][3]['format'] = 'nl2br';
 $zz['fields'][3]['hide_format_in_title_desc'] = true;
 $zz['fields'][3]['rows'] = 30;
 $zz['fields'][3]['cols'] = 80;
-$zz['fields'][3]['explanation'] = wrap_text('%d characters per line.', ['values' => [$zz['fields'][3]['cols']]]);
-if ($path = wrap_setting('activities_mailings_help')) {
-	$zz['fields'][3]['explanation'] .= ' '.sprintf('(<a href="%s">Possible placeholders</a>)', $path);
-}
+$zz['fields'][3]['explanation'][] = ['%d characters per line.', ['values' => [$zz['fields'][3]['cols']]]];
+if ($path = wrap_setting('activities_mailings_help'))
+	$zz['fields'][3]['explanation'][] = ['(<a href="%s">Possible placeholders</a>)', ['values' => [$path]]];
 $zz['fields'][3]['list_append_next'] = true;
 
 $zz['fields'][5] = zzform_include('mailings-contacts');
