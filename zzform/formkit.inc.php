@@ -306,7 +306,9 @@ function mf_activities_formkit_field($formfield, $fields) {
 		if ($field['field_name'] !== $formfield['field_name']) continue;
 		return $no;
 	}
-	wrap_error(sprintf('Configuration error: Form field %s not found in definition.', $formfield['field_name']), E_USER_ERROR);
+	wrap_error([
+		'Configuration error: Form field %s not found in definition.', ['values' => [$formfield['field_name']]]
+	], E_USER_ERROR);
 }
 
 /**
@@ -572,7 +574,7 @@ function mf_activities_formkit_hook($ops) {
 		$contact_id = $table['id_value'];
 	}
 	if (!$contact_id)
-		wrap_error('Unable to find registration.', E_USER_ERROR);
+		wrap_error(['Unable to find registration.'], E_USER_ERROR);
 
 	$participation_id = mf_activities_formkit_hook_participation($contact_id, $event_id, $data['form_parameters']);
 	$activity_id = mf_activities_formkit_hook_activity($participation_id);
@@ -629,7 +631,7 @@ function mf_activities_formkit_mail_send($event_id, $contact_id, $type) {
 	$value = sprintf('%d/%d/%s', $event_id, $contact_id, $type);
 	$url = wrap_path('activities_formmail_send', $value, ['check_rights' => false]);
 	if (!$url) {
-		wrap_error('No path for `activities_formmail_send` found.', E_USER_WARNING);
+		wrap_error(['No path for `activities_formmail_send` found.'], E_USER_WARNING);
 		return false;
 	}
 	$success = wrap_job($url);

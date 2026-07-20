@@ -529,7 +529,7 @@ function mf_activities_formfields_required($data) {
 	$category_ids = [];
 	foreach ($parameters['required_fields'] as $field)
 		if (!wrap_category_id('field-types/'.$field, 'check'))
-			wrap_error(sprintf('Configuration error. Field type %s does not exist.', $field), E_USER_ERROR);
+			wrap_error(['Configuration error. Field type %s does not exist.', ['values' => [$field]]], E_USER_ERROR);
 		else
 			$category_ids[] = wrap_category_id('field-types/'.$field);
 

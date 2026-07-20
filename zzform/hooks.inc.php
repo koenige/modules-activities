@@ -103,9 +103,7 @@ function mf_activities_confirm_registration($ops) {
 	$mail['message'] = wrap_template('registration-confirmation-mail', $data);
 	$success = wrap_mail($mail);
 	if (!$success) {
-		wrap_error(sprintf(
-			'Registration mail could not be sent to %s (ID %d)', $data['e_mail'], $data['contact_id']
-		));
+		wrap_error(['Registration mail could not be sent to %s (ID %d)', ['values' => [$data['e_mail'], $data['contact_id']]]]);
 	}
 
 	return [];
@@ -184,7 +182,7 @@ function mf_activities_hook_mailing_send($ops) {
 	$sql = sprintf($sql, $maildata['sender_contact_id']);
 	$mail['headers']['From'] = wrap_db_fetch($sql, '', 'key/value');
 	if (empty($mail['headers']['From']))
-		wrap_error(wrap_text('No valid sender e-mail address is set for the mailings, so the messages cannot be sent.'), E_USER_ERROR);
+		wrap_error(['No valid sender e-mail address is set for the mailings, so the messages cannot be sent.'], E_USER_ERROR);
 	if ($maildata['sender_mail']) {
 		if ($suffix = wrap_setting('activities_mailings_suffix_alternative_from'))
 			$mail['headers']['From']['name'] .= sprintf(', %s', $suffix);
@@ -232,9 +230,7 @@ function mf_activities_hook_mailing_send($ops) {
 		$my_mail['message'] = $msg['text'];
 		$success = wrap_mail($my_mail);
 		if (!$success) {
-			wrap_error(sprintf(
-				'Unable to send mail with ID %d to recipient with ID %d (%s).',
-				$maildata['mailing_id'], $recipient['contact_id'], $recipient['name'])
+			wrap_error(['Unable to send mail with ID %d to recipient with ID %d (%s).', ['values' => [$maildata['mailing_id'], $recipient['contact_id'], $recipient['name']]]]
 			);
 		}
 	}

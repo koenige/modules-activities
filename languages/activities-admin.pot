@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- activities module\n"
-"POT-Creation-Date: 2026-07-20 11:00+0000\n"
+"POT-Creation-Date: 2026-07-20 12:51+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -15,6 +15,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: activities/download.inc.php:41
+#: activities/download.inc.php:50
+msgid "Form field “%s” used as ZIP folder, but category “%s” does not allow this."
+msgstr ""
+
+#: activities/functions.inc.php:532
+msgid "Configuration error. Field type %s does not exist."
+msgstr ""
 
 #: configuration/access.cfg:21
 msgid "Create and view registrations for an event"
@@ -212,6 +221,22 @@ msgstr ""
 msgid "No access groups are included."
 msgstr ""
 
+#: zzbrick_make/formmail.inc.php:44
+msgid "Unknown form mail type %s."
+msgstr ""
+
+#: zzbrick_make/formmail.inc.php:95
+msgid "%s mails could not be sent to %s (ID %d)"
+msgstr ""
+
+#: zzbrick_make/formmail.inc.php:113
+msgid "%s mail could not be sent as copy to %s (ID %d)"
+msgstr ""
+
+#: zzbrick_make/registrationconfirmation.inc.php:111
+msgid "The registration for code %s was not deleted."
+msgstr ""
+
 #: zzbrick_tables/access.php:19
 msgid "Access Rights"
 msgstr ""
@@ -261,4 +286,28 @@ msgstr ""
 
 #: zzbrick_tables/access-usergroups.php:44
 msgid "Field name when access is limited to a participation with a given ID."
+msgstr ""
+
+#: zzform/formkit.inc.php:310
+msgid "Configuration error: Form field %s not found in definition."
+msgstr ""
+
+#: zzform/formkit.inc.php:577
+msgid "Unable to find registration."
+msgstr ""
+
+#: zzform/formkit.inc.php:634
+msgid "No path for `activities_formmail_send` found."
+msgstr ""
+
+#: zzform/hooks.inc.php:106
+msgid "Registration mail could not be sent to %s (ID %d)"
+msgstr ""
+
+#: zzform/hooks.inc.php:185
+msgid "No valid sender e-mail address is set for the mailings, so the messages cannot be sent."
+msgstr ""
+
+#: zzform/hooks.inc.php:233
+msgid "Unable to send mail with ID %d to recipient with ID %d (%s)."
 msgstr ""

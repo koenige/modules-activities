@@ -4,14 +4,10 @@
 # Part of »Zugzwang Project«
 # https://www.zugzwang.org/modules/activities
 #
-# @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2024 Gustaf Mossakowski
-# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project – Activities Module\n"
-"POT-Creation-Date: 2026-07-20 11:24+0000\n"
+"POT-Creation-Date: 2026-07-20 12:07+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
@@ -23,11 +19,6 @@ msgstr ""
 "|| n%100>14) ? 1 : 2);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Generator: Poedit 3.9\n"
-
-#: activities/download.inc.php:41 activities/download.inc.php:50
-msgid ""
-"Form field “%s” used as ZIP folder, but category “%s” does not allow this."
-msgstr ""
 
 #: activities/download.inc.php:67
 msgid "Unknown"
@@ -115,7 +106,7 @@ msgstr ""
 "rejestrację."
 
 #: templates/registration-confirmation.template.txt:18
-msgid "A cancellation is not possible in this way."
+msgid "A cancellation may still be possible, but not via this webpage."
 msgstr "W ten sposób anulowanie jest niemożliwe."
 
 #: templates/registration-confirmation.template.txt:22
@@ -293,19 +284,19 @@ msgstr "Contact ID %d for form mail (%s), event ID %d, nie znaleziono."
 msgid "Form mail: No recipient e-mail address found."
 msgstr "Formularz e-mail: Nie znaleziono adresu e-mail odbiorcy."
 
-#: zzbrick_make/formmail.inc.php:97
+#: zzbrick_make/formmail.inc.php:98
 msgid "Failed to send mail."
 msgstr "Wysyłanie poczty nie powiodło się."
 
-#: zzbrick_make/formmail.inc.php:103
+#: zzbrick_make/formmail.inc.php:104
 msgid "(copy of e-mail)"
 msgstr "(kopia e-maila)"
 
-#: zzbrick_make/formmail.inc.php:104
+#: zzbrick_make/formmail.inc.php:105
 msgid "This e-mail was just sent to:"
 msgstr "Ten e-mail został właśnie wysłany do:"
 
-#: zzbrick_make/formmail.inc.php:118
+#: zzbrick_make/formmail.inc.php:120
 msgid "The mail was sent successfully."
 msgstr "Poczta została pomyślnie wysłana."
 
@@ -788,10 +779,4 @@ msgstr ""
 
 #: zzform/hooks.inc.php:76
 msgid "The registration for %s was not completed."
-msgstr ""
-
-#: zzform/hooks.inc.php:187
-msgid ""
-"No valid sender e-mail address is set for the mailings, so the messages "
-"cannot be sent."
 msgstr ""

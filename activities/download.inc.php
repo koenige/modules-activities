@@ -37,19 +37,19 @@ function mf_activities_media_zip_folders($media, $event_id) {
 
 	foreach ($folders as $formfield_id => $folder) {
 		if (!$folder['category_parameters']) {
-			wrap_error(wrap_text(
+			wrap_error([
 				'Form field “%s” used as ZIP folder, but category “%s” does not allow this.'
 				, ['values' => [$folder['formfield'], $folder['category']]]
-			));
+			]);
 			unset($folders[$formfield_id]);
 			continue;
 		}
 		parse_str($folder['category_parameters'], $folder['category_parameters']);
 		if (empty($folder['category_parameters']['zip_folder'])) {
-			wrap_error(wrap_text(
+			wrap_error([
 				'Form field “%s” used as ZIP folder, but category “%s” does not allow this.'
 				, ['values' => [$folder['formfield'], $folder['category']]]
-			));
+			]);
 			unset($folders[$formfield_id]);
 			continue;
 		}

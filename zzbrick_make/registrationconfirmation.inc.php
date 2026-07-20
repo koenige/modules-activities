@@ -107,7 +107,9 @@ function mod_activities_make_registrationconfirmation() {
 				// delete participation + activities (via CASCADE)
 				$deleted = zzform_delete('participations', $data['participation_id']);
 				if (!$deleted)
-					wrap_error(sprintf('The registration for code %s was not deleted.', $code), E_USER_ERROR);
+					wrap_error([
+						'The registration for code %s was not deleted.', ['values' => [$code]]
+					], E_USER_ERROR);
 				
 				// delete contact and contactdetails (if there's no other link)
 				// @todo add check before

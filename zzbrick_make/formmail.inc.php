@@ -41,7 +41,7 @@ function mod_activities_make_formmail($params) {
 		$extra_message = '';
 	}
 	if (!in_array($params[2], ['authentication', 'confirmation', 'field-changed']))
-		wrap_error(sprintf('Unknown form mail type %s.', $params[2]), E_USER_ERROR);
+		wrap_error(['Unknown form mail type %s.', ['values' => [$params[2]]]], E_USER_ERROR);
 
 	$data = mod_activities_formmail_prepare($params[0], $params[1], $params[2], $params[3] ?? NULL);
 	if (!$data) {
@@ -91,9 +91,10 @@ function mod_activities_make_formmail($params) {
 		if (!$success) $mails_failed[] = $recipient['e_mail'];
 	}
 	if ($mails_failed) {
-		wrap_error(sprintf(
-			'%s mails could not be sent to %s (ID %d)', ucfirst($params[2]), implode(',', $mails_failed), $data['contact_id']
-		));
+		wrap_error([
+			'%s mails could not be sent to %s (ID %d)', 
+			['values' => [ucfirst($params[2]), implode(',', $mails_failed), $data['contact_id']]]
+		]);
 		$page['text'] = wrap_text('Failed to send mail.');
 		$page['status'] = 404;
 		return $page;
@@ -108,9 +109,10 @@ function mod_activities_make_formmail($params) {
 		$mail['message'] = $mail_copy_text."\r\n\r\n".$mail['message'];
 		$success = wrap_mail($mail);
 		if (!$success)
-			wrap_error(sprintf(
-				'%s mail could not be sent as copy to %s (ID %d)', ucfirst($params[2]), $data['sender'], $data['contact_id']
-			));
+			wrap_error([
+				'%s mail could not be sent as copy to %s (ID %d)', 
+				['values' => [ucfirst($params[2]), $data['sender'], $data['contact_id']]]
+			]);
 	}
 	
 	mod_activities_formmail_log($data, $params[2]);

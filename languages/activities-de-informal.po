@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project – Activities Module\n"
-"POT-Creation-Date: 2026-07-20 11:00+0000\n"
+"POT-Creation-Date: 2026-07-20 12:07+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
@@ -18,11 +18,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Generator: Poedit 3.9\n"
-
-#: activities/download.inc.php:41 activities/download.inc.php:50
-msgid ""
-"Form field “%s” used as ZIP folder, but category “%s” does not allow this."
-msgstr ""
 
 #: activities/download.inc.php:67
 msgid "Unknown"
@@ -44,8 +39,8 @@ msgid "Date"
 msgstr ""
 
 #: templates/contact-participations.template.txt:15 zzbrick_tables/forms.php:22
-#: zzbrick_tables/invitations.php:30 zzbrick_tables/mailings.php:23
-#: zzbrick_tables/participations.php:92
+#: zzbrick_tables/invitations.php:31 zzbrick_tables/mailings.php:23
+#: zzbrick_tables/participations.php:93
 msgid "Event"
 msgstr ""
 
@@ -55,8 +50,8 @@ msgid "Add to a group"
 msgstr ""
 
 #: templates/contact-usergroups.template.txt:12
-#: zzbrick_tables/participations.php
-msgid "Usergroups"
+#: zzbrick_tables/usergroups.php:16
+msgid "Groups"
 msgstr ""
 
 #: templates/contact-usergroups.template.txt:16
@@ -109,7 +104,7 @@ msgstr ""
 "bestätigt hast."
 
 #: templates/registration-confirmation.template.txt:18
-msgid "A cancellation is not possible in this way."
+msgid "A cancellation may still be possible, but not via this webpage."
 msgstr ""
 
 #: templates/registration-confirmation.template.txt:22
@@ -287,19 +282,19 @@ msgstr ""
 msgid "Form mail: No recipient e-mail address found."
 msgstr ""
 
-#: zzbrick_make/formmail.inc.php:97
+#: zzbrick_make/formmail.inc.php:98
 msgid "Failed to send mail."
 msgstr ""
 
-#: zzbrick_make/formmail.inc.php:103
+#: zzbrick_make/formmail.inc.php:104
 msgid "(copy of e-mail)"
 msgstr ""
 
-#: zzbrick_make/formmail.inc.php:104
+#: zzbrick_make/formmail.inc.php:105
 msgid "This e-mail was just sent to:"
 msgstr ""
 
-#: zzbrick_make/formmail.inc.php:118
+#: zzbrick_make/formmail.inc.php:120
 msgid "The mail was sent successfully."
 msgstr ""
 
@@ -336,7 +331,7 @@ msgstr ""
 #: zzbrick_tables/participations-categories.php:37
 #: zzbrick_tables/participations-categories.php:88
 #: zzbrick_tables/usergroups.php:45 zzbrick_tables/usergroups.php:177
-#: zzbrick_tables/usergroups-categories.php:30
+#: zzbrick_tables/usergroups-categories.php:31
 msgid "Category"
 msgstr ""
 
@@ -359,26 +354,26 @@ msgid "Contact"
 msgstr ""
 
 #: zzbrick_tables/contacts-access.php:34 zzbrick_tables/invitations.php:23
-#: zzbrick_tables/participations.php:49
+#: zzbrick_tables/participations.php:49 zzbrick_tables/usergroups.php:23
 #: zzbrick_tables/usergroups-categories.php:23
-msgid "Usergroup"
+msgid "Group"
 msgstr ""
 
-#: zzbrick_tables/contacts-access.php:45
+#: zzbrick_tables/contacts-access.php:46
 #: zzbrick_tables/participations-categories.php:61
 msgid "Property"
 msgstr ""
 
-#: zzbrick_tables/contacts-access.php:61 zzbrick_tables/forms.php:49
+#: zzbrick_tables/contacts-access.php:62 zzbrick_tables/forms.php:49
 msgid "Access"
 msgstr ""
 
-#: zzbrick_tables/contacts-access.php:73 zzbrick_tables/formtemplates.php:60
+#: zzbrick_tables/contacts-access.php:74 zzbrick_tables/formtemplates.php:60
 #: zzbrick_tables/formtemplates-defaults.php:77 zzbrick_tables/mailings.php:116
-#: zzbrick_tables/participations.php:207
+#: zzbrick_tables/participations.php:208
 #: zzbrick_tables/participations-categories.php:64
 #: zzbrick_tables/usergroups.php:146
-#: zzbrick_tables/usergroups-categories.php:39
+#: zzbrick_tables/usergroups-categories.php:40
 msgid "Last update"
 msgstr ""
 
@@ -386,11 +381,11 @@ msgstr ""
 msgid "Form Fields"
 msgstr ""
 
-#: zzbrick_tables/formfields.php:35 zzbrick_tables/participations.php:164
+#: zzbrick_tables/formfields.php:35 zzbrick_tables/participations.php:165
 msgid "Seq."
 msgstr ""
 
-#: zzbrick_tables/formfields.php:36 zzbrick_tables/participations.php:165
+#: zzbrick_tables/formfields.php:36 zzbrick_tables/participations.php:166
 #: zzbrick_tables/usergroups.php:68
 msgid "Sequence"
 msgstr ""
@@ -400,9 +395,7 @@ msgid "Title"
 msgstr ""
 
 #: zzbrick_tables/formfields.php:42
-msgid ""
-"The title of the form field that appears on the left (= what to type in the "
-"field)."
+msgid "Label shown to the left of the field."
 msgstr ""
 
 #: zzbrick_tables/formfields.php:46 zzbrick_tables/formtemplates.php:35
@@ -428,7 +421,7 @@ msgstr ""
 msgid "An explanation below the form field like this one."
 msgstr ""
 
-#: zzbrick_tables/formfields.php:70 zzbrick_tables/invitations.php:84
+#: zzbrick_tables/formfields.php:70 zzbrick_tables/invitations.php:85
 #: zzbrick_tables/usergroups.php:120
 msgid "Parameters"
 msgstr ""
@@ -542,7 +535,7 @@ msgid "Language"
 msgstr ""
 
 #: zzbrick_tables/formtemplates-defaults.php:56
-#: zzbrick_tables/invitations.php:38 zzbrick_tables/participations.php:106
+#: zzbrick_tables/invitations.php:39 zzbrick_tables/participations.php:107
 #: zzbrick_tables/participations-contacts.php:32
 #: zzbrick_tables/usergroups.php:108
 msgid "Organisation"
@@ -556,23 +549,23 @@ msgstr ""
 msgid "Invitations"
 msgstr ""
 
-#: zzbrick_tables/invitations.php:54
+#: zzbrick_tables/invitations.php:55
 msgid "Min."
 msgstr ""
 
-#: zzbrick_tables/invitations.php:59
+#: zzbrick_tables/invitations.php:60
 msgid "Max."
 msgstr ""
 
-#: zzbrick_tables/invitations.php:64
+#: zzbrick_tables/invitations.php:65
 msgid "Waiting"
 msgstr ""
 
-#: zzbrick_tables/invitations.php:69
+#: zzbrick_tables/invitations.php:70
 msgid "Remaining"
 msgstr ""
 
-#: zzbrick_tables/invitations.php:74 zzbrick_tables/participations.php:175
+#: zzbrick_tables/invitations.php:75 zzbrick_tables/participations.php:176
 msgid "Hash"
 msgstr ""
 
@@ -650,64 +643,64 @@ msgstr ""
 msgid "Recipient"
 msgstr ""
 
-#: zzbrick_tables/participations.php:117
+#: zzbrick_tables/participations.php:118
 #: zzbrick_tables/participations-websites.php:32
 msgid "Website"
 msgstr ""
 
-#: zzbrick_tables/participations.php:134
+#: zzbrick_tables/participations.php:135
 msgid "Start date"
 msgstr ""
 
-#: zzbrick_tables/participations.php:136
+#: zzbrick_tables/participations.php:137
 msgid "Begin"
 msgstr ""
 
-#: zzbrick_tables/participations.php:140
+#: zzbrick_tables/participations.php:141
 msgid "End date"
 msgstr ""
 
-#: zzbrick_tables/participations.php:142
+#: zzbrick_tables/participations.php:143
 msgid "End"
 msgstr ""
 
-#: zzbrick_tables/participations.php:146 zzbrick_tables/participations.php:247
+#: zzbrick_tables/participations.php:147 zzbrick_tables/participations.php:248
 msgid "Status"
 msgstr ""
 
-#: zzbrick_tables/participations.php:160
+#: zzbrick_tables/participations.php:161
 msgid "Role"
 msgstr ""
 
-#: zzbrick_tables/participations.php:169
+#: zzbrick_tables/participations.php:170
 msgid "Remarks"
 msgstr ""
 
-#: zzbrick_tables/participations.php:173
+#: zzbrick_tables/participations.php:174
 msgid "(internal remarks only)"
 msgstr ""
 
-#: zzbrick_tables/participations.php:184
+#: zzbrick_tables/participations.php:185
 msgid "Entry"
 msgstr ""
 
-#: zzbrick_tables/participations.php:185
+#: zzbrick_tables/participations.php:186
 msgid "Entered on"
 msgstr ""
 
-#: zzbrick_tables/participations.php:195
+#: zzbrick_tables/participations.php:196
 msgid "Entry by"
 msgstr ""
 
-#: zzbrick_tables/participations.php:253 zzbrick_tables/usergroups.php:72
+#: zzbrick_tables/participations.php:254 zzbrick_tables/usergroups.php:72
 msgid "Active?"
 msgstr ""
 
-#: zzbrick_tables/participations.php:259
+#: zzbrick_tables/participations.php:260
 msgid "active"
 msgstr ""
 
-#: zzbrick_tables/participations.php:260
+#: zzbrick_tables/participations.php:261
 msgid "inactive"
 msgstr ""
 
@@ -738,14 +731,6 @@ msgstr ""
 
 #: zzbrick_tables/registrationvarchars.php:16
 msgid "Registration Lines"
-msgstr ""
-
-#: zzbrick_tables/usergroups.php:16
-msgid "Groups"
-msgstr ""
-
-#: zzbrick_tables/usergroups.php:23
-msgid "Group"
 msgstr ""
 
 #: zzbrick_tables/usergroups.php:37
@@ -779,15 +764,9 @@ msgid "Ex-members"
 msgstr ""
 
 #: zzbrick_tables/usergroups-categories.php:16
-msgid "Usergroups/Categories"
+msgid "Categories of user groups"
 msgstr ""
 
 #: zzform/hooks.inc.php:76
 msgid "The registration for %s was not completed."
 msgstr "Deine Anmeldung für %s wurde nicht abgeschlossen."
-
-#: zzform/hooks.inc.php:187
-msgid ""
-"No valid sender e-mail address is set for the mailings, so the messages "
-"cannot be sent."
-msgstr ""

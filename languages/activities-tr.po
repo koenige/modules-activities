@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project – Activities Module\n"
-"POT-Creation-Date: 2026-07-20 11:24+0000\n"
+"POT-Creation-Date: 2026-07-20 12:07+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
@@ -18,11 +18,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Generator: Poedit 3.9\n"
-
-#: activities/download.inc.php:41 activities/download.inc.php:50
-msgid ""
-"Form field “%s” used as ZIP folder, but category “%s” does not allow this."
-msgstr ""
 
 #: activities/download.inc.php:67
 msgid "Unknown"
@@ -107,7 +102,7 @@ msgid ""
 msgstr "Kaydınızı zaten onayladığınız için verileriniz silinemedi."
 
 #: templates/registration-confirmation.template.txt:18
-msgid "A cancellation is not possible in this way."
+msgid "A cancellation may still be possible, but not via this webpage."
 msgstr "Bu şekilde bir iptal mümkün değildir."
 
 #: templates/registration-confirmation.template.txt:22
@@ -286,19 +281,19 @@ msgstr "Form postası (%s) için kişi kimliği %d, olay kimliği %d bulunamadı
 msgid "Form mail: No recipient e-mail address found."
 msgstr "Form postası: Alıcı e-posta adresi bulunamadı."
 
-#: zzbrick_make/formmail.inc.php:97
+#: zzbrick_make/formmail.inc.php:98
 msgid "Failed to send mail."
 msgstr "Posta gönderilemedi."
 
-#: zzbrick_make/formmail.inc.php:103
+#: zzbrick_make/formmail.inc.php:104
 msgid "(copy of e-mail)"
 msgstr "(e-posta kopyası)"
 
-#: zzbrick_make/formmail.inc.php:104
+#: zzbrick_make/formmail.inc.php:105
 msgid "This e-mail was just sent to:"
 msgstr "Bu e-posta az önce gönderildi:"
 
-#: zzbrick_make/formmail.inc.php:118
+#: zzbrick_make/formmail.inc.php:120
 msgid "The mail was sent successfully."
 msgstr "Posta başarıyla gönderildi."
 
@@ -781,10 +776,4 @@ msgstr ""
 
 #: zzform/hooks.inc.php:76
 msgid "The registration for %s was not completed."
-msgstr ""
-
-#: zzform/hooks.inc.php:187
-msgid ""
-"No valid sender e-mail address is set for the mailings, so the messages "
-"cannot be sent."
 msgstr ""
