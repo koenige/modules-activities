@@ -21,7 +21,7 @@ $zz['where']['form_id'] = $brick['data']['form_id'];
 // sequence
 $zz['fields'][7]['type'] = 'sequence';
 
-$zz['explanation'] = wrap_text('Here you can define a form field by field.');
+$zz['explanation'] = wrap_text('Define each form field individually.');
 $required_fields = mf_activities_formfields_required($brick['data']);
 if ($required_fields)
 	$zz['explanation'] .= ' '.wrap_text('Note: Each form must have at least these fields:').' '.implode(', ', $required_fields['text']);

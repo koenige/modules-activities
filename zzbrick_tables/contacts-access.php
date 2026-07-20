@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021, 2024 Gustaf Mossakowski
+ * @copyright Copyright © 2021, 2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -31,6 +31,7 @@ $zz['fields'][2]['display_field'] = 'contact';
 $zz['fields'][2]['exclude_from_search'] = true;
 $zz['fields'][2]['unique_ignore'] = ['identifier'];
 
+$zz['fields'][3]['title'] = 'Group';
 $zz['fields'][3]['field_name'] = 'usergroup_id';
 $zz['fields'][3]['type'] = 'select';
 $zz['fields'][3]['sql'] = 'SELECT usergroup_id, usergroup 

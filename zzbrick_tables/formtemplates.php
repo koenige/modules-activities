@@ -13,9 +13,10 @@
  */
 
 
-$zz['title'] = 'Templates for Mails';
+$zz['title'] = 'Mail templates';
 $zz['table'] = 'formtemplates';
 
+$zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'formtemplate_id';
 $zz['fields'][1]['type'] = 'id';
 
@@ -49,6 +50,7 @@ $zz['fields'][3]['explanation'] = 'Content of the template.';
 $zz['fields'][3]['type'] = 'memo';
 $zz['fields'][3]['rows'] = 6;
 
+$zz['fields'][5]['title'] = 'Form field';
 $zz['fields'][5]['field_name'] = 'formfield_id';
 $zz['fields'][5]['type'] = 'select';
 $zz['fields'][5]['sql'] = 'SELECT formfield_id, formfield FROM formfields ORDER BY sequence';

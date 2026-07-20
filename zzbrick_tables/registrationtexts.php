@@ -16,6 +16,7 @@
 $zz['title'] = 'Registration Texts';
 $zz['table'] = 'registrationtexts';
 
+$zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'registrationtext_id';
 $zz['fields'][1]['type'] = 'id';
 
@@ -30,6 +31,7 @@ $zz['fields'][2]['list_append_next'] = true;
 $zz['fields'][2]['list_prefix'] = '<strong>';
 $zz['fields'][2]['list_suffix'] = '</strong> – ';
 
+$zz['fields'][3]['title'] = 'Form field';
 $zz['fields'][3]['field_name'] = 'formfield_id';
 $zz['fields'][3]['type'] = 'select';
 $zz['fields'][3]['sql'] = 'SELECT formfield_id

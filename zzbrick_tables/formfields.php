@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2014, 2018-2021, 2023-2025 Gustaf Mossakowski
+ * @copyright Copyright © 2014, 2018-2021, 2023-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -16,6 +16,7 @@
 $zz['title'] = 'Form Fields';
 $zz['table'] = 'formfields';
 
+$zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'formfield_id';
 $zz['fields'][1]['type'] = 'id';
 
@@ -38,7 +39,7 @@ $zz['fields'][7]['auto_value'] = 'increment';
 
 $zz['fields'][3]['title'] = 'Title';
 $zz['fields'][3]['field_name'] = 'formfield';
-$zz['fields'][3]['explanation'] = 'The title of the form field that appears on the left (= what to type in the field).';
+$zz['fields'][3]['explanation'] = 'Label shown to the left of the field.';
 $zz['fields'][3]['typo_remove_double_spaces'] = true;
 $zz['fields'][3]['typo_cleanup'] = true;
 
@@ -82,6 +83,7 @@ $zz['fields'][12]['type'] = 'datetime';
 $zz['fields'][12]['hide_in_form'] = true;
 $zz['fields'][12]['hide_in_list'] = true;
 
+$zz['fields'][13]['title'] = 'Main field';
 $zz['fields'][13]['field_name'] = 'main_formfield_id';
 $zz['fields'][13]['type'] = 'select';
 $zz['fields'][13]['hide_in_form'] = true;

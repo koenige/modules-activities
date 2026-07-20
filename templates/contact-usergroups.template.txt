@@ -9,7 +9,7 @@
 # @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
 #
 %%% if usergroups %%%
-<tr><th>%%% text Usergroups %%%
+<tr><th>%%% text Groups %%%
 %%% switch scope %%%
 %%% case person %%%
 %%% if path activities_profile[person] %%%

@@ -77,7 +77,7 @@ function mod_activities_make_formmail($params) {
 				'wait_until' => wrap_setting('activities_formmail_wait_no_address_seconds'),
 				'try_no_increase' => 1
 			]);
-			$page['text'] = '<p>'.wrap_text('Form mail: No recipient email address found.').'</p>';
+			$page['text'] = '<p>'.wrap_text('Form mail: No recipient e-mail address found.').'</p>';
 			$page['status'] = 404;
 			return $page;
 		}
@@ -115,7 +115,7 @@ function mod_activities_make_formmail($params) {
 	
 	mod_activities_formmail_log($data, $params[2]);
 
-	$page['text'] = wrap_text('Mail was successfully sent.');
+	$page['text'] = wrap_text('The mail was sent successfully.');
 	$page['status'] = 200;
 	return $page;
 }

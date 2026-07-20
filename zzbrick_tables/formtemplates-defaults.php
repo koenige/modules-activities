@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2018-2019, 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2018-2019, 2023-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -16,6 +16,7 @@
 $zz['title'] = 'Default Templates for Forms';
 $zz['table'] = 'formtemplates_defaults';
 
+$zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'formtemplate_default_id';
 $zz['fields'][1]['type'] = 'id';
 

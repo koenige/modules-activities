@@ -36,7 +36,7 @@ $zz['fields'][2]['if']['where']['hide_in_form'] = true;
 $zz['fields'][2]['if']['where']['hide_in_list'] = true;
 $zz['fields'][2]['if']['where']['list_append_next'] = false;
 
-$zz['fields'][10]['title'] = 'E-Mail';
+$zz['fields'][10]['title'] = 'E-mail';
 $zz['fields'][10]['field_name'] = 'e_mail';
 $zz['fields'][10]['type'] = 'display';
 $zz['fields'][10]['type_detail'] = 'mail';
@@ -46,6 +46,7 @@ $zz['fields'][10]['search'] = '(SELECT identification FROM /*_PREFIX_*/contactde
 	AND channel_category_id = /*_ID categories channel/e-mail _*/ LIMIT 1)';
 $zz['fields'][10]['if']['add']['hide_in_form'] = true;
 
+$zz['fields'][3]['title'] = 'Group';
 $zz['fields'][3]['field_name'] = 'usergroup_id';
 $zz['fields'][3]['type'] = 'select';
 $zz['fields'][3]['sql'] = 'SELECT usergroup_id, usergroup, category
@@ -131,11 +132,13 @@ $zz['fields'][18] = [];
 $zz['fields'][19] = [];
 $zz['fields'][20] = [];
 
+$zz['fields'][4]['title'] = 'Start date';
 $zz['fields'][4]['field_name'] = 'date_begin';
 $zz['fields'][4]['title_tab'] = 'Begin';
 $zz['fields'][4]['type'] = 'date';
 $zz['fields'][4]['hide_in_list_if_empty'] = true;
 
+$zz['fields'][5]['title'] = 'End date';
 $zz['fields'][5]['field_name'] = 'date_end';
 $zz['fields'][5]['title_tab'] = 'End';
 $zz['fields'][5]['type'] = 'date';
@@ -180,7 +183,7 @@ $zz['fields'][8]['fields'] = ['verification_hash'];
 $zz['fields'][8]['export'] = false;
 
 $zz['fields'][34]['title_append'] = 'Entry';
-$zz['fields'][34]['title'] = 'Entry on';
+$zz['fields'][34]['title'] = 'Entered on';
 $zz['fields'][34]['field_name'] = 'entry_date';
 $zz['fields'][34]['type'] = 'hidden';
 $zz['fields'][34]['type_detail'] = 'datetime';

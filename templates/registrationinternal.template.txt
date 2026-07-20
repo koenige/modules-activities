@@ -16,14 +16,14 @@
 
 %%% if formfields %%%
 %%% access activities_registration_public event_id:* %%%
-<p><a href="%%% path activities_form identifier %%%">%%% text Form on public website %%%</a></p>
+<p><a href="%%% path activities_form identifier %%%">%%% text Form on the public website %%%</a></p>
 %%% access else %%%
 <p class="error">%%% text The form has not yet been published. %%%</p>
 %%% access off %%%
 %%% elseif formtemplates %%%
 <p class="error">%%% text Please add all the required fields for the form. %%%</p>
 %%% elseif form_id %%%
-<p class="error">%%% text Please add email templates for the form. %%%</p>
+<p class="error">%%% text Please add e-mail templates for the form. %%%</p>
 %%% else %%%
 <p class="error">%%% text Please create a form first. %%%</p>
 %%% endif %%%

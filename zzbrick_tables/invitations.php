@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2020-2021, 2023, 2025 Gustaf Mossakowski
+ * @copyright Copyright © 2020-2021, 2023, 2025-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -20,6 +20,7 @@ $zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'invitation_id';
 $zz['fields'][1]['type'] = 'id';
 
+$zz['fields'][2]['title'] = 'Group';
 $zz['fields'][2]['field_name'] = 'usergroup_id';
 $zz['fields'][2]['type'] = 'select';
 $zz['fields'][2]['sql'] = 'SELECT usergroup_id, usergroup

@@ -44,7 +44,7 @@ $zz['fields'][12]['show_values_as_list'] = true;
 $zz['fields'][12]['default'] = wrap_category_id('forms/registration');
 $zz['fields'][12]['display_field'] = 'category';
 $zz['fields'][12]['sql_translate'] = ['category_id' => 'categories'];
-$zz['fields'][12]['explanation'] = 'For the labeling of forms as well as the content of default mails';
+$zz['fields'][12]['explanation'] = 'Used for form labels and default mail content';
 
 $zz['fields'][11]['title'] = 'Access';
 $zz['fields'][11]['title_tab'] = 'A.';
@@ -52,7 +52,7 @@ $zz['fields'][11]['field_name'] = 'access';
 $zz['fields'][11]['type'] = 'select';
 $zz['fields'][11]['enum'] = ['public', 'login'];
 $zz['fields'][11]['enum_title'] = ['P', 'L'];
-$zz['fields'][11]['enum_abbr'] = [wrap_text('Public'), wrap_text('Behind login mask')];
+$zz['fields'][11]['enum_abbr'] = [wrap_text('Public'), wrap_text('Behind login screen')];
 $zz['fields'][11]['default'] = 'public';
 $zz['fields'][11]['dependent_fields'][10]['if_selected'] = 'login';
 
@@ -62,7 +62,7 @@ $zz['fields'][24]['type'] = 'select';
 $zz['fields'][24]['enum'] = ['formal', 'informal'];
 $zz['fields'][24]['default'] = 'formal';
 $zz['fields'][24]['hide_in_list'] = true;
-$zz['fields'][24]['explanation'] = 'Whether to address formally or informally in mails and on website';
+$zz['fields'][24]['explanation'] = 'Whether to address formally or informally in mails and on the website';
 
 $zz['fields'][3]['field_name'] = 'created';
 $zz['fields'][3]['type'] = 'write_once';
@@ -79,7 +79,7 @@ $zz['fields'][6]['typo_cleanup'] = true;
 $zz['fields'][6]['hide_in_list'] = true;
 
 $zz['fields'][10]['field_name'] = 'lead';
-$zz['fields'][10]['explanation'] = 'Text to appear before the form, after header';
+$zz['fields'][10]['explanation'] = 'Text to appear before the form, after the header';
 $zz['fields'][10]['type'] = 'memo';
 $zz['fields'][10]['format'] = 'markdown';
 $zz['fields'][10]['rows'] = 3;
@@ -87,12 +87,13 @@ $zz['fields'][10]['typo_cleanup'] = true;
 $zz['fields'][10]['hide_in_list'] = true;
 
 $zz['fields'][7]['field_name'] = 'footer';
-$zz['fields'][7]['explanation'] = 'Text to appear behind the form';
+$zz['fields'][7]['explanation'] = 'Text to appear below the form';
 $zz['fields'][7]['type'] = 'memo';
 $zz['fields'][7]['format'] = 'markdown';
 $zz['fields'][7]['hide_in_list'] = true;
 $zz['fields'][7]['typo_cleanup'] = true;
 
+$zz['fields'][5]['title'] = 'Copy form fields';
 $zz['fields'][5]['field_name'] = 'copy_formfields';
 $zz['fields'][5]['type'] = 'option';
 $zz['fields'][5]['type_detail'] = 'text';

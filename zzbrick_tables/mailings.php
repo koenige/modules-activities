@@ -53,7 +53,7 @@ $zz['fields'][14]['title'] = 'E-mail';
 $zz['fields'][14]['field_name'] = 'sender_mail';
 $zz['fields'][14]['explanation'][] = ['Alternative e-mail address for sending the e-mails if you do not want to send from your own address.'];
 if ($suffix = wrap_setting('activities_mailings_suffix_alternative_from'))
-	$zz['fields'][14]['explanation'][] = ['In this case “, %s” is appended to the name.', ['values' => $suffix]];
+	$zz['fields'][14]['explanation'][] = ['In this case “, %s” is appended to the name.', ['values' => [$suffix]]];
 $zz['fields'][14]['list_prefix'] = '<br>&lt;';
 $zz['fields'][14]['list_suffix'] = '&gt;';
 
@@ -144,4 +144,4 @@ $zz['subtitle']['event_id']['format'][1] = 'wrap_date';
 $zz['subtitle']['event_id']['link'] = '../';
 $zz['subtitle']['event_id']['link_no_append'] = true;
 
-$zz['explanation'] = sprintf('<p><em>(%s)</em></p>', wrap_text('Clicking on the mail text shows the full mail text or just a short excerpt from the mail text'));
+$zz['explanation'] = sprintf('<p><em>(%s)</em></p>', wrap_text('Click the message to show the full text or a short excerpt.'));

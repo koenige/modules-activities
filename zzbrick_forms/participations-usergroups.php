@@ -89,15 +89,15 @@ $zz['filter'][1]['sql'] = wrap_edit_sql(
 );
 
 if (!empty($data['parameters']['filter_mail'])) {
-	$zz['filter'][3]['title'] = wrap_text('E-Mail');
+	$zz['filter'][3]['title'] = wrap_text('E-mail');
 	$zz['filter'][3]['identifier'] = 'mail';
 	$zz['filter'][3]['type'] = 'list';
 	$zz['filter'][3]['where'] = 'identification';
 	$zz['filter'][3]['sql_join'] = 'LEFT JOIN /*_PREFIX_*/contactdetails
 		ON /*_PREFIX_*/contactdetails.contact_id = /*_PREFIX_*/participations.contact_id
 		AND channel_category_id = /*_ID categories channel/e-mail_*/';
-	$zz['filter'][3]['selection']['!NULL'] = wrap_text('with E-Mail');
-	$zz['filter'][3]['selection']['NULL'] = wrap_text('without E-Mail');
+	$zz['filter'][3]['selection']['!NULL'] = wrap_text('with e-mail');
+	$zz['filter'][3]['selection']['NULL'] = wrap_text('without e-mail');
 }
 
 if ($use_template) {

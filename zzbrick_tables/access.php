@@ -10,6 +10,9 @@
  * @author Gustaf Mossakowski <gustaf@koenige.org>
  * @copyright Copyright © 2021-2023, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+ *
+ * Variables
+ * translate_pot = admin
  */
 
 
@@ -36,7 +39,7 @@ $zz['fields'][3]['list_suffix'] = '</em></p>';
 $zz['fields'][3]['list_append_next'] = true;
 
 $zz['fields'][5] = zzform_include('access-usergroups');
-$zz['fields'][5]['title'] = 'Usergroups';
+$zz['fields'][5]['title'] = 'Groups';
 $zz['fields'][5]['type'] = 'subtable';
 $zz['fields'][5]['fields'][2]['type'] = 'foreign_key';
 $zz['fields'][5]['min_records'] = 1;

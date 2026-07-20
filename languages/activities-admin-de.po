@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project – Activities Module (admin)\n"
-"POT-Creation-Date: \n"
+"POT-Creation-Date: 2026-07-20 11:00+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
@@ -23,18 +23,255 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Generator: Poedit 3.9\n"
 
-#: zzbrick_tables/access.php
-msgid "Groups:"
-msgstr "Gruppen:"
+#: configuration/access.cfg:21
+msgid "Create and view registrations for an event"
+msgstr ""
 
-#: zzbrick_tables/access.php
-msgid "Included"
-msgstr "Eingebunden"
+#: configuration/access.cfg:29
+msgid "Edit default templates for forms"
+msgstr ""
 
-#: templates/access-usergroups-list.template.txt
+#: configuration/access.cfg:33
+msgid "Send mass mailings to participants of an event"
+msgstr ""
+
+#: configuration/access.cfg:37
+msgid "Show participant list of an event"
+msgstr ""
+
+#: configuration/access.cfg:43
+msgid "Show and edit participant list of an event"
+msgstr ""
+
+#: configuration/access.cfg:48
+msgid "Show, edit, and delete participants in an event’s list"
+msgstr ""
+
+#: configuration/access.cfg:52
+msgid "Read list of applicants per form"
+msgstr ""
+
+#: configuration/access.cfg:59
+msgid "Edit templates and fields of a form"
+msgstr ""
+
+#: configuration/access.cfg:66
+msgid "Create mail templates for forms"
+msgstr ""
+
+#: configuration/access.cfg:70
+msgid "Create registration forms for websites"
+msgstr ""
+
+#: configuration/access.cfg:74
+msgid "Public form view"
+msgstr ""
+
+#: configuration/access.cfg:79
+msgid "Allow editing of user groups"
+msgstr ""
+
+#: configuration/access.cfg:83
+msgid "Show user group tools (configurable per user group)"
+msgstr ""
+
+#: configuration/access.cfg:87
+msgid "Allow editing of parameters per user group"
+msgstr ""
+
+#: configuration/routes.cfg:12
+msgid "Edit access rights for contact data of a person"
+msgstr ""
+
+#: configuration/routes.cfg:18
+msgid "Edit access rights for contact data of a general contact"
+msgstr ""
+
+#: configuration/routes.cfg:24
+msgid "Public form on website"
+msgstr ""
+
+#: configuration/routes.cfg:29
+msgid "Send form mail after an event"
+msgstr ""
+
+#: configuration/routes.cfg:35
+msgid "Activities page of a contact"
+msgstr ""
+
+#: configuration/routes.cfg:41
+msgid "Activities page of a person"
+msgstr ""
+
+#: configuration/routes.cfg:47
+msgid "Internal profile page of a group"
+msgstr ""
+
+#: configuration/routes.cfg:52
+msgid "Confirm a registration (double opt-in)"
+msgstr ""
+
+#: configuration/settings.cfg:21
+msgid "Text on action button for forms"
+msgstr ""
+
+#: configuration/settings.cfg:25
+msgid "Set a different property prefix or disable prefix for access properties"
+msgstr ""
+
+#: configuration/settings.cfg:30
+msgid "Hide this group in the contacts/access form"
+msgstr ""
+
+#: configuration/settings.cfg:35
+msgid "Maximum file size of a downloadable archive"
+msgstr ""
+
+#: configuration/settings.cfg:40
+msgid ""
+"Path to upload folder for forms (subfolders per event will be created there)"
+msgstr ""
+
+#: configuration/settings.cfg:43
+msgid ""
+"Seconds to wait after the content of a field was changed before sending out "
+"a form mail"
+msgstr ""
+
+#: configuration/settings.cfg:48
+msgid "Delay before retrying when no recipient e-mail addresses are available"
+msgstr ""
+
+#: configuration/settings.cfg:53
+msgid ""
+"If a form field has more than one value (e. g. detail record with several "
+"fields), characters to concatenate values"
+msgstr ""
+
+#: configuration/settings.cfg:57
+msgid "If a form field has more than one line, characters to concatenate lines"
+msgstr ""
+
+#: configuration/settings.cfg:61
+msgid "Send a copy of each form mail to the sender e-mail address"
+msgstr ""
+
+#: configuration/settings.cfg:67
+msgid "Send registration mails as BCC to these addresses"
+msgstr ""
+
+#: configuration/settings.cfg:70
+msgid "Link to a help page for placeholders in mailings"
+msgstr ""
+
+#: configuration/settings.cfg:74
+msgid ""
+"If your own e-mail address is not used as From address in mailings, this "
+"suffix is appended"
+msgstr ""
+
+#: configuration/settings.cfg:77
+msgid "Maximum length of entry in memo field for forms"
+msgstr ""
+
+#: configuration/settings.cfg:81
+msgid "Identifier of default user group for registration forms"
+msgstr ""
+
+#: configuration/settings.cfg:85
+msgid ""
+"Use the `contactverifications` table instead of `activities` (deprecated)"
+msgstr ""
+
+#: configuration/settings.cfg:89
+msgid "Allow linking a user group to an organisation contact"
+msgstr ""
+
+#: configuration/settings.cfg:93
+msgid "Show description of user groups in list view"
+msgstr ""
+
+#: configuration/settings.cfg:98
+msgid "Do not show in form field data"
+msgstr ""
+
+#: configuration/settings.cfg:103
+msgid "H2 heading above form"
+msgstr ""
+
+#: configuration/settings.cfg:107
+msgid "H2 heading above form after insert"
+msgstr ""
+
+#: configuration/settings.cfg:111
+msgid "Enable registrations for events of this category"
+msgstr ""
+
+#: configuration/settings.cfg:116
+msgid "List of required fields per form"
+msgstr ""
+
+#: configuration/settings.cfg:122
+msgid ""
+"Always show this field if the form requires login, even if user is not logged in"
+msgstr ""
+
+#: configuration/settings.cfg:127
+msgid "Use children of this category as categories for user groups"
+msgstr ""
+
+#: templates/access-usergroups-list.template.txt:15
 msgid "Included groups via `%s`:"
 msgstr "Eingebundene Gruppen über `%s`:"
 
-#: templates/access-usergroups-record.template.txt
+#: templates/access-usergroups-record.template.txt:15
 msgid "No access groups are included."
 msgstr "Es sind keine Gruppen eingebunden."
+
+#: zzbrick_tables/access.php:19
+msgid "Access Rights"
+msgstr "Zugriffsrechte"
+
+#: zzbrick_tables/access.php:22 zzbrick_tables/access-usergroups.php:22
+msgid "ID"
+msgstr "ID"
+
+#: zzbrick_tables/access.php:26 zzbrick_tables/access-usergroups.php:26
+msgid "Access"
+msgstr "Zugriff"
+
+#: zzbrick_tables/access.php:34
+msgid "Explanation"
+msgstr "Erläuterung"
+
+#: zzbrick_tables/access.php:42
+msgid "Groups"
+msgstr "Gruppen"
+
+#: zzbrick_tables/access.php:48
+msgid "Groups:"
+msgstr "Gruppen:"
+
+#: zzbrick_tables/access.php:52
+msgid "Included"
+msgstr "Eingebunden"
+
+#: zzbrick_tables/access.php:62 zzbrick_tables/access.php:71
+msgid "Module"
+msgstr "Modul"
+
+#: zzbrick_tables/access-usergroups.php:19
+msgid "Usergroups per Access Right"
+msgstr "Gruppen pro Zugriffsrecht"
+
+#: zzbrick_tables/access-usergroups.php:33
+msgid "Group"
+msgstr "Gruppe"
+
+#: zzbrick_tables/access-usergroups.php:42
+msgid "Restrictions?"
+msgstr "Einschränkungen?"
+
+#: zzbrick_tables/access-usergroups.php:44
+msgid "Field name when access is limited to a participation with a given ID."
+msgstr ""

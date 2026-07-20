@@ -15,11 +15,11 @@
 
 %%% elseif confirmed_delete %%%
 <p>%%% text Your data could not be deleted because you have already confirmed your registration. %%%
- %%% text This way, a cancellation is not possible. %%%</p>
+ %%% text A cancellation may still be possible, but not via this webpage. %%%</p>
 %%% define mail %%%
 <a href="mailto:%%% setting own_e_mail %%%">%%% setting own_e_mail %%%</a>
 %%% define end %%%
-<p>%%% text "Please contact us directly (E-Mail: %s)." mail %%% 
+<p>%%% text "Please contact us directly (e-mail: %s)." mail %%% 
 </p>
 
 %%% elseif no_data %%%
@@ -37,7 +37,7 @@
 
 %%% if form %%%
 <fieldset>
-<legend>%%% text Confirmation/deletion of registration %%%</legend>
+<legend>%%% text Registration confirmation/deletion %%%</legend>
 <p>%%% text Please enter the verification code you received: %%%</p>
 <form method="GET" action="%%% item action format=html_escape %%%" id="confirmation">
 <table>

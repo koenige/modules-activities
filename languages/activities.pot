@@ -1,669 +1,797 @@
 # activities module
-# Translations template
+# Translations
 #
 # Part of »Zugzwang Project«
 # https://www.zugzwang.org/modules/activities
 #
-# @author Gustaf Mossakowski <gustaf@koenige.org>
-# @copyright Copyright © 2020-2024 Gustaf Mossakowski
-# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
-#
 msgid ""
 msgstr ""
-"Content-Type: text/plain; charset=UTF-8\n"
-"Project-Id-Version: Zugzwang Project – Activities Module\n"
-"POT-Creation-Date: \n"
+"Project-Id-Version: Zugzwang Project -- activities module\n"
+"POT-Creation-Date: 2026-07-20 11:24+0000\n"
+"PO-Revision-Date: \n"
 "Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"PO-Revision-Date: \n"
 
-#: configuration/access.cfg
-msgid "create and view registrations for an event"
+#: activities/download.inc.php:41
+#: activities/download.inc.php:50
+msgid "Form field “%s” used as ZIP folder, but category “%s” does not allow this."
 msgstr ""
 
-#: configuration/access.cfg
-msgid "access a public form"
+#: activities/download.inc.php:67
+msgid "Unknown"
 msgstr ""
 
-#: configuration/access.cfg
-msgid "edit default templates for forms"
+#: activities/functions.inc.php:213
+#: activities/functions.inc.php:224
+msgid "Merging contacts was not successful."
 msgstr ""
 
-#: configuration/access.cfg
-msgid "send form mail after event"
+#: templates/contact-participations.template.txt:12
+#: zzbrick_forms/participations-contacts.php:29
+#: zzbrick_tables/participations.php:16
+msgid "Participations"
 msgstr ""
 
-#: configuration/access.cfg
-msgid "send mass mailings to participants of an event"
+#: templates/contact-participations.template.txt:15
+#: zzbrick_tables/activities.php:43
+msgid "Date"
 msgstr ""
 
-#: configuration/access.cfg
-msgid "show participant list of an event"
+#: templates/contact-participations.template.txt:15
+#: zzbrick_tables/forms.php:22
+#: zzbrick_tables/invitations.php:31
+#: zzbrick_tables/mailings.php:23
+#: zzbrick_tables/participations.php:93
+msgid "Event"
 msgstr ""
 
-#: configuration/access.cfg
-msgid "show and edit participant list of an event"
+#: templates/contact-participations-foot.template.txt:15
+#: templates/contact-participations-foot.template.txt:19
+msgid "Add to a group"
 msgstr ""
 
-#: configuration/access.cfg
-msgid "show, edit and delete from participant list of an event"
+#: templates/contact-usergroups.template.txt:12
+#: zzbrick_tables/usergroups.php:16
+msgid "Groups"
 msgstr ""
 
-#: configuration/access.cfg
-msgid "read group memberships for contacts"
+#: templates/contact-usergroups.template.txt:16
+#: templates/contact-usergroups.template.txt:20
+#: templates/contact-usergroups.template.txt:34
+msgid "Edit"
 msgstr ""
 
-#: configuration/access.cfg
-msgid "read usergroups"
+#: templates/contact-usergroups.template.txt:26
+msgid "since"
 msgstr ""
 
-#: configuration/access.cfg
-msgid "read group memberships for persons"
-msgstr ""
-
-#: configuration/access.cfg
-msgid "read list of applicants per form"
-msgstr ""
-
-#: configuration/access.cfg
-msgid "edit templates and fields of a form"
-msgstr ""
-
-#: configuration/access.cfg
-msgid "create mail templates for forms"
-msgstr ""
-
-#: configuration/access.cfg
-msgid "create registration forms for websites"
-msgstr ""
-
-#: configuration/access.cfg
-msgid "public form view"
-msgstr ""
-
-#: configuration/access.cfg
-msgid "allow editing of usergroups"
-msgstr ""
-
-#: configuration/access.cfg
-msgid "edit parameters of usergroups?"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "text on action button for forms"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "maximum file size of a downloadable archive"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "path to single form on website"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "path to folder where uploads from forms go to (sub folders per event will be created there)"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "seconds to wait after the content of a field was change before sending out a form mail"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "wait until retrying to send a mail if no recipient mails are available"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "if a form field has more than one value (e. g. detail record with several fields), characters to concat values"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "if a form field has more than one line, characters to concat lines"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "path to send form mail after event"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "send a copy of each form mail to the sender e-mail address"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "link to webpage with help for placeholders in mailings"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "if not the own mail address is used as From: address in mailings, append this as suffix"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "path to internal profile page of a group"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "path to activities page of a contact"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "path to activities page of a person"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "path to confirm a registration (double opt-in)"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "default usergroup identifier for registration forms"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "use contactverifications table instead of activities (deprecated)"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "allow to link a usergroup to an organisation contact"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "show description of usergroups in list view"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "do not show in formfield data"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "h2 heading above form"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "h2 heading above form after insert"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "enable registrations for events of this category"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "list of required fields per form"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "always show this field if form requires login, even if user is not logged in"
-msgstr ""
-
-#: configuration/settings.cfg
-msgid "use children of this category as categories for usergroups"
-msgstr ""
-
-#: templates/contact-participations.template.txt
-msgid "No access rights are defined for the contact details."
-msgstr ""
-
-#: templates/registration-confirmation.template.txt
-msgid "Your data was deleted successfully!"
-msgstr ""
-
-#: templates/registration-confirmation.template.txt
-msgid "Your data could not be deleted because you have already confirmed your registration."
-msgstr ""
-
-#: templates/registration-confirmation.template.txt
-msgid "This way, a cancellation is not possible."
-msgstr ""
-
-#: templates/registration-confirmation.template.txt
-msgid "Please contact us directly (E-Mail: %s)."
-msgstr ""
-
-#: templates/registration-confirmation.template.txt
-msgid "Your data was not found."
-msgstr ""
-
-#: templates/registration-confirmation.template.txt
-msgid "Thank you for your interest. Your registration has been confirmed."
-msgstr ""
-
-#: templates/registration-confirmation.template.txt
-msgid "You have already confirmed your registration."
-msgstr ""
-
-#: templates/registration-confirmation.template.txt
-msgid "No further confirmation is required."
-msgstr ""
-
-#: templates/registration-confirmation.template.txt
-msgid "Confirmation/deletion of registration"
-msgstr ""
-
-#: templates/registration-confirmation.template.txt
-msgid "Please enter the verification code you received:"
-msgstr ""
-
-#: templates/registration-confirmation.template.txt
-msgid "Code:"
-msgstr ""
-
-#: templates/registration-confirmation.template.txt
-msgid "Confirm registration"
-msgstr ""
-
-#: templates/registration-confirmation.template.txt
-msgid "Delete registration"
-msgstr ""
-
-#: templates/registration-confirmation.template.txt
-msgid "Continue to the home page"
-msgstr ""
-
-#: templates/registrationinternal.template.txt
-msgid "Send form mail"
-msgstr ""
-
-#: templates/registrationinternal.template.txt
-msgid "Form on public website"
-msgstr ""
-
-#: templates/registrationinternal.template.txt
-msgid "The form has not yet been published."
-msgstr ""
-
-#: templates/registrationinternal.template.txt
-msgid "Please create a form first."
-msgstr ""
-
-#: templates/registrationinternal.template.txt
-msgid "Please add email templates for the form."
-msgstr ""
-
-#: templates/registrationinternal.template.txt
-msgid "Please add all the required fields for the form."
-msgstr ""
-
-#: zzbrick_forms/contacts-access.php
-msgid "No categories for access rights are defined (via `%s`)"
-msgstr ""
-
-#: zzbrick_forms/eventregistrations.php
-msgid "Registrations"
-msgstr ""
-
-#: zzbrick_forms/eventregistrations.php
-msgid "Registration"
-msgstr ""
-
-#: zzbrick_forms/form.php
-msgid "Form"
-msgstr ""
-
-#: zzbrick_forms/form.php
-msgid "There does not seem to be a clear email address entered for the sender of the mailings. Therefore the mails cannot be sent."
-msgstr ""
-
-#: zzbrick_forms/formfields.php
-msgid "Here you can define a form field by field."
-msgstr ""
-
-#: zzbrick_forms/formfields.php
-msgid "Note: Each form must have at least these fields:"
-msgstr ""
-
-#: zzbrick_forms/invitation.php
-msgid "Register"
-msgstr ""
-
-#: zzbrick_forms/invitation.php
-msgid "Submit Registration"
-msgstr ""
-
-#: zzbrick_forms/invitation.php
-msgid "The registration has been sent successfully!"
-msgstr ""
-
-#: zzbrick_forms/invitation.php
-msgid "We just sent you an e-mail. Please click on the link inside it to confirm your registration."
-msgstr ""
-
-#: zzbrick_forms/invitation.php
-msgid "There is no invitation for this code."
-msgstr ""
-
-#: zzbrick_forms/participations-usergroups.php
-msgid "with E-Mail"
-msgstr ""
-
-#: zzbrick_forms/participations-usergroups.php
-msgid "without E-Mail"
-msgstr ""
-
-#: zzbrick_forms/registration.php
-msgid "Authentication mail is missing."
-msgstr ""
-
-#: zzbrick_forms/registration.php
-msgid "Confirmation mail is missing."
-msgstr ""
-
-#: zzbrick_forms/registration.php
-msgid "One or more of the required form fields are missing."
-msgstr ""
-
-#: zzbrick_make/formmail.inc.php
-msgid "Reminder –"
-msgstr ""
-
-#: zzbrick_make/formmail.inc.php
-msgid "Failed to send mail."
-msgstr ""
-
-#: zzbrick_make/formmail.inc.php
-msgid "Mail was successfully sent."
-msgstr ""
-
-#: zzbrick_make/formmail.inc.php
-msgid "(copy of e-mail)"
-msgstr ""
-
-#: zzbrick_make/formmail.inc.php
-msgid "Form mail: No recipient email address found."
-msgstr ""
-
-#: zzbrick_make/formmail.inc.php
-msgid "This e-mail was just sent to:"
-msgstr ""
-
-#: zzbrick_make/formmail.inc.php
-msgid "Contact ID %d for form mail (%s), event ID %d, not found."
-msgstr ""
-
-#: zzbrick_tables/access.php
+#: templates/contact-usergroups.template.txt:33
+#: zzbrick_forms/contacts-access.php:61
 msgid "Access Rights"
 msgstr ""
 
-#: zzbrick_tables/access.php
-msgid "Module"
+#: templates/contact-usergroups.template.txt:44
+msgid "No access rights are defined for the contact details."
 msgstr ""
 
-#: zzbrick_tables/access-usergroups.php
-msgid "Usergroups per Access Right"
+#: templates/download-zip.template.txt:12
+msgid "This part of the ZIP archive does not exist."
 msgstr ""
 
-#: zzbrick_tables/access-usergroups.php
-msgid "Restrictions?"
+#: templates/download-zip.template.txt:15
+msgid "File is too big to download. Download in parts:"
 msgstr ""
 
-#: zzbrick_tables/access-usergroups.php
-msgid "Field name if access for an item is restricted to a participation with this ID"
+#: templates/download-zip.template.txt:18
+msgid "%s file"
+msgid_plural "%s files"
+msgstr[] ""
+msgstr[] ""
+
+#: templates/formmail.template.txt:12
+msgid "Send form mail"
 msgstr ""
 
-#: zzbrick_tables/activities.php
-msgid "Activity IP"
+#: templates/registration-confirmation.template.txt:14
+msgid "Your data was deleted successfully!"
 msgstr ""
 
-#: zzbrick_tables/activities.php
-msgid "URI"
+#: templates/registration-confirmation.template.txt:17
+msgid "Your data could not be deleted because you have already confirmed your registration."
 msgstr ""
 
-#: zzbrick_tables/activities.php
-msgid "Comment"
+#: templates/registration-confirmation.template.txt:18
+msgid "A cancellation is not possible in this way."
 msgstr ""
 
-#: zzbrick_tables/contacts-access.php
+#: templates/registration-confirmation.template.txt:22
+msgid "Please contact us directly (e-mail: %s)."
+msgstr ""
+
+#: templates/registration-confirmation.template.txt:26
+msgid "Your data was not found."
+msgstr ""
+
+#: templates/registration-confirmation.template.txt:29
+msgid "Thank you for your interest. Your registration has been confirmed."
+msgstr ""
+
+#: templates/registration-confirmation.template.txt:32
+msgid "You have already confirmed your registration."
+msgstr ""
+
+#: templates/registration-confirmation.template.txt:33
+msgid "No further confirmation is required."
+msgstr ""
+
+#: templates/registration-confirmation.template.txt:40
+msgid "Registration confirmation/deletion"
+msgstr ""
+
+#: templates/registration-confirmation.template.txt:41
+msgid "Please enter the verification code you received:"
+msgstr ""
+
+#: templates/registration-confirmation.template.txt:44
+msgid "Code:"
+msgstr ""
+
+#: templates/registration-confirmation.template.txt:47
+msgid "Confirm registration"
+msgstr ""
+
+#: templates/registration-confirmation.template.txt:48
+msgid "Delete registration"
+msgstr ""
+
+#: templates/registration-confirmation.template.txt:57
+#: templates/registration-confirmation.template.txt:59
+msgid "Continue to the home page"
+msgstr ""
+
+#: templates/registrationinternal.template.txt:13
+#: templates/userorganisation.template.txt:15
+msgid "Tools"
+msgstr ""
+
+#: templates/registrationinternal.template.txt:19
+msgid "Form on the public website"
+msgstr ""
+
+#: templates/registrationinternal.template.txt:21
+msgid "The form has not yet been published."
+msgstr ""
+
+#: templates/registrationinternal.template.txt:24
+msgid "Please add all the required fields for the form."
+msgstr ""
+
+#: templates/registrationinternal.template.txt:26
+msgid "Please add e-mail templates for the form."
+msgstr ""
+
+#: templates/registrationinternal.template.txt:28
+msgid "Please create a form first."
+msgstr ""
+
+#: templates/usergroup.template.txt:22
+#: zzbrick_tables/usergroups.php:128
+msgid "Members"
+msgstr ""
+
+#: templates/userorganisations.template.txt:15
+msgid "Administration"
+msgstr ""
+
+#: zzbrick_forms/applicants.php:42
+msgid "Registrations"
+msgstr ""
+
+#: zzbrick_forms/contacts-access.php:25
+msgid "No categories for access rights are defined (via `%s`)"
+msgstr ""
+
+#: zzbrick_forms/contacts-access.php:87
+#: zzbrick_tables/contacts-access.php:16
 msgid "Access to Contact Details"
 msgstr ""
 
-#: zzbrick_tables/contacts-access.php
+#: zzbrick_forms/eventregistration.php:18
+#: zzbrick_forms/eventregistrations.php:32
+msgid "Registration"
+msgstr ""
+
+#: zzbrick_forms/eventregistrations.php:17
+#: zzbrick_tables/forms.php:16
+msgid "Forms"
+msgstr ""
+
+#: zzbrick_forms/form.php:18
+#: zzbrick_tables/formfields.php:23
+#: zzbrick_tables/forms.php:19
+#: zzbrick_tables/formtemplates.php:23
+#: zzbrick_tables/formtemplates-defaults.php:23
+msgid "Form"
+msgstr ""
+
+#: zzbrick_forms/formfields.php:24
+msgid "Define each form field individually."
+msgstr ""
+
+#: zzbrick_forms/formfields.php:27
+msgid "Note: Each form must have at least these fields:"
+msgstr ""
+
+#: zzbrick_forms/invitation.php:29
+#: zzbrick_forms/invitation.php:40
+msgid "There is no invitation for this code."
+msgstr ""
+
+#: zzbrick_forms/invitation.php:50
+msgid "We just sent you an e-mail. Please click on the link inside it to confirm your registration."
+msgstr ""
+
+#: zzbrick_forms/invitation.php:154
+msgid "Register"
+msgstr ""
+
+#: zzbrick_forms/invitation.php:155
+msgid "Submit Registration"
+msgstr ""
+
+#: zzbrick_forms/invitation.php:156
+msgid "The registration has been sent successfully!"
+msgstr ""
+
+#: zzbrick_forms/participations-usergroups.php:92
+#: zzbrick_tables/mailings.php:52
+#: zzbrick_tables/mailings-contacts.php:47
+#: zzbrick_tables/participations.php:39
+msgid "E-mail"
+msgstr ""
+
+#: zzbrick_forms/participations-usergroups.php:99
+msgid "with e-mail"
+msgstr ""
+
+#: zzbrick_forms/participations-usergroups.php:100
+msgid "without e-mail"
+msgstr ""
+
+#: zzbrick_forms/registration.php:26
+msgid "Authentication mail is missing."
+msgstr ""
+
+#: zzbrick_forms/registration.php:27
+msgid "Confirmation mail is missing."
+msgstr ""
+
+#: zzbrick_forms/registration.php:28
+msgid "One or more of the required form fields are missing."
+msgstr ""
+
+#: zzbrick_make/formmail.inc.php:39
+msgid "Reminder –"
+msgstr ""
+
+#: zzbrick_make/formmail.inc.php:48
+msgid "Contact ID %d for form mail (%s), event ID %d, not found."
+msgstr ""
+
+#: zzbrick_make/formmail.inc.php:80
+msgid "Form mail: No recipient e-mail address found."
+msgstr ""
+
+#: zzbrick_make/formmail.inc.php:97
+msgid "Failed to send mail."
+msgstr ""
+
+#: zzbrick_make/formmail.inc.php:103
+msgid "(copy of e-mail)"
+msgstr ""
+
+#: zzbrick_make/formmail.inc.php:104
+msgid "This e-mail was just sent to:"
+msgstr ""
+
+#: zzbrick_make/formmail.inc.php:118
+msgid "The mail was sent successfully."
+msgstr ""
+
+#: zzbrick_make/registrationconfirmation.inc.php:82
+msgid "The registration for code %s was not completed."
+msgstr ""
+
+#: zzbrick_tables/activities.php:16
+msgid "Activities"
+msgstr ""
+
+#: zzbrick_tables/activities.php:19
+#: zzbrick_tables/contacts-access.php:19
+#: zzbrick_tables/formfields.php:19
+#: zzbrick_tables/formtemplates.php:19
+#: zzbrick_tables/formtemplates-defaults.php:19
+#: zzbrick_tables/invitations.php:19
+#: zzbrick_tables/mailings.php:19
+#: zzbrick_tables/mailings-contacts.php:19
+#: zzbrick_tables/participations.php:19
+#: zzbrick_tables/participations-categories.php:19
+#: zzbrick_tables/participations-contacts.php:19
+#: zzbrick_tables/participations-websites.php:19
+#: zzbrick_tables/registrationtexts.php:19
+#: zzbrick_tables/registrationvarchars.php:19
+#: zzbrick_tables/usergroups.php:19
+#: zzbrick_tables/usergroups-categories.php:19
+msgid "ID"
+msgstr ""
+
+#: zzbrick_tables/activities.php:23
+#: zzbrick_tables/participations-categories.php:23
+#: zzbrick_tables/participations-contacts.php:23
+#: zzbrick_tables/participations-websites.php:23
+msgid "Participation"
+msgstr ""
+
+#: zzbrick_tables/activities.php:32
+#: zzbrick_tables/forms.php:36
+#: zzbrick_tables/participations-categories.php:37
+#: zzbrick_tables/participations-categories.php:88
+#: zzbrick_tables/usergroups.php:45
+#: zzbrick_tables/usergroups.php:177
+#: zzbrick_tables/usergroups-categories.php:31
+msgid "Category"
+msgstr ""
+
+#: zzbrick_tables/activities.php:52
+msgid "Activity IP"
+msgstr ""
+
+#: zzbrick_tables/activities.php:60
+msgid "URI"
+msgstr ""
+
+#: zzbrick_tables/activities.php:67
+msgid "Comment"
+msgstr ""
+
+#: zzbrick_tables/contacts-access.php:23
+#: zzbrick_tables/participations.php:23
+#: zzbrick_tables/registrationtexts.php:23
+#: zzbrick_tables/registrationvarchars.php:23
+msgid "Contact"
+msgstr ""
+
+#: zzbrick_tables/contacts-access.php:34
+#: zzbrick_tables/invitations.php:23
+#: zzbrick_tables/participations.php:49
+#: zzbrick_tables/usergroups.php:23
+#: zzbrick_tables/usergroups-categories.php:23
+msgid "Group"
+msgstr ""
+
+#: zzbrick_tables/contacts-access.php:46
+#: zzbrick_tables/participations-categories.php:61
 msgid "Property"
 msgstr ""
 
-#: zzbrick_tables/formfields.php
+#: zzbrick_tables/contacts-access.php:62
+#: zzbrick_tables/forms.php:49
+msgid "Access"
+msgstr ""
+
+#: zzbrick_tables/contacts-access.php:74
+#: zzbrick_tables/formtemplates.php:60
+#: zzbrick_tables/formtemplates-defaults.php:77
+#: zzbrick_tables/mailings.php:116
+#: zzbrick_tables/participations.php:208
+#: zzbrick_tables/participations-categories.php:64
+#: zzbrick_tables/usergroups.php:146
+#: zzbrick_tables/usergroups-categories.php:40
+msgid "Last update"
+msgstr ""
+
+#: zzbrick_tables/formfields.php:16
 msgid "Form Fields"
 msgstr ""
 
-#: zzbrick_tables/formfields.php
-msgid "The title of the form field that appears on the left (= what to type in the field)."
+#: zzbrick_tables/formfields.php:35
+#: zzbrick_tables/participations.php:165
+msgid "Seq."
 msgstr ""
 
-#: zzbrick_tables/formfields.php
+#: zzbrick_tables/formfields.php:36
+#: zzbrick_tables/participations.php:166
+#: zzbrick_tables/usergroups.php:68
+msgid "Sequence"
+msgstr ""
+
+#: zzbrick_tables/formfields.php:40
+msgid "Title"
+msgstr ""
+
+#: zzbrick_tables/formfields.php:42
+msgid "Label shown to the left of the field."
+msgstr ""
+
+#: zzbrick_tables/formfields.php:46
+#: zzbrick_tables/formtemplates.php:35
+#: zzbrick_tables/participations-categories.php:50
+msgid "Type"
+msgstr ""
+
+#: zzbrick_tables/formfields.php:59
+msgid "Area"
+msgstr ""
+
+#: zzbrick_tables/formfields.php:60
 msgid "A heading that can be used to divide a long form into parts. Fields with the same heading are grouped."
 msgstr ""
 
-#: zzbrick_tables/formfields.php
+#: zzbrick_tables/formfields.php:62
+msgid "Explanation"
+msgstr ""
+
+#: zzbrick_tables/formfields.php:63
 msgid "An explanation below the form field like this one."
 msgstr ""
 
-#: zzbrick_tables/forms.php
-msgid "For the labeling of forms as well as the content of default mails"
+#: zzbrick_tables/formfields.php:70
+#: zzbrick_tables/invitations.php:85
+#: zzbrick_tables/usergroups.php:120
+msgid "Parameters"
 msgstr ""
 
-#: zzbrick_tables/forms.php
+#: zzbrick_tables/formfields.php:74
+msgid "Editable from"
+msgstr ""
+
+#: zzbrick_tables/formfields.php:80
+msgid "Editable by"
+msgstr ""
+
+#: zzbrick_tables/formfields.php:86
+msgid "Main field"
+msgstr ""
+
+# Abbreviation for Categories in list view
+#: zzbrick_tables/forms.php:37
+msgid "C."
+msgstr ""
+
+#: zzbrick_tables/forms.php:47
+msgid "Used for form labels and default mail content"
+msgstr ""
+
+# Abbreviation for Access in list view
+#: zzbrick_tables/forms.php:50
+msgid "A."
+msgstr ""
+
+#: zzbrick_tables/forms.php:55
+msgid "Behind login screen"
+msgstr ""
+
+#: zzbrick_tables/forms.php:55
 msgid "Public"
 msgstr ""
 
-#: zzbrick_tables/forms.php
+#: zzbrick_tables/forms.php:59
 msgid "Salutation"
 msgstr ""
 
-#: zzbrick_tables/forms.php
-msgid "Behind login mask"
-msgstr ""
-
-#: zzbrick_tables/forms.php
+#: zzbrick_tables/forms.php:62
 msgid "formal"
 msgstr ""
 
-#: zzbrick_tables/forms.php
+#: zzbrick_tables/forms.php:62
 msgid "informal"
 msgstr ""
 
-#: zzbrick_tables/forms.php
-msgid "Whether to address formally or informally in mails and on website"
+#: zzbrick_tables/forms.php:65
+msgid "Whether to address formally or informally in mails and on the website"
 msgstr ""
 
-#: zzbrick_tables/forms.php
+#: zzbrick_tables/forms.php:67
+msgid "Created"
+msgstr ""
+
+#: zzbrick_tables/forms.php:74
 msgid "Header"
 msgstr ""
 
-#: zzbrick_tables/forms.php
+#: zzbrick_tables/forms.php:75
 msgid "Text to appear before the form"
 msgstr ""
 
-#: zzbrick_tables/forms.php
-msgid "Text to appear before the form, after header"
+#: zzbrick_tables/forms.php:81
+msgid "Lead"
 msgstr ""
 
-#: zzbrick_tables/forms.php
+#: zzbrick_tables/forms.php:82
+msgid "Text to appear before the form, after the header"
+msgstr ""
+
+#: zzbrick_tables/forms.php:89
 msgid "Footer"
 msgstr ""
 
-#: zzbrick_tables/forms.php
-msgid "Text to appear behind the form"
+#: zzbrick_tables/forms.php:90
+msgid "Text to appear below the form"
 msgstr ""
 
-#: zzbrick_tables/formtemplates.php
-msgid "Templates for Mails"
+#: zzbrick_tables/forms.php:96
+msgid "Copy form fields"
 msgstr ""
 
-#: zzbrick_tables/formtemplates.php
+#: zzbrick_tables/formtemplates.php:16
+msgid "Mail templates"
+msgstr ""
+
+#: zzbrick_tables/formtemplates.php:48
+#: zzbrick_tables/formtemplates-defaults.php:35
 msgid "Template"
 msgstr ""
 
-#: zzbrick_tables/formtemplates.php
+#: zzbrick_tables/formtemplates.php:49
 msgid "Content of the template."
 msgstr ""
 
-#: zzbrick_tables/formtemplates-defaults.php
+#: zzbrick_tables/formtemplates.php:53
+#: zzbrick_tables/registrationtexts.php:34
+#: zzbrick_tables/registrationvarchars.php:34
+msgid "Form field"
+msgstr ""
+
+#: zzbrick_tables/formtemplates-defaults.php:16
 msgid "Default Templates for Forms"
 msgstr ""
 
-#: zzbrick_tables/formtemplates-defaults.php
+#: zzbrick_tables/formtemplates-defaults.php:46
+msgid "Language"
+msgstr ""
+
+#: zzbrick_tables/formtemplates-defaults.php:56
+#: zzbrick_tables/invitations.php:39
+#: zzbrick_tables/participations.php:107
+#: zzbrick_tables/participations-contacts.php:32
+#: zzbrick_tables/usergroups.php:108
+msgid "Organisation"
+msgstr ""
+
+#: zzbrick_tables/formtemplates-defaults.php:72
 msgid "Default Template"
 msgstr ""
 
-#: zzbrick_tables/invitations.php
+#: zzbrick_tables/invitations.php:16
 msgid "Invitations"
 msgstr ""
 
-#: zzbrick_tables/mailings.php
+#: zzbrick_tables/invitations.php:55
+msgid "Min."
+msgstr ""
+
+#: zzbrick_tables/invitations.php:60
+msgid "Max."
+msgstr ""
+
+#: zzbrick_tables/invitations.php:65
+msgid "Waiting"
+msgstr ""
+
+#: zzbrick_tables/invitations.php:70
+msgid "Remaining"
+msgstr ""
+
+#: zzbrick_tables/invitations.php:75
+#: zzbrick_tables/participations.php:176
+msgid "Hash"
+msgstr ""
+
+#: zzbrick_tables/mailings.php:16
 msgid "Mailings"
 msgstr ""
 
-#: zzbrick_tables/mailings.php
+#: zzbrick_tables/mailings.php:34
 msgid "Sender"
 msgstr ""
 
-#: zzbrick_tables/mailings.php
+#: zzbrick_tables/mailings.php:54
 msgid "Alternative e-mail address for sending the e-mails if you do not want to send from your own address."
 msgstr ""
 
-#: zzbrick_tables/mailings.php
+#: zzbrick_tables/mailings.php:56
 msgid "In this case “, %s” is appended to the name."
 msgstr ""
 
-#: zzbrick_tables/mailings.php
+#: zzbrick_tables/mailings.php:60
 msgid "Subject"
 msgstr ""
 
-#: zzbrick_tables/mailings.php
+#: zzbrick_tables/mailings.php:68
 msgid "Message"
 msgstr ""
 
-#: zzbrick_tables/mailings.php
+#: zzbrick_tables/mailings.php:76
 msgid "%d character per line."
 msgid_plural "%d characters per line."
 msgstr[] ""
 msgstr[] ""
 
-#: zzbrick_tables/mailings.php
-msgid "(<a href=\"%s\">Possible placeholders</a>)."
+#: zzbrick_tables/mailings.php:78
+msgid "(<a href=\"%s\">Possible placeholders</a>)"
 msgstr ""
 
-#: zzbrick_tables/mailings.php
+#: zzbrick_tables/mailings.php:82
+#: zzbrick_tables/mailings.php:98
 msgid "Recipients"
 msgstr ""
 
-#: zzbrick_tables/mailings.php
+#: zzbrick_tables/mailings.php:101
 msgid "Sent"
 msgstr ""
 
-#: zzbrick_tables/mailings.php
+#: zzbrick_tables/mailings.php:108
+msgid "Send mailings"
+msgstr ""
+
+#: zzbrick_tables/mailings.php:112
 msgid "Send (if not clicked, mail will only be saved for later sending)"
 msgstr ""
 
-#: zzbrick_tables/mailings.php
+#: zzbrick_tables/mailings.php:123
 msgid "not yet"
 msgstr ""
 
-#: zzbrick_tables/mailings.php
-msgid "Clicking on the mail text shows the full mail text or just a short excerpt from the mail text"
+#: zzbrick_tables/mailings.php:147
+msgid "Click the message to show the full text or a short excerpt."
 msgstr ""
 
-#: zzbrick_tables/mailings-contacts.php
+#: zzbrick_tables/mailings-contacts.php:16
 msgid "Mailings: Recipients"
 msgstr ""
 
-#: zzbrick_tables/mailings-contacts.php
+#: zzbrick_tables/mailings-contacts.php:23
 msgid "Mailing"
 msgstr ""
 
-#: zzbrick_tables/mailings-contacts.php
+#: zzbrick_tables/mailings-contacts.php:33
 msgid "Recipient"
 msgstr ""
 
-#: zzbrick_tables/mailings-contacts.php
-msgid "E-mail"
+#: zzbrick_tables/participations.php:118
+#: zzbrick_tables/participations-websites.php:32
+msgid "Website"
 msgstr ""
 
-#: zzbrick_tables/participations.php
-msgid "Participations"
+#: zzbrick_tables/participations.php:135
+msgid "Start date"
 msgstr ""
 
-#: zzbrick_tables/participations.php
-msgid "Usergroup"
+#: zzbrick_tables/participations.php:137
+msgid "Begin"
 msgstr ""
 
-#: zzbrick_tables/participations.php
-msgid "Usergroups"
+#: zzbrick_tables/participations.php:141
+msgid "End date"
 msgstr ""
 
-#: zzbrick_tables/participations.php
-msgid "Date begin"
+#: zzbrick_tables/participations.php:143
+msgid "End"
 msgstr ""
 
-#: zzbrick_tables/participations.php
-msgid "Date end"
-msgstr ""
-
-#: zzbrick_tables/participations.php
-msgid "(internal remarks only)"
-msgstr ""
-
-#: zzbrick_tables/participations.php
-msgid "Active?"
-msgstr ""
-
-#: zzbrick_tables/participations.php
-msgid "active"
-msgstr ""
-
-#: zzbrick_tables/participations.php
-msgid "inactive"
-msgstr ""
-
-#: zzbrick_tables/participations.php
-msgid "Role"
-msgstr ""
-
-#: zzbrick_tables/participations.php
+#: zzbrick_tables/participations.php:147
+#: zzbrick_tables/participations.php:248
 msgid "Status"
 msgstr ""
 
-#: zzbrick_tables/participations.php
+#: zzbrick_tables/participations.php:161
+msgid "Role"
+msgstr ""
+
+#: zzbrick_tables/participations.php:170
+msgid "Remarks"
+msgstr ""
+
+#: zzbrick_tables/participations.php:174
+msgid "(internal remarks only)"
+msgstr ""
+
+#: zzbrick_tables/participations.php:185
 msgid "Entry"
 msgstr ""
 
-#: zzbrick_tables/participations.php
-msgid "Entry on"
+#: zzbrick_tables/participations.php:186
+msgid "Entered on"
 msgstr ""
 
-#: zzbrick_tables/participations.php
+#: zzbrick_tables/participations.php:196
 msgid "Entry by"
 msgstr ""
 
-#: zzbrick_tables/participations-categories.php
-msgid "Categories of Participations"
+#: zzbrick_tables/participations.php:254
+#: zzbrick_tables/usergroups.php:72
+msgid "Active?"
 msgstr ""
 
-#: zzbrick_tables/participations-categories.php
-msgid "Participation"
+#: zzbrick_tables/participations.php:260
+msgid "active"
 msgstr ""
 
-#: zzbrick_tables/usergroups.php
-msgid "Groups"
+#: zzbrick_tables/participations.php:261
+msgid "inactive"
 msgstr ""
 
-#: zzbrick_tables/usergroups.php
-msgid "Group"
+#: zzbrick_tables/participations-categories.php:16
+msgid "Participation categories"
 msgstr ""
 
-#: zzbrick_tables/usergroups.php
-msgid "Members"
+#: zzbrick_tables/participations-categories.php:31
+msgid "No."
 msgstr ""
 
-#: zzbrick_tables/usergroups.php
-msgid "Ex-members"
+#: zzbrick_tables/participations-contacts.php:16
+msgid "Participations in Organisations"
 msgstr ""
 
-#: zzbrick_tables/usergroups.php
+#: zzbrick_tables/participations-websites.php:16
+msgid "Participations in Websites"
+msgstr ""
+
+#: zzbrick_tables/registrationtexts.php:16
+msgid "Registration Texts"
+msgstr ""
+
+#: zzbrick_tables/registrationtexts.php:48
+#: zzbrick_tables/registrationvarchars.php:48
+msgid "Text"
+msgstr ""
+
+#: zzbrick_tables/registrationvarchars.php:16
+msgid "Registration Lines"
+msgstr ""
+
+#: zzbrick_tables/usergroups.php:37
+msgid "Identifier"
+msgstr ""
+
+#: zzbrick_tables/usergroups.php:59
+msgid "Description"
+msgstr ""
+
+#: zzbrick_tables/usergroups.php:75
+msgid "no"
+msgstr ""
+
+#: zzbrick_tables/usergroups.php:75
+msgid "yes"
+msgstr ""
+
 # Abbreviation for Members
+#: zzbrick_tables/usergroups.php:127
 msgid "M."
 msgstr ""
 
-#: zzbrick_tables/usergroups.php
 # Abbreviation for Ex-members
+#: zzbrick_tables/usergroups.php:136
 msgid "E. M."
+msgstr ""
+
+#: zzbrick_tables/usergroups.php:137
+msgid "Ex-members"
+msgstr ""
+
+#: zzbrick_tables/usergroups-categories.php:16
+msgid "Categories of user groups"
+msgstr ""
+
+#: zzform/hooks.inc.php:76
+msgid "The registration for %s was not completed."
+msgstr ""
+
+#: zzform/hooks.inc.php:187
+msgid "No valid sender e-mail address is set for the mailings, so the messages cannot be sent."
 msgstr ""

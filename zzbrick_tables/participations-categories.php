@@ -13,7 +13,7 @@
  */
 
 
-$zz['title'] = 'Categories of Participations';
+$zz['title'] = 'Participation categories';
 $zz['table'] = 'participations_categories';
 
 $zz['fields'][1]['title'] = 'ID';
@@ -47,6 +47,7 @@ $zz['fields'][3]['sql'] = 'SELECT categories.category_id, categories.category
 $zz['fields'][3]['show_hierarchy'] = 'main_category_id';
 $zz['fields'][3]['show_hierarchy_subtree'] = wrap_category_id('participations');
 
+$zz['fields'][5]['title'] = 'Type'
 $zz['fields'][5]['field_name'] = 'type_category_id';
 $zz['fields'][5]['unless']['multi']['type'] = 'hidden';
 $zz['fields'][5]['unless']['multi']['type_detail'] = 'select';
