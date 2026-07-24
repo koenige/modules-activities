@@ -103,7 +103,10 @@ function mf_activities_confirm_registration($ops) {
 	$mail['message'] = wrap_template('registration-confirmation-mail', $data);
 	$success = wrap_mail($mail);
 	if (!$success) {
-		wrap_error(['Registration mail could not be sent to %s (ID %d)', ['values' => [$data['e_mail'], $data['contact_id']]]]);
+		wrap_error([
+			'Registration mail could not be sent to %s (ID %d)',
+			['values' => [$data['e_mail'], $data['contact_id']]]
+		]);
 	}
 
 	return [];
@@ -230,8 +233,10 @@ function mf_activities_hook_mailing_send($ops) {
 		$my_mail['message'] = $msg['text'];
 		$success = wrap_mail($my_mail);
 		if (!$success) {
-			wrap_error(['Unable to send mail with ID %d to recipient with ID %d (%s).', ['values' => [$maildata['mailing_id'], $recipient['contact_id'], $recipient['name']]]]
-			);
+			wrap_error([
+				'Unable to send mail with ID %d to recipient with ID %d (%s).',
+				['values' => [$maildata['mailing_id'], $recipient['contact_id'], $recipient['name']]]
+			]);
 		}
 	}
 	wrap_setting('brick_fulltextformat', $old_brick_fulltextformat);
