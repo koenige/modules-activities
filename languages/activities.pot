@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- activities module\n"
-"POT-Creation-Date: 2026-07-20 12:07+0000\n"
+"POT-Creation-Date: 2026-07-27 09:17+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -37,7 +37,7 @@ msgid "Date"
 msgstr ""
 
 #: templates/contact-participations.template.txt:15
-#: zzbrick_tables/forms.php:22
+#: zzbrick_tables/forms.php:23
 #: zzbrick_tables/invitations.php:31
 #: zzbrick_tables/mailings.php:23
 #: zzbrick_tables/participations.php:93
@@ -207,7 +207,6 @@ msgstr ""
 
 #: zzbrick_forms/form.php:18
 #: zzbrick_tables/formfields.php:23
-#: zzbrick_tables/forms.php:19
 #: zzbrick_tables/formtemplates.php:23
 #: zzbrick_tables/formtemplates-defaults.php:23
 msgid "Form"
@@ -240,6 +239,14 @@ msgstr ""
 
 #: zzbrick_forms/invitation.php:156
 msgid "The registration has been sent successfully!"
+msgstr ""
+
+#: zzbrick_forms/participations-usergroups.php:65
+msgid "Period"
+msgstr ""
+
+#: zzbrick_forms/participations-usergroups.php:81
+msgid "Postcode"
 msgstr ""
 
 #: zzbrick_forms/participations-usergroups.php:92
@@ -308,6 +315,7 @@ msgstr ""
 #: zzbrick_tables/activities.php:19
 #: zzbrick_tables/contacts-access.php:19
 #: zzbrick_tables/formfields.php:19
+#: zzbrick_tables/forms.php:19
 #: zzbrick_tables/formtemplates.php:19
 #: zzbrick_tables/formtemplates-defaults.php:19
 #: zzbrick_tables/invitations.php:19
@@ -332,7 +340,7 @@ msgid "Participation"
 msgstr ""
 
 #: zzbrick_tables/activities.php:32
-#: zzbrick_tables/forms.php:36
+#: zzbrick_tables/forms.php:37
 #: zzbrick_tables/participations-categories.php:37
 #: zzbrick_tables/participations-categories.php:88
 #: zzbrick_tables/usergroups.php:45
@@ -374,7 +382,7 @@ msgid "Property"
 msgstr ""
 
 #: zzbrick_tables/contacts-access.php:62
-#: zzbrick_tables/forms.php:49
+#: zzbrick_tables/forms.php:50
 msgid "Access"
 msgstr ""
 
@@ -453,72 +461,84 @@ msgid "Main field"
 msgstr ""
 
 # Abbreviation for Categories in list view
-#: zzbrick_tables/forms.php:37
+#: zzbrick_tables/forms.php:38
 msgid "C."
 msgstr ""
 
-#: zzbrick_tables/forms.php:47
+#: zzbrick_tables/forms.php:48
 msgid "Used for form labels and default mail content"
 msgstr ""
 
 # Abbreviation for Access in list view
-#: zzbrick_tables/forms.php:50
+#: zzbrick_tables/forms.php:51
 msgid "A."
 msgstr ""
 
-#: zzbrick_tables/forms.php:55
-msgid "Behind login screen"
+# Abbreviation for public access
+#: zzbrick_tables/forms.php:56
+msgctxt "forms.access"
+msgid "P"
 msgstr ""
 
-#: zzbrick_tables/forms.php:55
-msgid "Public"
+# Abbreviation for access behind login screen
+#: zzbrick_tables/forms.php:57
+msgctxt "forms.access"
+msgid "L"
 msgstr ""
 
 #: zzbrick_tables/forms.php:59
+msgid "Behind login screen"
+msgstr ""
+
+#: zzbrick_tables/forms.php:59
+msgid "Public"
+msgstr ""
+
+#: zzbrick_tables/forms.php:63
 msgid "Salutation"
 msgstr ""
 
-#: zzbrick_tables/forms.php:62
+#: zzbrick_tables/forms.php:66
 msgid "formal"
 msgstr ""
 
-#: zzbrick_tables/forms.php:62
+#: zzbrick_tables/forms.php:66
 msgid "informal"
 msgstr ""
 
-#: zzbrick_tables/forms.php:65
+#: zzbrick_tables/forms.php:69
 msgid "Whether to address formally or informally in mails and on the website"
 msgstr ""
 
-#: zzbrick_tables/forms.php:67
+#: zzbrick_tables/forms.php:71
 msgid "Created"
 msgstr ""
 
-#: zzbrick_tables/forms.php:74
+#: zzbrick_tables/forms.php:78
 msgid "Header"
 msgstr ""
 
-#: zzbrick_tables/forms.php:75
+#: zzbrick_tables/forms.php:79
 msgid "Text to appear before the form"
 msgstr ""
 
-#: zzbrick_tables/forms.php:81
+#: zzbrick_tables/forms.php:85
 msgid "Lead"
 msgstr ""
 
-#: zzbrick_tables/forms.php:82
+#: zzbrick_tables/forms.php:86
 msgid "Text to appear before the form, after the header"
 msgstr ""
 
-#: zzbrick_tables/forms.php:89
+#: zzbrick_tables/forms.php:93
 msgid "Footer"
 msgstr ""
 
-#: zzbrick_tables/forms.php:90
+#: zzbrick_tables/forms.php:94
 msgid "Text to appear below the form"
 msgstr ""
 
-#: zzbrick_tables/forms.php:96
+#: zzbrick_tables/forms.php:100
 msgid "Copy form fields"
 msgstr ""
 

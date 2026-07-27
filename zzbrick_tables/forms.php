@@ -16,6 +16,7 @@
 $zz['title'] = 'Forms';
 $zz['table'] = 'forms';
 
+$zz['fields'][1]['title'] = 'ID';
 $zz['fields'][1]['field_name'] = 'form_id';
 $zz['fields'][1]['type'] = 'id';
 
@@ -51,7 +52,10 @@ $zz['fields'][11]['title_tab'] = 'A.';
 $zz['fields'][11]['field_name'] = 'access';
 $zz['fields'][11]['type'] = 'select';
 $zz['fields'][11]['enum'] = ['public', 'login'];
-$zz['fields'][11]['enum_title'] = ['P', 'L'];
+$zz['fields'][11]['enum_title'] = [
+    wrap_text('P', ['context' => 'forms.access']),
+    wrap_text('L', ['context' => 'forms.access']),
+];
 $zz['fields'][11]['enum_abbr'] = [wrap_text('Public'), wrap_text('Behind login screen')];
 $zz['fields'][11]['default'] = 'public';
 $zz['fields'][11]['dependent_fields'][10]['if_selected'] = 'login';
