@@ -1,0 +1,71 @@
+{
+    "access": {
+        "title": "Access Rights"
+    },
+    "access_usergroups": {
+        "title": "Usergroups per Access Right"
+    },
+    "activities": {
+        "title": "Activities"
+    },
+    "contacts_access": {
+        "title": "Access to Contact Details"
+    },
+    "formfields": {
+        "title": "Form Fields",
+        "parameter_field": "parameters",
+        "audience": [
+            "editor"
+        ]
+    },
+    "forms": {
+        "title": "Forms"
+    },
+    "formtemplates": {
+        "title": "Mail templates"
+    },
+    "formtemplates_defaults": {
+        "title": "Default Templates for Forms"
+    },
+    "invitations": {
+        "title": "Invitations",
+        "parameter_field": "parameters",
+        "audience": [
+            "editor"
+        ]
+    },
+    "mailings": {
+        "title": "Mailings"
+    },
+    "mailings_contacts": {
+        "title": "Mailings: Recipients"
+    },
+    "participations": {
+        "title": "Participations"
+    },
+    "participations_categories": {
+        "title": "Participation categories"
+    },
+    "participations_contacts": {
+        "title": "Participations in Organisations"
+    },
+    "participations_websites": {
+        "title": "Participations in Websites"
+    },
+    "registrationtexts": {
+        "title": "Registration Texts"
+    },
+    "registrationvarchars": {
+        "title": "Registration Lines"
+    },
+    "usergroups": {
+        "title": "Groups",
+        "parameter_field": "parameters",
+        "audience": [
+            "editor"
+        ]
+    },
+    "usergroups_categories": {
+        "title": "Categories of user groups"
+    }
+}

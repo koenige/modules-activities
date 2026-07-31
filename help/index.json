@@ -1,0 +1,91 @@
+{
+    "form-mails": [
+        {
+            "title": "Form Mails",
+            "language": "en",
+            "package": "activities",
+            "filename": "help/Form Mails.md",
+            "identifier": "form-mails",
+            "type": "md",
+            "audience": []
+        }
+    ],
+    "formfields-parameters": [
+        {
+            "title": "Form Fields parameters",
+            "language": "en",
+            "package": "activities",
+            "identifier": "formfields-parameters",
+            "type": "parameters",
+            "audience": [
+                "editor"
+            ],
+            "table": "formfields",
+            "parameter_field": "parameters"
+        },
+        {
+            "title": "Formularfelder-Parameter",
+            "language": "de",
+            "package": "activities",
+            "identifier": "formfields-parameters",
+            "type": "parameters",
+            "audience": [
+                "editor"
+            ],
+            "table": "formfields",
+            "parameter_field": "parameters"
+        }
+    ],
+    "invitations-parameters": [
+        {
+            "title": "Invitations parameters",
+            "language": "en",
+            "package": "activities",
+            "identifier": "invitations-parameters",
+            "type": "parameters",
+            "audience": [
+                "editor"
+            ],
+            "table": "invitations",
+            "parameter_field": "parameters"
+        },
+        {
+            "title": "Einladungen-Parameter",
+            "language": "de",
+            "package": "activities",
+            "identifier": "invitations-parameters",
+            "type": "parameters",
+            "audience": [
+                "editor"
+            ],
+            "table": "invitations",
+            "parameter_field": "parameters"
+        }
+    ],
+    "usergroups-parameters": [
+        {
+            "title": "Groups parameters",
+            "language": "en",
+            "package": "activities",
+            "identifier": "usergroups-parameters",
+            "type": "parameters",
+            "audience": [
+                "editor"
+            ],
+            "table": "usergroups",
+            "parameter_field": "parameters"
+        },
+        {
+            "title": "Gruppen-Parameter",
+            "language": "de",
+            "package": "activities",
+            "identifier": "usergroups-parameters",
+            "type": "parameters",
+            "audience": [
+                "editor"
+            ],
+            "table": "usergroups",
+            "parameter_field": "parameters"
+        }
+    ]
+}
