@@ -247,6 +247,9 @@ INSERT INTO _relations (`master_db`, `master_table`, `master_field`, `detail_db`
 CREATE TABLE `usergroups` (
   `usergroup_id` int unsigned NOT NULL AUTO_INCREMENT,
   `usergroup` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usergroup_female` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `usergroup_male` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `usergroup_diverse` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `identifier` varchar(32) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `usergroup_category_id` int unsigned NOT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,

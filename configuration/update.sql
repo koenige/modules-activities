@@ -138,3 +138,5 @@
 /* 2026-03-12-7 */	DELETE FROM _settings WHERE setting_key = 'activities_profile_path[usergroup]';
 /* 2026-03-12-8 */	DELETE FROM _settings WHERE setting_key = 'activities_registration_confirmation_path';
 /* 2026-04-03-1 */	UPDATE webpages SET content = REPLACE(content, '%%% forms participations-usergroups *', '%%% request usergroup *') WHERE content LIKE '%\%\%\% forms participations-usergroups *%';
+/* 2026-08-11-1 */	ALTER TABLE `usergroups` ADD `usergroup_female` varchar(80) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `usergroup`, ADD `usergroup_male` varchar(80) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `usergroup_female`;
+/* 2026-08-11-2 */	ALTER TABLE `usergroups` ADD `usergroup_diverse` varchar(80) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `usergroup_male`;

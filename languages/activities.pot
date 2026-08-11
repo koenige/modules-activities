@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- activities module\n"
-"POT-Creation-Date: 2026-07-27 09:17+0000\n"
+"POT-Creation-Date: 2026-08-11 18:31+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -20,8 +20,8 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: activities/functions.inc.php:213
-#: activities/functions.inc.php:224
+#: activities/functions.inc.php:247
+#: activities/functions.inc.php:258
 msgid "Merging contacts was not successful."
 msgstr ""
 
@@ -174,7 +174,7 @@ msgid "Please create a form first."
 msgstr ""
 
 #: templates/usergroup.template.txt:22
-#: zzbrick_tables/usergroups.php:128
+#: zzbrick_tables/usergroups.php:149
 msgid "Members"
 msgstr ""
 
@@ -343,8 +343,8 @@ msgstr ""
 #: zzbrick_tables/forms.php:37
 #: zzbrick_tables/participations-categories.php:37
 #: zzbrick_tables/participations-categories.php:88
-#: zzbrick_tables/usergroups.php:45
-#: zzbrick_tables/usergroups.php:177
+#: zzbrick_tables/usergroups.php:66
+#: zzbrick_tables/usergroups.php:200
 #: zzbrick_tables/usergroups-categories.php:31
 msgid "Category"
 msgstr ""
@@ -392,7 +392,7 @@ msgstr ""
 #: zzbrick_tables/mailings.php:116
 #: zzbrick_tables/participations.php:208
 #: zzbrick_tables/participations-categories.php:64
-#: zzbrick_tables/usergroups.php:146
+#: zzbrick_tables/usergroups.php:167
 #: zzbrick_tables/usergroups-categories.php:40
 msgid "Last update"
 msgstr ""
@@ -408,7 +408,7 @@ msgstr ""
 
 #: zzbrick_tables/formfields.php:36
 #: zzbrick_tables/participations.php:166
-#: zzbrick_tables/usergroups.php:68
+#: zzbrick_tables/usergroups.php:89
 msgid "Sequence"
 msgstr ""
 
@@ -444,7 +444,7 @@ msgstr ""
 
 #: zzbrick_tables/formfields.php:70
 #: zzbrick_tables/invitations.php:85
-#: zzbrick_tables/usergroups.php:120
+#: zzbrick_tables/usergroups.php:141
 msgid "Parameters"
 msgstr ""
 
@@ -573,7 +573,7 @@ msgstr ""
 #: zzbrick_tables/invitations.php:39
 #: zzbrick_tables/participations.php:107
 #: zzbrick_tables/participations-contacts.php:32
-#: zzbrick_tables/usergroups.php:108
+#: zzbrick_tables/usergroups.php:129
 msgid "Organisation"
 msgstr ""
 
@@ -728,7 +728,7 @@ msgid "Entry by"
 msgstr ""
 
 #: zzbrick_tables/participations.php:254
-#: zzbrick_tables/usergroups.php:72
+#: zzbrick_tables/usergroups.php:93
 msgid "Active?"
 msgstr ""
 
@@ -770,32 +770,44 @@ msgid "Registration Lines"
 msgstr ""
 
 #: zzbrick_tables/usergroups.php:37
+msgid "Group (female)"
+msgstr ""
+
+#: zzbrick_tables/usergroups.php:44
+msgid "Group (male)"
+msgstr ""
+
+#: zzbrick_tables/usergroups.php:51
+msgid "Group (diverse)"
+msgstr ""
+
+#: zzbrick_tables/usergroups.php:58
 msgid "Identifier"
 msgstr ""
 
-#: zzbrick_tables/usergroups.php:59
+#: zzbrick_tables/usergroups.php:80
 msgid "Description"
 msgstr ""
 
-#: zzbrick_tables/usergroups.php:75
+#: zzbrick_tables/usergroups.php:96
 msgid "no"
 msgstr ""
 
-#: zzbrick_tables/usergroups.php:75
+#: zzbrick_tables/usergroups.php:96
 msgid "yes"
 msgstr ""
 
 # Abbreviation for Members
-#: zzbrick_tables/usergroups.php:127
+#: zzbrick_tables/usergroups.php:148
 msgid "M."
 msgstr ""
 
 # Abbreviation for Ex-members
-#: zzbrick_tables/usergroups.php:136
+#: zzbrick_tables/usergroups.php:157
 msgid "E. M."
 msgstr ""
 
-#: zzbrick_tables/usergroups.php:137
+#: zzbrick_tables/usergroups.php:158
 msgid "Ex-members"
 msgstr ""
 

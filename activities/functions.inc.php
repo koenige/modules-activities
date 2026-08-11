@@ -32,6 +32,40 @@ function mf_activities_group_path($values) {
 }
 
 /**
+ * usergroup label for a person’s sex (name tags etc.)
+ *
+ * @param int $usergroup_id
+ * @param string $sex
+ * @return string
+ */
+function mf_activities_usergroup_label($usergroup_id, $sex) {
+	if (!$usergroup_id) return '';
+	$usergroups = mf_activities_usergroup_labels();
+	if (empty($usergroups[$usergroup_id])) return '';
+	$group = $usergroups[$usergroup_id];
+	if ($sex === 'female' && !empty($group['usergroup_female']))
+		return $group['usergroup_female'];
+	if ($sex === 'male' && !empty($group['usergroup_male']))
+		return $group['usergroup_male'];
+	if ($sex === 'diverse' && !empty($group['usergroup_diverse']))
+		return $group['usergroup_diverse'];
+	return $group['usergroup'];
+}
+
+function mf_activities_usergroup_labels() {
+	static $usergroups = null;
+	if ($usergroups !== null) return $usergroups;
+
+	$sql = 'SELECT usergroup_id, usergroup
+			, usergroup_female, usergroup_male, usergroup_diverse
+		FROM usergroups';
+	$usergroups = wrap_db_fetch($sql, 'usergroup_id');
+	if (!$usergroups) return $usergroups;
+	$usergroups = wrap_translate($usergroups, 'usergroups');
+	return $usergroups;
+}
+
+/**
  * check for access rights for contact data, mark content
  * with publish=1 or publish=0
  *

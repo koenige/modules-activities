@@ -34,6 +34,27 @@ $zz['fields'][2]['list_suffix'] = '</strong>';
 $zz['fields'][2]['if'][1]['list_prefix'] = '<del>';
 $zz['fields'][2]['if'][1]['list_suffix'] = '</del>';
 
+$zz['fields'][3]['title'] = 'Group (female)';
+$zz['fields'][3]['field_name'] = 'usergroup_female';
+$zz['fields'][3]['type'] = 'text';
+$zz['fields'][3]['hide_in_list'] = true;
+$zz['fields'][3]['typo_cleanup'] = true;
+$zz['fields'][3]['typo_remove_double_spaces'] = true;
+
+$zz['fields'][13]['title'] = 'Group (male)';
+$zz['fields'][13]['field_name'] = 'usergroup_male';
+$zz['fields'][13]['type'] = 'text';
+$zz['fields'][13]['hide_in_list'] = true;
+$zz['fields'][13]['typo_cleanup'] = true;
+$zz['fields'][13]['typo_remove_double_spaces'] = true;
+
+$zz['fields'][14]['title'] = 'Group (diverse)';
+$zz['fields'][14]['field_name'] = 'usergroup_diverse';
+$zz['fields'][14]['type'] = 'text';
+$zz['fields'][14]['hide_in_list'] = true;
+$zz['fields'][14]['typo_cleanup'] = true;
+$zz['fields'][14]['typo_remove_double_spaces'] = true;
+
 $zz['fields'][4]['field_name'] = 'identifier';
 $zz['fields'][4]['type'] = 'identifier';
 $zz['fields'][4]['fields'] = ['usergroup'];
@@ -165,6 +186,8 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/usergroups.*, category
 		ON /*_PREFIX_*/usergroups.usergroup_category_id = /*_PREFIX_*/categories.category_id
 ';
 $zz['sqlorder'] = ' ORDER BY /*_PREFIX_*/categories.sequence, IFNULL(/*_PREFIX_*/usergroups.sequence, 255), usergroup';
+
+$zz['sql_translate'] = ['usergroup_id' => 'usergroups'];
 
 if (empty($_GET['filter']['category']) AND (empty($_GET['order']) OR $_GET['order'] === 'category'))
 	$zz['list']['group'] = 'category';

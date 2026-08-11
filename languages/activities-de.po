@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project – Activities Module\n"
-"POT-Creation-Date: 2026-07-27 09:17+0000\n"
+"POT-Creation-Date: 2026-08-11 18:31+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gustaf Mossakowski <gustaf@koenige.org>\n"
 "Language-Team: \n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: activities/functions.inc.php:213 activities/functions.inc.php:224
+#: activities/functions.inc.php:247 activities/functions.inc.php:258
 msgid "Merging contacts was not successful."
 msgstr "Das Zusammenführen der Kontakte war nicht erfolgreich."
 
@@ -178,7 +178,7 @@ msgstr "Bitte fügen Sie E-Mailvorlagen für das Formular hinzu."
 msgid "Please create a form first."
 msgstr "Bitte erstellen Sie zuerst ein Formular."
 
-#: templates/usergroup.template.txt:22 zzbrick_tables/usergroups.php:128
+#: templates/usergroup.template.txt:22 zzbrick_tables/usergroups.php:149
 msgid "Members"
 msgstr "Mitglieder"
 
@@ -341,7 +341,7 @@ msgstr "Teilnahme"
 #: zzbrick_tables/activities.php:32 zzbrick_tables/forms.php:37
 #: zzbrick_tables/participations-categories.php:37
 #: zzbrick_tables/participations-categories.php:88
-#: zzbrick_tables/usergroups.php:45 zzbrick_tables/usergroups.php:177
+#: zzbrick_tables/usergroups.php:66 zzbrick_tables/usergroups.php:200
 #: zzbrick_tables/usergroups-categories.php:31
 msgid "Category"
 msgstr "Kategorie"
@@ -383,7 +383,7 @@ msgstr "Zugriff"
 #: zzbrick_tables/formtemplates-defaults.php:77 zzbrick_tables/mailings.php:116
 #: zzbrick_tables/participations.php:208
 #: zzbrick_tables/participations-categories.php:64
-#: zzbrick_tables/usergroups.php:146
+#: zzbrick_tables/usergroups.php:167
 #: zzbrick_tables/usergroups-categories.php:40
 msgid "Last update"
 msgstr "Stand"
@@ -397,7 +397,7 @@ msgid "Seq."
 msgstr "Folge"
 
 #: zzbrick_tables/formfields.php:36 zzbrick_tables/participations.php:166
-#: zzbrick_tables/usergroups.php:68
+#: zzbrick_tables/usergroups.php:89
 msgid "Sequence"
 msgstr "Reihenfolge"
 
@@ -435,7 +435,7 @@ msgid "An explanation below the form field like this one."
 msgstr "Eine Erläuterung unter dem Formularfeld wie diese hier."
 
 #: zzbrick_tables/formfields.php:70 zzbrick_tables/invitations.php:85
-#: zzbrick_tables/usergroups.php:120
+#: zzbrick_tables/usergroups.php:141
 msgid "Parameters"
 msgstr "Parameter"
 
@@ -563,7 +563,7 @@ msgstr "Sprache"
 #: zzbrick_tables/formtemplates-defaults.php:56
 #: zzbrick_tables/invitations.php:39 zzbrick_tables/participations.php:107
 #: zzbrick_tables/participations-contacts.php:32
-#: zzbrick_tables/usergroups.php:108
+#: zzbrick_tables/usergroups.php:129
 msgid "Organisation"
 msgstr "Organisation"
 
@@ -722,7 +722,7 @@ msgstr "Eintrag am"
 msgid "Entry by"
 msgstr "Eintrag durch"
 
-#: zzbrick_tables/participations.php:254 zzbrick_tables/usergroups.php:72
+#: zzbrick_tables/participations.php:254 zzbrick_tables/usergroups.php:93
 msgid "Active?"
 msgstr "Aktiv?"
 
@@ -764,32 +764,44 @@ msgid "Registration Lines"
 msgstr "Registrierungzeilen"
 
 #: zzbrick_tables/usergroups.php:37
+msgid "Group (female)"
+msgstr "Gruppe (weiblich)"
+
+#: zzbrick_tables/usergroups.php:44
+msgid "Group (male)"
+msgstr "Gruppe (männlich)"
+
+#: zzbrick_tables/usergroups.php:51
+msgid "Group (diverse)"
+msgstr "Gruppe (divers)"
+
+#: zzbrick_tables/usergroups.php:58
 msgid "Identifier"
 msgstr "Kennung"
 
-#: zzbrick_tables/usergroups.php:59
+#: zzbrick_tables/usergroups.php:80
 msgid "Description"
 msgstr "Beschreibung"
 
-#: zzbrick_tables/usergroups.php:75
+#: zzbrick_tables/usergroups.php:96
 msgid "no"
 msgstr "nein"
 
-#: zzbrick_tables/usergroups.php:75
+#: zzbrick_tables/usergroups.php:96
 msgid "yes"
 msgstr "ja"
 
 # Abbreviation for Members
-#: zzbrick_tables/usergroups.php:127
+#: zzbrick_tables/usergroups.php:148
 msgid "M."
 msgstr "M."
 
 # Abbreviation for Ex-members
-#: zzbrick_tables/usergroups.php:136
+#: zzbrick_tables/usergroups.php:157
 msgid "E. M."
 msgstr "E. M."
 
-#: zzbrick_tables/usergroups.php:137
+#: zzbrick_tables/usergroups.php:158
 msgid "Ex-members"
 msgstr "Ex-Mitglieder"
 
