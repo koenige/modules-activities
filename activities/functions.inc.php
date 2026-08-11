@@ -38,7 +38,7 @@ function mf_activities_group_path($values) {
  * @param string $sex
  * @return string
  */
-function mf_activities_usergroup_label($usergroup_id, $sex) {
+function mf_activities_usergroup_label($usergroup_id, $sex = '') {
 	if (!$usergroup_id) return '';
 	$usergroups = mf_activities_usergroup_labels();
 	if (empty($usergroups[$usergroup_id])) return '';
