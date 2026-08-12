@@ -216,9 +216,9 @@ $zz['sql'] = 'SELECT /*_PREFIX_*/participations.*, contact, usergroup
 			AND channel_category_id = /*_ID categories channel/e-mail _*/ LIMIT 1) AS e_mail
 		, /*_PREFIX_*/contacts.identifier
 		, contact_categories.parameters AS contact_parameters
-		, (CASE WHEN LOCATE("&type=", contact_categories.parameters) > 0 THEN
-			SUBSTRING_INDEX(SUBSTRING_INDEX(contact_categories.parameters, "&type=", -1), "&", 1)
-			ELSE "*" END
+		, SUBSTRING_INDEX(CASE WHEN LOCATE("&alias=", contact_categories.parameters) > 0 THEN
+			SUBSTRING_INDEX(SUBSTRING_INDEX(contact_categories.parameters, "&alias=", -1), "&", 1)
+			ELSE contact_categories.path END, "/", -1
 		) AS contact_scope
 		, event
 		, CONCAT(
