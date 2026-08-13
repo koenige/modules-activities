@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- activities module\n"
-"POT-Creation-Date: 2026-08-11 18:31+0000\n"
+"POT-Creation-Date: 2026-08-13 02:54+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -194,82 +194,98 @@ msgid "Foreign-key column for multi-row formfield data"
 msgstr ""
 
 #: configuration/settings.cfg:118
+msgid "Extra LEFT JOIN clauses for reading formfield data (table.column format)"
+msgstr ""
+
+#: configuration/settings.cfg:125
 msgid "Preset hidden values on registration insert (category IDs, usergroup, etc.)"
 msgstr ""
 
-#: configuration/settings.cfg:129
+#: configuration/settings.cfg:136
 msgid "Select options for formkit select fields"
 msgstr ""
 
-#: configuration/settings.cfg:137
+#: configuration/settings.cfg:144
 msgid "Subject line per mail type (authentication, confirmation, field-changed)"
 msgstr ""
 
-#: configuration/settings.cfg:144
+#: configuration/settings.cfg:151
 msgid "Do not show in form field data"
 msgstr ""
 
-#: configuration/settings.cfg:149
+#: configuration/settings.cfg:156
 msgid "H2 heading above form"
 msgstr ""
 
-#: configuration/settings.cfg:155
+#: configuration/settings.cfg:162
 msgid "H2 heading above form after insert"
 msgstr ""
 
-#: configuration/settings.cfg:161
+#: configuration/settings.cfg:168
+msgid "Media folder ID for file uploads (overrides auto-created event upload folder)"
+msgstr ""
+
+#: configuration/settings.cfg:175
 msgid "Subscribe registrant to newsletter after successful registration"
 msgstr ""
 
-#: configuration/settings.cfg:166
+#: configuration/settings.cfg:180
 msgid "API URL for external newsletter subscription"
 msgstr ""
 
-#: configuration/settings.cfg:172
+#: configuration/settings.cfg:186
 msgid "Skip confirmation mail for this registration form"
 msgstr ""
 
-#: configuration/settings.cfg:177
+#: configuration/settings.cfg:191
+msgid "Form field or subtable is optional (not required for submission)"
+msgstr ""
+
+#: configuration/settings.cfg:196
 msgid "Include usergroup in participant presence lists; set to 0 to exclude"
 msgstr ""
 
-#: configuration/settings.cfg:183
+#: configuration/settings.cfg:202
 msgid "Enable registrations for events of this category"
 msgstr ""
 
-#: configuration/settings.cfg:189
+#: configuration/settings.cfg:208
 msgid "List of required fields per form"
 msgstr ""
 
-#: configuration/settings.cfg:199
+#: configuration/settings.cfg:218
 msgid "Always show this field if the form requires login, even if user is not logged in"
 msgstr ""
 
-#: configuration/settings.cfg:205
-msgid "Store select label/text instead of key in formfield data"
+#: configuration/settings.cfg:224
+msgid "Property name for select options: enum or selection (default: enum)"
 msgstr ""
 
-#: configuration/settings.cfg:210
+#: configuration/settings.cfg:232
 msgid "Option list for formkit select fields (alternative to enum)"
 msgstr ""
 
-#: configuration/settings.cfg:218
+#: configuration/settings.cfg:240
+msgid "Use formfield explanation text as the single select option instead of enum/selection"
+msgstr ""
+
+#: configuration/settings.cfg:246
 msgid "Checkbox-set options for multi-select formfields"
 msgstr ""
 
-#: configuration/settings.cfg:226
+#: configuration/settings.cfg:254
 msgid "Named SQL query key for populating select options"
 msgstr ""
 
-#: configuration/settings.cfg:233
+#: configuration/settings.cfg:261
 msgid "Newsletter or mailing-list UUID per select option"
 msgstr ""
 
-#: configuration/settings.cfg:241
+#: configuration/settings.cfg:269
 msgid "Use children of this category as categories for user groups"
 msgstr ""
 
-#: configuration/settings.cfg:248
+#: configuration/settings.cfg:276
 msgid "Override field title on generated registration form"
 msgstr ""
 
