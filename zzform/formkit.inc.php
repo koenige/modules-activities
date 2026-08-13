@@ -328,7 +328,7 @@ function mf_activities_formkit_subtable($formfield, $def_no, $nos) {
 	$def['form_display'] = 'lines';
 	$def['min_records'] = 1;
 	$def['max_records'] = $formfield['custom']['zzform_def']['max_records'] ?? 1;
-	$optional = $formfield['custom']['optional'] ?? 0; // @todo zzform_def
+	$optional = $formfield['custom']['optional'] ?? 0;
 	$def['min_records_required'] = !$optional;
 	$def['dont_show_missing'] = true; // show only individual errors
 	$def['class'] = !empty($formfield['hide_in_form']) ? 'hidden' : '';
