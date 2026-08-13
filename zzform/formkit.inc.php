@@ -65,7 +65,7 @@ function mf_activities_formkit($event_id, $parameters) {
 		list($formfield['table'], $formfield['field_name']) = explode('.', $formfield['definition']['db_field']);
 		if ($formfield['table'] === $zz['table']) {
 			$my_no = mf_activities_formkit_field($formfield, $zz['fields']);
-			$zz['fields'][$my_no]['type'] = $formfield['definition']['type'];
+			$zz['fields'][$my_no]['type'] = $formfield['definition']['zzform_def']['type'];
 			$my_field = &$zz['fields'][$my_no];
 		} elseif (wrap_db_prefix($formfield['table']) === wrap_db_prefix('/*_PREFIX_*/persons')) {
 			$zz['fields'][$persons_no]['hide_in_form'] = false;
@@ -76,14 +76,14 @@ function mf_activities_formkit($event_id, $parameters) {
 			$my_field = &$zz['fields'][$no];
 			$nos[$formfield_id] = $no;
 			if (wrap_db_prefix($formfield['table']) === wrap_db_prefix('/*_PREFIX_*/media'))
-				$formfield['custom']['hide_in_list'] = true;
+				$formfield['custom']['zzform_def']['hide_in_list'] = true;
 		}
 		$my_field['title'] = $formfield['formfield'];
 		if (empty($formfield['definition']['selection_from_explanation']))
 			$my_field['explanation'] = $formfield['explanation'];
 		$my_field['hide_in_form'] = false;
 		$my_field['export'] = true;
-		$my_field['hide_in_list'] = $formfield['custom']['hide_in_list'] ?? $formfield['definition']['hide_in_list'] ?? false;
+		$my_field['hide_in_list'] = $formfield['custom']['zzform_def']['hide_in_list'] ?? $formfield['definition']['zzform_def']['hide_in_list'] ?? false;
 		if ($formfield['area'] AND $formfield['area'] !== $area) {
 			$my_field['separator_before'] = 'text <h3>'.$formfield['area'].'</h3>';
 			$area = $formfield['area'];
@@ -130,7 +130,7 @@ function mf_activities_formkit_fields($event_id) {
 			$formfields[$formfield_id][$param]
 				= mf_activities_formkit_normalize_parameters($formfield[$param]);
 		}
-		$type = $formfields[$formfield_id]['definition']['type'] ?? '';
+		$type = $formfields[$formfield_id]['definition']['zzform_def']['type'] ?? '';
 		if ($type === 'upload') {
 			$formfields[$formfield_id]['definition']['main_medium_id']
 				= mf_activities_formkit_upload_folder($event_id);
@@ -139,7 +139,7 @@ function mf_activities_formkit_fields($event_id) {
 			$formfield['explanation'] = '';
 			$formfield['definition'] = [
 				'db_field' => 'contacts_media.medium_id',
-				'type' => 'foreign_id'
+				'zzform_def' => ['type' => 'foreign_id']
 			];
 			$formfields[] = $formfield;
 		}
@@ -327,8 +327,8 @@ function mf_activities_formkit_subtable($formfield, $def_no, $nos) {
 	$def['table_name'] = $def['table'].'_'.$def_no;
 	$def['form_display'] = 'lines';
 	$def['min_records'] = 1;
-	$def['max_records'] = $formfield['custom']['max_records'] ?? 1;
-	$optional = $formfield['custom']['optional'] ?? 0;
+	$def['max_records'] = $formfield['custom']['zzform_def']['max_records'] ?? 1;
+	$optional = $formfield['custom']['optional'] ?? 0; // @todo zzform_def
 	$def['min_records_required'] = !$optional;
 	$def['dont_show_missing'] = true; // show only individual errors
 	$def['class'] = !empty($formfield['hide_in_form']) ? 'hidden' : '';
@@ -351,11 +351,11 @@ function mf_activities_formkit_subtable($formfield, $def_no, $nos) {
 			$def['fields'][$field_no]['type'] = 'foreign_key';
 			break;
 		case $formfield['field_name']:
-			$def['fields'][$field_no]['type'] = $formfield['definition']['type'];
+			$def['fields'][$field_no]['type'] = $formfield['definition']['zzform_def']['type'];
 			$def['fields'][$field_no]['title'] = $formfield['formfield']; // for better error messages
-			$def['fields'][$field_no]['maxlength'] = $formfield['custom']['maxlength'] ?? wrap_setting('activities_maxlength_memo');
+			$def['fields'][$field_no]['maxlength'] = $formfield['custom']['zzform_def']['maxlength'] ?? wrap_setting('activities_maxlength_memo');
 			$def['fields'][$field_no]['hide_in_list'] = true;
-			$field_function = 'mf_activities_formkit_'.$formfield['definition']['type'];
+			$field_function = 'mf_activities_formkit_'.$formfield['definition']['zzform_def']['type'];
 			if (function_exists($field_function))
 				$def['fields'][$field_no] = $field_function($def['fields'][$field_no], $formfield);
 			break;
@@ -405,13 +405,13 @@ function mf_activities_formkit_select($field, $formfield) {
 	else {
 		$field[$select_type] = mf_activities_formkit_selection($formfield['custom']['selection'] ?? $formfield['definition']['selection'] ?? []);
 	}
-	$field['show_values_as_list'] = $formfield['custom']['show_values_as_list'] ?? $formfield['definition']['show_values_as_list'] ?? false;
+	$field['show_values_as_list'] = $formfield['custom']['zzform_def']['show_values_as_list'] ?? $formfield['definition']['zzform_def']['show_values_as_list'] ?? false;
 	if (!empty($formfield['definition']['sql_query'])) {
 		$field['sql'] = wrap_sql_query($formfield['definition']['sql_query']);
-		$field['select_save_value'] = $formfield['definition']['select_save_value'] ?? false;
-	} elseif (!empty($formfield['definition']['sql'])) {
-		$field['sql'] = $formfield['definition']['sql'];
-		$field['select_save_value'] = $formfield['definition']['select_save_value'] ?? false;
+		$field['select_save_value'] = $formfield['definition']['zzform_def']['select_save_value'] ?? false;
+	} elseif (!empty($formfield['definition']['zzform_def']['sql'])) {
+		$field['sql'] = $formfield['definition']['zzform_def']['sql'];
+		$field['select_save_value'] = $formfield['definition']['zzform_def']['select_save_value'] ?? false;
 	}
 	return $field;
 }
@@ -467,12 +467,12 @@ function mf_activities_formkit_media($formfield, $def) {
 		case 'image':
 			$def['fields'][$no]['image'][0]['required'] = false;
 			$def['fields'][$no]['show_title'] = false;
-			$filetypes = $formfield['custom']['input_filetypes']
-				?? $formfield['definition']['input_filetypes'] ?? [];
+			$filetypes = $formfield['custom']['zzform_def']['input_filetypes']
+				?? $formfield['definition']['zzform_def']['input_filetypes'] ?? [];
 			if ($filetypes)
 				$def['fields'][$no]['input_filetypes'] = $filetypes;
-			$max_filesize = $formfield['custom']['upload_max_filesize']
-				?? $formfield['definition']['upload_max_filesize'] ?? [];
+			$max_filesize = $formfield['custom']['zzform_def']['upload_max_filesize']
+				?? $formfield['definition']['zzform_def']['upload_max_filesize'] ?? [];
 			if ($max_filesize)
 				$def['fields'][$no]['upload_max_filesize'] = $max_filesize;
 			break;

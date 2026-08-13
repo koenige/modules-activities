@@ -210,7 +210,7 @@ $zz['fields'][99]['type'] = 'timestamp';
 $zz['fields'][99]['hide_in_list'] = true;
 
 $zz['sql'] = 'SELECT /*_PREFIX_*/participations.*, contact, usergroup
-		, IF(/*_PREFIX_*/categories.parameters LIKE "%&hide_in_list=1%", "", /*_PREFIX_*/categories.category) AS category
+		, IF(/*_PREFIX_*/categories.parameters LIKE "%&zzform_def[hide_in_list]=1%", "", /*_PREFIX_*/categories.category) AS category
 		, (SELECT identification FROM /*_PREFIX_*/contactdetails
 			WHERE /*_PREFIX_*/contactdetails.contact_id = /*_PREFIX_*/participations.contact_id
 			AND channel_category_id = /*_ID categories channel/e-mail _*/ LIMIT 1) AS e_mail

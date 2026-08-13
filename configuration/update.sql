@@ -140,3 +140,9 @@
 /* 2026-04-03-1 */	UPDATE webpages SET content = REPLACE(content, '%%% forms participations-usergroups *', '%%% request usergroup *') WHERE content LIKE '%\%\%\% forms participations-usergroups *%';
 /* 2026-08-11-1 */	ALTER TABLE `usergroups` ADD `usergroup_female` varchar(80) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `usergroup`, ADD `usergroup_male` varchar(80) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `usergroup_female`;
 /* 2026-08-11-2 */	ALTER TABLE `usergroups` ADD `usergroup_diverse` varchar(80) COLLATE 'utf8mb4_unicode_ci' NULL AFTER `usergroup_male`;
+/* 2026-08-12-20 */	UPDATE formfields SET `parameters` = REPLACE(`parameters`, '&hide_in_list=', '&zzform_def[hide_in_list]=') WHERE `parameters` LIKE '%&hide_in_list=%';
+/* 2026-08-12-21 */	UPDATE formfields SET `parameters` = REPLACE(`parameters`, '&max_records=', '&zzform_def[max_records]=') WHERE `parameters` LIKE '%&max_records=%';
+/* 2026-08-12-22 */	UPDATE formfields SET `parameters` = REPLACE(`parameters`, '&maxlength=', '&zzform_def[maxlength]=') WHERE `parameters` LIKE '%&maxlength=%';
+/* 2026-08-12-23 */	UPDATE formfields SET `parameters` = REPLACE(`parameters`, '&show_values_as_list=', '&zzform_def[show_values_as_list]=') WHERE `parameters` LIKE '%&show_values_as_list=%';
+/* 2026-08-12-24 */	UPDATE formfields SET `parameters` = REPLACE(`parameters`, '&input_filetypes=', '&zzform_def[input_filetypes]=') WHERE `parameters` LIKE '%&input_filetypes=%';
+/* 2026-08-12-25 */	UPDATE formfields SET `parameters` = REPLACE(`parameters`, '&upload_max_filesize=', '&zzform_def[upload_max_filesize]=') WHERE `parameters` LIKE '%&upload_max_filesize=%';
