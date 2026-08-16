@@ -223,7 +223,7 @@ function mf_activities_hook_mailing_send($ops) {
 		$my_mail['to']['e_mail'] = $recipient['e_mail'];
 
 		$my_data = $event + $recipient;
-		$my_data['addlogin_hash'] = wrap_set_hash($my_data['contact_id'].'-'.$my_data['identifier'], 'addlogin_key');
+		$my_data['addlogin_hash'] = wrap_set_hash($my_data['contact_id'].'-'.$my_data['identifier'], 'contacts_addlogin_key');
 		
 		// call custom function if exists
 		if (function_exists('my_hook_mailing_send'))
