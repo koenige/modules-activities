@@ -146,3 +146,4 @@
 /* 2026-08-12-23 */	UPDATE formfields SET `parameters` = REPLACE(`parameters`, '&show_values_as_list=', '&zzform_def[show_values_as_list]=') WHERE `parameters` LIKE '%&show_values_as_list=%';
 /* 2026-08-12-24 */	UPDATE formfields SET `parameters` = REPLACE(`parameters`, '&input_filetypes=', '&zzform_def[input_filetypes]=') WHERE `parameters` LIKE '%&input_filetypes=%';
 /* 2026-08-12-25 */	UPDATE formfields SET `parameters` = REPLACE(`parameters`, '&upload_max_filesize=', '&zzform_def[upload_max_filesize]=') WHERE `parameters` LIKE '%&upload_max_filesize=%';
+/* 2026-08-16-6 */	UPDATE formfields SET `parameters` = REPLACE(`parameters`, '&zzform_def[', '&zzform[') WHERE `parameters` LIKE '%&zzform_def[%';
