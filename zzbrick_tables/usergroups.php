@@ -133,7 +133,7 @@ if (wrap_setting('activities_usergroups_organisation')) {
 		FROM /*_PREFIX_*/contacts
 		LEFT JOIN /*_PREFIX_*/categories
 			ON /*_PREFIX_*/contacts.contact_category_id = /*_PREFIX_*/categories.category_id
-		WHERE /*_PREFIX_*/categories.parameters LIKE "%&organisation=1%"
+		WHERE /*_PREFIX_*/categories.parameters LIKE "%&contacts_organisation=1%"
 		ORDER BY contact';
 	$zz['fields'][12]['display_field'] = 'contact';
 }
