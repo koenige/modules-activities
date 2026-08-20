@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- activities module\n"
-"POT-Creation-Date: 2026-08-13 02:54+0000\n"
+"POT-Creation-Date: 2026-08-20 08:21+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -270,22 +270,18 @@ msgid "Use formfield explanation text as the single select option instead of enu
 msgstr ""
 
 #: configuration/settings.cfg:246
-msgid "Checkbox-set options for multi-select formfields"
-msgstr ""
-
-#: configuration/settings.cfg:254
 msgid "Named SQL query key for populating select options"
 msgstr ""
 
-#: configuration/settings.cfg:261
+#: configuration/settings.cfg:253
 msgid "Newsletter or mailing-list UUID per select option"
 msgstr ""
 
-#: configuration/settings.cfg:269
+#: configuration/settings.cfg:261
 msgid "Use children of this category as categories for user groups"
 msgstr ""
 
-#: configuration/settings.cfg:276
+#: configuration/settings.cfg:268
 msgid "Override field title on generated registration form"
 msgstr ""
 
