@@ -13,6 +13,8 @@
  */
 
 
+wrap_include('form', 'default');
+
 if (empty($brick['vars'][0])) wrap_quit(404);
 if (empty($brick['data_context']['usergroup_id'])) {
 	// direct access: get data
@@ -52,7 +54,7 @@ foreach ($zz['fields'] as $no => $field) {
 		break;
 
 	case 'status_category_id':
-		if (!empty($data['parameters']['hide']['status_category_id']))
+		if (mf_default_form_show($data['parameters'], 'participations', 'status_category_id', 0))
 			$zz['fields'][$no]['hide_in_list'] = true;
 		break;
 

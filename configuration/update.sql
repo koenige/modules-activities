@@ -147,3 +147,15 @@
 /* 2026-08-12-24 */	UPDATE formfields SET `parameters` = REPLACE(`parameters`, '&input_filetypes=', '&zzform_def[input_filetypes]=') WHERE `parameters` LIKE '%&input_filetypes=%';
 /* 2026-08-12-25 */	UPDATE formfields SET `parameters` = REPLACE(`parameters`, '&upload_max_filesize=', '&zzform_def[upload_max_filesize]=') WHERE `parameters` LIKE '%&upload_max_filesize=%';
 /* 2026-08-16-6 */	UPDATE formfields SET `parameters` = REPLACE(`parameters`, '&zzform_def[', '&zzform[') WHERE `parameters` LIKE '%&zzform_def[%';
+/* 2026-08-20-1 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&hide[date_begin]=1', '&form_show[participations.date_begin]=0') WHERE `parameters` LIKE '%&hide[date_begin]=1%';
+/* 2026-08-20-2 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&hide[date_end]=1', '&form_show[participations.date_end]=0') WHERE `parameters` LIKE '%&hide[date_end]=1%';
+/* 2026-08-20-3 */	UPDATE usergroups SET `parameters` = REPLACE(`parameters`, '&hide[event]=1', '&form_show[participations.event]=0') WHERE `parameters` LIKE '%&hide[event]=1%';
+/* 2026-08-20-4 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&hide[role]=1', '&form_show[participations.role]=0') WHERE `parameters` LIKE '%&hide[role]=1%';
+/* 2026-08-20-5 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&hide[status_category_id]=1', '&form_show[participations.status_category_id]=0') WHERE `parameters` LIKE '%&hide[status_category_id]=1%';
+/* 2026-08-20-6 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&hide[sequence]=1', '&form_show[participations.sequence]=0') WHERE `parameters` LIKE '%&hide[sequence]=1%';
+/* 2026-08-20-7 */	UPDATE usergroups SET `parameters` = REPLACE(`parameters`, '&show[date_begin]=1', '&form_show[participations.date_begin]=1') WHERE `parameters` LIKE '%&show[date_begin]=1%';
+/* 2026-08-20-8 */	UPDATE usergroups SET `parameters` = REPLACE(`parameters`, '&show[date_end]=1', '&form_show[participations.date_end]=1') WHERE `parameters` LIKE '%&show[date_end]=1%';
+/* 2026-08-20-9 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&show[event]=1', '&form_show[participations.event]=1') WHERE `parameters` LIKE '%&show[event]=1%';
+/* 2026-08-20-10 */	UPDATE usergroups SET `parameters` = REPLACE(`parameters`, '&show[role]=1', '&form_show[participations.role]=1') WHERE `parameters` LIKE '%&show[role]=1%';
+/* 2026-08-20-11 */	UPDATE usergroups SET `parameters` = REPLACE(`parameters`, '&show[status_category_id]=1', '&form_show[participations.status_category_id]=1') WHERE `parameters` LIKE '%&show[status_category_id]=1%';
+/* 2026-08-20-12 */	UPDATE usergroups SET `parameters` = REPLACE(`parameters`, '&show[sequence]=1', '&form_show[participations.sequence]=1') WHERE `parameters` LIKE '%&show[sequence]=1%';

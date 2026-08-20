@@ -50,23 +50,23 @@ $zz['fields'][3]['title'] = 'Group';
 $zz['fields'][3]['field_name'] = 'usergroup_id';
 $zz['fields'][3]['type'] = 'select';
 $zz['fields'][3]['sql'] = 'SELECT usergroup_id, usergroup, category
-		, IF(categories.parameters LIKE "%&hide[date_begin]=1%"
-			, IF(usergroups.parameters LIKE "%&show[date_begin]%", 1, NULL), 1
+		, IF(categories.parameters LIKE "%&form_show[participations.date_begin]=0%"
+			, IF(usergroups.parameters LIKE "%&form_show[participations.date_begin]=1%", 1, NULL), 1
 		) AS show_date_begin
-		, IF(categories.parameters LIKE "%&hide[date_end]=1%"
-			, IF(usergroups.parameters LIKE "%&show[date_end]%", 1, NULL), 1
+		, IF(categories.parameters LIKE "%&form_show[participations.date_end]=0%"
+			, IF(usergroups.parameters LIKE "%&form_show[participations.date_end]=1%", 1, NULL), 1
 		) AS show_date_end
-		, IF(categories.parameters LIKE "%&hide[status_category_id]=1%"
-			, IF(usergroups.parameters LIKE "%&show[status_category_id]%", 1, NULL), 1
+		, IF(categories.parameters LIKE "%&form_show[participations.status_category_id]=0%"
+			, IF(usergroups.parameters LIKE "%&form_show[participations.status_category_id]=1%", 1, NULL), 1
 		) AS show_status_category_id
-		, IF(categories.parameters LIKE "%&hide[sequence]=1%"
-			, IF(usergroups.parameters LIKE "%&show[sequence]%", 1, NULL), 1
+		, IF(categories.parameters LIKE "%&form_show[participations.sequence]=0%"
+			, IF(usergroups.parameters LIKE "%&form_show[participations.sequence]=1%", 1, NULL), 1
 		) AS show_sequence
-		, IF(categories.parameters LIKE "%&hide[role]=1%"
-			, IF(usergroups.parameters LIKE "%&show[role]%", 1, NULL), 1
+		, IF(categories.parameters LIKE "%&form_show[participations.role]=0%"
+			, IF(usergroups.parameters LIKE "%&form_show[participations.role]=1%", 1, NULL), 1
 		) AS show_role
-		, IF(categories.parameters LIKE "%&show[event]=1%"
-			, IF((ISNULL(usergroups.parameters) OR usergroups.parameters NOT LIKE "%&hide[event]%"), 1, NULL), NULL
+		, IF(categories.parameters LIKE "%&form_show[participations.event]=1%"
+			, IF(usergroups.parameters LIKE "%&form_show[participations.event]=0%", NULL, 1), NULL
 		) AS show_event
 		, categories.parameters
 	FROM usergroups
