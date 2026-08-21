@@ -209,10 +209,6 @@ msgid ""
 "Preset hidden values on registration insert (category IDs, usergroup, etc.)"
 msgstr ""
 
-#: configuration/settings.cfg:129
-msgid "Select options for formkit select fields"
-msgstr ""
-
 #: configuration/settings.cfg:137
 msgid ""
 "Subject line per mail type (authentication, confirmation, field-changed)"
@@ -265,7 +261,7 @@ msgid "Store select label/text instead of key in formfield data"
 msgstr ""
 
 #: configuration/settings.cfg:210
-msgid "Option list for formkit select fields (alternative to enum)"
+msgid "Option list for formkit select fields (alternative to zzform[enum])"
 msgstr ""
 
 #: configuration/settings.cfg:218

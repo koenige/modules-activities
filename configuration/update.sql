@@ -160,3 +160,5 @@
 /* 2026-08-20-11 */	UPDATE usergroups SET `parameters` = REPLACE(`parameters`, '&show[status_category_id]=1', '&form_show[participations.status_category_id]=1') WHERE `parameters` LIKE '%&show[status_category_id]=1%';
 /* 2026-08-20-12 */	UPDATE usergroups SET `parameters` = REPLACE(`parameters`, '&show[sequence]=1', '&form_show[participations.sequence]=1') WHERE `parameters` LIKE '%&show[sequence]=1%';
 /* 2026-08-21-1 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&value[status_category_id]=', '&zzform_field[status_category_id][value]=') WHERE `parameters` LIKE '%&value[status_category_id]=%';
+/* 2026-08-22-1 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&enum[', '&zzform[enum][') WHERE `parameters` LIKE '%&enum[%';
+/* 2026-08-22-2 */	UPDATE formfields SET `parameters` = REPLACE(`parameters`, '&enum[', '&zzform[enum][') WHERE `parameters` LIKE '%&enum[%';

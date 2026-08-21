@@ -403,7 +403,12 @@ function mf_activities_formkit_select($field, $formfield) {
 	if (!empty($formfield['definition']['selection_from_explanation']))
 		$field[$select_type] = [trim(str_replace("\n", " ", $formfield['explanation']))];
 	else {
-		$field[$select_type] = mf_activities_formkit_selection($formfield['custom']['selection'] ?? $formfield['definition']['selection'] ?? []);
+		$options = $formfield['custom']['zzform'][$select_type]
+			?? $formfield['definition']['zzform'][$select_type]
+			?? $formfield['custom']['selection']
+			?? $formfield['definition']['selection']
+			?? [];
+		$field[$select_type] = mf_activities_formkit_selection($options);
 	}
 	$field['show_values_as_list'] = $formfield['custom']['zzform']['show_values_as_list'] ?? $formfield['definition']['zzform']['show_values_as_list'] ?? false;
 	if (!empty($formfield['definition']['sql_query'])) {
