@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- activities module\n"
-"POT-Creation-Date: 2026-08-20 22:14+0000\n"
+"POT-Creation-Date: 2026-08-21 17:41+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -291,6 +291,10 @@ msgstr ""
 
 #: configuration/settings.cfg:284
 msgid "Override field title on generated registration form"
+msgstr ""
+
+#: configuration/settings.cfg:291
+msgid "Days after participation ends during which access rights remain"
 msgstr ""
 
 #: templates/access-usergroups-list.template.txt:15
