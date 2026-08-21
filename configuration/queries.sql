@@ -64,7 +64,7 @@ WHERE contact_id = %d
 
 -- activities_placeholder_form --
 SELECT event_id, event, identifier, form_id, abstract, events.description
-	, IF(published = "yes", 1, NULL) AS published
+	, IF(events.published = "yes", 1, NULL) AS published
 	, IF((SELECT COUNT(*) FROM formtemplates
 		WHERE formtemplates.form_id = forms.form_id
 		AND template_category_id = /*_ID CATEGORIES template-types/authentication _*/)
