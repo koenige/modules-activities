@@ -162,3 +162,4 @@
 /* 2026-08-21-1 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&value[status_category_id]=', '&zzform_field[status_category_id][value]=') WHERE `parameters` LIKE '%&value[status_category_id]=%';
 /* 2026-08-22-1 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&enum[', '&zzform[enum][') WHERE `parameters` LIKE '%&enum[%';
 /* 2026-08-22-2 */	UPDATE formfields SET `parameters` = REPLACE(`parameters`, '&enum[', '&zzform[enum][') WHERE `parameters` LIKE '%&enum[%';
+/* 2026-08-22-3 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&db_values[provider_category_id]=ID categories provider/', '&db_values[channel_category_id]=ID categories channel/') WHERE `parameters` LIKE '%&db_values[provider_category_id]=ID categories provider/%';
