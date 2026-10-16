@@ -50,6 +50,7 @@
 <br><input type="submit" class="submit"></td></tr>
 </table>
 </form>
+%%% script default/form-submit-once.js %%%
 </fieldset>
 %%% endif %%%
 

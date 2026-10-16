@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- activities module\n"
-"POT-Creation-Date: 2026-08-20 22:14+0000\n"
+"POT-Creation-Date: 2026-10-16 12:09+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -143,8 +143,8 @@ msgstr ""
 msgid "Delete registration"
 msgstr ""
 
-#: templates/registration-confirmation.template.txt:57
-#: templates/registration-confirmation.template.txt:59
+#: templates/registration-confirmation.template.txt:58
+#: templates/registration-confirmation.template.txt:60
 msgid "Continue to the home page"
 msgstr ""
 

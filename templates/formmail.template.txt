@@ -11,3 +11,4 @@
 <form method="POST" action="">
 <input type="submit" value="%%% text Send form mail %%%">
 </form>
+%%% script default/form-submit-once.js %%%
