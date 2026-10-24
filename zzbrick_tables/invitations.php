@@ -46,7 +46,6 @@ $zz['fields'][4]['sql'] = 'SELECT contact_id, contact, identifier
 	WHERE categories.parameters LIKE "%&context[contacts_general]=1%"
 	ORDER BY identifier';
 $zz['fields'][4]['display_field'] = 'contact';
-$zz['fields'][4]['sql_character_set'][1] = 'utf8';
 $zz['fields'][4]['if']['where']['hide_in_form'] = true;
 $zz['fields'][4]['if']['where']['hide_in_list'] = true;
 $zz['fields'][4]['select_dont_force_single_value'] = true;
