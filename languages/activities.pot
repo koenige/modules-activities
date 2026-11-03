@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- activities module\n"
-"POT-Creation-Date: 2026-10-24 11:03+0000\n"
+"POT-Creation-Date: 2026-11-03 17:28+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -388,7 +388,7 @@ msgstr ""
 
 #: zzbrick_tables/contacts-access.php:74
 #: zzbrick_tables/formtemplates.php:60
-#: zzbrick_tables/formtemplates-defaults.php:77
+#: zzbrick_tables/formtemplates-defaults.php:78
 #: zzbrick_tables/mailings.php:116
 #: zzbrick_tables/participations.php:208
 #: zzbrick_tables/participations-categories.php:64
@@ -569,7 +569,7 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
-#: zzbrick_tables/formtemplates-defaults.php:56
+#: zzbrick_tables/formtemplates-defaults.php:57
 #: zzbrick_tables/invitations.php:39
 #: zzbrick_tables/participations.php:107
 #: zzbrick_tables/participations-contacts.php:32
@@ -577,7 +577,7 @@ msgstr ""
 msgid "Organisation"
 msgstr ""
 
-#: zzbrick_tables/formtemplates-defaults.php:72
+#: zzbrick_tables/formtemplates-defaults.php:73
 msgid "Default Template"
 msgstr ""
 

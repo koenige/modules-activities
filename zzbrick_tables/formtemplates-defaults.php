@@ -49,6 +49,7 @@ $zz['fields'][3]['sql'] = 'SELECT language_id, language, variation
 	FROM /*_PREFIX_*/languages
 	WHERE website = "yes"
 	ORDER BY language';
+$zz['fields'][3]['sql_translate'] = ['language_id' => 'languages'];
 $zz['fields'][3]['display_field'] = 'language_name';
 $zz['fields'][3]['search'] = '/*_PREFIX_*/languages.language';
 $zz['fields'][3]['show_values_as_list'] = true;
