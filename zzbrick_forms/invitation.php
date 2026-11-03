@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2021-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2021-2024, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -43,7 +43,8 @@ $values['relations'] = [];
 
 $zz = zzform_include('contacts', $values, 'forms');
 
-$zz['title'] = $invitation['event'].' <br>'.wrap_date($invitation['duration']);
+$zz['title'] = $invitation['event'];
+$zz['subtitle']['text'] = wrap_date($invitation['duration']);
 $zz['record']['form_lead'] = $invitation['lead'];
 $zz['explanation'] = $invitation['header'];
 $zz['footer']['text'] = $invitation['footer'];
