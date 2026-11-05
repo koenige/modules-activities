@@ -8,13 +8,13 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023 Gustaf Mossakowski
+ * @copyright Copyright © 2023, 2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
 
 /**
- * add folder(s) to media, if zip_folder = 1
+ * add folder(s) to media, if activities_zip_folder = 1
  *
  * @param array $media
  * @param int $event_id
@@ -29,7 +29,7 @@ function mf_activities_media_zip_folders($media, $event_id) {
 		LEFT JOIN categories
 			ON categories.category_id = formfields.formfield_category_id
 		WHERE event_id = %d
-		AND formfields.parameters LIKE "%%&zip_folder=1%%"
+		AND formfields.parameters LIKE "%%&activities_zip_folder=1%%"
 		ORDER BY formfields.sequence';
 	$sql = sprintf($sql, $event_id);
 	$folders = wrap_db_fetch($sql, 'formfield_id');
@@ -45,7 +45,7 @@ function mf_activities_media_zip_folders($media, $event_id) {
 			continue;
 		}
 		parse_str($folder['category_parameters'], $folder['category_parameters']);
-		if (empty($folder['category_parameters']['zip_folder'])) {
+		if (empty($folder['category_parameters']['activities_zip_folder'])) {
 			wrap_error([
 				'Form field “%s” used as ZIP folder, but category “%s” does not allow this.'
 				, ['values' => [$folder['formfield'], $folder['category']]]
