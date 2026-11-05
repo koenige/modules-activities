@@ -289,6 +289,7 @@ function mf_activities_formkit_normalize_parameters($parameters) {
 		if (!$value) unset($parameters[$key]);
 		$parameters[$key] = wrap_setting_parse($value);
 		$parameters[$key] = wrap_setting_list($parameters[$key]);
+		$parameters[$key] = wrap_setting_subkeys_list($key, $parameters[$key]);
 	}
 	return $parameters;
 }
