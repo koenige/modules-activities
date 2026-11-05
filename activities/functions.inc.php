@@ -482,7 +482,7 @@ function mf_activities_formfielddata_record($record) {
  * @return array
  */
 function mf_activities_formfielddata_format($form_field, $values) {
-	if (empty($form_field['parameters']['format'])) return $values;
+	if (empty($form_field['parameters']['activities_formfielddata_format'])) return $values;
 	$first = reset($values);
 	if (is_array($first)) {
 		$result = [];
@@ -490,7 +490,7 @@ function mf_activities_formfielddata_format($form_field, $values) {
 			$result[] = mf_activities_formfielddata_format($form_field, $line);
 		return $result;
 	}
-	foreach ($form_field['parameters']['format'] as $index => $format) {
+	foreach ($form_field['parameters']['activities_formfielddata_format'] as $index => $format) {
 		if (empty($values[$index])) continue;
 		$values[$index] = $format($values[$index]);
 	}

@@ -165,3 +165,4 @@
 /* 2026-08-22-3 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&db_values[provider_category_id]=ID categories provider/', '&db_values[channel_category_id]=ID categories channel/') WHERE `parameters` LIKE '%&db_values[provider_category_id]=ID categories provider/%';
 /* 2026-08-24-1 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&access=', '&form_access=') WHERE `parameters` LIKE '%access=%' AND main_category_id = /*_ID categories template-types _*/;
 /* 2026-11-05-1 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&concat[', '&activities_formfielddata_concat[') WHERE `parameters` LIKE '%&concat[%' AND main_category_id = /*_ID categories field-types _*/;
+/* 2026-11-05-2 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&format[', '&activities_formfielddata_format[') WHERE `parameters` LIKE '%&format[%' AND main_category_id = /*_ID categories field-types _*/;
