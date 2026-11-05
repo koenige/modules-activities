@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- activities module\n"
-"POT-Creation-Date: 2026-11-05 12:33+0000\n"
+"POT-Creation-Date: 2026-11-05 12:49+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -202,106 +202,114 @@ msgid "Map formfield category to database column (table.field)"
 msgstr ""
 
 #: configuration/settings.cfg:120
+msgid "Extra columns to read and show with this field type (table.field)"
+msgstr ""
+
+#: configuration/settings.cfg:127
 msgid "Foreign-key column for multi-row formfield data"
 msgstr ""
 
-#: configuration/settings.cfg:126
+#: configuration/settings.cfg:133
 msgid "Extra LEFT JOIN clauses for reading formfield data (table.column format)"
 msgstr ""
 
-#: configuration/settings.cfg:133
+#: configuration/settings.cfg:140
 msgid "Preset hidden values on registration insert (category IDs, usergroup, etc.)"
 msgstr ""
 
-#: configuration/settings.cfg:148
+#: configuration/settings.cfg:151
+msgid "Column matched against the contact when reading this field type (default contact_id)"
+msgstr ""
+
+#: configuration/settings.cfg:161
 msgid "Only offer this mail template type for forms with this access"
 msgstr ""
 
-#: configuration/settings.cfg:166
+#: configuration/settings.cfg:179
 msgid "Show form-field select for this mail template type"
 msgstr ""
 
-#: configuration/settings.cfg:172
+#: configuration/settings.cfg:185
 msgid "Subject line per mail type (authentication, confirmation, field-changed)"
 msgstr ""
 
-#: configuration/settings.cfg:179
+#: configuration/settings.cfg:192
 msgid "Do not show in form field data"
 msgstr ""
 
-#: configuration/settings.cfg:184
+#: configuration/settings.cfg:197
 msgid "H2 heading above form"
 msgstr ""
 
-#: configuration/settings.cfg:190
+#: configuration/settings.cfg:203
 msgid "H2 heading above form after insert"
 msgstr ""
 
-#: configuration/settings.cfg:196
+#: configuration/settings.cfg:209
 msgid "Media folder ID for file uploads (overrides auto-created event upload folder)"
 msgstr ""
 
-#: configuration/settings.cfg:203
+#: configuration/settings.cfg:216
 msgid "Subscribe registrant to newsletter after successful registration"
 msgstr ""
 
-#: configuration/settings.cfg:208
+#: configuration/settings.cfg:221
 msgid "API URL for external newsletter subscription"
 msgstr ""
 
-#: configuration/settings.cfg:214
+#: configuration/settings.cfg:227
 msgid "Skip confirmation mail for this registration form"
 msgstr ""
 
-#: configuration/settings.cfg:219
+#: configuration/settings.cfg:232
 msgid "Form field or subtable is optional (not required for submission)"
 msgstr ""
 
-#: configuration/settings.cfg:224
+#: configuration/settings.cfg:237
 msgid "Include usergroup in participant presence lists; set to 0 to exclude"
 msgstr ""
 
-#: configuration/settings.cfg:230
+#: configuration/settings.cfg:243
 msgid "Enable registrations for events of this category"
 msgstr ""
 
-#: configuration/settings.cfg:236
+#: configuration/settings.cfg:249
 msgid "List of required fields per form"
 msgstr ""
 
-#: configuration/settings.cfg:246
+#: configuration/settings.cfg:259
 msgid "Always show this field if the form requires login, even if user is not logged in"
 msgstr ""
 
-#: configuration/settings.cfg:252
+#: configuration/settings.cfg:265
 msgid "Property name for select options: enum or selection (default: enum)"
 msgstr ""
 
-#: configuration/settings.cfg:260
+#: configuration/settings.cfg:273
 msgid "Option list for formkit select fields (alternative to zzform[enum])"
 msgstr ""
 
-#: configuration/settings.cfg:269
+#: configuration/settings.cfg:282
 msgid "Use formfield explanation text as the single select option instead of enum/selection"
 msgstr ""
 
-#: configuration/settings.cfg:275
+#: configuration/settings.cfg:288
 msgid "Named SQL query key for populating select options"
 msgstr ""
 
-#: configuration/settings.cfg:282
+#: configuration/settings.cfg:295
 msgid "Newsletter or mailing-list UUID per select option"
 msgstr ""
 
-#: configuration/settings.cfg:290
+#: configuration/settings.cfg:303
 msgid "Use children of this category as categories for user groups"
 msgstr ""
 
-#: configuration/settings.cfg:297
+#: configuration/settings.cfg:310
 msgid "Override field title on generated registration form"
 msgstr ""
 
-#: configuration/settings.cfg:304
+#: configuration/settings.cfg:317
 msgid "Days after participation ends during which access rights remain"
 msgstr ""
 
