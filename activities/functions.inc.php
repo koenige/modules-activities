@@ -513,14 +513,14 @@ function mf_activities_formfielddata_concat($form_field, $values) {
 			$result[] = mf_activities_formfielddata_concat($form_field, $line);
 		return implode(wrap_setting('activities_formfielddata_concat_rows'), $result);
 	}
-	if (empty($form_field['parameters']['concat']))
+	if (empty($form_field['parameters']['activities_formfielddata_concat']))
 		return implode(wrap_setting('activities_formfielddata_concat_fields'), $values);
 	$result = '';
 	foreach ($values as $index => $value) {
 		$result .= $value;
-		if (array_key_exists($index, $form_field['parameters']['concat'])) {
-			$form_field['parameters']['concat'][$index] = trim($form_field['parameters']['concat'][$index], '"');
-			$result .= $form_field['parameters']['concat'][$index];
+		if (array_key_exists($index, $form_field['parameters']['activities_formfielddata_concat'])) {
+			$form_field['parameters']['activities_formfielddata_concat'][$index] = trim($form_field['parameters']['activities_formfielddata_concat'][$index], '"');
+			$result .= $form_field['parameters']['activities_formfielddata_concat'][$index];
 		} elseif ($index !== count($values) - 1) {
 			$result .= wrap_setting('activities_formfielddata_concat_fields');
 		}
