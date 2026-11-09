@@ -247,13 +247,17 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type, $formfie
 		$data['fieldtitle'] = $data['values'][$formfield_id]['formfield'];
 	}
 
-	$settings = ['check_rights' => false, 'absolute' => true];
-	$data['authentication_link'] = wrap_path('activities_registration_confirmation', [], $settings).sprintf('?confirm=%s', $data['verification_hash']);
-	$data['rejection_link'] = wrap_path('activities_registration_confirmation', [], $settings).sprintf('?delete=%s', $data['verification_hash']);
-
 	// custom data?	
 	if (function_exists('my_formmail_prepare'))
 		$data = my_formmail_prepare($data);
 	
+	$settings = ['check_rights' => false, 'absolute' => true];
+	$path = wrap_path('activities_registration_confirmation', [], $settings);
+	if (!$path) return $data;
+
+	$separator = parse_url($path, PHP_URL_QUERY) ? '&' : '?';
+	$data['authentication_link'] = sprintf('%s%sconfirm=%s', $path, $separator, $data['verification_hash']);
+	$data['rejection_link'] = sprintf('%s%sdelete=%s', $path, $separator, $data['verification_hash']);
+
 	return $data;
 }
