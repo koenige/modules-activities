@@ -175,3 +175,5 @@
 /* 2026-11-11-2 */	UPDATE categories SET `parameters` = REPLACE(`parameters`, '&no_confirmation_mail=1', '&activities_formmail_confirmation=0') WHERE `parameters` LIKE '%&no_confirmation_mail=1%';
 /* 2026-11-11-3 */	UPDATE events SET `parameters` = REPLACE(`parameters`, '&no_authentication_mail=1', '&activities_formmail_authentication=0') WHERE `parameters` LIKE '%&no_authentication_mail=1%';
 /* 2026-11-11-4 */	UPDATE events SET `parameters` = REPLACE(`parameters`, '&no_confirmation_mail=1', '&activities_formmail_confirmation=0') WHERE `parameters` LIKE '%&no_confirmation_mail=1%';
+/* 2026-11-11-5 */	UPDATE `participations_categories` SET `last_update` = NOW() WHERE ISNULL(`last_update`);
+/* 2026-11-11-6 */	ALTER TABLE `participations_categories` CHANGE `last_update` `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP;

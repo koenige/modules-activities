@@ -333,7 +333,7 @@ CREATE TABLE `participations_categories` (
   `property` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `type_category_id` int unsigned NOT NULL,
   `sequence` tinyint unsigned DEFAULT NULL,
-  `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`participation_category_id`),
   UNIQUE KEY `participation_id_category_id` (`participation_id`,`category_id`),
   KEY `category_id` (`category_id`)
