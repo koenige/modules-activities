@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- activities module\n"
-"POT-Creation-Date: 2026-11-03 18:06+0000\n"
+"POT-Creation-Date: 2026-11-11 10:18+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -304,7 +304,7 @@ msgstr ""
 msgid "The mail was sent successfully."
 msgstr ""
 
-#: zzbrick_make/registrationconfirmation.inc.php:82
+#: zzbrick_make/registrationconfirmation.inc.php:91
 msgid "The registration for code %s was not completed."
 msgstr ""
 

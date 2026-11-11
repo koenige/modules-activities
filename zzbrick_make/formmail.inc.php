@@ -222,10 +222,13 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type, $formfie
 			, formcategories.category AS form_category
 			, formcategories.parameters AS form_parameters
 			, events.parameters AS event_parameters
+			, event_categories.parameters AS event_category_parameters
 	    FROM events
 		LEFT JOIN forms USING (event_id)
 		LEFT JOIN categories formcategories
 			ON formcategories.category_id = forms.form_category_id
+		LEFT JOIN categories event_categories
+			ON events.event_category_id = event_categories.category_id
 	    WHERE event_id = %d';
 	$sql = sprintf($sql, $event_id);
 	$event = wrap_db_fetch($sql);
@@ -233,8 +236,7 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type, $formfie
 	$event = wrap_translate($event, 'events');
 	if ($event['form_parameters'])
 		parse_str($event['form_parameters'], $event['form_parameters']);
-	if ($event['event_parameters'])
-		wrap_setting_from_table('events', $event['event_parameters']);
+	mf_activities_event_settings($event);
 	$data = array_merge($data, $event);
 
 	$data['duration'] = wrap_date_plain($data['duration']);

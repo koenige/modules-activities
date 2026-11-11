@@ -56,6 +56,9 @@ function mod_activities_make_registrationconfirmation() {
 				, invitations.parameters
 				, participations.event_id
 				, IF(forms.address = "informal", 1, NULL) AS informal_address
+				, participation_events.parameters AS event_parameters
+				, formcategories.parameters AS form_parameters
+				, event_categories.parameters AS event_category_parameters
 			FROM participations
 			LEFT JOIN forms
 				ON forms.event_id = participations.event_id
@@ -65,6 +68,12 @@ function mod_activities_make_registrationconfirmation() {
 				AND invitations.usergroup_id = participations.usergroup_id
 			LEFT JOIN events
 				ON invitations.event_id = events.event_id
+			LEFT JOIN events participation_events
+				ON participation_events.event_id = participations.event_id
+			LEFT JOIN categories formcategories
+				ON forms.form_category_id = formcategories.category_id
+			LEFT JOIN categories event_categories
+				ON participation_events.event_category_id = event_categories.category_id
 			WHERE participations.verification_hash = "%s"
 			AND ISNULL(events.date_end)';
 		$sql = sprintf($sql, wrap_db_escape($code));
@@ -98,7 +107,9 @@ function mod_activities_make_registrationconfirmation() {
 				zzform_update('participations', $line, E_USER_ERROR, $error_settings);
 				
 				wrap_include('zzform/formkit', 'activities');
-				mf_activities_formkit_mail_send($data['event_id'], $data['contact_id'], 'confirmation');
+				mf_activities_event_settings($data);
+				if (wrap_setting('activities_formmail_confirmation'))
+					mf_activities_formkit_mail_send($data['event_id'], $data['contact_id'], 'confirmation');
 				
 				$old_contact_id = mf_activities_merge_contact($data['contact_id']);
 				if ($old_contact_id) $data['contact_id'] = $old_contact_id;

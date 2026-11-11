@@ -20,3 +20,5 @@
 2026-03-14-3	code	activities_formmail_send_path	removed, paths from routes; use wrap_path()
 2026-03-14-4	code	activities_profile_path	removed, paths from routes; use wrap_path()
 2026-03-14-5	code	activities_registration_confirmation_path	removed, paths from routes; use wrap_path()
+2026-11-11-1	code	no_authentication_mail	use activities_formmail_authentication=0
+2026-11-11-2	code	no_confirmation_mail	use activities_formmail_confirmation=0

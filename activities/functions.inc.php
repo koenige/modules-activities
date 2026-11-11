@@ -654,6 +654,13 @@ function mf_activities_form($identifier, $event_category_id = NULL, $website_id 
 	$event = wrap_translate($event, 'event');
 	$event = wrap_translate($event, 'categories', 'category_id');
 	$event = wrap_translate($event, 'forms', 'form_id');
+	mf_activities_event_settings($event);
+	$event['formtemplates_authentication_missing']
+		= wrap_setting('activities_formmail_authentication') && !$event['formtemplates_authentication']
+		? 1 : NULL;
+	$event['formtemplates_confirmation_missing']
+		= wrap_setting('activities_formmail_confirmation') && !$event['formtemplates_confirmation']
+		? 1 : NULL;
 	if (!$event['formtemplates_confirmation_missing'] AND !$event['formtemplates_authentication_missing'])
 		$event['formtemplates'] = true;
 	if ($event['formfield_category_ids'])
@@ -664,6 +671,19 @@ function mf_activities_form($identifier, $event_category_id = NULL, $website_id 
 	$required = mf_activities_formfields_required($event);
 	if (empty($required['missing'])) $event['formfields'] = true;
 	return $event;
+}
+
+/**
+ * register settings from event category, form category and event parameters
+ *
+ * the event parameters are applied last, so they win over category parameters
+ * @param array $event
+ * @return void
+ */
+function mf_activities_event_settings($event) {
+	wrap_setting_from_table('categories/events', $event['event_category_parameters'] ?? '', false);
+	wrap_setting_from_table('categories/forms', $event['form_parameters'] ?? '', false);
+	wrap_setting_from_table('events', $event['event_parameters'] ?? '', false);
 }
 
 /**

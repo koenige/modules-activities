@@ -65,28 +65,30 @@ WHERE contact_id = %d
 -- activities_placeholder_form --
 SELECT event_id, event, identifier, form_id, abstract, events.description
 	, IF(events.published = "yes", 1, NULL) AS published
-	, IF((SELECT COUNT(*) FROM formtemplates
+	, (SELECT COUNT(*) FROM formtemplates
 		WHERE formtemplates.form_id = forms.form_id
-		AND template_category_id = /*_ID CATEGORIES template-types/authentication _*/)
-	>= 1, NULL, IF(form_categories.parameters LIKE "%%&no_authentication_mail=1%%", NULL, 1
-	)) AS formtemplates_authentication_missing
-	, IF((SELECT COUNT(*) FROM formtemplates
+		AND template_category_id = /*_ID categories template-types/authentication _*/
+	) AS formtemplates_authentication
+	, (SELECT COUNT(*) FROM formtemplates
 		WHERE formtemplates.form_id = forms.form_id
-		AND template_category_id = /*_ID CATEGORIES template-types/confirmation _*/)
-	>= 1, NULL, IF(form_categories.parameters LIKE "%%&no_confirmation_mail=1%%", NULL, 1
-	)) AS formtemplates_confirmation_missing
+		AND template_category_id = /*_ID categories template-types/confirmation _*/
+	) AS formtemplates_confirmation
 	, (SELECT GROUP_CONCAT(formfield_category_id SEPARATOR ",") FROM formfields
 		WHERE formfields.form_id = forms.form_id) AS formfield_category_ids
 	, forms.access
 	, form_categories.category_id
 	, form_categories.category
 	, form_categories.parameters AS form_parameters
+	, events.parameters AS event_parameters
+	, event_categories.parameters AS event_category_parameters
 	, forms.form_id, forms.lead, forms.header, forms.footer
 FROM events
 LEFT JOIN forms USING (event_id)
 LEFT JOIN websites USING (website_id)
 LEFT JOIN categories form_categories
 	ON forms.form_category_id = form_categories.category_id
+LEFT JOIN categories event_categories
+	ON events.event_category_id = event_categories.category_id
 WHERE identifier = "%s"
 AND event_category_id = %d
 AND website_id = %d;
