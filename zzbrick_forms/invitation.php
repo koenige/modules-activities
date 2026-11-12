@@ -16,7 +16,7 @@
 if (count($brick['vars']) !== 1) wrap_quit(404);
 
 $sql = 'SELECT invitation_id, usergroup_id
-		, event_id, event
+		, event_id, event, forms.form_category_id
 		, CONCAT(IFNULL(date_begin, ""), "/", IFNULL(date_end, "")) AS duration
 		, form_id, forms.header, forms.footer, forms.lead, access, address
     FROM invitations
@@ -152,9 +152,13 @@ $zz['fields'][198]['fields'][12]['value'] = $invitation['event_id'];
 $zz['fields'][198]['fields'][99]['hide_in_form'] = true;
 $zz['fields'][198]['class'] = 'hidden';
 
-wrap_text_set('Add a record', 'Register');
-wrap_text_set('Add record', 'Submit Registration');
-wrap_text_set('Record was inserted', 'The registration has been sent successfully!');
+$texts = mf_default_category_texts($invitation['form_category_id'], 'forms');
+if (!empty($texts['heading']))
+	wrap_text_set('Add a record', $texts['heading']);
+if (!empty($texts['button-add']))
+	wrap_text_set('Add record', $texts['button-add']);
+if (!empty($texts['heading-insert']))
+	wrap_text_set('Record was inserted', $texts['heading-insert']);
 
 if (!empty($_POST['contact']))
 	$zz['setting']['log_username_default'] = strtolower(wrap_filename($_POST['contact'], '.'));

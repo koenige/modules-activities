@@ -36,7 +36,8 @@ $zz['record']['form_anchor'] = 'zzform';
 $zz['record']['form_lead'] = $data['header']; // @todo this is lead, not header actually
 $zz['footer']['text'] = $data['footer'];
 
-$zz['title'] = $data['event'];
+$texts = $data['category_texts'] ?? [];
+$zz['title'] = sprintf($texts['page-title'] ?? '%s', $data['event']);
 $zz['access'] = 'add_only';
 $zz['hooks']['after_insert'] = 'mf_activities_formkit_hook';
 $zz['vars']['event'] = $data;
@@ -44,7 +45,6 @@ $zz['vars']['event'] = $data;
 $zz['setting']['zzform_autofocus'] = false;
 $zz['setting']['translate_fields'] = false;
 
-$texts = $data['category_texts'] ?? [];
 wrap_text_set('Add a record', $texts['heading'] ?? $data['category']);
 if (!empty($texts['button-add']))
 	wrap_text_set('Add record', $texts['button-add']);

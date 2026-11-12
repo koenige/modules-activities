@@ -39,7 +39,12 @@ $zz['sql'] = wrap_edit_sql($zz['sql'], 'SELECT',
 	, subscriptions.activity_ip AS subscribe_activity_ip'
 );
 
-$zz['title'] = 'Registrations';
+$texts = $brick['data']['category_texts'] ?? [];
+$zz['title'] = $texts['list-title'] ?? 'Registrations';
+if (!empty($texts['heading-show']))
+	wrap_text_set('Show a record', $texts['heading-show']);
+if (!empty($texts['button-update']))
+	wrap_text_set('Update record', $texts['button-update']);
 $zz['subtitle']['text'] = '<a href="../">'.$brick['data']['event'].'</a>';
 $zz['hooks']['after_insert'] = 'mf_activities_formkit_hook';
 $zz['vars']['event'] = $brick['data'];
