@@ -8,7 +8,7 @@
  * https://www.zugzwang.org/modules/activities
  *
  * @author Gustaf Mossakowski <gustaf@koenige.org>
- * @copyright Copyright © 2023-2024 Gustaf Mossakowski
+ * @copyright Copyright © 2023-2026 Gustaf Mossakowski
  * @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
  */
 
@@ -44,10 +44,11 @@ $zz['vars']['event'] = $data;
 $zz['setting']['zzform_autofocus'] = false;
 $zz['setting']['translate_fields'] = false;
 
-wrap_text_set('Add a record', $data['form_parameters']['legend'] ?? $data['category']);
-if (!empty($data['form_parameters']['action']))
-	wrap_text_set('Add record', $data['form_parameters']['action']);
-wrap_text_set('Record was inserted', $data['form_parameters']['legend_insert'] ?? $data['category']);
+$texts = $data['category_texts'] ?? [];
+wrap_text_set('Add a record', $texts['heading'] ?? $data['category']);
+if (!empty($texts['button-add']))
+	wrap_text_set('Add record', $texts['button-add']);
+wrap_text_set('Record was inserted', $texts['heading-insert'] ?? $data['category']);
 
 if ($separate_page) {
 	// call request script only if it is a standalone form

@@ -55,7 +55,7 @@ function mod_activities_make_formmail($params) {
 	$mail['headers']['From']['name'] = $data['sender'];
 	$mail['headers']['From']['e_mail'] = $data['sender_mail'] ?? wrap_setting('own_e_mail');
 
-	$mailtitle = $data['form_parameters']['formmail_subject'][$params[2]] ?? '';
+	$mailtitle = $data['category_texts']['mail-subject-'.$params[2]] ?? '';
 	if (!$mailtitle AND !empty($data['fieldtitle'])) // field-changed mail
 		$mailtitle = $data['fieldtitle'];
 	$mail['subject'] = $data['event'].': '.$extra_message.wrap_text($mailtitle);
@@ -219,6 +219,7 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type, $formfie
 			, form_id
 			, IF(address = "formal", 1, NULL) AS formal_address
 			, IF(address = "informal", 1, NULL) AS informal_address
+			, forms.form_category_id
 			, formcategories.category AS form_category
 			, formcategories.parameters AS form_parameters
 			, events.parameters AS event_parameters
@@ -237,6 +238,7 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type, $formfie
 	if ($event['form_parameters'])
 		parse_str($event['form_parameters'], $event['form_parameters']);
 	mf_activities_event_settings($event);
+	$event['category_texts'] = mf_default_category_texts($event['form_category_id'], 'forms');
 	$data = array_merge($data, $event);
 
 	$data['duration'] = wrap_date_plain($data['duration']);

@@ -667,6 +667,7 @@ function mf_activities_form($identifier, $event_category_id = NULL, $website_id 
 		$event['formfield_category_ids'] = explode(',', $event['formfield_category_ids']);
 	if ($event['form_parameters'])
 		parse_str($event['form_parameters'], $event['form_parameters']);
+	$event['category_texts'] = mf_default_category_texts($event['category_id'], 'forms');
 
 	$required = mf_activities_formfields_required($event);
 	if (empty($required['missing'])) $event['formfields'] = true;

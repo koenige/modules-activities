@@ -22,3 +22,7 @@
 2026-03-14-5	code	activities_registration_confirmation_path	removed, paths from routes; use wrap_path()
 2026-11-11-1	code	no_authentication_mail	use activities_formmail_authentication=0
 2026-11-11-2	code	no_confirmation_mail	use activities_formmail_confirmation=0
+2026-11-11-3	code	form_parameters']['legend']	use categories_text texts/forms/heading
+2026-11-11-4	code	form_parameters']['legend_insert']	use categories_text texts/forms/heading-insert
+2026-11-11-5	code	form_parameters']['action']	use categories_text texts/forms/button-add
+2026-11-11-6	code	form_parameters']['formmail_subject']	use categories_text texts/forms/mail-subject-*
