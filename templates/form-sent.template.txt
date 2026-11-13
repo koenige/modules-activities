@@ -1,0 +1,15 @@
+# activities module
+# Note shown above the form after it was sent
+#
+# Part of »Zugzwang Project«
+# https://www.zugzwang.org/modules/activities
+#
+# @author Gustaf Mossakowski <gustaf@koenige.org>
+# @copyright Copyright © 2026 Gustaf Mossakowski
+# @license http://opensource.org/licenses/lgpl-3.0.html LGPL-3.0
+#
+<h2>%%% item thanks "%s" | "Thanks For Your Interest!" %%%</h2>
+
+%%% if setting activities_formmail_authentication %%%
+<p>%%% text We just sent you an e-mail. Please click on the link inside it to confirm your registration. %%%</p>
+%%% endif %%%

@@ -702,3 +702,16 @@ function mf_activities_event_form($event) {
 	$form = brick_format('%%% forms registration '.$event['identifier'].' %%%', $event);
 	return $form['text'];
 }
+
+/**
+ * note shown above the form after it was sent
+ *
+ * @param array $data
+ * @return string
+ */
+function mf_activities_form_sent($data) {
+	if (!wrap_setting('activities_form_sent')) return '';
+	if (!isset($data['thanks']))
+		$data['thanks'] = $data['category_texts']['thanks'] ?? '';
+	return wrap_template('form-sent', $data);
+}

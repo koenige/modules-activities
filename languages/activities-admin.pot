@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- activities module\n"
-"POT-Creation-Date: 2026-11-11 14:16+0000\n"
+"POT-Creation-Date: 2026-11-13 13:17+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -134,178 +134,182 @@ msgid "Maximum file size of a downloadable archive"
 msgstr ""
 
 #: configuration/settings.cfg:37
-msgid "Path to upload folder for forms (subfolders per event will be created there)"
-msgstr ""
-
-#: configuration/settings.cfg:40
-msgid "Seconds to wait after the content of a field was changed before sending out a form mail"
+msgid "Show a note above the form after it was sent"
 msgstr ""
 
 #: configuration/settings.cfg:45
-msgid "Separator after each value when several form-field values are shown as one line"
+msgid "Path to upload folder for forms (subfolders per event will be created there)"
+msgstr ""
+
+#: configuration/settings.cfg:48
+msgid "Seconds to wait after the content of a field was changed before sending out a form mail"
 msgstr ""
 
 #: configuration/settings.cfg:53
-msgid "If a form field has more than one value (e. g. detail record with several fields), characters to concatenate values"
-msgstr ""
-
-#: configuration/settings.cfg:57
-msgid "If a form field has more than one line, characters to concatenate lines"
+msgid "Separator after each value when several form-field values are shown as one line"
 msgstr ""
 
 #: configuration/settings.cfg:61
+msgid "If a form field has more than one value (e. g. detail record with several fields), characters to concatenate values"
+msgstr ""
+
+#: configuration/settings.cfg:65
+msgid "If a form field has more than one line, characters to concatenate lines"
+msgstr ""
+
+#: configuration/settings.cfg:69
 msgid "Function applied to each value when this field type is shown"
 msgstr ""
 
-#: configuration/settings.cfg:68
+#: configuration/settings.cfg:76
 msgid "Require and send the authentication (double opt-in) form mail"
 msgstr ""
 
-#: configuration/settings.cfg:77
+#: configuration/settings.cfg:85
 msgid "Require and send the confirmation form mail"
 msgstr ""
 
-#: configuration/settings.cfg:86
+#: configuration/settings.cfg:94
 msgid "Send a copy of each form mail to the sender e-mail address"
 msgstr ""
 
-#: configuration/settings.cfg:92
+#: configuration/settings.cfg:100
 msgid "Delay before retrying when no recipient e-mail addresses are available"
 msgstr ""
 
-#: configuration/settings.cfg:97
+#: configuration/settings.cfg:105
 msgid "Send registration mails as BCC to these addresses"
 msgstr ""
 
-#: configuration/settings.cfg:100
+#: configuration/settings.cfg:108
 msgid "Link to a help page for placeholders in mailings"
 msgstr ""
 
-#: configuration/settings.cfg:104
+#: configuration/settings.cfg:112
 msgid "If your own e-mail address is not used as From address in mailings, this suffix is appended"
 msgstr ""
 
-#: configuration/settings.cfg:107
+#: configuration/settings.cfg:115
 msgid "Maximum length of entry in memo field for forms"
 msgstr ""
 
-#: configuration/settings.cfg:111
+#: configuration/settings.cfg:119
 msgid "Identifier of default user group for registration forms"
 msgstr ""
 
-#: configuration/settings.cfg:115
+#: configuration/settings.cfg:123
 msgid "Use the `contactverifications` table instead of `activities` (deprecated)"
 msgstr ""
 
-#: configuration/settings.cfg:119
+#: configuration/settings.cfg:127
 msgid "Allow linking a user group to an organisation contact"
 msgstr ""
 
-#: configuration/settings.cfg:123
+#: configuration/settings.cfg:131
 msgid "Show description of user groups in list view"
 msgstr ""
 
-#: configuration/settings.cfg:128
+#: configuration/settings.cfg:136
 msgid "Group downloaded files in a folder named by this field. Set on the field type to allow it"
 msgstr ""
 
-#: configuration/settings.cfg:138
+#: configuration/settings.cfg:146
 msgid "Map formfield category to database column (table.field)"
 msgstr ""
 
-#: configuration/settings.cfg:149
+#: configuration/settings.cfg:157
 msgid "Extra columns to read and show with this field type (table.field)"
 msgstr ""
 
-#: configuration/settings.cfg:156
+#: configuration/settings.cfg:164
 msgid "Foreign-key column for multi-row formfield data"
 msgstr ""
 
-#: configuration/settings.cfg:162
+#: configuration/settings.cfg:170
 msgid "Extra LEFT JOIN clauses for reading formfield data (table.column format)"
 msgstr ""
 
-#: configuration/settings.cfg:169
+#: configuration/settings.cfg:177
 msgid "Preset hidden values on registration insert (category IDs, usergroup, etc.)"
 msgstr ""
 
-#: configuration/settings.cfg:180
+#: configuration/settings.cfg:188
 msgid "Column matched against the contact when reading this field type (default contact_id)"
 msgstr ""
 
-#: configuration/settings.cfg:190
+#: configuration/settings.cfg:198
 msgid "Only offer this mail template type for forms with this access"
 msgstr ""
 
-#: configuration/settings.cfg:208
+#: configuration/settings.cfg:216
 msgid "Show form-field select for this mail template type"
 msgstr ""
 
-#: configuration/settings.cfg:214
+#: configuration/settings.cfg:222
 msgid "Do not show in form field data; filled in the background, for example a video URL"
 msgstr ""
 
-#: configuration/settings.cfg:220
+#: configuration/settings.cfg:228
 msgid "Media folder ID for file uploads (overrides auto-created event upload folder)"
 msgstr ""
 
-#: configuration/settings.cfg:227
+#: configuration/settings.cfg:235
 msgid "Subscribe registrant to newsletter after successful registration"
 msgstr ""
 
-#: configuration/settings.cfg:232
+#: configuration/settings.cfg:240
 msgid "API URL for external newsletter subscription"
 msgstr ""
 
-#: configuration/settings.cfg:238
+#: configuration/settings.cfg:246
 msgid "Form field or subtable is optional (not required for submission)"
 msgstr ""
 
-#: configuration/settings.cfg:243
+#: configuration/settings.cfg:251
 msgid "Include usergroup in participant presence lists; set to 0 to exclude"
 msgstr ""
 
-#: configuration/settings.cfg:249
+#: configuration/settings.cfg:257
 msgid "Enable registrations for events of this category"
 msgstr ""
 
-#: configuration/settings.cfg:255
+#: configuration/settings.cfg:263
 msgid "List of required fields per form"
 msgstr ""
 
-#: configuration/settings.cfg:265
+#: configuration/settings.cfg:273
 msgid "Always show this field if the form requires login, even if user is not logged in"
 msgstr ""
 
-#: configuration/settings.cfg:271
+#: configuration/settings.cfg:279
 msgid "Property name for select options: enum or selection (default: enum)"
 msgstr ""
 
-#: configuration/settings.cfg:279
+#: configuration/settings.cfg:287
 msgid "Option list for a selection, values separated by commas"
 msgstr ""
 
-#: configuration/settings.cfg:296
+#: configuration/settings.cfg:304
 msgid "Use formfield explanation text as the single select option instead of enum/selection"
 msgstr ""
 
-#: configuration/settings.cfg:302
+#: configuration/settings.cfg:310
 msgid "Named SQL query key for populating select options"
 msgstr ""
 
-#: configuration/settings.cfg:309
+#: configuration/settings.cfg:317
 msgid "Newsletter or mailing-list UUID per select option"
 msgstr ""
 
-#: configuration/settings.cfg:317
+#: configuration/settings.cfg:325
 msgid "Use children of this category as categories for user groups"
 msgstr ""
 
-#: configuration/settings.cfg:324
+#: configuration/settings.cfg:332
 msgid "Override field title on generated registration form"
 msgstr ""
 
-#: configuration/settings.cfg:331
+#: configuration/settings.cfg:339
 msgid "Days after participation ends during which access rights remain"
 msgstr ""
 

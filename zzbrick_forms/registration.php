@@ -49,6 +49,8 @@ wrap_text_set('Add a record', $texts['heading'] ?? $data['category']);
 if (!empty($texts['button-add']))
 	wrap_text_set('Add record', $texts['button-add']);
 wrap_text_set('Record was inserted', $texts['heading-insert'] ?? $data['category']);
+if ($sent = mf_activities_form_sent($data))
+	$zz['explanation_insert'] = $sent;
 
 if ($separate_page) {
 	// call request script only if it is a standalone form
