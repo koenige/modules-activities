@@ -40,6 +40,8 @@ $texts = $data['category_texts'] ?? [];
 $zz['title'] = sprintf($texts['page-title'] ?? '%s', $data['event']);
 $zz['access'] = 'add_only';
 $zz['hooks']['after_insert'] = 'mf_activities_formkit_hook';
+if (wrap_package('feedback'))
+	$zz['hooks']['before_insert'][] = 'mf_feedback_spamcheck';
 $zz['vars']['event'] = $data;
 
 $zz['setting']['zzform_autofocus'] = false;
