@@ -584,6 +584,8 @@ function mf_activities_formkit_hook($ops) {
 
 	$participation_id = mf_activities_formkit_hook_participation($contact_id, $event_id, $data['form_parameters']);
 	$activity_id = mf_activities_formkit_hook_activity($participation_id);
+	if (wrap_setting('activities_formmail_direct'))
+		mf_activities_formkit_mail_send($event_id, $contact_id, 'direct');
 	if (wrap_setting('activities_formmail_authentication'))
 		mf_activities_formkit_mail_send($event_id, $contact_id, 'authentication');
 	return true;

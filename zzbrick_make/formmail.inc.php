@@ -40,7 +40,7 @@ function mod_activities_make_formmail($params) {
 	} else {
 		$extra_message = '';
 	}
-	if (!in_array($params[2], ['authentication', 'confirmation', 'field-changed']))
+	if (!in_array($params[2], ['authentication', 'confirmation', 'direct', 'field-changed']))
 		wrap_error(['Unknown form mail type %s.', ['values' => [$params[2]]]], E_USER_ERROR);
 
 	$data = mod_activities_formmail_prepare($params[0], $params[1], $params[2], $params[3] ?? NULL);
@@ -58,14 +58,30 @@ function mod_activities_make_formmail($params) {
 	$mailtitle = $data['category_texts']['mail-subject-'.$params[2]] ?? '';
 	if (!$mailtitle AND !empty($data['fieldtitle'])) // field-changed mail
 		$mailtitle = $data['fieldtitle'];
-	$mail['subject'] = $data['event'].': '.$extra_message.wrap_text($mailtitle);
-	$mail['message'] = wrap_template($data['formmail_template']."\n", $data);
+	if ($params[2] === 'direct')
+		$mailtitle = wrap_text('Message from %s', ['values' => [$data['contact']]]);
+	else
+		$mailtitle = wrap_text($mailtitle);
+	$mail['subject'] = $data['event'].': '.$extra_message.$mailtitle;
+	if ($params[2] === 'direct')
+		$mail['message'] = $data['submission'];
+	else
+		$mail['message'] = wrap_template($data['formmail_template']."\n", $data);
 	$mail['headers']['Bcc'] = wrap_setting('activities_mail_bcc');
 
 	// check if there is a custom recipient list
 	$recipients = $data['recipients'] ?? [];
+	if ($params[2] === 'direct') {
+		$recipients = [];
+		$recipients[] = [
+			'contact' => '',
+			'e_mail' => $data['sender_mail'] ?? wrap_setting('own_e_mail')
+		];
+		if ($data['e_mail'])
+			$mail['headers']['Reply-To'] = ['name' => $data['contact'], 'e_mail' => $data['e_mail']];
+	}
 	if (!$recipients) {
-		if ($data['e_mail']) {
+		if ($params[2] !== 'direct' AND $data['e_mail']) {
 			$recipients[] = [
 				'contact' => $data['contact'],
 				'e_mail' => $data['e_mail']
@@ -242,8 +258,10 @@ function mod_activities_formmail_prepare($event_id, $contact_id, $type, $formfie
 	$data = array_merge($data, $event);
 
 	$data['duration'] = wrap_date_plain($data['duration']);
-	$data['formmail_template'] = mf_activities_form_templates($data['form_id'], $type, $formfield_id);
-	if (!$data['formmail_template']) return false;
+	if ($type !== 'direct') {
+		$data['formmail_template'] = mf_activities_form_templates($data['form_id'], $type, $formfield_id);
+		if (!$data['formmail_template']) return false;
+	}
 	$data['values'] = mf_activities_formfielddata($contact_id, $data['form_id']);
 	$data['submission'] = mf_activities_formfielddata_submission($data['values']);
 	if ($formfield_id) {

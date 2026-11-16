@@ -288,7 +288,11 @@ msgid "Contact ID %d for form mail (%s), event ID %d, not found."
 msgstr ""
 "Kontakt ID %d für Formular-Mail (%s), Veranstaltung ID %d nicht gefunden."
 
-#: zzbrick_make/formmail.inc.php:80
+#: zzbrick_make/formmail.inc.php:62
+msgid "Message from %s"
+msgstr "Nachricht von %s"
+
+#: zzbrick_make/formmail.inc.php:94
 msgid "Form mail: No recipient e-mail address found."
 msgstr "Formularmail: Keine Empfänger-E-Mail-Adresse gefunden."
 

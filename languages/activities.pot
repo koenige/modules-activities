@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zugzwang Project -- activities module\n"
-"POT-Creation-Date: 2026-11-13 13:17+0000\n"
+"POT-Creation-Date: 2026-11-16 13:29+0000\n"
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -273,23 +273,27 @@ msgstr ""
 msgid "Contact ID %d for form mail (%s), event ID %d, not found."
 msgstr ""
 
-#: zzbrick_make/formmail.inc.php:80
+#: zzbrick_make/formmail.inc.php:62
+msgid "Message from %s"
+msgstr ""
+
+#: zzbrick_make/formmail.inc.php:96
 msgid "Form mail: No recipient e-mail address found."
 msgstr ""
 
-#: zzbrick_make/formmail.inc.php:98
+#: zzbrick_make/formmail.inc.php:114
 msgid "Failed to send mail."
 msgstr ""
 
-#: zzbrick_make/formmail.inc.php:104
+#: zzbrick_make/formmail.inc.php:120
 msgid "(copy of e-mail)"
 msgstr ""
 
-#: zzbrick_make/formmail.inc.php:105
+#: zzbrick_make/formmail.inc.php:121
 msgid "This e-mail was just sent to:"
 msgstr ""
 
-#: zzbrick_make/formmail.inc.php:120
+#: zzbrick_make/formmail.inc.php:136
 msgid "The mail was sent successfully."
 msgstr ""
 
