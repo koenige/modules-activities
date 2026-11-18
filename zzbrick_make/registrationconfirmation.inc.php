@@ -24,6 +24,10 @@ function mod_activities_make_registrationconfirmation() {
 
 	$possible_actions = ['confirm', 'delete'];
 	$page['query_strings'] = ['code', 'action', 'confirm', 'delete'];
+	$page['meta'][] = [
+		'name' => 'robots',
+		'content' => 'noindex, follow, noarchive'
+	];
 
 	// What to do?
 	if (!empty($_GET['code']) && !empty($_GET['action'])
@@ -156,7 +160,12 @@ function mod_activities_make_registrationconfirmation() {
 		$sql = sprintf($sql, $data['contact_id']);
 		$has_logins = wrap_db_fetch($sql, '', 'single value');
 		if (!$has_logins) {
-			return brick_format('%%% forms addlogin '.$data['contact_id'].' query_strings[]=confirm %%%');
+			$page = brick_format('%%% forms addlogin '.$data['contact_id'].' query_strings[]=confirm %%%');
+			$page['meta'][] = [
+				'name' => 'robots',
+				'content' => 'noindex, follow, noarchive'
+			];
+			return $page;
 		}
 	}
 	
